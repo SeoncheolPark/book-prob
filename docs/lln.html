@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -146,6 +126,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">A Biggner’s Guide to Probability Theory</a> 
+        <div class="sidebar-tools-main">
+    <a href="./A-Biggner-s-Guide-to-Probability-Theory.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,13 +152,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rvs.html" class="sidebar-item-text sidebar-link">
+  <a href="./03_rvs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
@@ -266,29 +249,25 @@ EXI\{ |X| \leq a\}= - EXI\{ |X|&gt;a\},
 </section>
 <section id="a-weak-law-for-partial-maxima" class="level1" data-number="7">
 <h1 data-number="7"><span class="header-section-number">7</span> A Weak Law for Partial Maxima</h1>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">SNU, 2017 Winter, Problem 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Solution</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Suppose that <span class="math inline">\(X_n\)</span> are i.i.d. r.v.’s with <span class="math inline">\(EX_1 &gt;0\)</span> and <span class="math inline">\(S_n = X_1 + \cdots + X_n\)</span>. Show that <span class="math inline">\(\max_{1\leq k \leq n} |X_k|/\sqrt{n} \rightarrow 0\)</span> a.s.</p>
-<ol type="a">
-<li><p><span class="math inline">\(\{|X_n|^r\}\)</span> is uniformly integrable.</p></li>
-<li><p><span class="math inline">\(X_n \rightarrow X\)</span> in <span class="math inline">\(\mathcal{L}^r\)</span>.</p></li>
-<li><p><span class="math inline">\(E(|X_n|^r) \rightarrow E(|X|^r) &lt; \infty\)</span>.</p></li>
-</ol>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou’s lemma가 필요하다.</p>
-</div>
-</div>
-</div>
+<!--
+::: panel-tabset
+## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
+
+Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_n$. Show that $\max_{1\leq k \leq n} |X_k|/\sqrt{n} \rightarrow 0$ a.s.
+
+(a) $\{|X_n|^r\}$ is uniformly integrable.
+
+(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
+
+(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
+:::
+-->
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Gut2014" class="csl-entry" role="listitem">
-Gut, Allan. 2014. <em>Probability: A Graduate Course</em>. 2nd ed. Springer New York.
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->

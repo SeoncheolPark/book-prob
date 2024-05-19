@@ -1,34 +1,44 @@
 # Random Variables {.rvs}
 
+## Random Variables
+
+<!--
+Rigorous 3.1
+-->
+
+::: {#def-rvs}
+## Random Variables
+
+Given a probability triple $(\Omega, \mathcal{F}, P)$, a **random variable** is a function $X$ from $\Omega$ to $\mathbb{R}$, such that
+$$
+\{ \omega \in \Omega; X(\omega) \leq x  \} \in \mathcal{F} ,\quad{} x \in \mathbb{R}.
+$$
+:::
+
 ## Radon-nikodym derivative
 
+```{=html}
 <!--
 출처: http://www.statsathome.com/2017/06/26/measure-theory-made-ridiculously-simple/
 -->
-
+```
 ```{r pressure, echo=FALSE, fig.cap="Change of measures.", out.width = '100%'}
 knitr::include_graphics("images/radon-nikodym.png")
 ```
 
 확률측도는 volume element의 일반화라고 볼 수 있다.
 
-- $\mu(x)$: probability measure, interval이나 set of points들을 인풋으로 받고 area/volume에 해당하는 확률(양수)을 아웃풋으로 주는 함수다.
+-   $\mu(x)$: probability measure, interval이나 set of points들을 인풋으로 받고 area/volume에 해당하는 확률(양수)을 아웃풋으로 주는 함수다.
 
-- $\lambda (x)$: reference measure. We often take $\lambda (x)$ as the Lebesgue measure which is essentially just a uniform function over the sample space.
+-   $\lambda (x)$: reference measure. We often take $\lambda (x)$ as the Lebesgue measure which is essentially just a uniform function over the sample space.
 
-The reference measure $\lambda (x)$ is essentially just a meter-stick that allows us to express the probability measure as a simple function $f(x)$. That is, we represent the probability measure $\mu(x)$ as $f(x)$ by comparing the probability measure to some specified reference measure $\lambda (x)$. This is essentially the intuition that is given by the Radon-Nikodym derivative
-$$
+The reference measure $\lambda (x)$ is essentially just a meter-stick that allows us to express the probability measure as a simple function $f(x)$. That is, we represent the probability measure $\mu(x)$ as $f(x)$ by comparing the probability measure to some specified reference measure $\lambda (x)$. This is essentially the intuition that is given by the Radon-Nikodym derivative $$
 f(x) = \frac{d\mu (x)}{d\lambda (x)}
-$$
-or equivalently
-$$
+$$ or equivalently $$
 \text{height = area / width.}
-$$
-Note that we can also represent the same idea by
-$$
+$$ Note that we can also represent the same idea by $$
 \mu (A) = \int_{A\in X} f(x) d\lambda (x),
-$$
-where $\mu(A)$ is the sum of the probability of events in the set $A$ which is itself a subset of the entire sample space $X$. Note that when $A=X$ then the integral must equal $1$ by definition of probability.
+$$ where $\mu(A)$ is the sum of the probability of events in the set $A$ which is itself a subset of the entire sample space $X$. Note that when $A=X$ then the integral must equal $1$ by definition of probability.
 
 라돈-니코딤 정리는 조건부 확률에 응용된다고 함.
 

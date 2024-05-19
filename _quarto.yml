@@ -5,12 +5,14 @@ project:
 book:
   title: "A Biggner's Guide to Probability Theory"
   author: "Seoncheol Park"
-  date: "7/30/2023"
+  date: today
+  search: true
+  downloads: [pdf]
   chapters:
     - index.qmd
     - intro.qmd
-    - prob.qmd
-    - rvs.qmd
+    - 02_prob.qmd
+    - 03_rvs.qmd
     - conv.qmd
     - lln.qmd
     - summary.qmd
@@ -24,6 +26,10 @@ format:
   pdf:
     documentclass: scrreprt
     mainfont: "Noto Sans KR"
+    filters:
+      - watermark
+    watermark:
+      text: "Seoncheol Park"
     include-in-header: 
       - text: |
           \usepackage{kotex}

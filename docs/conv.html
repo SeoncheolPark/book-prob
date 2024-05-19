@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./lln.html" rel="next">
-<link href="./rvs.html" rel="prev">
+<link href="./03_rvs.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -146,6 +146,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">A Biggner’s Guide to Probability Theory</a> 
+        <div class="sidebar-tools-main">
+    <a href="./A-Biggner-s-Guide-to-Probability-Theory.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,13 +172,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rvs.html" class="sidebar-item-text sidebar-link">
+  <a href="./03_rvs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
@@ -316,37 +319,39 @@ E|X_n|I\{ |X_n| &gt; a\} \rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \
 </section>
 <section id="convergence-in-probability" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="convergence-in-probability"><span class="header-section-number">6.2</span> Convergence in Probability</h2>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">SNU, 2020 Winter, Problem 1</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Solution</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Let <span class="math inline">\(0 &lt; r &lt; \infty\)</span>, <span class="math inline">\(X_n \in \mathcal{L}^r\)</span>, and <span class="math inline">\(X_n \rightarrow X\)</span> in probability. Then, show the following three propositions are equivalent.</p>
-<ol type="a">
-<li><p><span class="math inline">\(\{|X_n|^r\}\)</span> is uniformly integrable.</p></li>
-<li><p><span class="math inline">\(X_n \rightarrow X\)</span> in <span class="math inline">\(\mathcal{L}^r\)</span>.</p></li>
-<li><p><span class="math inline">\(E(|X_n|^r) \rightarrow E(|X|^r) &lt; \infty\)</span>.</p></li>
-</ol>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou’s lemma가 필요하다.</p>
-</div>
-</div>
-</div>
+<!--
+::: panel-tabset
+## SNU, 2020 Winter, Problem 1 {.unlisted .unnumbered}
+
+Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probability. Then, show the following three propositions are equivalent.
+
+(a) $\{|X_n|^r\}$ is uniformly integrable.
+
+(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
+
+(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
+:::
+-->
 </section>
 <section id="convergence-in-distribution" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="convergence-in-distribution"><span class="header-section-number">6.3</span> Convergence in Distribution</h2>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">SNU, 2019 Summer, Problem 3</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Solution</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<p>Show that, if <span class="math inline">\(X_n\)</span> converges weakly to <span class="math inline">\(X\)</span> and <span class="math inline">\(\{X_n, n\geq 1\}\)</span> is uniformly integrable, then <span class="math inline">\(X\)</span> is integrable and <span class="math inline">\(EX_n \rightarrow EX\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
-</div>
-<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<p>일단 integrable random variable에 대해 모르면 <a href="rvs.html#def-integrablerv" class="quarto-xref">Definition&nbsp;<span>3.1</span></a> 를 참고하자.</p>
-<p><span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 책의 Theorem 5.5.9 참고</p>
-</div>
-</div>
-</div>
+<!--
+::: panel-tabset
+## SNU, 2019 Summer, Problem 3 {.unlisted .unnumbered}
+
+Show that, if $X_n$ converges weakly to $X$ and $\{X_n, n\geq 1\}$ is uniformly integrable, then $X$ is integrable and $EX_n \rightarrow EX$ as $n\rightarrow \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+일단 integrable random variable에 대해 모르면 @def-integrablerv 를 참고하자.
+
+@Gut2014 책의 Theorem 5.5.9 참고
+:::
+-->
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -783,7 +788,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./rvs.html" class="pagination-link" aria-label="Random Variables">
+      <a href="./03_rvs.html" class="pagination-link" aria-label="Random Variables">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span>
       </a>          
   </div>

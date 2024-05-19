@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./conv.html" rel="next">
-<link href="./prob.html" rel="prev">
+<link href="./02_prob.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03_rvs.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -146,6 +146,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">A Biggner’s Guide to Probability Theory</a> 
+        <div class="sidebar-tools-main">
+    <a href="./A-Biggner-s-Guide-to-Probability-Theory.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -169,13 +172,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link">
+  <a href="./02_prob.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rvs.html" class="sidebar-item-text sidebar-link active">
+  <a href="./03_rvs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
@@ -213,10 +216,11 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#radon-nikodym-derivative" id="toc-radon-nikodym-derivative" class="nav-link active" data-scroll-target="#radon-nikodym-derivative"><span class="header-section-number">3.1</span> Radon-nikodym derivative</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">3.2</span> Integration</a></li>
-  <li><a href="#리만-스틸체스-적분" id="toc-리만-스틸체스-적분" class="nav-link" data-scroll-target="#리만-스틸체스-적분"><span class="header-section-number">3.3</span> 리만-스틸체스 적분</a></li>
-  <li><a href="#리만-적분과-르베그-적분" id="toc-리만-적분과-르베그-적분" class="nav-link" data-scroll-target="#리만-적분과-르베그-적분"><span class="header-section-number">3.4</span> 리만 적분과 르베그 적분</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">3.1</span> Random Variables</a></li>
+  <li><a href="#radon-nikodym-derivative" id="toc-radon-nikodym-derivative" class="nav-link" data-scroll-target="#radon-nikodym-derivative"><span class="header-section-number">3.2</span> Radon-nikodym derivative</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">3.3</span> Integration</a></li>
+  <li><a href="#리만-스틸체스-적분" id="toc-리만-스틸체스-적분" class="nav-link" data-scroll-target="#리만-스틸체스-적분"><span class="header-section-number">3.4</span> 리만-스틸체스 적분</a></li>
+  <li><a href="#리만-적분과-르베그-적분" id="toc-리만-적분과-르베그-적분" class="nav-link" data-scroll-target="#리만-적분과-르베그-적분"><span class="header-section-number">3.5</span> 리만 적분과 르베그 적분</a></li>
   </ul>
 </nav>
     </div>
@@ -242,8 +246,19 @@ window.Quarto = {
 </header>
 
 
-<section id="radon-nikodym-derivative" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">3.1</span> Radon-nikodym derivative</h2>
+<section id="random-variables" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">3.1</span> Random Variables</h2>
+<!--
+Rigorous 3.1
+-->
+<div id="def-rvs" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 3.1 (Random Variables)</strong></span> Given a probability triple <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, a <strong>random variable</strong> is a function <span class="math inline">\(X\)</span> from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb{R}\)</span>, such that <span class="math display">\[
+\{ \omega \in \Omega; X(\omega) \leq x  \} \in \mathcal{F} ,\quad{} x \in \mathbb{R}.
+\]</span></p>
+</div>
+</section>
+<section id="radon-nikodym-derivative" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">3.2</span> Radon-nikodym derivative</h2>
 <!--
 출처: http://www.statsathome.com/2017/06/26/measure-theory-made-ridiculously-simple/
 -->
@@ -271,11 +286,11 @@ f(x) = \frac{d\mu (x)}{d\lambda (x)}
 \]</span> where <span class="math inline">\(\mu(A)\)</span> is the sum of the probability of events in the set <span class="math inline">\(A\)</span> which is itself a subset of the entire sample space <span class="math inline">\(X\)</span>. Note that when <span class="math inline">\(A=X\)</span> then the integral must equal <span class="math inline">\(1\)</span> by definition of probability.</p>
 <p>라돈-니코딤 정리는 조건부 확률에 응용된다고 함.</p>
 </section>
-<section id="integration" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="integration"><span class="header-section-number">3.2</span> Integration</h2>
+<section id="integration" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="integration"><span class="header-section-number">3.3</span> Integration</h2>
 </section>
-<section id="리만-스틸체스-적분" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="리만-스틸체스-적분"><span class="header-section-number">3.3</span> 리만-스틸체스 적분</h2>
+<section id="리만-스틸체스-적분" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="리만-스틸체스-적분"><span class="header-section-number">3.4</span> 리만-스틸체스 적분</h2>
 <p>종종 헷갈리는 표현이 기댓값을 다음과 같이 분포함수를 이용해 표현하는 경우가 있다.</p>
 <p><span class="math display">\[
 E(X) = \int x dF(x).
@@ -294,8 +309,8 @@ E(X) = \int x dF(x).
 \]</span></p>
 <p>여기서 <span class="math inline">\(x_n\)</span>은 정적분을 위해 구간 <span class="math inline">\([a,b]\)</span>를 나눈 점, <span class="math inline">\(t_n\)</span>은 닫힌 세부공간 <span class="math inline">\([x_n, x_{n+1} ]\)</span>사이에 있는 임의점이다.</p>
 </section>
-<section id="리만-적분과-르베그-적분" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="리만-적분과-르베그-적분"><span class="header-section-number">3.4</span> 리만 적분과 르베그 적분</h2>
+<section id="리만-적분과-르베그-적분" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="리만-적분과-르베그-적분"><span class="header-section-number">3.5</span> 리만 적분과 르베그 적분</h2>
 <p>여기는 <a href="https://math.stackexchange.com/questions/2958787/confused-when-changing-from-lebesgue-integral-to-riemann-integral">Confused when changing from Lebesgue Integral to Riemann Integral</a> 에 올라왔던 내용을 살펴보기로 한다. 여기서 질문자는 리만 적분을 어떻게 르베그 적분으로 바꾸는지에 대해 관심이 있다.</p>
 <p>다음과 같이 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>에서 정의된 음이 아닌 확률변수 <span class="math inline">\(X\)</span>가 지수분포를 따른다고 하자. <span class="math display">\[
 P(X&lt;x) = 1-e^{-\lambda x}.
@@ -318,10 +333,10 @@ E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
 \int_{I}xh(x)dx = \int_{X^{-1}}XdP,
 \]</span> recalling again that <span class="math inline">\(\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}\)</span>. Since <span class="math inline">\(P(X&lt;0)\)</span> in your case is <span class="math inline">\(0\)</span>, this last integral is actually equal to the integral over the whole space, and hence to <span class="math inline">\(E[X]\)</span>, which gives your equality.</p>
 <div id="def-integrablerv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.1 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random varible <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
+<p><span class="theorem-title"><strong>Definition 3.2 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random varible <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
 </div>
 <div id="def-Lp" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.2 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
+<p><span class="theorem-title"><strong>Definition 3.3 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
 </div>
 
 
@@ -755,7 +770,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./prob.html" class="pagination-link" aria-label="The Elements of Proability Theory">
+      <a href="./02_prob.html" class="pagination-link" aria-label="The Elements of Proability Theory">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span>
       </a>          
   </div>

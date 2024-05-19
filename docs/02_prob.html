@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./rvs.html" rel="next">
+<link href="./03_rvs.html" rel="next">
 <link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -110,7 +110,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02_prob.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -126,6 +126,9 @@ window.Quarto = {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">A Biggner’s Guide to Probability Theory</a> 
+        <div class="sidebar-tools-main">
+    <a href="./A-Biggner-s-Guide-to-Probability-Theory.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -149,13 +152,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link active">
+  <a href="./02_prob.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rvs.html" class="sidebar-item-text sidebar-link">
+  <a href="./03_rvs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
@@ -193,11 +196,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#data-and-models" id="toc-data-and-models" class="nav-link active" data-scroll-target="#data-and-models"><span class="header-section-number">3</span> Data and models</a></li>
-  <li><a href="#field-and-sigma-field" id="toc-field-and-sigma-field" class="nav-link" data-scroll-target="#field-and-sigma-field"><span class="header-section-number">4</span> Field and <span class="math inline">\(\sigma\)</span>-field</a></li>
-  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities"><span class="header-section-number">5</span> Probabilities</a>
+  <li><a href="#probability-triples" id="toc-probability-triples" class="nav-link active" data-scroll-target="#probability-triples"><span class="header-section-number">2.1</span> Probability Triples</a></li>
+  <li><a href="#field-and-sigma-field" id="toc-field-and-sigma-field" class="nav-link" data-scroll-target="#field-and-sigma-field"><span class="header-section-number">2.2</span> Field and <span class="math inline">\(\sigma\)</span>-field</a></li>
+  <li><a href="#pi-lambda-system" id="toc-pi-lambda-system" class="nav-link" data-scroll-target="#pi-lambda-system"><span class="header-section-number">2.3</span> <span class="math inline">\(\pi-\lambda\)</span> System</a></li>
+  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities"><span class="header-section-number">2.4</span> Probabilities</a>
   <ul class="collapse">
-  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">5.1</span> Probability</a></li>
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">2.4.1</span> Probability</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -224,27 +228,32 @@ window.Quarto = {
 </header>
 
 
-<section id="data-and-models" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Data and models</h1>
+<section id="probability-triples" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="probability-triples"><span class="header-section-number">2.1</span> Probability Triples</h2>
 <!--
-Bickel doksum 1장
+Rigorous 2.1
 -->
+<p>다음은 <a href="https://en.wikipedia.org/wiki/Andrey_Kolmogorov">콜모고로프</a> 가 정리한 수리적 기반의 확률론이다.</p>
+<p><strong>Q</strong>. 왜 probability triple이 필요한가? Single도 아니고 double도 아니고 왜 triple이어야 하는가?</p>
 <ul>
-<li><p>Sample space <span class="math inline">\(\Omega\)</span> (표본공간)</p></li>
-<li><p>Random vector <span class="math inline">\(\mathbf{X} = (X_1, \ldots, X_n)\)</span> (확률벡터)</p></li>
-<li><p>Outcome of the experiment <span class="math inline">\(\omega\)</span></p></li>
-<li><p><span class="math inline">\(\mathbf{X}(\omega)\)</span>: observations or data</p></li>
-<li><p>Since it is only <span class="math inline">\(\mathbf{X}\)</span> that we observe, we need only consider its probability distribution. This distribution is assumed to be a member of a family <span class="math inline">\(\mathcal{P}\)</span> of probability distributions on <span class="math inline">\(\mathbb{R}^n\)</span>.</p></li>
+<li><p><strong>Sample space</strong> <span class="math inline">\(\Omega\)</span> (표본공간): 이것은 any non-empty set이면 된다. 예를 들어 uniform distribution일 때 <span class="math inline">\(\Omega = [0,1]\)</span>이 있다.</p></li>
+<li><p><span class="math inline">\(\mathcal{F}\)</span>: <span class="math inline">\(\sigma\)</span>-algebra 또는 <span class="math inline">\(\sigma\)</span>-field: 이것은 <span class="math inline">\(\Omega\)</span>의 subset들의 collection으로 <span class="math inline">\(\emptyset\)</span>, <span class="math inline">\(\Omega\)</span> 등을 포함한다.</p></li>
+<li><p><strong>Probability</strong> <span class="math inline">\(P\)</span>: a mapping from <span class="math inline">\(\mathcal{F}\)</span> to <span class="math inline">\([0,1]\)</span> with</p>
+<ul>
+<li><span class="math inline">\(P(\emptyset)=0\)</span></li>
+<li><span class="math inline">\(P(\Omega)=1\)</span></li>
+<li><span class="math inline">\(P\)</span> is countably additive, <span class="math inline">\(P(A_1 \cup A_2 \cup \cdots) = P(A_1) + P(A_2) + \cdots\)</span></li>
+</ul></li>
 </ul>
 </section>
-<section id="field-and-sigma-field" class="level1" data-number="4">
-<h1 data-number="4"><span class="header-section-number">4</span> Field and <span class="math inline">\(\sigma\)</span>-field</h1>
+<section id="field-and-sigma-field" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="field-and-sigma-field"><span class="header-section-number">2.2</span> Field and <span class="math inline">\(\sigma\)</span>-field</h2>
 <!--
 Counterexamples in Probability
 00
 -->
 <div id="def-field" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.1 (Field)</strong></span> The class <span class="math inline">\(\mathcal{A}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <strong>field</strong> if it contains <span class="math inline">\(\Omega\)</span> and is closed under the formulation of complements and finite unions, that is if:</p>
+<p><span class="theorem-title"><strong>Definition 2.1 (Field)</strong></span> The class <span class="math inline">\(\mathcal{A}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <strong>field</strong> if it contains <span class="math inline">\(\Omega\)</span> and is closed under the formulation of complements and finite unions, that is if:</p>
 <ol type="1">
 <li><p><span class="math inline">\(\Omega \in \mathcal{A}\)</span></p></li>
 <li><p><span class="math inline">\(A\in\mathcal{A} \Longrightarrow A^c \in \mathcal{A}\)</span></p></li>
@@ -252,7 +261,7 @@ Counterexamples in Probability
 </ol>
 </div>
 <div id="def-sigmafield" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 4.2 (<span class="math inline">\(\sigma\)</span>-field)</strong></span> The class <span class="math inline">\(\mathcal{F}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <span class="math inline">\(\sigma\)</span>-<strong>field</strong> if it is a field and if it is closed under the formulation of countable unions, that is if:</p>
+<p><span class="theorem-title"><strong>Definition 2.2 (<span class="math inline">\(\sigma\)</span>-field)</strong></span> The class <span class="math inline">\(\mathcal{F}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <span class="math inline">\(\sigma\)</span>-<strong>field</strong> if it is a field and if it is closed under the formulation of countable unions, that is if:</p>
 <ol start="4" type="1">
 <li><span class="math inline">\(A_1, A_2, \ldots \in \mathcal{F} \Longrightarrow \cup_{n=1}^{\infty} A_n \in \mathcal{F}\)</span></li>
 </ol>
@@ -261,14 +270,24 @@ Counterexamples in Probability
 <li>Recall that the elements of any field or <span class="math inline">\(\sigma\)</span>-field are called <strong>random events</strong> (or simply <strong>events</strong>).</li>
 </ul>
 </section>
-<section id="probabilities" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Probabilities</h1>
+<section id="pi-lambda-system" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pi-lambda-system"><span class="header-section-number">2.3</span> <span class="math inline">\(\pi-\lambda\)</span> System</h2>
+<!--
+https://www.ekzhang.com/assets/pdf/Stat_210_Notes.pdf
+-->
+<p>Some intuition for <span class="math inline">\(\pi-\lambda\)</span> is that you can take a finite non <span class="math inline">\(\pi\)</span>-system such as <span class="math inline">\(S = \{\{1,2\},\{2,3\}\}\)</span>, and this is not enought to guarantee uniqueness on the <span class="math inline">\(\sigma\)</span>-algebra generated by <span class="math inline">\(S\)</span>, which includes sets like <span class="math inline">\(\{2\}, \{1,2,3\}\)</span>. But, at least in the countable case, you can use the <span class="math inline">\(\pi\)</span>-system property to do disjointification/partitioning on <span class="math inline">\(\Omega\)</span>, which finished the proof.</p>
+<div id="lem-pilambda" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 2.1 (<span class="math inline">\(\sigma\)</span>-algebra and <span class="math inline">\(\pi\)</span>-<span class="math inline">\(\lambda\)</span> system)</strong></span> A family of sets is a <span class="math inline">\(\sigma\)</span>-algebra iff it is both <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\lambda\)</span>.</p>
+</div>
+</section>
+<section id="probabilities" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="probabilities"><span class="header-section-number">2.4</span> Probabilities</h2>
 <!--
 Counterexample section 2
 -->
 <p>::: {#def-prob}</p>
-<section id="probability" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">5.1</span> Probability</h2>
+<section id="probability" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.4.1</span> Probability</h3>
 <ul>
 <li>Let <span class="math inline">\(\Omega\)</span> be any set and <span class="math inline">\(\mathcal{A}\)</span> be a field of its subsets. We say that <span class="math inline">\(P\)</span> is a <strong>probability</strong> on the measurable space <span class="math inline">\((\Omega, \mathcal{A})\)</span> if <span class="math inline">\(P\)</span> is defined for all events <span class="math inline">\(A\in\mathcal{A}\)</span> and satisfies the following axioms.</li>
 </ul>
@@ -288,7 +307,7 @@ P\Big( \cup_{n=1}^{\infty} A_n\Big) = \sum_{n=1}^{\infty}P(A_n)
 \]</span> for any events <span class="math inline">\(A_1, A_2, \ldots \in \mathcal{A}\)</span> which are pairwise disjoint.</li>
 </ol>
 <div id="exm-countersigmaadditive" class="theorem example">
-<p><span class="theorem-title"><strong>Example 5.1 (A probability measure which is additive but not <span class="math inline">\(\sigma\)</span>-additive)</strong></span> Let <span class="math inline">\(\Omega\)</span> be the set of all rational numbers <span class="math inline">\(r\)</span> of the unit interval <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(\mathcal{F}_1\)</span> the class of the subsets of <span class="math inline">\(\Omega\)</span> of the form <span class="math inline">\([a,b]\)</span>, <span class="math inline">\((a,b]\)</span>, <span class="math inline">\((a,b)\)</span> or <span class="math inline">\([a,b)\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are rational numbers. Denote by <span class="math inline">\(\mathcal{F}_2\)</span> the class of all finite sums of disjoint sets of <span class="math inline">\(\mathcal{F}_1\)</span>. Then <span class="math inline">\(\mathcal{F}_2\)</span> is a field. Let us define the probability measure <span class="math inline">\(P\)</span> as follows: <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Example 2.1 (A probability measure which is additive but not <span class="math inline">\(\sigma\)</span>-additive)</strong></span> Let <span class="math inline">\(\Omega\)</span> be the set of all rational numbers <span class="math inline">\(r\)</span> of the unit interval <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(\mathcal{F}_1\)</span> the class of the subsets of <span class="math inline">\(\Omega\)</span> of the form <span class="math inline">\([a,b]\)</span>, <span class="math inline">\((a,b]\)</span>, <span class="math inline">\((a,b)\)</span> or <span class="math inline">\([a,b)\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are rational numbers. Denote by <span class="math inline">\(\mathcal{F}_2\)</span> the class of all finite sums of disjoint sets of <span class="math inline">\(\mathcal{F}_1\)</span>. Then <span class="math inline">\(\mathcal{F}_2\)</span> is a field. Let us define the probability measure <span class="math inline">\(P\)</span> as follows: <span class="math display">\[\begin{align*}
 P(A) &amp;= b-a, \quad{} \text{if } A \in \mathcal{F}_1,\\
 P(B) &amp;= \sum_{i=1}^n P(A_i), \quad{} \text{if } B\in \mathcal{F}_2, \text{ that is, } B=\sum_{i=1}^n A_i, A_i \in \mathcal{F}_1.
 \end{align*}\]</span></p>
@@ -736,7 +755,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./rvs.html" class="pagination-link" aria-label="Random Variables">
+      <a href="./03_rvs.html" class="pagination-link" aria-label="Random Variables">
         <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>

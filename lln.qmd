@@ -9,26 +9,22 @@
 ::: {#prp-momentsandtails}
 ## Moments and Tails
 
-1. Let $r>0$. Suppose that $X$ is a non-negative random variable. Then
-$$
-EX^r < \infty \quad{}\Longrightarrow \quad{} x^r P(X>x) \rightarrow 0 \quad{} \text{as }x \rightarrow \infty,
-$$
-but not necessarily conversely.
+1.  Let $r>0$. Suppose that $X$ is a non-negative random variable. Then $$
+    EX^r < \infty \quad{}\Longrightarrow \quad{} x^r P(X>x) \rightarrow 0 \quad{} \text{as }x \rightarrow \infty,
+    $$ but not necessarily conversely.
 
-2. Suppose that $X, X_1, X_2, \ldots$ are i.i.d. random variables with mean $0$. Then, for any $a >0$,
-$$
-EXI\{ |X| \leq a\}= - EXI\{ |X|>a\},
-$$
-and
-$$
-\Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|>a\}.
-$$
+2.  Suppose that $X, X_1, X_2, \ldots$ are i.i.d. random variables with mean $0$. Then, for any $a >0$, $$
+    EXI\{ |X| \leq a\}= - EXI\{ |X|>a\},
+    $$ and $$
+    \Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|>a\}.
+    $$
 
-3. Let $a >0$. If $X$ is a random variable with mean $0$, then $Y=XI\{|X|\leq a\}$ does not in general havemean $0$. However, if $X$ is **symmetric**, then $EY=0$.
+3.  Let $a >0$. If $X$ is a random variable with mean $0$, then $Y=XI\{|X|\leq a\}$ does not in general havemean $0$. However, if $X$ is **symmetric**, then $EY=0$.
 :::
 
 # A Weak Law for Partial Maxima
 
+<!--
 ::: panel-tabset
 ## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
 
@@ -44,3 +40,4 @@ Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_
 
 @Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
 :::
+-->
