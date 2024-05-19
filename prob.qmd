@@ -1,0 +1,99 @@
+# The Elements of Proability Theory {.prob}
+
+# Data and models
+
+```{=html}
+<!--
+Bickel doksum 1장
+-->
+```
+-   Sample space $\Omega$ (표본공간)
+
+-   Random vector $\mathbf{X} = (X_1, \ldots, X_n)$  (확률벡터)
+
+-   Outcome of the experiment $\omega$
+
+-   $\mathbf{X}(\omega)$: observations or data
+
+-   Since it is only $\mathbf{X}$ that we observe, we need only consider its probability distribution. This distribution is assumed to be a member of a family $\mathcal{P}$ of probability distributions on $\mathbb{R}^n$.
+
+# Field and $\sigma$-field
+
+```{=html}
+<!--
+Counterexamples in Probability
+00
+-->
+```
+::: {#def-field}
+## Field
+
+The class $\mathcal{A}$ of subsets of $\Omega$ is called a **field** if it contains $\Omega$ and is closed under the formulation of complements and finite unions, that is if:
+
+1.  $\Omega \in \mathcal{A}$
+
+2.  $A\in\mathcal{A} \Longrightarrow A^c \in \mathcal{A}$
+
+3.  $A_1, A_2 \in \mathcal{A} \Longrightarrow A_1 \cup A_2 \in \mathcal{A}$
+:::
+
+::: {#def-sigmafield}
+## $\sigma$-field
+
+The class $\mathcal{F}$ of subsets of $\Omega$ is called a $\sigma$-**field** if it is a field and if it is closed under the formulation of countable unions, that is if:
+
+4.  $A_1, A_2, \ldots \in \mathcal{F} \Longrightarrow \cup_{n=1}^{\infty} A_n \in \mathcal{F}$
+:::
+
+-   Recall that the elements of any field or $\sigma$-field are called **random events** (or simply **events**).
+
+# Probabilities
+
+```{=html}
+<!--
+Counterexample section 2
+-->
+```
+::: {#def-prob}
+
+## Probability
+
+-   Let $\Omega$ be any set and $\mathcal{A}$ be a field of its subsets. We say that $P$ is a **probability** on the measurable space $(\Omega, \mathcal{A})$ if $P$ is defined for all events $A\in\mathcal{A}$ and satisfies the following axioms.
+
+1.  $P(A)\geq 0$ for each $A\in \mathcal{A}$; $P(\Omega)=1$
+
+2.  $P$ is **finitely additive**. That is, for any finite number of pairwise disjoint events $A_1, \ldots, A_n \in \mathcal{A}$ we have $$
+    P\Big( \cup_{i=1}^n A_i \Big) = \sum_{i=1}^n P(A_i).
+    $$
+
+3.  $P$ is continuous at $\emptyset$. That is, for any events $A_1, A_2, \ldots, \mathcal{A}$ such that $A_{n+1} \subset A_n$ and $\cap_{n=1}^{\infty}A_n = \emptyset$, it is true that $$
+    \lim_{n\rightarrow \infty}P(A_n) = 0.
+    $$
+
+Note that conditions 2 and 3 are equivalent to the next one 4.
+
+4.  $P$ is $\sigma$-additive (countably additive), that is $$
+    P\Big( \cup_{n=1}^{\infty} A_n\Big) = \sum_{n=1}^{\infty}P(A_n)
+    $$ for any events $A_1, A_2, \ldots \in \mathcal{A}$ which are pairwise disjoint.
+
+::: {#exm-countersigmaadditive}
+## A probability measure which is additive but not $\sigma$-additive
+
+Let $\Omega$ be the set of all rational numbers $r$ of the unit interval $[0,1]$ and $\mathcal{F}_1$ the class of the subsets of $\Omega$ of the form $[a,b]$, $(a,b]$, $(a,b)$ or $[a,b)$ where $a$ and $b$ are rational numbers. Denote by $\mathcal{F}_2$ the class of all finite sums of disjoint sets of $\mathcal{F}_1$. Then $\mathcal{F}_2$ is a field. Let us define the probability measure $P$ as follows: \begin{align*}
+P(A) &= b-a, \quad{} \text{if } A \in \mathcal{F}_1,\\
+P(B) &= \sum_{i=1}^n P(A_i), \quad{} \text{if } B\in \mathcal{F}_2, \text{ that is, } B=\sum_{i=1}^n A_i, A_i \in \mathcal{F}_1.
+\end{align*}
+
+Consider two disjoint sets of $\mathcal{F}_2$ say $$
+B=\sum_{i=1}^n A_i \quad{} \text{ and } B' = \sum_{j=1}^m A_j',
+$$ where $A_i, A_j' \in \mathcal{F}_1$ and all $A_i, A_j'$ are disjoint. Then $B+B' = \sum_{k=1}^{m+n}C_k$ where either $C_k = A_i$ for some $i=1, \ldots, n$, or $C_k = A_j'$ for some $j=1, \ldots, m$. Moreover, \begin{align*}
+P(B+B')&= P\Big( \sum_k C_k \Big) = \sum_k P(C_k) = \sum_{i,j}(P(A_i) + P(A_j'))\\
+&= P(A_i) + \sum_{j} P(A_j') = P(B) + P(B').
+\end{align*}
+
+and hence $P$ is an additive measure.
+
+Obviously every one-point set $\{r\}\in\mathcal{F}_2$ and $P(\{r\}) = 0$. Since $\Omega$ is a countable set and $\Omega = \sum_{i=1}^{\infty}\{r_i\}$, we get $$
+P(\Omega) = 1\neq 0 = \sum_{i=1}^{\infty} P(\{r_i\}).
+$$ This contradiction shows that $P$ is not $\sigma$-additive.
+:::

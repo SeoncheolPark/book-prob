@@ -1,0 +1,46 @@
+# The Law of Large Numbers {.lln}
+
+# Preliminaries
+
+제일 많이 쓰이는 기술은 **truncation**이라고 하는 것으로, 이 방법의 특징은 원래 확률변수열과 asymptotically equivalent 하면서 좀 더 다루기 쉬운 수열을 생각하는 것이다.
+
+## Moments and Tails
+
+::: {#prp-momentsandtails}
+## Moments and Tails
+
+1. Let $r>0$. Suppose that $X$ is a non-negative random variable. Then
+$$
+EX^r < \infty \quad{}\Longrightarrow \quad{} x^r P(X>x) \rightarrow 0 \quad{} \text{as }x \rightarrow \infty,
+$$
+but not necessarily conversely.
+
+2. Suppose that $X, X_1, X_2, \ldots$ are i.i.d. random variables with mean $0$. Then, for any $a >0$,
+$$
+EXI\{ |X| \leq a\}= - EXI\{ |X|>a\},
+$$
+and
+$$
+\Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|>a\}.
+$$
+
+3. Let $a >0$. If $X$ is a random variable with mean $0$, then $Y=XI\{|X|\leq a\}$ does not in general havemean $0$. However, if $X$ is **symmetric**, then $EY=0$.
+:::
+
+# A Weak Law for Partial Maxima
+
+::: panel-tabset
+## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
+
+Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_n$. Show that $\max_{1\leq k \leq n} |X_k|/\sqrt{n} \rightarrow 0$ a.s.
+
+(a) $\{|X_n|^r\}$ is uniformly integrable.
+
+(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
+
+(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
+:::

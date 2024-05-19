@@ -2,12 +2,16 @@ project:
   type: book
 
 book:
-  title: "book-prob"
-  author: "Norah Jones"
+  title: "A Biggner's Guide to Probability Theory"
+  author: "Seoncheol Park"
   date: "7/30/2023"
   chapters:
     - index.qmd
     - intro.qmd
+    - prob.qmd
+    - rvs.qmd
+    - conv.qmd
+    - lln.qmd
     - summary.qmd
     - references.qmd
 
@@ -18,6 +22,10 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
+    mainfont: "Noto Sans KR"
+    include-in-header: 
+      - text: |
+          \usepackage{kotex}
 
 editor: visual
 

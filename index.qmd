@@ -1,5 +1,7 @@
 # Preface {.unnumbered}
 
+확률론은 통계학을 공부하는 데 있어 굉장히 중요한 과목
+
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

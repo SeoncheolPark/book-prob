@@ -1,0 +1,133 @@
+# Convergence {.convergence}
+
+이 장에서는 확률변수의 수렴에 대해 알아본다. $X_1, X_2, \ldots$가 확률변수라고 하자.
+
+-   그러면 만약 이들 $n$항까지의 합 $S_n$은 $n\rightarrow\infty$일 때 어떻게 될 것인가?
+
+-   $\max \{X_1,\ldots, X_n\}$은 $n\rightarrow\infty$일 때 어떻게 될 것인가?
+
+-   수열의 극한은 어떠할 것인가?
+
+-   수열의 함수는 어디로 수렴할 것인가? 이는 수학에서 적분의 수렴에 대응된다고 한다. [@Gut2014]
+
+-   적분의 극한은 극한의 적분과 같을 것인가?
+
+## Definitions
+
+다음의 정의들은 확률론에서 많이 등장하는 정의들이다. $X_1,X_2,\ldots$를 확률변수열이라 하자.
+
+::: {#def-asconv}
+## Almost sure convergence
+
+확률변수열 $X_n$은 $$
+P\{ \omega: X_n (\omega)\rightarrow X(\omega) \text{ as } n\rightarrow \infty\})=1
+$$ 을 만족하면 $X_n$ **converges almost surely (a.s.)** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{a.s.}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+:::
+
+::: {#def-pconv}
+## Converge in Probability
+
+확률변수열 $X_n$이 임의의 $\varepsilon>0$에 대해 $$
+P\{ |X_n-X| >\varepsilon) \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
+$$ 을 만족하면 $X_n$ **converges in probability** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{p}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+:::
+
+::: {#def-rmeanconv}
+## Converge in $r$-mean
+
+확률변수열 $X_n$가 $$
+E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
+$$ 을 만족하면 $X_n$ **converges in** $r-$mean to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+:::
+
+::: {#def-distnconv}
+## Converge in Distribution
+
+$C(F_X)=\{x : F_X(x) \text{ is continuous at }x\}=\text{the continuity set of }F_X$라 하자. 확률변수열 $X_n$가 $$
+F_{X_n}(x) \rightarrow F_X(x) \text{as} \quad{} n\rightarrow \infty, \quad{} \forall x \in C(F_X).
+$$ 을 만족하면 $X_n$ **converges in distribution** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{d}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+
+다음과 같이 정의할 수도 있다고 한다. 확률변수열 $X_n$가 모든 $h\in C_{B}$에 대해 $$
+E h(X_n) \rightarrow E h(X) \quad{} \text{as} \quad{} n\rightarrow \infty.
+$$ 을 만족하면 $X_n$ **converges in distribution** to the random variable $X$ as $n\rightarrow \infty$라 한다.
+
+이 두개의 정의가 동치라는 증명이 @Gut2014 의 Theorem 5.6.1에 있다.
+:::
+
+때때로 $X_n \stackrel{\text{d}}{\rightarrow} \mathcal{N}(0,1)$처럼 쓰기도 한다.
+
+Distributional convergence is often called weak convergence in these more general settings. [@Gut2014]
+
+::: {#def-wconv}
+## Converge Weakly
+
+이는 [@Durrett2019] 의 3.2에 나온다. A sequence of distribution functions is said to **converge weakly** to a limit $F$ (written $F_n \Rightarrow F$) if $F_n(y) \rightarrow F(y)$ for all $y$ that are continuity points of $F$. A sequence of random variables $X_n$ is said to **converge weakly** or **converge in distribution** to a limit $X_{\infty}$ (written $X_n \Rightarrow X_{\infty})$ if their distribution functions $F_n (x) = P(X_n \leq x)$ converges weakly.
+:::
+
+다음은 @Gut2014 의 5.8.1에 나오는 vague convergence이다. Vague convergence의 limiting random variable이 **proper**하지 않아도 된다는 점이 distributional convergence와의 차이점이다.
+
+::: {#def-vconv}
+## Converge Vaguely
+
+A sequence of distribution functions $\{F_n, n\geq 1\}$ **converges vaguely** to the **pseudo-distribution function** $H$ if, for every finite interval $I=(a,b] \subset \mathbb{R}$, where $a,b\in C(H)$, $$
+F_n(I) \rightarrow H(I) \quad{} \text{as} \quad{} n \rightarrow \infty.
+$$ Notation: $F_n \stackrel{\text{v}}{\rightarrow}H$ as $n\rightarrow \infty$.
+:::
+
+# Uniform Integrability
+
+Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터, 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. **Uniform integrability** 조건이 추가되면 그러함이 알려져 있다. [@Gut2014]
+
+::: {#def-uintegrability}
+## Uniform Integrability
+
+A sequence $X_1, X_2, \ldots$ is called **uniformly integrable** iff $$
+E|X_n|I\{ |X_n| > a\} \rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
+$$ 분포함수를 이용해 다른 방법으로 정의할 수도 있다. $X_1, X_2,\ldots$ is unifomly integrable iff $$
+\int_{|x|>a} |x|dF_{X_n}(x)\rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
+$$
+:::
+
+::: remark
+$X_1, X_2 , \ldots$이 유한한 평균을 갖고 있다는 뜻은 $E|X_n|I\{|X_n|>a\}\rightarrow 0$ as $a \rightarrow \infty$ for every $n$을 의미한다. 즉 convergent integrals의 tail이 0으로 수렴해야 하는 것이다. Uniformly integragle은 the contributions in the tails of the integrals tend to $0$ **uniformly** for all members of the sequence임을 뜻한다. [@Gut2014]
+:::
+
+# Convergence of Moments
+
+위키의 설명에 따르면 $X_n \stackrel{L^r}{\rightarrow}X$이면 $\lim_{n\rightarrow \infty}E[|X_n|^r] = E[|X|^r]$이 성립한다고 한다. 그러나 일반적인 moment의 convergence에 대해서는 잘 알지 못한다. 여기서는 uniformly integrablility를 추가해 기존 확률변수의 수렴과 moment convergence 사이의 관계에 대해 알아본다.
+
+We are now in the position to show that uniform integrability is the **correct** concept, that is, that a sequence that converges almost surely, in probability, or in distribution, and is uniformly integrable, converges in the mean, that moments converge and that uniform integrability is the minimal additional assumption for this to happen. [@Gut2014]
+
+## Almost Sure Convergence
+
+## Convergence in Probability
+
+::: panel-tabset
+## SNU, 2020 Winter, Problem 1 {.unlisted .unnumbered}
+
+Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probability. Then, show the following three propositions are equivalent.
+
+(a) $\{|X_n|^r\}$ is uniformly integrable.
+
+(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
+
+(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
+:::
+
+## Convergence in Distribution
+
+::: panel-tabset
+## SNU, 2019 Summer, Problem 3 {.unlisted .unnumbered}
+
+Show that, if $X_n$ converges weakly to $X$ and $\{X_n, n\geq 1\}$ is uniformly integrable, then $X$ is integrable and $EX_n \rightarrow EX$ as $n\rightarrow \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+일단 integrable random variable에 대해 모르면 @def-integrablerv 를 참고하자.
+
+@Gut2014 책의 Theorem 5.5.9 참고
+:::

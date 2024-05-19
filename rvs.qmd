@@ -1,0 +1,103 @@
+# Random Variables {.rvs}
+
+## Radon-nikodym derivative
+
+<!--
+출처: http://www.statsathome.com/2017/06/26/measure-theory-made-ridiculously-simple/
+-->
+
+```{r pressure, echo=FALSE, fig.cap="Change of measures.", out.width = '100%'}
+knitr::include_graphics("images/radon-nikodym.png")
+```
+
+확률측도는 volume element의 일반화라고 볼 수 있다.
+
+- $\mu(x)$: probability measure, interval이나 set of points들을 인풋으로 받고 area/volume에 해당하는 확률(양수)을 아웃풋으로 주는 함수다.
+
+- $\lambda (x)$: reference measure. We often take $\lambda (x)$ as the Lebesgue measure which is essentially just a uniform function over the sample space.
+
+The reference measure $\lambda (x)$ is essentially just a meter-stick that allows us to express the probability measure as a simple function $f(x)$. That is, we represent the probability measure $\mu(x)$ as $f(x)$ by comparing the probability measure to some specified reference measure $\lambda (x)$. This is essentially the intuition that is given by the Radon-Nikodym derivative
+$$
+f(x) = \frac{d\mu (x)}{d\lambda (x)}
+$$
+or equivalently
+$$
+\text{height = area / width.}
+$$
+Note that we can also represent the same idea by
+$$
+\mu (A) = \int_{A\in X} f(x) d\lambda (x),
+$$
+where $\mu(A)$ is the sum of the probability of events in the set $A$ which is itself a subset of the entire sample space $X$. Note that when $A=X$ then the integral must equal $1$ by definition of probability.
+
+라돈-니코딤 정리는 조건부 확률에 응용된다고 함.
+
+## Integration
+
+## 리만-스틸체스 적분
+
+종종 헷갈리는 표현이 기댓값을 다음과 같이 분포함수를 이용해 표현하는 경우가 있다.
+
+$$
+E(X) = \int x dF(x).
+$$
+
+우리가 알고 있는 정적분은 $x$축을 따라가며 함수값 f(x)가 만드는 면적을 계산한다.
+
+$$
+\int_a^b f(x) dx.
+$$
+
+위 식을 더 확장하면 $x$ 대신 임의의 곡선 $g(x)$를 적분 변수로 두고 $f(x)$ 를 단순하게 정적분 할 수도 있다.
+
+$$
+\int_{x=a}^b f(x) dg(x).
+$$
+
+여기서 $dg(x)$는 $g(x)$의 미분소(differential)로, $g(x)$의 움직임을 결정하는 $x$는 단조 증가하거나 감소한다. 위와 같이 리만 적분을 일반화한 정적분을 **리만-스틸체스 적분(Riemann-Stieltjes Integral)**이라 한다. 리만 적분의 정의를 이용해 리만-스틸체스의 적분을 표현할 수도 있다.
+
+$$
+\int_{x=a}^b f(x) dg(x) = \lim_{N\rightarrow \infty} \sum_{n=0}^{N-1} f(t_n) [g(x_{n+1}) - g(x_n)].
+$$
+
+여기서 $x_n$은 정적분을 위해 구간 $[a,b]$를 나눈 점, $t_n$은 닫힌 세부공간 $[x_n, x_{n+1} ]$사이에 있는 임의점이다.
+
+## 리만 적분과 르베그 적분
+
+여기는 [Confused when changing from Lebesgue Integral to Riemann Integral](https://math.stackexchange.com/questions/2958787/confused-when-changing-from-lebesgue-integral-to-riemann-integral) 에 올라왔던 내용을 살펴보기로 한다. 여기서 질문자는 리만 적분을 어떻게 르베그 적분으로 바꾸는지에 대해 관심이 있다.
+
+다음과 같이 확률공간 $(\Omega, \mathcal{F}, P)$에서 정의된 음이 아닌 확률변수 $X$가 지수분포를 따른다고 하자. $$
+P(X<x) = 1-e^{-\lambda x}.
+$$ 한편, 르베그 적분으로 $X$의 기댓값을 쓰면 다음과 같다. $$
+E[X] = \int_{\{\omega | X(\omega) \geq 0 \}} X(\omega) dP(\omega).
+$$ 여기서 질문자는 이것을 리만 적분으로 어떻게 바꾸냐 $$
+E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
+$$ 를 물어보고 있다.
+
+답변은 이것이 적분의 문제가 아닌 변수변환의 문제라고 한다.
+
+By definition, given $X: \Omega \rightarrow \mathbb{R}$ a random variable, $E[X] = \int_{\Omega} X$. $X$ defines a measure $\tilde{m}$ in $\mathbb{R}$, called the **push-forward**, by $\tilde{m}(A) = P(X^{-1}(A))$. By definition, this measure is invariant under $X$, and hence $$
+\int_{\mathbb{R}} f d\tilde{m} = \int_{\Omega} f \circ X dP.
+$$ The equality follows from the usual arguments (prove for characteristics, simple functions, then use convergence. Recall that $1_A \circ X = 1_{X^{-1}(A)}$).
+
+Let $h$ be the density of $X$. We then have, by definition of density, that $\tilde{m}(A) = P(X^{-1}(A)) = \int_A h dm$ for any $A \in \mathcal{B}(\mathbb{R})$, where $m$ is the Lebesgue measure. By **change of variables**, we have $$
+\int_{\mathbb{R}}f d\tilde{m} = \int_{\mathbb{R}} f\cdot h dm.
+$$ Combining these equations, $$
+\int_{\mathbb{R}} f \cdot h dm =\int_{\Omega} f \circ X dP.
+$$ Taking $f=\text{Id}$ yields $$
+\int_{\mathbb{R}}xh(x)dx = \int_{\Omega} X dP = E[X].
+$$ Taking $f = \text{Id} \cdot \mathbf{1}_{I}$, where $I$ is some interval (for example, $(0, +\infty)$ as in your case), we have $$
+\int_{I}xh(x)dx = \int_{X^{-1}}XdP,
+$$ recalling again that $\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}$. Since $P(X<0)$ in your case is $0$, this last integral is actually equal to the integral over the whole space, and hence to $E[X]$, which gives your equality.
+
+::: {#def-integrablerv}
+## Integrable Random Variable
+
+@Gut2014 의 53쪽에 따르면, $E|X|<\infty$인 경우 random varible $X$가 integrable 하다고 부른다.
+:::
+
+::: {#def-Lp}
+## $\mathcal{L}^p$
+
+다음과 같은 확률공간 $(\Omega, \mathcal{F}, P)$를 생각하자. $p>1$에 대해, 확률변수 $X$가 $E|X|^p < \infty$이면 $X\in \mathcal{L}^p$\index{$L^p$수렴}라고 하며 다음과 같은 놈 $\|X_p\| = (E|X|^p)^{\frac{1}{p}}$를 정의할 수 있다.
+:::
