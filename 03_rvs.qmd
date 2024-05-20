@@ -15,6 +15,15 @@ $$
 $$
 :::
 
+**Q**. Random variable을 정의하는데 왜 inverse image를 쓰는가?
+
+<!--
+https://math.stackexchange.com/questions/1728645/why-do-we-have-to-use-pre-image-in-the-formal-definition-of-random-variable
+-->
+
+Commonly a probability measure $P$ is added to $(\Omega, \mathcal{F})$. Then sets like $\{X \in A\}:= \{\omega \in \Omega | X(\omega) \in A\}$ can $=X^{-1}(A)$ be **measured** if they belong to $\mathcal{F}$. 예를 들면 $X: \Omega \rightarrow \mathbb{R}$이 확률변수일 때 $X<1$일 확률을 구하려면 $X^{-1}(-\infty, 1)$이 가측이어야 할 것이다.
+
+
 ## Radon-nikodym derivative
 
 ```{=html}
@@ -104,6 +113,26 @@ $$ recalling again that $\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}$. Since $
 ## Integrable Random Variable
 
 @Gut2014 의 53쪽에 따르면, $E|X|<\infty$인 경우 random varible $X$가 integrable 하다고 부른다.
+:::
+
+<!--
+https://math.stackexchange.com/questions/243675/the-lebesgue-integral-int-omega-dp
+-->
+
+::: {#exm-lebesgueprob}
+
+Given a probability measure $P$ and sample space $\Omega$, it is true that
+$$
+\int_{\Omega} dP = 1.
+$$
+Because
+$$
+\int_{\Omega} dP = P(\Omega) = 1.
+$$
+More generally
+$$
+\int_A dP = \int_{\Omega} 1_A dP = P(A), \quad{} A \in \mathcal{F}.
+$$
 :::
 
 ::: {#def-Lp}

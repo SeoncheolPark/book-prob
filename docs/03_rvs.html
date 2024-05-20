@@ -256,6 +256,11 @@ Rigorous 3.1
 \{ \omega \in \Omega; X(\omega) \leq x  \} \in \mathcal{F} ,\quad{} x \in \mathbb{R}.
 \]</span></p>
 </div>
+<p><strong>Q</strong>. Random variable을 정의하는데 왜 inverse image를 쓰는가?</p>
+<!--
+https://math.stackexchange.com/questions/1728645/why-do-we-have-to-use-pre-image-in-the-formal-definition-of-random-variable
+-->
+<p>Commonly a probability measure <span class="math inline">\(P\)</span> is added to <span class="math inline">\((\Omega, \mathcal{F})\)</span>. Then sets like <span class="math inline">\(\{X \in A\}:= \{\omega \in \Omega | X(\omega) \in A\}\)</span> can <span class="math inline">\(=X^{-1}(A)\)</span> be <strong>measured</strong> if they belong to <span class="math inline">\(\mathcal{F}\)</span>. 예를 들면 <span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span>이 확률변수일 때 <span class="math inline">\(X&lt;1\)</span>일 확률을 구하려면 <span class="math inline">\(X^{-1}(-\infty, 1)\)</span>이 가측이어야 할 것이다.</p>
 </section>
 <section id="radon-nikodym-derivative" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">3.2</span> Radon-nikodym derivative</h2>
@@ -334,6 +339,18 @@ E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
 \]</span> recalling again that <span class="math inline">\(\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}\)</span>. Since <span class="math inline">\(P(X&lt;0)\)</span> in your case is <span class="math inline">\(0\)</span>, this last integral is actually equal to the integral over the whole space, and hence to <span class="math inline">\(E[X]\)</span>, which gives your equality.</p>
 <div id="def-integrablerv" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.2 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random varible <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
+</div>
+<!--
+https://math.stackexchange.com/questions/243675/the-lebesgue-integral-int-omega-dp
+-->
+<div id="exm-lebesgueprob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.1</strong></span> Given a probability measure <span class="math inline">\(P\)</span> and sample space <span class="math inline">\(\Omega\)</span>, it is true that <span class="math display">\[
+\int_{\Omega} dP = 1.
+\]</span> Because <span class="math display">\[
+\int_{\Omega} dP = P(\Omega) = 1.
+\]</span> More generally <span class="math display">\[
+\int_A dP = \int_{\Omega} 1_A dP = P(A), \quad{} A \in \mathcal{F}.
+\]</span></p>
 </div>
 <div id="def-Lp" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 3.3 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
