@@ -64,6 +64,8 @@ Distributional convergence is often called weak convergence in these more genera
 이는 [@Durrett2019] 의 3.2에 나온다. A sequence of distribution functions is said to **converge weakly** to a limit $F$ (written $F_n \Rightarrow F$) if $F_n(y) \rightarrow F(y)$ for all $y$ that are continuity points of $F$. A sequence of random variables $X_n$ is said to **converge weakly** or **converge in distribution** to a limit $X_{\infty}$ (written $X_n \Rightarrow X_{\infty})$ if their distribution functions $F_n (x) = P(X_n \leq x)$ converges weakly.
 :::
 
+[@Polansky2011]의 4장에서는 converges weakly를 converge in distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채 $\{F_n\}_{n=1}^{\infty}$와 $F$로만 정의한 것으로 보았다. 또한 converges weakly를 $F_n \rightsquigarrow F$로 표기하기도 하였다.
+
 다음은 @Gut2014 의 5.8.1에 나오는 vague convergence이다. Vague convergence의 limiting random variable이 **proper**하지 않아도 된다는 점이 distributional convergence와의 차이점이다.
 
 ::: {#def-vconv}
@@ -74,7 +76,57 @@ F_n(I) \rightarrow H(I) \quad{} \text{as} \quad{} n \rightarrow \infty.
 $$ Notation: $F_n \stackrel{\text{v}}{\rightarrow}H$ as $n\rightarrow \infty$.
 :::
 
-# Uniform Integrability
+## Bounded in Probability
+
+[@Polansky2011] Convergence of distribution과 관련된 중요한 질문 중 하나는 limiting distribution이 valid distribution function이냐는 것이다. 이 말인 즉슨 sequence of distribution functions $\{ F_n \}_{n=1}^{\infty}$가
+$$
+\lim_{n\rightarrow\infty} F_n (x) = F(x), \quad{} \forall x \in C(F) \quad{} \text{for some fct } F(x)
+$$
+일 때 $F(x)$가 distribution functions여야 할 필요가 있는가? 여기에서 $F(x) \in [0,1]$, $F(x)$가 non-decreasing, right continuity 등은 미적분학 등의 내용을 이용해 보일 수 있으므로 
+$$
+\lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
+$$
+을 만족하면 $F$가 valid distribution function이 될 것이다.
+
+::: {#def-bip}
+## Bounded in Probability
+
+Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables. The sequence is **bounded in probability** if for every $\varepsilon>0$, $\exists x_{\varepsilon} \in \mathbb{R}$ and $n_{\varepsilon} \in \mathbb{N}$ such that $P(|X_n| \leq x_{\varepsilon})>1-\varepsilon$ for all $n > n_{\varepsilon}$.
+:::
+
+::: {#exm-notbip}
+## Bounded in Probability가 아닌 확률변수열
+
+Consider the situation that $\{X_n\}_{n=1}^{\infty}$ is a sequence of random variables sucht that the distribution function of $X_n$ is given by
+$$
+F_n(x) =
+\begin{cases}
+0, & x<0\\
+1-p_n, & 0 \leq x < n\\
+1, & x\geq n
+\end{cases},
+$$
+where $\{p_n\}_{n=1}^{\infty}$ is a sequence of real numbers such that
+$$
+\lim_{n\rightarrow \infty} p_n = p.
+$$
+
+- $p=0$이면 bounded in probability
+
+- 그러나 $p>0$이면 we set a value of $\varepsilon$ such that $0< \varepsilon < p$. Let $x$ be a positive real value. For any $n>x$ we have the property that $P(|X_m|\leq x) = 1-p \leq 1- \varepsilon$ for all $m>n$. Therefore, it is not possible to find the value of $x$ required in the definition of bounded in probability.
+:::
+
+::: {#thm-validbip}
+## Bounded in Probability는 Limiting distribution이 valid인 것과 동치
+
+Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables where $X_n$ has distribution function $F_n$ for all $n\in \mathbb{N}$. Suppose that $F_n \rightsquigarrow F$ as $n\rightarrow \infty$ where $F$ may or may not be a vaild distribution function. Then,
+$$
+\lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
+$$
+if and only if the sequence $\{X_n \}_{n=1}^{\infty}$ is bounded in probability.
+:::
+
+## Uniform Integrability
 
 Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터, 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. **Uniform integrability** 조건이 추가되면 그러함이 알려져 있다. [@Gut2014]
 
@@ -92,7 +144,7 @@ $$
 $X_1, X_2 , \ldots$이 유한한 평균을 갖고 있다는 뜻은 $E|X_n|I\{|X_n|>a\}\rightarrow 0$ as $a \rightarrow \infty$ for every $n$을 의미한다. 즉 convergent integrals의 tail이 0으로 수렴해야 하는 것이다. Uniformly integragle은 the contributions in the tails of the integrals tend to $0$ **uniformly** for all members of the sequence임을 뜻한다. [@Gut2014]
 :::
 
-# Convergence of Moments
+## Convergence of Moments
 
 위키의 설명에 따르면 $X_n \stackrel{L^r}{\rightarrow}X$이면 $\lim_{n\rightarrow \infty}E[|X_n|^r] = E[|X|^r]$이 성립한다고 한다. 그러나 일반적인 moment의 convergence에 대해서는 잘 알지 못한다. 여기서는 uniformly integrablility를 추가해 기존 확률변수의 수렴과 moment convergence 사이의 관계에 대해 알아본다.
 

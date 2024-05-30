@@ -1,4 +1,2 @@
-# Expected Values {.ev}
-
-## Probability Triples
+# Extreme Value Theory {.evt}
 

@@ -3,26 +3,59 @@ project:
   output-dir: docs
 
 book:
-  title: "A Biggner's Guide to Probability Theory"
+  title: "A Biggner's Guide to Probability and Extremes"
   author: "Seoncheol Park"
   date: today
   search: true
   downloads: [pdf]
   chapters:
-    - index.qmd
-    - intro.qmd
-    - 02_prob.qmd
-    - 03_rvs.qmd
-    - conv.qmd
-    - lln.qmd
-    - summary.qmd
-    - references.qmd
+    - part: "Intro"
+      chapters:
+        - index.qmd
+        - intro.qmd
+    - part: "Probability Theory"
+      chapters:
+        - prob.qmd
+        - rvs.qmd
+        - conv.qmd
+        - lln.qmd
+    - part: "Extremes"
+      chapters:
+        - ev.qmd
+        - mev.qmd
+    - part: "Intro"
+      chapters:
+        - summary.qmd
+        - references.qmd
 
 bibliography: references.bib
+
+filters:
+  - pseudocode
 
 format:
   html:
     theme: cosmo
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          loader: {
+            load: ['[tex]/boldsymbol']
+          },
+          tex: {
+            tags: "all",
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            packages: {
+              '[+]': ['boldsymbol']
+            }
+          }
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   pdf:
     documentclass: scrreprt
     mainfont: "Noto Sans KR"
@@ -30,9 +63,22 @@ format:
       - watermark
     watermark:
       text: "Seoncheol Park"
-    include-in-header: 
-      - text: |
-          \usepackage{kotex}
+    include-in-header:
+      text: |
+        \usepackage{kotex}
+    include-before-body:
+      text: |
+        \renewcommand{\Return}{\State \textbf{return}~}
+        \newcommand{\Print}{\State \textbf{print}~}
+        \newcommand{\Break}{\State \textbf{break}}
+        \newcommand{\Continue}{\State \textbf{continue}}
+        \newcommand{\True}{\textbf{true}}
+        \newcommand{\False}{\textbf{false}}
+        \renewcommand{\And}{\textbf{and}~}
+        \newcommand{\Or}{\textbf{or}~}
+        \renewcommand{\Not}{\textbf{not}~}
+        \newcommand{\To}{\textbf{to}~}
+        \newcommand{\DownTo}{\textbf{downto}~}
 
 editor: visual
 

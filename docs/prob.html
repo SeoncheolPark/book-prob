@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 1&nbsp; Introduction</title>
+<title>A Biggner's Guide to Probability and Extremes – 2&nbsp; The Elements of Proability Theory</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prob.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./rvs.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Intro</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html">Probability Theory</a></li><li class="breadcrumb-item"><a href="./prob.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +175,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -192,7 +192,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prob.html" class="sidebar-item-text sidebar-link">
+  <a href="./prob.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
   </div>
 </li>
@@ -272,16 +272,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#probability-theory" id="toc-probability-theory" class="nav-link active" data-scroll-target="#probability-theory"><span class="header-section-number">1.1</span> Probability Theory</a></li>
+  <li><a href="#probability-triples" id="toc-probability-triples" class="nav-link active" data-scroll-target="#probability-triples"><span class="header-section-number">2.1</span> Probability Triples</a></li>
+  <li><a href="#field-and-sigma-field" id="toc-field-and-sigma-field" class="nav-link" data-scroll-target="#field-and-sigma-field"><span class="header-section-number">2.2</span> Field and <span class="math inline">\(\sigma\)</span>-field</a></li>
+  <li><a href="#pi-lambda-system" id="toc-pi-lambda-system" class="nav-link" data-scroll-target="#pi-lambda-system"><span class="header-section-number">2.3</span> <span class="math inline">\(\pi-\lambda\)</span> System</a></li>
+  <li><a href="#probabilities" id="toc-probabilities" class="nav-link" data-scroll-target="#probabilities"><span class="header-section-number">2.4</span> Probabilities</a>
+  <ul class="collapse">
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">2.4.1</span> Probability</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Intro</a></li><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html">Probability Theory</a></li><li class="breadcrumb-item"><a href="./prob.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></h1>
 </div>
 
 
@@ -298,21 +304,103 @@ window.Quarto = {
 </header>
 
 
-<section id="probability-theory" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="probability-theory"><span class="header-section-number">1.1</span> Probability Theory</h2>
+<section id="probability-triples" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="probability-triples"><span class="header-section-number">2.1</span> Probability Triples</h2>
 <!--
-Gut 1장
+Rigorous 2.1
 -->
+<p>다음은 <a href="https://en.wikipedia.org/wiki/Andrey_Kolmogorov">콜모고로프</a> 가 정리한 수리적 기반의 확률론이다.</p>
+<p><strong>Q</strong>. 왜 probability triple이 필요한가? Single도 아니고 double도 아니고 왜 triple이어야 하는가?</p>
 <ul>
-<li><p>Probability models: random experiment를 묘사하는데 목적이 있음</p></li>
-<li><p>Random experiment: 무작위성이 있어 미래에 일어날 결과물을 정확하게 예측할 수 없는 실험</p></li>
-<li><p><strong>Probability space</strong>: 확률론의 기초가 됨, 확률공간의 키가 되는 아이디어는 <strong>stabilization of the relative frequencies</strong>임</p></li>
+<li><p><strong>Sample space</strong> <span class="math inline">\(\Omega\)</span> (표본공간): 이것은 any non-empty set이면 된다. 예를 들어 uniform distribution일 때 <span class="math inline">\(\Omega = [0,1]\)</span>이 있다.</p></li>
+<li><p><span class="math inline">\(\mathcal{F}\)</span>: <span class="math inline">\(\sigma\)</span>-algebra 또는 <span class="math inline">\(\sigma\)</span>-field: 이것은 <span class="math inline">\(\Omega\)</span>의 subset들의 collection으로 <span class="math inline">\(\emptyset\)</span>, <span class="math inline">\(\Omega\)</span> 등을 포함한다.</p></li>
+<li><p><strong>Probability</strong> <span class="math inline">\(P\)</span>: a mapping from <span class="math inline">\(\mathcal{F}\)</span> to <span class="math inline">\([0,1]\)</span> with</p>
+<ul>
+<li><span class="math inline">\(P(\emptyset)=0\)</span></li>
+<li><span class="math inline">\(P(\Omega)=1\)</span></li>
+<li><span class="math inline">\(P\)</span> is countably additive, <span class="math inline">\(P(A_1 \cup A_2 \cup \cdots) = P(A_1) + P(A_2) + \cdots\)</span></li>
+</ul></li>
 </ul>
-<p>우리가 random experiement를 <strong>독립</strong>적으로, 반복적으로 수행한다고 하고 어떤 특정한 <strong>사건(event)</strong> <span class="math inline">\(A\)</span>가 일어나는지 아닌지를 기록한다고 하자. <span class="math inline">\(f_n (A)\)</span>를 처음 <span class="math inline">\(n\)</span>개의 독립시행에서 <span class="math inline">\(A\)</span>사건이 일어난 횟수라고 하고, <span class="math inline">\(r_n (A) = f_n (A)/n\)</span>이라고 하자. 그러면 이 relative frequency <span class="math inline">\(r_n (A)\)</span>는 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 다음과 같다고 생각하는 것이다(stabilization). <span class="math display">\[
-r_n(A) \stackrel{n\rightarrow \infty}{\longrightarrow} \text{some real number.}
-\]</span></p>
+</section>
+<section id="field-and-sigma-field" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="field-and-sigma-field"><span class="header-section-number">2.2</span> Field and <span class="math inline">\(\sigma\)</span>-field</h2>
+<!--
+Counterexamples in Probability
+00
+-->
+<div id="def-field" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.1 (Field)</strong></span> The class <span class="math inline">\(\mathcal{A}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <strong>field</strong> if it contains <span class="math inline">\(\Omega\)</span> and is closed under the formulation of complements and finite unions, that is if:</p>
+<ol type="1">
+<li><p><span class="math inline">\(\Omega \in \mathcal{A}\)</span></p></li>
+<li><p><span class="math inline">\(A\in\mathcal{A} \Longrightarrow A^c \in \mathcal{A}\)</span></p></li>
+<li><p><span class="math inline">\(A_1, A_2 \in \mathcal{A} \Longrightarrow A_1 \cup A_2 \in \mathcal{A}\)</span></p></li>
+</ol>
+</div>
+<div id="def-sigmafield" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.2 (<span class="math inline">\(\sigma\)</span>-field)</strong></span> The class <span class="math inline">\(\mathcal{F}\)</span> of subsets of <span class="math inline">\(\Omega\)</span> is called a <span class="math inline">\(\sigma\)</span>-<strong>field</strong> if it is a field and if it is closed under the formulation of countable unions, that is if:</p>
+<ol start="4" type="1">
+<li><span class="math inline">\(A_1, A_2, \ldots \in \mathcal{F} \Longrightarrow \cup_{n=1}^{\infty} A_n \in \mathcal{F}\)</span></li>
+</ol>
+</div>
+<ul>
+<li>Recall that the elements of any field or <span class="math inline">\(\sigma\)</span>-field are called <strong>random events</strong> (or simply <strong>events</strong>).</li>
+</ul>
+</section>
+<section id="pi-lambda-system" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="pi-lambda-system"><span class="header-section-number">2.3</span> <span class="math inline">\(\pi-\lambda\)</span> System</h2>
+<!--
+https://www.ekzhang.com/assets/pdf/Stat_210_Notes.pdf
+-->
+<p>Some intuition for <span class="math inline">\(\pi-\lambda\)</span> is that you can take a finite non <span class="math inline">\(\pi\)</span>-system such as <span class="math inline">\(S = \{\{1,2\},\{2,3\}\}\)</span>, and this is not enought to guarantee uniqueness on the <span class="math inline">\(\sigma\)</span>-algebra generated by <span class="math inline">\(S\)</span>, which includes sets like <span class="math inline">\(\{2\}, \{1,2,3\}\)</span>. But, at least in the countable case, you can use the <span class="math inline">\(\pi\)</span>-system property to do disjointification/partitioning on <span class="math inline">\(\Omega\)</span>, which finished the proof.</p>
+<div id="lem-pilambda" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 2.1 (<span class="math inline">\(\sigma\)</span>-algebra and <span class="math inline">\(\pi\)</span>-<span class="math inline">\(\lambda\)</span> system)</strong></span> A family of sets is a <span class="math inline">\(\sigma\)</span>-algebra iff it is both <span class="math inline">\(\pi\)</span> and <span class="math inline">\(\lambda\)</span>.</p>
+</div>
+</section>
+<section id="probabilities" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="probabilities"><span class="header-section-number">2.4</span> Probabilities</h2>
+<!--
+Counterexample section 2
+-->
+<p>::: {#def-prob}</p>
+<section id="probability" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="probability"><span class="header-section-number">2.4.1</span> Probability</h3>
+<ul>
+<li>Let <span class="math inline">\(\Omega\)</span> be any set and <span class="math inline">\(\mathcal{A}\)</span> be a field of its subsets. We say that <span class="math inline">\(P\)</span> is a <strong>probability</strong> on the measurable space <span class="math inline">\((\Omega, \mathcal{A})\)</span> if <span class="math inline">\(P\)</span> is defined for all events <span class="math inline">\(A\in\mathcal{A}\)</span> and satisfies the following axioms.</li>
+</ul>
+<ol type="1">
+<li><p><span class="math inline">\(P(A)\geq 0\)</span> for each <span class="math inline">\(A\in \mathcal{A}\)</span>; <span class="math inline">\(P(\Omega)=1\)</span></p></li>
+<li><p><span class="math inline">\(P\)</span> is <strong>finitely additive</strong>. That is, for any finite number of pairwise disjoint events <span class="math inline">\(A_1, \ldots, A_n \in \mathcal{A}\)</span> we have <span class="math display">\[
+P\Big( \cup_{i=1}^n A_i \Big) = \sum_{i=1}^n P(A_i).
+\]</span></p></li>
+<li><p><span class="math inline">\(P\)</span> is continuous at <span class="math inline">\(\emptyset\)</span>. That is, for any events <span class="math inline">\(A_1, A_2, \ldots, \mathcal{A}\)</span> such that <span class="math inline">\(A_{n+1} \subset A_n\)</span> and <span class="math inline">\(\cap_{n=1}^{\infty}A_n = \emptyset\)</span>, it is true that <span class="math display">\[
+\lim_{n\rightarrow \infty}P(A_n) = 0.
+\]</span></p></li>
+</ol>
+<p>Note that conditions 2 and 3 are equivalent to the next one 4.</p>
+<ol start="4" type="1">
+<li><span class="math inline">\(P\)</span> is <span class="math inline">\(\sigma\)</span>-additive (countably additive), that is <span class="math display">\[
+P\Big( \cup_{n=1}^{\infty} A_n\Big) = \sum_{n=1}^{\infty}P(A_n)
+\]</span> for any events <span class="math inline">\(A_1, A_2, \ldots \in \mathcal{A}\)</span> which are pairwise disjoint.</li>
+</ol>
+<div id="exm-countersigmaadditive" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.1 (A probability measure which is additive but not <span class="math inline">\(\sigma\)</span>-additive)</strong></span> Let <span class="math inline">\(\Omega\)</span> be the set of all rational numbers <span class="math inline">\(r\)</span> of the unit interval <span class="math inline">\([0,1]\)</span> and <span class="math inline">\(\mathcal{F}_1\)</span> the class of the subsets of <span class="math inline">\(\Omega\)</span> of the form <span class="math inline">\([a,b]\)</span>, <span class="math inline">\((a,b]\)</span>, <span class="math inline">\((a,b)\)</span> or <span class="math inline">\([a,b)\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are rational numbers. Denote by <span class="math inline">\(\mathcal{F}_2\)</span> the class of all finite sums of disjoint sets of <span class="math inline">\(\mathcal{F}_1\)</span>. Then <span class="math inline">\(\mathcal{F}_2\)</span> is a field. Let us define the probability measure <span class="math inline">\(P\)</span> as follows: <span class="math display">\[\begin{align*}
+P(A) &amp;= b-a, \quad{} \text{if } A \in \mathcal{F}_1,\\
+P(B) &amp;= \sum_{i=1}^n P(A_i), \quad{} \text{if } B\in \mathcal{F}_2, \text{ that is, } B=\sum_{i=1}^n A_i, A_i \in \mathcal{F}_1.
+\end{align*}\]</span></p>
+<p>Consider two disjoint sets of <span class="math inline">\(\mathcal{F}_2\)</span> say <span class="math display">\[
+B=\sum_{i=1}^n A_i \quad{} \text{ and } B' = \sum_{j=1}^m A_j',
+\]</span> where <span class="math inline">\(A_i, A_j' \in \mathcal{F}_1\)</span> and all <span class="math inline">\(A_i, A_j'\)</span> are disjoint. Then <span class="math inline">\(B+B' = \sum_{k=1}^{m+n}C_k\)</span> where either <span class="math inline">\(C_k = A_i\)</span> for some <span class="math inline">\(i=1, \ldots, n\)</span>, or <span class="math inline">\(C_k = A_j'\)</span> for some <span class="math inline">\(j=1, \ldots, m\)</span>. Moreover, <span class="math display">\[\begin{align*}
+P(B+B')&amp;= P\Big( \sum_k C_k \Big) = \sum_k P(C_k) = \sum_{i,j}(P(A_i) + P(A_j'))\\
+&amp;= P(A_i) + \sum_{j} P(A_j') = P(B) + P(B').
+\end{align*}\]</span></p>
+<p>and hence <span class="math inline">\(P\)</span> is an additive measure.</p>
+<p>Obviously every one-point set <span class="math inline">\(\{r\}\in\mathcal{F}_2\)</span> and <span class="math inline">\(P(\{r\}) = 0\)</span>. Since <span class="math inline">\(\Omega\)</span> is a countable set and <span class="math inline">\(\Omega = \sum_{i=1}^{\infty}\{r_i\}\)</span>, we get <span class="math display">\[
+P(\Omega) = 1\neq 0 = \sum_{i=1}^{\infty} P(\{r_i\}).
+\]</span> This contradiction shows that <span class="math inline">\(P\)</span> is not <span class="math inline">\(\sigma\)</span>-additive.</p>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -738,13 +826,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prob.html" class="pagination-link" aria-label="The Elements of Proability Theory">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./rvs.html" class="pagination-link" aria-label="Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
