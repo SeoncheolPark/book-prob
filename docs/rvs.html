@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 3&nbsp; Random Variables</title>
+<title>A Biggner's Guide to Probability and Extremes – 4&nbsp; Random Variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./conv.html" rel="next">
+<link href="./ineq.html" rel="next">
 <link href="./prob.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html">Probability Theory</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -204,7 +204,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Probability Theory</span></a>
+ <span class="menu-text">Probability</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -212,26 +212,56 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./measure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Measure and Integration</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./prob.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probabilty</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rvs.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ineq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Inequalities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conv.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Convergence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convergence</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./lln.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clt.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lil.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Law of the Iterated Logarithm</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./limext.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Limit Theorems: Extensions and Generalizations</span></span></a>
   </div>
 </li>
       </ul>
@@ -248,13 +278,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Extreme Value Theory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Extreme Value Theory</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./mev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Multivariate Extreme Value Theory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Multivariate Extreme Value Theory</span></span></a>
   </div>
 </li>
       </ul>
@@ -271,7 +301,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,20 +322,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">3.1</span> Random Variables</a></li>
-  <li><a href="#radon-nikodym-derivative" id="toc-radon-nikodym-derivative" class="nav-link" data-scroll-target="#radon-nikodym-derivative"><span class="header-section-number">3.2</span> Radon-nikodym derivative</a></li>
-  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">3.3</span> Integration</a></li>
-  <li><a href="#리만-스틸체스-적분" id="toc-리만-스틸체스-적분" class="nav-link" data-scroll-target="#리만-스틸체스-적분"><span class="header-section-number">3.4</span> 리만-스틸체스 적분</a></li>
-  <li><a href="#리만-적분과-르베그-적분" id="toc-리만-적분과-르베그-적분" class="nav-link" data-scroll-target="#리만-적분과-르베그-적분"><span class="header-section-number">3.5</span> 리만 적분과 르베그 적분</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">4.1</span> Random Variables</a></li>
+  <li><a href="#radon-nikodym-derivative" id="toc-radon-nikodym-derivative" class="nav-link" data-scroll-target="#radon-nikodym-derivative"><span class="header-section-number">4.2</span> Radon-nikodym derivative</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">4.3</span> Distribution</a></li>
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="header-section-number">4.4</span> Expectation</a></li>
+  <li><a href="#cantor-random-variable" id="toc-cantor-random-variable" class="nav-link" data-scroll-target="#cantor-random-variable"><span class="header-section-number">4.5</span> Cantor Random Variable</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./prob.html">Probability Theory</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Random Variables</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></h1>
 </div>
 
 
@@ -322,13 +352,47 @@ window.Quarto = {
 </header>
 
 
-<section id="random-variables" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">3.1</span> Random Variables</h2>
+<section id="random-variables" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">4.1</span> Random Variables</h2>
+<!--
+확률변수론 3.1.2
+-->
+<div id="def-measurablefct" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.1 (잴 수 있는 함수 (가측함수))</strong></span> &nbsp;</p>
+<ul>
+<li>확률공간: <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, <span class="math inline">\(f: \Omega \rightarrow \mathbb{R}\)</span> <span class="math display">\[
+B \in \mathcal{B}(\mathbb{R}) \Longrightarrow f^{-1}(B) \in \mathcal{F}
+\]</span> 이면 함수 <span class="math inline">\(f\)</span>를 <strong>잴 수 있는 함수(measurable function)</strong>라 부름</li>
+</ul>
+</div>
+<div id="exm-nonmeasurablefct" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.1 (잴 수 없는 함수의 예)</strong></span> &nbsp;</p>
+<ul>
+<li><p>표본공간 <span class="math inline">\(\Omega =\{1,2,3\}\)</span>, 사건공간 <span class="math inline">\(\mathcal{F} =\{ \Omega, \emptyset, \{1,2\},\{3\} \}\)</span></p></li>
+<li><p>이때 <span class="math inline">\(f(1)=1, f(2)=2, f(3)=3\)</span>인 함수 <span class="math inline">\(f: (\Omega,\mathcal{F}) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))\)</span>인 함수</p></li>
+<li><p>그런데 <span class="math inline">\(\{1\} \in \mathcal{B}(\mathbb{R})\)</span>이지만 <span class="math inline">\(f^{-1}(\{1\}) = \{1\}\notin \mathcal{F}\)</span>이므로 <span class="math inline">\(f\)</span>는 가측이 아니며, 따라서 확률변수가 아님</p></li>
+</ul>
+</div>
 <!--
 Rigorous 3.1
 -->
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>확률변수는 확률공간 위에서 잴 수 있는 <strong>함수</strong>임</li>
+</ul>
+</div>
+</div>
 <div id="def-rvs" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.1 (Random Variables)</strong></span> Given a probability triple <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, a <strong>random variable</strong> is a function <span class="math inline">\(X\)</span> from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb{R}\)</span>, such that <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 4.2 (Random Variables)</strong></span> Given a probability triple <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, a <strong>random variable</strong> is a function <span class="math inline">\(X\)</span> from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb{R}\)</span>, such that <span class="math display">\[
 \{ \omega \in \Omega; X(\omega) \leq x  \} \in \mathcal{F} ,\quad{} x \in \mathbb{R}.
 \]</span></p>
 </div>
@@ -337,9 +401,29 @@ Rigorous 3.1
 https://math.stackexchange.com/questions/1728645/why-do-we-have-to-use-pre-image-in-the-formal-definition-of-random-variable
 -->
 <p>Commonly a probability measure <span class="math inline">\(P\)</span> is added to <span class="math inline">\((\Omega, \mathcal{F})\)</span>. Then sets like <span class="math inline">\(\{X \in A\}:= \{\omega \in \Omega | X(\omega) \in A\}\)</span> can <span class="math inline">\(=X^{-1}(A)\)</span> be <strong>measured</strong> if they belong to <span class="math inline">\(\mathcal{F}\)</span>. 예를 들면 <span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span>이 확률변수일 때 <span class="math inline">\(X&lt;1\)</span>일 확률을 구하려면 <span class="math inline">\(X^{-1}(-\infty, 1)\)</span>이 가측이어야 할 것이다.</p>
+<div id="exm-rvs" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.2 (확률변수의 inverse image)</strong></span> <span class="citation" data-cites="Proschan2016">Proschan (<a href="references.html#ref-Proschan2016" role="doc-biblioref">2016</a>)</span> 예제 4.2이다.</p>
+<ul>
+<li><p><span class="math inline">\((\Omega, \mathcal{F}, P) = ((0,1),\mathbb{B}_{(0,1)}, \mu_L)\)</span>에서의 확률변수 <span class="math display">\[
+X(\omega) = \frac{1}{\omega (1-\omega)}
+\]</span> 를 생각하자.</p></li>
+<li><p>Borel set <span class="math inline">\(B\)</span>를 <span class="math inline">\(\{ (6.25, \infty) \cup \{4\}\}\)</span></p></li>
+<li><p>역상: <span class="math inline">\(X^{-1}(B) = \{ (0,0.2) \cup (0.8,1) \cup \{0.5\} \} \in \mathcal{B}_{(0,1)}\)</span></p></li>
+</ul>
+<div class="cell" data-layout-align="center" data-fig-weight="6" data-view-distance="10">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rvs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Figure: 확률변수 <span class="math inline">\(X\)</span>의 그림.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="radon-nikodym-derivative" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">3.2</span> Radon-nikodym derivative</h2>
+<section id="radon-nikodym-derivative" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">4.2</span> Radon-nikodym derivative</h2>
 <!--
 출처: http://www.statsathome.com/2017/06/26/measure-theory-made-ridiculously-simple/
 -->
@@ -366,61 +450,14 @@ f(x) = \frac{d\mu (x)}{d\lambda (x)}
 \mu (A) = \int_{A\in X} f(x) d\lambda (x),
 \]</span> where <span class="math inline">\(\mu(A)\)</span> is the sum of the probability of events in the set <span class="math inline">\(A\)</span> which is itself a subset of the entire sample space <span class="math inline">\(X\)</span>. Note that when <span class="math inline">\(A=X\)</span> then the integral must equal <span class="math inline">\(1\)</span> by definition of probability.</p>
 <p>라돈-니코딤 정리는 조건부 확률에 응용된다고 함.</p>
-</section>
-<section id="integration" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="integration"><span class="header-section-number">3.3</span> Integration</h2>
-</section>
-<section id="리만-스틸체스-적분" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="리만-스틸체스-적분"><span class="header-section-number">3.4</span> 리만-스틸체스 적분</h2>
-<p>종종 헷갈리는 표현이 기댓값을 다음과 같이 분포함수를 이용해 표현하는 경우가 있다.</p>
-<p><span class="math display">\[
-E(X) = \int x dF(x).
-\]</span></p>
-<p>우리가 알고 있는 정적분은 <span class="math inline">\(x\)</span>축을 따라가며 함수값 f(x)가 만드는 면적을 계산한다.</p>
-<p><span class="math display">\[
-\int_a^b f(x) dx.
-\]</span></p>
-<p>위 식을 더 확장하면 <span class="math inline">\(x\)</span> 대신 임의의 곡선 <span class="math inline">\(g(x)\)</span>를 적분 변수로 두고 <span class="math inline">\(f(x)\)</span> 를 단순하게 정적분 할 수도 있다.</p>
-<p><span class="math display">\[
-\int_{x=a}^b f(x) dg(x).
-\]</span></p>
-<p>여기서 <span class="math inline">\(dg(x)\)</span>는 <span class="math inline">\(g(x)\)</span>의 미분소(differential)로, <span class="math inline">\(g(x)\)</span>의 움직임을 결정하는 <span class="math inline">\(x\)</span>는 단조 증가하거나 감소한다. 위와 같이 리만 적분을 일반화한 정적분을 <strong>리만-스틸체스 적분(Riemann-Stieltjes Integral)</strong>이라 한다. 리만 적분의 정의를 이용해 리만-스틸체스의 적분을 표현할 수도 있다.</p>
-<p><span class="math display">\[
-\int_{x=a}^b f(x) dg(x) = \lim_{N\rightarrow \infty} \sum_{n=0}^{N-1} f(t_n) [g(x_{n+1}) - g(x_n)].
-\]</span></p>
-<p>여기서 <span class="math inline">\(x_n\)</span>은 정적분을 위해 구간 <span class="math inline">\([a,b]\)</span>를 나눈 점, <span class="math inline">\(t_n\)</span>은 닫힌 세부공간 <span class="math inline">\([x_n, x_{n+1} ]\)</span>사이에 있는 임의점이다.</p>
-</section>
-<section id="리만-적분과-르베그-적분" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="리만-적분과-르베그-적분"><span class="header-section-number">3.5</span> 리만 적분과 르베그 적분</h2>
-<p>여기는 <a href="https://math.stackexchange.com/questions/2958787/confused-when-changing-from-lebesgue-integral-to-riemann-integral">Confused when changing from Lebesgue Integral to Riemann Integral</a> 에 올라왔던 내용을 살펴보기로 한다. 여기서 질문자는 리만 적분을 어떻게 르베그 적분으로 바꾸는지에 대해 관심이 있다.</p>
-<p>다음과 같이 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>에서 정의된 음이 아닌 확률변수 <span class="math inline">\(X\)</span>가 지수분포를 따른다고 하자. <span class="math display">\[
-P(X&lt;x) = 1-e^{-\lambda x}.
-\]</span> 한편, 르베그 적분으로 <span class="math inline">\(X\)</span>의 기댓값을 쓰면 다음과 같다. <span class="math display">\[
-E[X] = \int_{\{\omega | X(\omega) \geq 0 \}} X(\omega) dP(\omega).
-\]</span> 여기서 질문자는 이것을 리만 적분으로 어떻게 바꾸냐 <span class="math display">\[
-E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
-\]</span> 를 물어보고 있다.</p>
-<p>답변은 이것이 적분의 문제가 아닌 변수변환의 문제라고 한다.</p>
-<p>By definition, given <span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span> a random variable, <span class="math inline">\(E[X] = \int_{\Omega} X\)</span>. <span class="math inline">\(X\)</span> defines a measure <span class="math inline">\(\tilde{m}\)</span> in <span class="math inline">\(\mathbb{R}\)</span>, called the <strong>push-forward</strong>, by <span class="math inline">\(\tilde{m}(A) = P(X^{-1}(A))\)</span>. By definition, this measure is invariant under <span class="math inline">\(X\)</span>, and hence <span class="math display">\[
-\int_{\mathbb{R}} f d\tilde{m} = \int_{\Omega} f \circ X dP.
-\]</span> The equality follows from the usual arguments (prove for characteristics, simple functions, then use convergence. Recall that <span class="math inline">\(1_A \circ X = 1_{X^{-1}(A)}\)</span>).</p>
-<p>Let <span class="math inline">\(h\)</span> be the density of <span class="math inline">\(X\)</span>. We then have, by definition of density, that <span class="math inline">\(\tilde{m}(A) = P(X^{-1}(A)) = \int_A h dm\)</span> for any <span class="math inline">\(A \in \mathcal{B}(\mathbb{R})\)</span>, where <span class="math inline">\(m\)</span> is the Lebesgue measure. By <strong>change of variables</strong>, we have <span class="math display">\[
-\int_{\mathbb{R}}f d\tilde{m} = \int_{\mathbb{R}} f\cdot h dm.
-\]</span> Combining these equations, <span class="math display">\[
-\int_{\mathbb{R}} f \cdot h dm =\int_{\Omega} f \circ X dP.
-\]</span> Taking <span class="math inline">\(f=\text{Id}\)</span> yields <span class="math display">\[
-\int_{\mathbb{R}}xh(x)dx = \int_{\Omega} X dP = E[X].
-\]</span> Taking <span class="math inline">\(f = \text{Id} \cdot \mathbf{1}_{I}\)</span>, where <span class="math inline">\(I\)</span> is some interval (for example, <span class="math inline">\((0, +\infty)\)</span> as in your case), we have <span class="math display">\[
-\int_{I}xh(x)dx = \int_{X^{-1}}XdP,
-\]</span> recalling again that <span class="math inline">\(\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}\)</span>. Since <span class="math inline">\(P(X&lt;0)\)</span> in your case is <span class="math inline">\(0\)</span>, this last integral is actually equal to the integral over the whole space, and hence to <span class="math inline">\(E[X]\)</span>, which gives your equality.</p>
 <div id="def-integrablerv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.2 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random varible <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
+<p><span class="theorem-title"><strong>Definition 4.3 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random variable <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
 </div>
 <!--
 https://math.stackexchange.com/questions/243675/the-lebesgue-integral-int-omega-dp
 -->
 <div id="exm-lebesgueprob" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.1</strong></span> Given a probability measure <span class="math inline">\(P\)</span> and sample space <span class="math inline">\(\Omega\)</span>, it is true that <span class="math display">\[
+<p><span class="theorem-title"><strong>Example 4.3</strong></span> Given a probability measure <span class="math inline">\(P\)</span> and sample space <span class="math inline">\(\Omega\)</span>, it is true that <span class="math display">\[
 \int_{\Omega} dP = 1.
 \]</span> Because <span class="math display">\[
 \int_{\Omega} dP = P(\Omega) = 1.
@@ -429,13 +466,106 @@ https://math.stackexchange.com/questions/243675/the-lebesgue-integral-int-omega-
 \]</span></p>
 </div>
 <div id="def-Lp" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 3.3 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
+<p><span class="theorem-title"><strong>Definition 4.4 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
+</div>
+</section>
+<section id="distribution" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="distribution"><span class="header-section-number">4.3</span> Distribution</h2>
+<!--
+https://math.stackexchange.com/questions/3379661/does-a-random-variable-always-have-a-cumulative-distribution-function
+-->
+<ul>
+<li><p>확률변수의 정의는 임의의 measurable subset of possible outcomes (points, bounded/unbounded intervals 등)에 measure (확률)를 부여할 수 있어야 함</p></li>
+<li><p>Semi-infinite interval <span class="math inline">\((-\infty, x]\)</span> 또한 이러한 measurable subset이므로 <span class="math inline">\(\mathbb{R}\)</span>에서 정의된 모든 확률변수는 CDF를 갖음</p></li>
+<li><p>PDF는 CDF의 도함수 개념이므로 CDF가 미분가능해야 전역적으로 PDF도 존재</p></li>
+</ul>
+</section>
+<section id="expectation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="expectation"><span class="header-section-number">4.4</span> Expectation</h2>
+<!--
+오슬로 확률론 5.5
+-->
+<ul>
+<li><strong>Expectation</strong>: integral with respect to the probability measure</li>
+</ul>
+<div id="def-expectation" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.5 (Expectation)</strong></span> &nbsp;</p>
+<ul>
+<li><p><span class="math inline">\((\Omega, \mathcal{A}, \mathbb{P})\)</span>: Probability space</p>
+<ul>
+<li><span class="math inline">\(\Omega\)</span>: set (sample space)</li>
+<li><span class="math inline">\(\mathcal{A}\)</span>: <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\Omega\)</span></li>
+<li><span class="math inline">\(\mathbb{P}\)</span>: Probability measure</li>
+</ul></li>
+<li><p><span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span>: Random variable (a measurable fct)</p></li>
+<li><p><strong>Expectation</strong>: The concept of integral of <span class="math inline">\(X\)</span> w.r.t. <span class="math inline">\(\mathbb{P}\)</span> <span class="math display">\[
+E[X] \stackrel{\Delta}{=}\int_{\Omega} X(\omega) d\mathbb{P}[\omega]
+\]</span></p></li>
+</ul>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>다음의 notation들은 모두 <span class="math inline">\(X\)</span>의 기댓값을 의미
+<ul>
+<li><span class="math inline">\(\int_{\Omega} X(\omega) d\mathbb{P}[\omega]\)</span></li>
+<li><span class="math inline">\(\int_{\Omega} X d\mathbb{P}\)</span> (적분하려는 변수가 분명한 경우 생략)</li>
+<li><span class="math inline">\(\int_{\Omega} X(\omega) \mathbb{P}[d\omega]\)</span></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="cantor-random-variable" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="cantor-random-variable"><span class="header-section-number">4.5</span> Cantor Random Variable</h2>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Cantor_distribution">Cantor distribution</a>: 누적분포함수가 Cantor function인 probability distribution</p></li>
+<li><p>Cantor distribution은 PDF나 PMF가 존재하지 않음</p></li>
+<li><p>동전던지기를 할 때, <span class="math inline">\(n\)</span>번째 던지기에서 앞면이 나왔을 때 <span class="math inline">\(\frac{2}{3^n}\)</span>을 갖는 실험을 하면, 최종적으로 <span class="math inline">\(X\)</span> 달러를 받는다고 할 때, <span class="math inline">\(X\)</span>는 확률변수이며 Cantor distribution의 예가 됨</p></li>
+<li><p>특별히 <span class="math inline">\(\{\xi_n\}\)</span>을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 <span class="math inline">\(X\)</span>를 <span class="math inline">\(X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n\)</span>과 같이 놓을 수 있음 (위의 예제 참고)</p></li>
+</ul>
+<!--
+https://math.stackexchange.com/questions/3523916/prove-that-random-variable-is-not-absolutely-continuous-with-respect-to-lebesgue
+-->
+<ul>
+<li>칸토를 집합을 <span class="math inline">\(C\)</span>라 하고, <span class="math inline">\(X\in C\)</span>라 할 때, <a href="https://en.wikipedia.org/wiki/Cantor_set#Measure_and_probability">칸트로 집합이 Lebesgue measure 0</a> 임을 알고 있으며, <span class="math inline">\(P(X\in C)=1&gt;0\)</span>이므로 <span class="math inline">\(X\)</span>는 <strong>not absolutely continuous with respect to the Lebesgue measure</strong>임</li>
+</ul>
+<div id="exm-cantorexp" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.4 (Cantor distribution의 적률 계산)</strong></span> &nbsp;</p>
+<!--
+https://math.stackexchange.com/questions/737148/how-we-compute-expectation-of-a-singular-random-variable
+-->
+<ul>
+<li><p>PDF나 PMF가 존재하지 않더라도 Cantor distribution 같이 음이 아닌 확률변수에서는 <span class="math inline">\(F(x) = P(X&gt;x)\)</span>를 계산할 수 있고, 이를 이용해 <span class="math display">\[
+\begin{align*}
+E(X) &amp;= \int_0^{\infty} F(x) dx\\
+\text{Var} (X) &amp;= \int_0^{\infty} 2x F(x) dx - \Big( \int_0^{\infty}F(x) dx \Big)^2
+\end{align*}
+\]</span> 와 같이 기댓값과 분산을 구할 수 있음</p></li>
+<li><p>특별히 <span class="math inline">\(\{\xi_n\}\)</span>을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 <span class="math inline">\(X\)</span>를 <span class="math inline">\(X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n\)</span>과 같이 놓을 수 있고 (앞선 동전던지기 참고) <span class="math inline">\(E(\xi_n)=\frac{1}{2}\)</span>, <span class="math inline">\(\text{Var}(\xi_n) = \frac{1}{4}\)</span>라는 점을 이용해 다음과 같이 구할 수 있음 <span class="math display">\[
+\begin{align*}
+E(X) &amp;= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \frac{2}{3^n} E(\xi_n)\\&amp;= \sum_{n=1}^{\infty} \frac{2}{3^n }\cdot \frac{1}{2}= \sum_{n=1}^{\infty} \frac{1}{3^n} = \frac{1}{2}\\
+\text{Var}(X) &amp;= \sum_{n=1}^{\infty} \text{Var}\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \Big(\frac{2}{3^n}\Big)^2 \text{Var}(\xi_n)\\&amp;= \sum_{n=1}^{\infty} \frac{4}{9^n }\cdot \frac{1}{4}= \sum_{n=1}^{\infty} \frac{1}{9^n} = \frac{1}{8}.
+\end{align*}
+\]</span></p></li>
+</ul>
 </div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Gut2014" class="csl-entry" role="listitem">
 Gut, Allan. 2014. <em>Probability: A Graduate Course</em>. 2nd ed. Springer New York.
+</div>
+<div id="ref-Proschan2016" class="csl-entry" role="listitem">
+Proschan, Michael A. 2016. <em>Essentials of Probability Theory for Statisticians</em>. CRC Press.
 </div>
 </div>
 </section>
@@ -863,13 +993,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./prob.html" class="pagination-link" aria-label="The Elements of Proability Theory">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Elements of Proability Theory</span></span>
+      <a href="./prob.html" class="pagination-link" aria-label="Probabilty">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probabilty</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./conv.html" class="pagination-link" aria-label="Convergence">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Convergence</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ineq.html" class="pagination-link" aria-label="Probability Inequalities">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Inequalities</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

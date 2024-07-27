@@ -2,31 +2,25 @@
 
 ## Pseudo-Polar Transforms
 
+```{=html}
 <!--
 Kiriliouk et al의 자료,
 extreme values (2016) 책 358-360
 -->
+```
+Kiriliouk et al. (2016) describe a **pseudo-polar** representation of bivariate data as a means to explore right-tail extremal dependency between the variables.
 
-Kiriliouk et al. (2016) describe a **pseudo-polar** representation of bivariate data as a means to explore right-tail extremal dependency between the variables. 
-
-Let $(X_i, Y_i)$ (real values) or $(U_i, V_i)$ (as probabilities) for $i=1,\ldots, n$ be a bivariate sample of size $n$. When such data are transformed into a **unit-Pareto** scale by
-$$
+Let $(X_i, Y_i)$ (real values) or $(U_i, V_i)$ (as probabilities) for $i=1,\ldots, n$ be a bivariate sample of size $n$. When such data are transformed into a **unit-Pareto** scale by $$
 \hat{X}_i^{*} = \frac{n}{n+1-R_{X,i}}, \quad{} \hat{Y}_i^{*} = \frac{n}{n+1-R_{Y,i}},
-$$
-where $R$ is `rank()`, then letting each **component sum** or **pseudo-polar radius** be defined as
-$$
+$$ where $R$ is `rank()`, then letting each **component sum** or **pseudo-polar radius** be defined as $$
 \hat{S}_i = \hat{X}_i^{*} + \hat{Y}_i^{*},
-$$
-and each respective **pseudo-polar angle** be defined as
-$$
+$$ and each respective **pseudo-polar angle** be defined as $$
 \hat{W}_i = \frac{\hat{X}_i^{*}}{\hat{X}_i^{*} + \hat{Y}_i^{*}} = \frac{\hat{X}_i^{*}}{\hat{S}_i}
-$$
-a **pseudo-polar representation** is available for study.
+$$ a **pseudo-polar representation** is available for study.
 
 A scatter plot of $\hat{W}_i$ (horizontal) versus $\hat{S}_i$ (vertical) will depict a **pseudo-polar plot** of the data.
 
 A density plot of the $\hat{W}_i$ is a representation of extremal dependence.
-
 
 ```{r}
 #| echo: false

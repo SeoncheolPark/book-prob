@@ -1,4 +1,4 @@
-# The Elements of Proability Theory {.prob}
+# Probabilty {.prob}
 
 
 
@@ -73,9 +73,10 @@ A family of sets is a $\sigma$-algebra iff it is both $\pi$ and $\lambda$.
 Counterexample section 2
 -->
 ```
+
 ::: {#def-prob}
 
-### Probability
+## Probability
 
 -   Let $\Omega$ be any set and $\mathcal{A}$ be a field of its subsets. We say that $P$ is a **probability** on the measurable space $(\Omega, \mathcal{A})$ if $P$ is defined for all events $A\in\mathcal{A}$ and satisfies the following axioms.
 
@@ -94,8 +95,11 @@ Note that conditions 2 and 3 are equivalent to the next one 4.
 4.  $P$ is $\sigma$-additive (countably additive), that is $$
     P\Big( \cup_{n=1}^{\infty} A_n\Big) = \sum_{n=1}^{\infty}P(A_n)
     $$ for any events $A_1, A_2, \ldots \in \mathcal{A}$ which are pairwise disjoint.
+    
+:::
 
 ::: {#exm-countersigmaadditive}
+
 ## A probability measure which is additive but not $\sigma$-additive
 
 Let $\Omega$ be the set of all rational numbers $r$ of the unit interval $[0,1]$ and $\mathcal{F}_1$ the class of the subsets of $\Omega$ of the form $[a,b]$, $(a,b]$, $(a,b)$ or $[a,b)$ where $a$ and $b$ are rational numbers. Denote by $\mathcal{F}_2$ the class of all finite sums of disjoint sets of $\mathcal{F}_1$. Then $\mathcal{F}_2$ is a field. Let us define the probability measure $P$ as follows: \begin{align*}

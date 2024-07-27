@@ -1,10 +1,61 @@
 # Random Variables {.rvs}
 
+```{r}
+#| echo: false
+#| message: false
+#| fig-align: center
+#| fig-cap: "Figure: 급성 백혈병 환자의 유전자 발현 정도 데이터."
+#| out-width: 70%
+#| fig-height: 3
+#| fig-weight: 2
+#| view-distance: 10
+
+library(tidyverse) 
+library(DescTools)
+library(showtext)
+library(dplyr)
+library(ggplot2)
+
+```
+
 ## Random Variables
+
+<!--
+확률변수론 3.1.2
+-->
+
+::: {#def-measurablefct}
+## 잴 수 있는 함수 (가측함수)
+
+- 확률공간: $(\Omega, \mathcal{F}, P)$, $f: \Omega \rightarrow \mathbb{R}$
+$$
+B \in \mathcal{B}(\mathbb{R}) \Longrightarrow f^{-1}(B) \in \mathcal{F}
+$$
+이면 함수 $f$를 **잴 수 있는 함수(measurable function)**라 부름
+
+:::
+
+::: {#exm-nonmeasurablefct}
+
+## 잴 수 없는 함수의 예
+
+- 표본공간 $\Omega =\{1,2,3\}$, 사건공간 $\mathcal{F} =\{ \Omega, \emptyset, \{1,2\},\{3\} \}$
+
+- 이때 $f(1)=1, f(2)=2, f(3)=3$인 함수 $f: (\Omega,\mathcal{F}) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))$인 함수
+
+- 그런데 $\{1\} \in \mathcal{B}(\mathbb{R})$이지만 $f^{-1}(\{1\}) = \{1\}\notin \mathcal{F}$이므로 $f$는 가측이 아니며, 따라서 확률변수가 아님
+
+:::
 
 <!--
 Rigorous 3.1
 -->
+
+::: callout-note
+## Remark
+
+- 확률변수는 확률공간 위에서 잴 수 있는 **함수**임
+:::
 
 ::: {#def-rvs}
 ## Random Variables
@@ -22,6 +73,53 @@ https://math.stackexchange.com/questions/1728645/why-do-we-have-to-use-pre-image
 -->
 
 Commonly a probability measure $P$ is added to $(\Omega, \mathcal{F})$. Then sets like $\{X \in A\}:= \{\omega \in \Omega | X(\omega) \in A\}$ can $=X^{-1}(A)$ be **measured** if they belong to $\mathcal{F}$. 예를 들면 $X: \Omega \rightarrow \mathbb{R}$이 확률변수일 때 $X<1$일 확률을 구하려면 $X^{-1}(-\infty, 1)$이 가측이어야 할 것이다.
+
+::: {#exm-rvs}
+
+## 확률변수의 inverse image
+
+@Proschan2016 예제 4.2이다.
+
+- $(\Omega, \mathcal{F}, P) = ((0,1),\mathbb{B}_{(0,1)}, \mu_L)$에서의 확률변수
+$$
+X(\omega) = \frac{1}{\omega (1-\omega)}
+$$
+를 생각하자.
+
+- Borel set $B$를 $\{ (6.25, \infty) \cup \{4\}\}$
+
+- 역상: $X^{-1}(B) = \{ (0,0.2) \cup (0.8,1) \cup \{0.5\} \} \in \mathcal{B}_{(0,1)}$
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-align: center
+#| fig-cap: "Figure: 확률변수 $X$의 그림."
+#| out-width: 70%
+#| fig-height: 6
+#| fig-weight: 6
+#| view-distance: 10
+
+omega <- seq(0.01,0.99,by=0.01);
+X <- function(omega){
+  return (1/(omega*(1-omega)))
+}
+plot(omega, X(omega), type='l', xlab=expression(omega), ylab=expression(X(omega)),
+     ylim=c(0,20), xlim=c(0,1))
+axis(1, at = c(0,0.2), lwd=4, line=0, lwd.tick=0, lab=F)
+axis(1, at = c(0.8,1), lwd=4, line=0, lwd.tick=0, lab=F)
+axis(1, at = 0.5, lwd=6, lwd.tick=0, lab=F)
+axis(2, at = c(6.25,50), lwd=4, line=0, lwd.tick=0, lab=F)
+axis(2, at = 4, lwd=6, lwd.tick=0, lab=F)
+segments(x0=0.5,y0=-5, x1=0.5, y1=X(0.5), lty=2)
+segments(x0=0.8,y0=-5, x1=0.8, y1=X(0.8), lty=2)
+segments(x0=0.2,y0=-5, x1=0.2, y1=X(0.2), lty=2)
+segments(x0=-0.5,y0=4, x1=0.5, y1=4, lty=2)
+```
+
+
+:::
 
 
 ## Radon-nikodym derivative
@@ -51,68 +149,11 @@ $$ where $\mu(A)$ is the sum of the probability of events in the set $A$ which i
 
 라돈-니코딤 정리는 조건부 확률에 응용된다고 함.
 
-## Integration
-
-## 리만-스틸체스 적분
-
-종종 헷갈리는 표현이 기댓값을 다음과 같이 분포함수를 이용해 표현하는 경우가 있다.
-
-$$
-E(X) = \int x dF(x).
-$$
-
-우리가 알고 있는 정적분은 $x$축을 따라가며 함수값 f(x)가 만드는 면적을 계산한다.
-
-$$
-\int_a^b f(x) dx.
-$$
-
-위 식을 더 확장하면 $x$ 대신 임의의 곡선 $g(x)$를 적분 변수로 두고 $f(x)$ 를 단순하게 정적분 할 수도 있다.
-
-$$
-\int_{x=a}^b f(x) dg(x).
-$$
-
-여기서 $dg(x)$는 $g(x)$의 미분소(differential)로, $g(x)$의 움직임을 결정하는 $x$는 단조 증가하거나 감소한다. 위와 같이 리만 적분을 일반화한 정적분을 **리만-스틸체스 적분(Riemann-Stieltjes Integral)**이라 한다. 리만 적분의 정의를 이용해 리만-스틸체스의 적분을 표현할 수도 있다.
-
-$$
-\int_{x=a}^b f(x) dg(x) = \lim_{N\rightarrow \infty} \sum_{n=0}^{N-1} f(t_n) [g(x_{n+1}) - g(x_n)].
-$$
-
-여기서 $x_n$은 정적분을 위해 구간 $[a,b]$를 나눈 점, $t_n$은 닫힌 세부공간 $[x_n, x_{n+1} ]$사이에 있는 임의점이다.
-
-## 리만 적분과 르베그 적분
-
-여기는 [Confused when changing from Lebesgue Integral to Riemann Integral](https://math.stackexchange.com/questions/2958787/confused-when-changing-from-lebesgue-integral-to-riemann-integral) 에 올라왔던 내용을 살펴보기로 한다. 여기서 질문자는 리만 적분을 어떻게 르베그 적분으로 바꾸는지에 대해 관심이 있다.
-
-다음과 같이 확률공간 $(\Omega, \mathcal{F}, P)$에서 정의된 음이 아닌 확률변수 $X$가 지수분포를 따른다고 하자. $$
-P(X<x) = 1-e^{-\lambda x}.
-$$ 한편, 르베그 적분으로 $X$의 기댓값을 쓰면 다음과 같다. $$
-E[X] = \int_{\{\omega | X(\omega) \geq 0 \}} X(\omega) dP(\omega).
-$$ 여기서 질문자는 이것을 리만 적분으로 어떻게 바꾸냐 $$
-E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
-$$ 를 물어보고 있다.
-
-답변은 이것이 적분의 문제가 아닌 변수변환의 문제라고 한다.
-
-By definition, given $X: \Omega \rightarrow \mathbb{R}$ a random variable, $E[X] = \int_{\Omega} X$. $X$ defines a measure $\tilde{m}$ in $\mathbb{R}$, called the **push-forward**, by $\tilde{m}(A) = P(X^{-1}(A))$. By definition, this measure is invariant under $X$, and hence $$
-\int_{\mathbb{R}} f d\tilde{m} = \int_{\Omega} f \circ X dP.
-$$ The equality follows from the usual arguments (prove for characteristics, simple functions, then use convergence. Recall that $1_A \circ X = 1_{X^{-1}(A)}$).
-
-Let $h$ be the density of $X$. We then have, by definition of density, that $\tilde{m}(A) = P(X^{-1}(A)) = \int_A h dm$ for any $A \in \mathcal{B}(\mathbb{R})$, where $m$ is the Lebesgue measure. By **change of variables**, we have $$
-\int_{\mathbb{R}}f d\tilde{m} = \int_{\mathbb{R}} f\cdot h dm.
-$$ Combining these equations, $$
-\int_{\mathbb{R}} f \cdot h dm =\int_{\Omega} f \circ X dP.
-$$ Taking $f=\text{Id}$ yields $$
-\int_{\mathbb{R}}xh(x)dx = \int_{\Omega} X dP = E[X].
-$$ Taking $f = \text{Id} \cdot \mathbf{1}_{I}$, where $I$ is some interval (for example, $(0, +\infty)$ as in your case), we have $$
-\int_{I}xh(x)dx = \int_{X^{-1}}XdP,
-$$ recalling again that $\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}$. Since $P(X<0)$ in your case is $0$, this last integral is actually equal to the integral over the whole space, and hence to $E[X]$, which gives your equality.
 
 ::: {#def-integrablerv}
 ## Integrable Random Variable
 
-@Gut2014 의 53쪽에 따르면, $E|X|<\infty$인 경우 random varible $X$가 integrable 하다고 부른다.
+@Gut2014 의 53쪽에 따르면, $E|X|<\infty$인 경우 random variable $X$가 integrable 하다고 부른다.
 :::
 
 <!--
@@ -139,4 +180,94 @@ $$
 ## $\mathcal{L}^p$
 
 다음과 같은 확률공간 $(\Omega, \mathcal{F}, P)$를 생각하자. $p>1$에 대해, 확률변수 $X$가 $E|X|^p < \infty$이면 $X\in \mathcal{L}^p$\index{$L^p$수렴}라고 하며 다음과 같은 놈 $\|X_p\| = (E|X|^p)^{\frac{1}{p}}$를 정의할 수 있다.
+:::
+
+## Distribution
+
+<!--
+https://math.stackexchange.com/questions/3379661/does-a-random-variable-always-have-a-cumulative-distribution-function
+-->
+
+- 확률변수의 정의는 임의의 measurable subset of possible outcomes (points, bounded/unbounded intervals 등)에 measure (확률)를 부여할 수 있어야 함
+
+- Semi-infinite interval $(-\infty, x]$ 또한 이러한 measurable subset이므로 $\mathbb{R}$에서 정의된 모든 확률변수는 CDF를 갖음
+
+- PDF는 CDF의 도함수 개념이므로 CDF가 미분가능해야 전역적으로 PDF도 존재
+
+## Expectation
+
+<!--
+오슬로 확률론 5.5
+-->
+
+- **Expectation**: integral with respect to the probability measure
+
+::: {#def-expectation}
+## Expectation
+
+- $(\Omega, \mathcal{A}, \mathbb{P})$: Probability space
+    + $\Omega$: set (sample space)
+    + $\mathcal{A}$: $\sigma$-algebra on $\Omega$
+    + $\mathbb{P}$: Probability measure
+    
+- $X: \Omega \rightarrow \mathbb{R}$: Random variable (a measurable fct)
+
+- **Expectation**: The concept of integral of $X$ w.r.t. $\mathbb{P}$ 
+$$
+E[X] \stackrel{\Delta}{=}\int_{\Omega} X(\omega) d\mathbb{P}[\omega]
+$$
+
+:::
+
+::: callout-note
+## Remark
+
+- 다음의 notation들은 모두 $X$의 기댓값을 의미
+    + $\int_{\Omega} X(\omega) d\mathbb{P}[\omega]$
+    + $\int_{\Omega} X d\mathbb{P}$ (적분하려는 변수가 분명한 경우 생략)
+    + $\int_{\Omega} X(\omega) \mathbb{P}[d\omega]$
+
+:::
+
+## Cantor Random Variable
+
+- [Cantor distribution](https://en.wikipedia.org/wiki/Cantor_distribution): 누적분포함수가 Cantor function인 probability distribution
+
+- Cantor distribution은 PDF나 PMF가 존재하지 않음
+
+- 동전던지기를 할 때, $n$번째 던지기에서 앞면이 나왔을 때 $\frac{2}{3^n}$을 갖는 실험을 하면, 최종적으로 $X$ 달러를 받는다고 할 때, $X$는 확률변수이며 Cantor distribution의 예가 됨 
+
+- 특별히 $\{\xi_n\}$을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 $X$를 $X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n$과 같이 놓을 수 있음 (위의 예제 참고)
+
+<!--
+https://math.stackexchange.com/questions/3523916/prove-that-random-variable-is-not-absolutely-continuous-with-respect-to-lebesgue
+-->
+
+- 칸토를 집합을 $C$라 하고, $X\in C$라 할 때, [칸트로 집합이 Lebesgue measure 0](https://en.wikipedia.org/wiki/Cantor_set#Measure_and_probability) 임을 알고 있으며, $P(X\in C)=1>0$이므로 $X$는 **not absolutely continuous with respect to the Lebesgue measure**임
+
+::: {#exm-cantorexp}
+## Cantor distribution의 적률 계산
+
+<!--
+https://math.stackexchange.com/questions/737148/how-we-compute-expectation-of-a-singular-random-variable
+-->
+
+- PDF나 PMF가 존재하지 않더라도 Cantor distribution 같이 음이 아닌 확률변수에서는 $F(x) = P(X>x)$를 계산할 수 있고, 이를 이용해
+$$
+\begin{align*}
+E(X) &= \int_0^{\infty} F(x) dx\\
+\text{Var} (X) &= \int_0^{\infty} 2x F(x) dx - \Big( \int_0^{\infty}F(x) dx \Big)^2
+\end{align*}
+$$
+와 같이 기댓값과 분산을 구할 수 있음
+
+- 특별히 $\{\xi_n\}$을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 $X$를 $X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n$과 같이 놓을 수 있고 (앞선 동전던지기 참고) $E(\xi_n)=\frac{1}{2}$, $\text{Var}(\xi_n) = \frac{1}{4}$라는 점을 이용해 다음과 같이 구할 수 있음
+$$
+\begin{align*}
+E(X) &= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \frac{2}{3^n} E(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{2}{3^n }\cdot \frac{1}{2}= \sum_{n=1}^{\infty} \frac{1}{3^n} = \frac{1}{2}\\
+\text{Var}(X) &= \sum_{n=1}^{\infty} \text{Var}\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \Big(\frac{2}{3^n}\Big)^2 \text{Var}(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{4}{9^n }\cdot \frac{1}{4}= \sum_{n=1}^{\infty} \frac{1}{9^n} = \frac{1}{8}.
+\end{align*}
+$$
+
+
 :::

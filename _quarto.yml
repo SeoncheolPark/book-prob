@@ -13,12 +13,17 @@ book:
       chapters:
         - index.qmd
         - intro.qmd
-    - part: "Probability Theory"
+    - part: "Probability"
       chapters:
+        - measure.qmd
         - prob.qmd
         - rvs.qmd
+        - ineq.qmd
         - conv.qmd
         - lln.qmd
+        - clt.qmd
+        - lil.qmd
+        - limext.qmd
     - part: "Extremes"
       chapters:
         - ev.qmd
@@ -63,9 +68,7 @@ format:
       - watermark
     watermark:
       text: "Seoncheol Park"
-    include-in-header:
-      text: |
-        \usepackage{kotex}
+    include-in-header: preamble.tex
     include-before-body:
       text: |
         \renewcommand{\Return}{\State \textbf{return}~}

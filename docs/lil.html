@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 7&nbsp; The Law of Large Numbers</title>
+<title>A Biggner's Guide to Probability and Extremes – 9&nbsp; The Law of the Iterated Logarithm</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +50,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./clt.html" rel="next">
-<link href="./conv.html" rel="prev">
+<link href="./limext.html" rel="next">
+<link href="./clt.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lln.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lil.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Law of the Iterated Logarithm</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -222,7 +242,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lln.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lln.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></span></a>
   </div>
 </li>
@@ -234,7 +254,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lil.html" class="sidebar-item-text sidebar-link">
+  <a href="./lil.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Law of the Iterated Logarithm</span></span></a>
   </div>
 </li>
@@ -302,20 +322,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">7.1</span> Preliminaries</a></li>
-  <li><a href="#moments-and-tails" id="toc-moments-and-tails" class="nav-link" data-scroll-target="#moments-and-tails"><span class="header-section-number">7.2</span> Moments and Tails</a></li>
-  <li><a href="#a-weak-law-for-partial-maxima" id="toc-a-weak-law-for-partial-maxima" class="nav-link" data-scroll-target="#a-weak-law-for-partial-maxima"><span class="header-section-number">7.3</span> A Weak Law for Partial Maxima</a></li>
-  <li><a href="#the-weak-law-of-large-numbers" id="toc-the-weak-law-of-large-numbers" class="nav-link" data-scroll-target="#the-weak-law-of-large-numbers"><span class="header-section-number">7.4</span> The Weak Law of Large Numbers</a></li>
-  <li><a href="#the-strong-law-of-large-numbers" id="toc-the-strong-law-of-large-numbers" class="nav-link" data-scroll-target="#the-strong-law-of-large-numbers"><span class="header-section-number">7.5</span> The Strong Law of Large Numbers</a></li>
+  <li><a href="#the-law-of-the-iterated-logarithm-lil" id="toc-the-law-of-the-iterated-logarithm-lil" class="nav-link active" data-scroll-target="#the-law-of-the-iterated-logarithm-lil"><span class="header-section-number">9.1</span> The Law of the iterated logarithm (LIL)</a></li>
+  <li><a href="#r-코드" id="toc-r-코드" class="nav-link" data-scroll-target="#r-코드"><span class="header-section-number">9.2</span> R 코드</a>
+  <ul class="collapse">
+  <li><a href="#simulation-setting" id="toc-simulation-setting" class="nav-link" data-scroll-target="#simulation-setting"><span class="header-section-number">9.2.1</span> Simulation setting</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">9.2.2</span> Results</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lln.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lil.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Law of the Iterated Logarithm</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></h1>
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">The Law of the Iterated Logarithm</span></h1>
 </div>
 
 
@@ -332,176 +353,93 @@ window.Quarto = {
 </header>
 
 
+<section id="the-law-of-the-iterated-logarithm-lil" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="the-law-of-the-iterated-logarithm-lil"><span class="header-section-number">9.1</span> The Law of the iterated logarithm (LIL)</h2>
+<div id="def-lil" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 9.1 (Hartman and Wintner LIL)</strong></span> &nbsp;</p>
+<!--
+Gut Thm 9.1.2.
+-->
 <ul>
-<li><p>확률변수의 합에 대한 성질 알아보기</p></li>
-<li><p>큰 수의 법칙: 확률변수의 열 <span class="math inline">\(\{X_i\}_{i=1}^n\)</span>과 그 합 <span class="math inline">\(S_n = \sum_{i=1}^n X_i\)</span>를 생각하고, <span class="math inline">\(n\rightarrow\infty\)</span>일 때 확률변수열의 극한에 대해 살펴보는 것</p></li>
-<li><p>(개인적인 생각) LLN은 관련된 응용 개념이 확률론에서 많이 등장하므로 그런 측면에서 중요해 보이기도 함</p></li>
-</ul>
-<section id="preliminaries" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">7.1</span> Preliminaries</h2>
-<p>제일 많이 쓰이는 기술은 <strong>truncation</strong>이라고 하는 것으로, 이 방법의 특징은 원래 확률변수열과 asymptotically equivalent 하면서 좀 더 다루기 쉬운 수열을 생각하는 것이다.</p>
-</section>
-<section id="moments-and-tails" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="moments-and-tails"><span class="header-section-number">7.2</span> Moments and Tails</h2>
-<div id="prp-momentsandtails" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 7.1 (Moments and Tails)</strong></span> &nbsp;</p>
-<ol type="1">
-<li><p>Let <span class="math inline">\(r&gt;0\)</span>. Suppose that <span class="math inline">\(X\)</span> is a non-negative random variable. Then <span class="math display">\[
-EX^r &lt; \infty \quad{}\Longrightarrow \quad{} x^r P(X&gt;x) \rightarrow 0 \quad{} \text{as }x \rightarrow \infty,
-\]</span> but not necessarily conversely.</p></li>
-<li><p>Suppose that <span class="math inline">\(X, X_1, X_2, \ldots\)</span> are i.i.d. random variables with mean <span class="math inline">\(0\)</span>. Then, for any <span class="math inline">\(a &gt;0\)</span>, <span class="math display">\[
-EXI\{ |X| \leq a\}= - EXI\{ |X|&gt;a\},
-\]</span> and <span class="math display">\[
-\Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|&gt;a\}.
+<li><p><span class="math inline">\(X, X_1, X_2, \ldots\)</span>가 mean 0, variance <span class="math inline">\(\sigma^2 &lt;0\)</span>을 갖는 i.i.d. 확률변수들이라고 하고 <span class="math inline">\(S_n = \sum_{k=1}^n X_k, n\geq 1\)</span>이라고 하면 <span id="eq-lil"><span class="math display">\[
+\lim\sup_{n\rightarrow\infty} (\lim\inf_{n\rightarrow\infty}) \frac{S_n}{\sqrt{2\sigma^2 n \log \log n}} = +1 (-1) \quad{} \text{a.s.}
+\tag{9.1}\]</span></span></p></li>
+<li><p>이를 간단히 쓰면 <span class="math display">\[
+\lim\sup_{n\rightarrow\infty} \frac{|S_n|}{\sqrt{2\sigma^2 n \log \log n}} = 1 \quad{} \text{a.s.}
 \]</span></p></li>
-<li><p>Let <span class="math inline">\(a &gt;0\)</span>. If <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(0\)</span>, then <span class="math inline">\(Y=XI\{|X|\leq a\}\)</span> does not in general havemean <span class="math inline">\(0\)</span>. However, if <span class="math inline">\(X\)</span> is <strong>symmetric</strong>, then <span class="math inline">\(EY=0\)</span>.</p></li>
-</ol>
+<li><p>역으로 만약 <span class="math display">\[
+P\Big( \lim\sup_{n\rightarrow\infty} \frac{|S_n|}{\sqrt{n \log \log n}} &lt; \infty \Big) &gt;0
+\]</span> 이면 <span class="math inline">\(E(X^2)&lt;\infty\)</span>, <span class="math inline">\(E(X)=0\)</span>, (<a href="#eq-lil" class="quarto-xref">Equation&nbsp;<span>9.1</span></a>) 이 성립</p></li>
+</ul>
 </div>
 </section>
-<section id="a-weak-law-for-partial-maxima" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="a-weak-law-for-partial-maxima"><span class="header-section-number">7.3</span> A Weak Law for Partial Maxima</h2>
-<!--
-::: panel-tabset
-## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
-
-Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_n$. Show that $\max_{1\leq k \leq n} |X_k|/\sqrt{n} \rightarrow 0$ a.s.
-
-(a) $\{|X_n|^r\}$ is uniformly integrable.
-
-(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
-
-(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
-
-## Solution {.unlisted .unnumbered}
-
-@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
-:::
--->
-</section>
-<section id="the-weak-law-of-large-numbers" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="the-weak-law-of-large-numbers"><span class="header-section-number">7.4</span> The Weak Law of Large Numbers</h2>
-<!--
-정의: Gut의 책, 확률변수론
--->
-<div id="thm-WLLN" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.1 (WLLN)</strong></span> &nbsp;</p>
+<section id="r-코드" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="r-코드"><span class="header-section-number">9.2</span> R 코드</h2>
+<p><span class="citation" data-cites="Haigh2013">Haigh (<a href="references.html#ref-Haigh2013" role="doc-biblioref">2013</a>)</span> 의 Example 6.21</p>
+<p><strong>Q</strong>. Long-run behaviour of sums</p>
+<p><strong>Q</strong>. <span class="math inline">\(n\)</span>이 증가함에 따라 <span class="math inline">\(S_n /\sqrt{n}\)</span>의 fluctuations의 size는?</p>
+<section id="simulation-setting" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="simulation-setting"><span class="header-section-number">9.2.1</span> Simulation setting</h3>
 <ul>
-<li><span class="math inline">\(X,X_1,X_2,\ldots\)</span>가 유한한 기댓값 <span class="math inline">\(\mu\)</span>, 즉 <span class="math inline">\(E(X)&lt;\infty\)</span>를 갖는 i.i.d. 확률변수들이라고 하고 <span class="math inline">\(S_n,n\geq 1\)</span>을 그들의 partial sum이라고 하자. 그러면 <span class="math display">\[
-\frac{S_n}{n}\stackrel{p}{\rightarrow}\mu \quad{} \text{as } n\rightarrow \infty.
-\]</span></li>
+<li><p><span class="math inline">\(Y_n \stackrel{\text{indep}}{\sim} U(0,1)\)</span></p></li>
+<li><p><span class="math inline">\(X_n = Y_n \sqrt{12} - \sqrt{3}\)</span>, so that <span class="math inline">\(X_n \stackrel{\text{i.i.d.}}{\sim} U(-\sqrt{3}, \sqrt{3})\)</span>: 이렇게 하면 <span class="math inline">\(E(X_n)=0, \text{Var}(X_n)=1\)</span>이 됨</p></li>
+<li><p><span class="math inline">\(S_n = X_1 + \cdots X_n\)</span></p></li>
 </ul>
 <!--
-Probability and Statistics for Economists 7.6
+- $S_n$에 대해 우리가 아는 사실들:
+    + $S_n/n$은 $n$이 커질수록 $0$에 가까이 있음(remain close to zero) (SLLN)
+    + $S_n/\sqrt{n}$은 $n$이 커질수록 $S_n /\sqrt{n} \stackrel{d}{\rightarrow}\mathcal{N}(0,1)$ (CLT)
+    + 
 -->
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell" data-layout-align="center" data-fig-weight="8" data-view-distance="10">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="lil_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Figure: (a) Random sums. (b) CLT. (c) LIL. (d) LLN.</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><span class="math inline">\(E|X|&lt; \infty\)</span> 조건이 빠지게 되면 표본평균이 유한한 값에 확률수렴하지 않을 수 있음</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="exm-notbip" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7.1 (큰 수의 약법칙을 따르지 않는 확률변수열)</strong></span> &nbsp;</p>
-<ul>
-<li><p>독립이고 한계분포가 모두 <span class="math inline">\(\text{Cauchy}(1,0)\)</span>인 확률벡터를 생각하면, <span class="math inline">\(\frac{S_n}{n}\sim \text{Cauchy}(1,0)\)</span>이라고 함</p></li>
-<li><p>즉 <span class="math inline">\(\frac{S_n}{n}\)</span>이 0에 확률수렴하지 않으므로 독립이고 분포가 같은 코시 확률변수열에서는 큰 수의 약한 법칙이 성립하지 않음</p></li>
-</ul>
-</div>
-<!--
-Counterexamples in prob 15장
--->
-<div id="thm-markovthm" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.2 (Markov theorem)</strong></span> <span class="math inline">\(\{X_n, n\geq 1\}\)</span>을 다음의 조건 (<strong>Markov condition</strong>) <span class="math display">\[
-\frac{1}{n^2} \text{Var}(X_1 + \cdots + X_n) \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
-\]</span> 을 만족하는 확률변수열이라 하자. 그러면 <span class="math inline">\(\{X_n\}\)</span>은 WLLN을 만족한다.</p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>마르코프 조건은 WLLN에 대한 충분조건이나 필요조건은 아님</li>
-</ul>
 </div>
 </div>
 </section>
-<section id="the-strong-law-of-large-numbers" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="the-strong-law-of-large-numbers"><span class="header-section-number">7.5</span> The Strong Law of Large Numbers</h2>
-<div id="thm-SLLNsuff" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.3 (큰 수의 센 법칙을 따르는 충분조건)</strong></span> 확률변수열 <span class="math inline">\(\{x_i\}_{i=1}^n\)</span>의 평균이 <span class="math inline">\(\mu_i\)</span>, 분산이 <span class="math inline">\(\sigma_i^2\)</span>일 때 <span class="math display">\[
-\sum_{i=1}^{\infty} \sigma_i^2 &lt; \infty
-\]</span> 이면 <span class="math inline">\(\sum_{i=1}^{\infty}(X_i - \mu_i)\)</span>는 거의 틀림없이 0으로 수렴한다.</p>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<section id="results" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="results"><span class="header-section-number">9.2.2</span> Results</h3>
 <ul>
-<li>큰 수의 센 법칙을 따르는 확률변수열 은 (당연히) 큰 수의 약한 법칙도 성립함</li>
-</ul>
-</div>
-</div>
-<!--
-Gut책 295쪽
--->
-<div id="thm-SLLNKolmogorov" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.4 (The Kolmogorov strong law)</strong></span> &nbsp;</p>
-<ol type="a">
-<li><p>만약 <span class="math inline">\(E|X|&lt;\infty\)</span>이고 <span class="math inline">\(E(X)=\mu\)</span>라면 <span class="math display">\[
-\frac{S_n}{n}\stackrel{\text{a.s.}}{\rightarrow}\mu \quad{} \text{as } n \rightarrow \infty.
-\]</span></p></li>
-<li><p>만약 어떤 상수 <span class="math inline">\(c\)</span>에 대해 <span class="math inline">\(\frac{S_n}{n}\stackrel{\text{a.s.}}{\rightarrow} c\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라고 한다면 <span class="math display">\[
-E(X) &lt;\infty \quad{} \text{and} \quad{} c= E(X).
-\]</span></p></li>
-<li><p>만약 <span class="math inline">\(E|X| = \infty\)</span>라 한다면 <span class="math display">\[
-\lim\sup_{n\rightarrow\infty} \frac{|S_n|}{n} = + \infty.
-\]</span></p></li>
-</ol>
-</div>
-<div id="exm-WLLNnotSLLN" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7.2 (WLLN은 성립하니 SLLN은 만족하지 않는 예)</strong></span> 확률질량함수 <span class="math inline">\(p_{X_n}(x) = P\{ X_n = x\}\)</span>가 <span class="math display">\[
-p_{X_n}(x) =
-\begin{cases}
-1- \frac{1}{n\log n}, &amp; x=0,\\
-\frac{1}{2n\log n}, &amp; x = \pm n
-\end{cases}
-\]</span> 인 독립 확률변수열 <span class="math inline">\(\{X_n\}_{n=2}^{\infty}\)</span>를 생각하자.</p>
+<li><p>그림에 대한 추가 설명(참고로 모든 그림의 <code>x</code>축은 <code>log</code>-스케일이다):</p>
 <ul>
-<li><p><span class="math inline">\(n \geq 2\)</span>일 때 <span class="math inline">\(A_n = \{|X_n| \geq n\}\)</span>이라고 두면 <span class="math inline">\(P\{A_n\} = \frac{1}{n\log n}\)</span>이므로 <span class="math inline">\(\sum_{n=2}^{\infty} P\{A_n\} \rightarrow \infty\)</span>이다. 바꾸어 말하면, <span class="math inline">\(\sum_{n=2}^{\infty}P\{A_n\}\)</span>이 발산하고 <span class="math inline">\(X_n\)</span>이 서로 독립이므로, 보렐-칸텔리 정리에서 <span class="math inline">\(P\{A_n \text{ i.o.}\}=1\)</span>이다. 이는 <span class="math display">\[
-P\{|X_n|\geq n \text{ i.o.}\} = P \{ \Big\vert\frac{X_n}{n}\Big\vert \geq \text{ i.o.} \} = P\{\lim_{n\rightarrow\infty}\frac{S_n}{n} \neq 0 \} =1
-\]</span> 이다. 그러므로 <span class="math inline">\(\{X_n\}_{n=2}^{\infty}\)</span>는 큰 수의 강법칙을 만족하지 않는다.</p></li>
-<li><p><span class="math inline">\(\text{Var}\{X_ k\} = \frac{k}{\log k}\)</span>이므로 <span class="math display">\[
-\begin{align*}
-\frac{1}{n^2}\sum_{k=2}^n \text{Var}\{X_k\} &amp;\leq \frac{1}{n^2} \Big( \frac{2}{\log 2} + \int_3^{n+1}\frac{x}{\log x} dx \Big)\\
-&amp;\leq \frac{2}{n^2 \log 2} + \frac{(n-2)(n+1)}{n^2 \log n}\\
-&amp;\rightarrow 0
-\end{align*}
-\]</span> 이고 마르코프 조건 <a href="#thm-markovthm" class="quarto-xref">Theorem&nbsp;<span>7.2</span></a> 을 생각해 보면 <span class="math inline">\(\{X_n \}_{n=2}^{\infty}\)</span>는 큰 수의 약법칙을 만족한다.</p></li>
+<li><ol type="a">
+<li><span class="math inline">\(n\)</span>이 커짐에 따라 random sums <span class="math inline">\(S_n\)</span>이 어떻게 되는지 보여줌, 점선은 <span class="math inline">\(\pm \sqrt{2 n \log \log n}\)</span></li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>(CLT) <span class="math inline">\(n\)</span>이 커짐에 따라 <span class="math inline">\(S_n/\sqrt{n}\)</span>은 standard Gaussian으로 분포수렴, 점선은 <span class="math inline">\(\pm \mathcal{N}^{-1}(0.01)\)</span> (분위수)</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>(LIL) <span class="math inline">\(n\)</span>이 커짐에 따라 <span class="math inline">\(S_n/\sqrt{n\log \log n}\)</span>은 <span class="math inline">\([-\sqrt{2}, \sqrt{2}]\)</span> 사이에 존재, 점선은 <span class="math inline">\(\pm \sqrt{2}\)</span></li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>(SLLN) <span class="math inline">\(n\)</span>이 커짐에 따라 <span class="math inline">\(S_n/n \rightarrow 0\)</span>, 점선은 <span class="math inline">\(\pm \sqrt{ \frac{2 \log \log n}{n}}\)</span></li>
+</ol></li>
+</ul></li>
+<li><p>SLLN: <span class="math inline">\(S_n / n \stackrel{n\rightarrow \infty}{\rightarrow} 0\)</span> 임을 말하는데, 이는 어떤 <span class="math inline">\(\varepsilon&gt;0\)</span>이 주어졌을 때, <span class="math inline">\(\forall n \geq N\)</span>에 대해 <span class="math inline">\(S_n/n\)</span>이 구간 <span class="math inline">\((-\varepsilon, \varepsilon)\)</span> 안에 있도록 하는 <span class="math inline">\(N\)</span>이 존재</p></li>
+<li><p>CLT: <span class="math inline">\(S_n /\sqrt{n} \stackrel{d}{\rightarrow} \mathcal{N}(0,1)\)</span> 임을 말하는데, 이는 <span class="math inline">\(n\)</span>이 클때 <span class="math inline">\(P(-1&lt; S_n /\sqrt{n} &lt; 1) \approx 0.68\)</span>, <span class="math inline">\(P(|S_n /\sqrt{n}|&gt;2)\approx 0.05\)</span>임 등을 추론할 수 있음을 의미함</p>
+<ul>
+<li>그러나 CLT가 boundedness를 말하는 것은 아니기 때문에 <span class="math inline">\(n\)</span>이 매울 클 때에도 매우 크거나 작은 <span class="math inline">\(S_n/\sqrt{n}\)</span>이 나올 수 있음</li>
+</ul></li>
+<li><p>LIL: <span class="math inline">\(U_n = S_n / \sqrt{n \log (\log (n))}\)</span>에 대해 말하는데, <span class="math inline">\(\sqrt{\log (\log (n))}\)</span>은 unbounded지만 매우 <strong>천천히</strong> 증가하는 함수임, <span class="math inline">\(n=10^6\)</span>일 때 비로소 <span class="math inline">\(\sqrt{\log (\log (n))}\approx 1.62\)</span>가 됨</p>
+<ul>
+<li><span class="math inline">\(S_n\)</span> 또한 <span class="math inline">\(n\)</span>이 커질수록 천천히 변하기 때문에 <span class="math inline">\(U_n\)</span>은 매우 천천히 변할 것이라 생각할 수 있음</li>
+<li>그러나, <span class="math inline">\(\sqrt{\log (\log (n))}\)</span>은 <span class="math inline">\(\mathcal{N}(0,1)\)</span>의 변화를 잡아줄 수 있을 정도로 큰 값이기는 함</li>
+</ul></li>
+<li><p>정리해보자면, LIL은 언젠가는 <span class="math inline">\(U_n\)</span>이 <span class="math inline">\((-\sqrt{2},\sqrt{2})\)</span>에 있을 것임을 의미함</p></li>
 </ul>
-</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Haigh2013" class="csl-entry" role="listitem">
+Haigh, John. 2013. <em>Probability Models</em>. 2nd ed. 2013. SpringerLink. Dordrecht: Springer.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -927,13 +865,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./conv.html" class="pagination-link" aria-label="Convergence">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convergence</span></span>
+      <a href="./clt.html" class="pagination-link" aria-label="Central Limit Theorem">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./clt.html" class="pagination-link" aria-label="Central Limit Theorem">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./limext.html" class="pagination-link" aria-label="Limit Theorems: Extensions and Generalizations">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Limit Theorems: Extensions and Generalizations</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

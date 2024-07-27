@@ -1,0 +1,48 @@
+# Limit Theorems: Extensions and Generalizations {.limext}
+
+<!--
+Gut책 9장
+-->
+
+- CLT나 LIL에서는 i.i.d. 확률변수의 sum에 대해 다룸
+
+- 이때 유한한 분산을 추가로 가정함
+
+**Q**. 만약 분산이 존재하지 않는다면?
+
+**Q**. Summands가 더이상 독립이 아니라면?
+
+**Q**. Sum으로부터 만들 수 있는 흥미있는 object들이 있는가?
+
+## Stable distributions
+
+- Stable distribution의 정의에는 몇 가지가 있는 듯 [@Nolan2020]
+
+::: {#def-stabledistn}
+## Stable distributions
+
+<!--
+Gut책 9.1.1
+-->
+
+- $X_1, X_2, \ldots$가 확률변수 $X$의 i.i.d. copy라 하고 $S_n, n\geq 1$을 partial sum이라 하자. 만약 어떤 상수 $c_n > 0, d_n \in \mathbb{R}, n\geq 1$이 존재해
+$$
+S_n \stackrel{d}{=}c_n X + d_n, \quad{} \forall n
+$$
+이라 하면 확률변수 $X$의 분포를 **stable in the broad sense**라고 함
+
+- 만약 $\forall n$에 대해 $d_n = 0$이라고 하면 분포를 **strictly stable**이라고 함
+
+:::
+
+::: callout-note
+## Remark
+
+(@Nolan2020 의 내용)
+
+- Stable distribution은 skeness, heavy-tail 등을 다룰 수 있는 probability distn의 큰 클래스이며 좋은 수학적 성질도 가지고 있다고 함
+
+- 문제점: Gaussian, Cauchy, Levy 등을 제외하면 density와 distn에 대한 closed formula가 부족하다는 단점 존재
+
+- 그러나 컴퓨터 프로그램의 도움을 받아 stable distn의 density나 distn 등을 계산할 수 있음
+:::

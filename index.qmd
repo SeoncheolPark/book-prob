@@ -2,6 +2,10 @@
 
 확률론은 통계학을 공부하는 데 있어 굉장히 중요한 과목이다. 그러므로 열심히 공부해야 한다.
 
+덤으로 극단값 이론의 기초도 수록하였다.
+
+최대한 제가 이해할 수 있는 수준의 내용으로 구성하였으므로, 그러므로 기초 레벨에 해당이 된다.
+
 This is a Quarto book.
 
 To learn more about Quarto books visit <https://quarto.org/docs/books>.

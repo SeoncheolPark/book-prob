@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 7&nbsp; The Law of Large Numbers</title>
+<title>A Biggner's Guide to Probability and Extremes – 2&nbsp; Measure and Integration</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./clt.html" rel="next">
-<link href="./conv.html" rel="prev">
+<link href="./prob.html" rel="next">
+<link href="./intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -130,7 +130,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lln.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./measure.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Measure and Integration</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,7 +192,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./measure.html" class="sidebar-item-text sidebar-link">
+  <a href="./measure.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Measure and Integration</span></span></a>
   </div>
 </li>
@@ -222,7 +222,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./lln.html" class="sidebar-item-text sidebar-link active">
+  <a href="./lln.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></span></a>
   </div>
 </li>
@@ -302,20 +302,23 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">7.1</span> Preliminaries</a></li>
-  <li><a href="#moments-and-tails" id="toc-moments-and-tails" class="nav-link" data-scroll-target="#moments-and-tails"><span class="header-section-number">7.2</span> Moments and Tails</a></li>
-  <li><a href="#a-weak-law-for-partial-maxima" id="toc-a-weak-law-for-partial-maxima" class="nav-link" data-scroll-target="#a-weak-law-for-partial-maxima"><span class="header-section-number">7.3</span> A Weak Law for Partial Maxima</a></li>
-  <li><a href="#the-weak-law-of-large-numbers" id="toc-the-weak-law-of-large-numbers" class="nav-link" data-scroll-target="#the-weak-law-of-large-numbers"><span class="header-section-number">7.4</span> The Weak Law of Large Numbers</a></li>
-  <li><a href="#the-strong-law-of-large-numbers" id="toc-the-strong-law-of-large-numbers" class="nav-link" data-scroll-target="#the-strong-law-of-large-numbers"><span class="header-section-number">7.5</span> The Strong Law of Large Numbers</a></li>
+  <li><a href="#limit-of-sets" id="toc-limit-of-sets" class="nav-link active" data-scroll-target="#limit-of-sets"><span class="header-section-number">2.1</span> Limit of sets</a></li>
+  <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures"><span class="header-section-number">2.2</span> Measures</a></li>
+  <li><a href="#integration" id="toc-integration" class="nav-link" data-scroll-target="#integration"><span class="header-section-number">2.3</span> Integration</a>
+  <ul class="collapse">
+  <li><a href="#integration-notations" id="toc-integration-notations" class="nav-link" data-scroll-target="#integration-notations"><span class="header-section-number">2.3.1</span> Integration notations</a></li>
+  <li><a href="#리만-스틸체스-적분" id="toc-리만-스틸체스-적분" class="nav-link" data-scroll-target="#리만-스틸체스-적분"><span class="header-section-number">2.3.2</span> 리만-스틸체스 적분</a></li>
+  </ul></li>
+  <li><a href="#리만-적분과-르베그-적분" id="toc-리만-적분과-르베그-적분" class="nav-link" data-scroll-target="#리만-적분과-르베그-적분"><span class="header-section-number">2.4</span> 리만 적분과 르베그 적분</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./lln.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./measure.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Measure and Integration</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">The Law of Large Numbers</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Measure and Integration</span></h1>
 </div>
 
 
@@ -332,97 +335,23 @@ window.Quarto = {
 </header>
 
 
-<ul>
-<li><p>확률변수의 합에 대한 성질 알아보기</p></li>
-<li><p>큰 수의 법칙: 확률변수의 열 <span class="math inline">\(\{X_i\}_{i=1}^n\)</span>과 그 합 <span class="math inline">\(S_n = \sum_{i=1}^n X_i\)</span>를 생각하고, <span class="math inline">\(n\rightarrow\infty\)</span>일 때 확률변수열의 극한에 대해 살펴보는 것</p></li>
-<li><p>(개인적인 생각) LLN은 관련된 응용 개념이 확률론에서 많이 등장하므로 그런 측면에서 중요해 보이기도 함</p></li>
-</ul>
-<section id="preliminaries" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">7.1</span> Preliminaries</h2>
-<p>제일 많이 쓰이는 기술은 <strong>truncation</strong>이라고 하는 것으로, 이 방법의 특징은 원래 확률변수열과 asymptotically equivalent 하면서 좀 더 다루기 쉬운 수열을 생각하는 것이다.</p>
+<section id="limit-of-sets" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="limit-of-sets"><span class="header-section-number">2.1</span> Limit of sets</h2>
 </section>
-<section id="moments-and-tails" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="moments-and-tails"><span class="header-section-number">7.2</span> Moments and Tails</h2>
-<div id="prp-momentsandtails" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 7.1 (Moments and Tails)</strong></span> &nbsp;</p>
-<ol type="1">
-<li><p>Let <span class="math inline">\(r&gt;0\)</span>. Suppose that <span class="math inline">\(X\)</span> is a non-negative random variable. Then <span class="math display">\[
-EX^r &lt; \infty \quad{}\Longrightarrow \quad{} x^r P(X&gt;x) \rightarrow 0 \quad{} \text{as }x \rightarrow \infty,
-\]</span> but not necessarily conversely.</p></li>
-<li><p>Suppose that <span class="math inline">\(X, X_1, X_2, \ldots\)</span> are i.i.d. random variables with mean <span class="math inline">\(0\)</span>. Then, for any <span class="math inline">\(a &gt;0\)</span>, <span class="math display">\[
-EXI\{ |X| \leq a\}= - EXI\{ |X|&gt;a\},
-\]</span> and <span class="math display">\[
-\Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|&gt;a\}.
-\]</span></p></li>
-<li><p>Let <span class="math inline">\(a &gt;0\)</span>. If <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(0\)</span>, then <span class="math inline">\(Y=XI\{|X|\leq a\}\)</span> does not in general havemean <span class="math inline">\(0\)</span>. However, if <span class="math inline">\(X\)</span> is <strong>symmetric</strong>, then <span class="math inline">\(EY=0\)</span>.</p></li>
-</ol>
-</div>
-</section>
-<section id="a-weak-law-for-partial-maxima" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="a-weak-law-for-partial-maxima"><span class="header-section-number">7.3</span> A Weak Law for Partial Maxima</h2>
+<section id="measures" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="measures"><span class="header-section-number">2.2</span> Measures</h2>
 <!--
-::: panel-tabset
-## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
-
-Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_n$. Show that $\max_{1\leq k \leq n} |X_k|/\sqrt{n} \rightarrow 0$ a.s.
-
-(a) $\{|X_n|^r\}$ is uniformly integrable.
-
-(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
-
-(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
-
-## Solution {.unlisted .unnumbered}
-
-@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
-:::
+오슬로 확률론 강의노트 3.2
 -->
-</section>
-<section id="the-weak-law-of-large-numbers" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="the-weak-law-of-large-numbers"><span class="header-section-number">7.4</span> The Weak Law of Large Numbers</h2>
-<!--
-정의: Gut의 책, 확률변수론
--->
-<div id="thm-WLLN" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.1 (WLLN)</strong></span> &nbsp;</p>
+<div id="def-pushforwardm" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 2.1 (Push-forward measure)</strong></span> &nbsp;</p>
 <ul>
-<li><span class="math inline">\(X,X_1,X_2,\ldots\)</span>가 유한한 기댓값 <span class="math inline">\(\mu\)</span>, 즉 <span class="math inline">\(E(X)&lt;\infty\)</span>를 갖는 i.i.d. 확률변수들이라고 하고 <span class="math inline">\(S_n,n\geq 1\)</span>을 그들의 partial sum이라고 하자. 그러면 <span class="math display">\[
-\frac{S_n}{n}\stackrel{p}{\rightarrow}\mu \quad{} \text{as } n\rightarrow \infty.
-\]</span></li>
+<li><p><span class="math inline">\((E,\mathcal{E},\mu)\)</span>: measure space, <span class="math inline">\((F, \mathcal{F})\)</span>: measurable space, <span class="math inline">\(f: E\rightarrow F\)</span>: measurable transformation</p></li>
+<li><p>그러면 다음과 같은 변환 <span class="math display">\[
+\mu_f (A) \stackrel{\Delta}{=}\mu \circ f^{-1}(A) = \mu (f^{-1}(A)), \quad{} A\in \mathcal{F}
+\]</span> 은 <span class="math inline">\((F, \mathcal{F})\)</span>에서의 measure를 정의</p></li>
+<li><p><span class="math inline">\(\mu_f\)</span> (또는 <span class="math inline">\(f^\#\mu\)</span>로 씀): <strong>push-forward measure</strong> via <span class="math inline">\(f\)</span></p></li>
 </ul>
-<!--
-Probability and Statistics for Economists 7.6
--->
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li><span class="math inline">\(E|X|&lt; \infty\)</span> 조건이 빠지게 되면 표본평균이 유한한 값에 확률수렴하지 않을 수 있음</li>
-</ul>
-</div>
-</div>
-</div>
-<div id="exm-notbip" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7.1 (큰 수의 약법칙을 따르지 않는 확률변수열)</strong></span> &nbsp;</p>
-<ul>
-<li><p>독립이고 한계분포가 모두 <span class="math inline">\(\text{Cauchy}(1,0)\)</span>인 확률벡터를 생각하면, <span class="math inline">\(\frac{S_n}{n}\sim \text{Cauchy}(1,0)\)</span>이라고 함</p></li>
-<li><p>즉 <span class="math inline">\(\frac{S_n}{n}\)</span>이 0에 확률수렴하지 않으므로 독립이고 분포가 같은 코시 확률변수열에서는 큰 수의 약한 법칙이 성립하지 않음</p></li>
-</ul>
-</div>
-<!--
-Counterexamples in prob 15장
--->
-<div id="thm-markovthm" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.2 (Markov theorem)</strong></span> <span class="math inline">\(\{X_n, n\geq 1\}\)</span>을 다음의 조건 (<strong>Markov condition</strong>) <span class="math display">\[
-\frac{1}{n^2} \text{Var}(X_1 + \cdots + X_n) \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
-\]</span> 을 만족하는 확률변수열이라 하자. 그러면 <span class="math inline">\(\{X_n\}\)</span>은 WLLN을 만족한다.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -435,18 +364,15 @@ Remark
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>마르코프 조건은 WLLN에 대한 충분조건이나 필요조건은 아님</li>
+<li>Push-forward measure는 change-of-variables formula 등 적분이론에서 많이 쓰임</li>
 </ul>
 </div>
 </div>
 </section>
-<section id="the-strong-law-of-large-numbers" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="the-strong-law-of-large-numbers"><span class="header-section-number">7.5</span> The Strong Law of Large Numbers</h2>
-<div id="thm-SLLNsuff" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.3 (큰 수의 센 법칙을 따르는 충분조건)</strong></span> 확률변수열 <span class="math inline">\(\{x_i\}_{i=1}^n\)</span>의 평균이 <span class="math inline">\(\mu_i\)</span>, 분산이 <span class="math inline">\(\sigma_i^2\)</span>일 때 <span class="math display">\[
-\sum_{i=1}^{\infty} \sigma_i^2 &lt; \infty
-\]</span> 이면 <span class="math inline">\(\sum_{i=1}^{\infty}(X_i - \mu_i)\)</span>는 거의 틀림없이 0으로 수렴한다.</p>
-</div>
+<section id="integration" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="integration"><span class="header-section-number">2.3</span> Integration</h2>
+<section id="integration-notations" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="integration-notations"><span class="header-section-number">2.3.1</span> Integration notations</h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -457,49 +383,89 @@ Remark
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>큰 수의 센 법칙을 따르는 확률변수열 은 (당연히) 큰 수의 약한 법칙도 성립함</li>
-</ul>
+<p>적분이론에서 굉장히 다양한 적분 notation을 쓰는데 알아두면 좋을 듯</p>
 </div>
 </div>
 <!--
-Gut책 295쪽
+오슬로 확률론 강의노트 3.2
 -->
-<div id="thm-SLLNKolmogorov" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.4 (The Kolmogorov strong law)</strong></span> &nbsp;</p>
-<ol type="a">
-<li><p>만약 <span class="math inline">\(E|X|&lt;\infty\)</span>이고 <span class="math inline">\(E(X)=\mu\)</span>라면 <span class="math display">\[
-\frac{S_n}{n}\stackrel{\text{a.s.}}{\rightarrow}\mu \quad{} \text{as } n \rightarrow \infty.
-\]</span></p></li>
-<li><p>만약 어떤 상수 <span class="math inline">\(c\)</span>에 대해 <span class="math inline">\(\frac{S_n}{n}\stackrel{\text{a.s.}}{\rightarrow} c\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라고 한다면 <span class="math display">\[
-E(X) &lt;\infty \quad{} \text{and} \quad{} c= E(X).
-\]</span></p></li>
-<li><p>만약 <span class="math inline">\(E|X| = \infty\)</span>라 한다면 <span class="math display">\[
-\lim\sup_{n\rightarrow\infty} \frac{|S_n|}{n} = + \infty.
-\]</span></p></li>
-</ol>
-</div>
-<div id="exm-WLLNnotSLLN" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7.2 (WLLN은 성립하니 SLLN은 만족하지 않는 예)</strong></span> 확률질량함수 <span class="math inline">\(p_{X_n}(x) = P\{ X_n = x\}\)</span>가 <span class="math display">\[
-p_{X_n}(x) =
-\begin{cases}
-1- \frac{1}{n\log n}, &amp; x=0,\\
-\frac{1}{2n\log n}, &amp; x = \pm n
+<ul>
+<li><p><span class="math inline">\((E,\mathcal{E},\mu)\)</span>: measure space, <span class="math inline">\(f: E \rightarrow\mathbb{R}\)</span>: a real-valued transformation</p></li>
+<li><p>다음의 세 개의 기호는 같은 것임</p>
+<ul>
+<li><span class="math inline">\(\int_E f(x) d\mu (x)\)</span></li>
+<li><span class="math inline">\(\int_E f d\mu\)</span> (적분하려는 변수가 분명한 경우 생략)</li>
+<li><span class="math inline">\(\int_E f(x) \mu (dx)\)</span></li>
+</ul></li>
+</ul>
+</section>
+<section id="리만-스틸체스-적분" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="리만-스틸체스-적분"><span class="header-section-number">2.3.2</span> 리만-스틸체스 적분</h3>
+<p>종종 헷갈리는 표현이 기댓값을 다음과 같이 분포함수를 이용해 표현하는 경우가 있다.</p>
+<p><span class="math display">\[
+E(X) = \int x dF(x).
+\]</span></p>
+<p>우리가 알고 있는 정적분은 <span class="math inline">\(x\)</span>축을 따라가며 함수값 f(x)가 만드는 면적을 계산한다.</p>
+<p><span class="math display">\[
+\int_a^b f(x) dx.
+\]</span></p>
+<p>위 식을 더 확장하면 <span class="math inline">\(x\)</span> 대신 임의의 곡선 <span class="math inline">\(g(x)\)</span>를 적분 변수로 두고 <span class="math inline">\(f(x)\)</span> 를 단순하게 정적분 할 수도 있다.</p>
+<p><span class="math display">\[
+\int_{x=a}^b f(x) dg(x).
+\]</span></p>
+<p>여기서 <span class="math inline">\(dg(x)\)</span>는 <span class="math inline">\(g(x)\)</span>의 미분소(differential)로, <span class="math inline">\(g(x)\)</span>의 움직임을 결정하는 <span class="math inline">\(x\)</span>는 단조 증가하거나 감소한다. 위와 같이 리만 적분을 일반화한 정적분을 <strong>리만-스틸체스 적분(Riemann-Stieltjes Integral)</strong>이라 한다. 리만 적분의 정의를 이용해 리만-스틸체스의 적분을 표현할 수도 있다.</p>
+<p><span class="math display">\[
+\int_{x=a}^b f(x) dg(x) = \lim_{N\rightarrow \infty} \sum_{n=0}^{N-1} f(t_n) [g(x_{n+1}) - g(x_n)].
+\]</span></p>
+<p>여기서 <span class="math inline">\(x_n\)</span>은 정적분을 위해 구간 <span class="math inline">\([a,b]\)</span>를 나눈 점, <span class="math inline">\(t_n\)</span>은 닫힌 세부공간 <span class="math inline">\([x_n, x_{n+1} ]\)</span>사이에 있는 임의점이다.</p>
+<div id="exm-riemmanstieltjesint01" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.1 (리만-스틸체스 적분을 이용한 기댓값의 계산)</strong></span> &nbsp;</p>
+<!--
+https://www.statlect.com/fundamentals-of-probability/expected-value
+-->
+<ul>
+<li><p><span class="math inline">\(X\)</span>: random variable with support <span class="math inline">\(R_X = [0,1]\)</span> and distribution function <span class="math display">\[
+F_X(x) = \begin{cases}
+0, &amp;\text{if } x &lt;0\\
+\frac{1}{2}x, &amp;\text{if } 0 \leq x &lt; 1\\
+1, &amp;\text{if } x \geq 1.
 \end{cases}
-\]</span> 인 독립 확률변수열 <span class="math inline">\(\{X_n\}_{n=2}^{\infty}\)</span>를 생각하자.</p>
-<ul>
-<li><p><span class="math inline">\(n \geq 2\)</span>일 때 <span class="math inline">\(A_n = \{|X_n| \geq n\}\)</span>이라고 두면 <span class="math inline">\(P\{A_n\} = \frac{1}{n\log n}\)</span>이므로 <span class="math inline">\(\sum_{n=2}^{\infty} P\{A_n\} \rightarrow \infty\)</span>이다. 바꾸어 말하면, <span class="math inline">\(\sum_{n=2}^{\infty}P\{A_n\}\)</span>이 발산하고 <span class="math inline">\(X_n\)</span>이 서로 독립이므로, 보렐-칸텔리 정리에서 <span class="math inline">\(P\{A_n \text{ i.o.}\}=1\)</span>이다. 이는 <span class="math display">\[
-P\{|X_n|\geq n \text{ i.o.}\} = P \{ \Big\vert\frac{X_n}{n}\Big\vert \geq \text{ i.o.} \} = P\{\lim_{n\rightarrow\infty}\frac{S_n}{n} \neq 0 \} =1
-\]</span> 이다. 그러므로 <span class="math inline">\(\{X_n\}_{n=2}^{\infty}\)</span>는 큰 수의 강법칙을 만족하지 않는다.</p></li>
-<li><p><span class="math inline">\(\text{Var}\{X_ k\} = \frac{k}{\log k}\)</span>이므로 <span class="math display">\[
+\]</span></p></li>
+<li><p>이때의 기댓값은 <span class="math display">\[
 \begin{align*}
-\frac{1}{n^2}\sum_{k=2}^n \text{Var}\{X_k\} &amp;\leq \frac{1}{n^2} \Big( \frac{2}{\log 2} + \int_3^{n+1}\frac{x}{\log x} dx \Big)\\
-&amp;\leq \frac{2}{n^2 \log 2} + \frac{(n-2)(n+1)}{n^2 \log n}\\
-&amp;\rightarrow 0
+E[X] &amp;= \int_{-\infty}^{\infty} x dF_X(x)\\
+&amp;= \int_0^1 xdF_{X}(x) + 1\cdot \Big[ F_X(1) -\lim_{x\rightarrow 1, x &lt; 1}F_X(x) \Big]\\
+&amp;= \int_0^1 x \frac{d}{dx} \Big(\frac{1}{2}x \Big) dx  + 1 \cdot \Big[ 1- \frac{1}{2} \Big]\\
+&amp;= \Big[\frac{1}{4}x^2 \Big]_{0}^1 + \frac{1}{2} = \frac{1}{4}+\frac{1}{2}=\frac{3}{4}.
 \end{align*}
-\]</span> 이고 마르코프 조건 <a href="#thm-markovthm" class="quarto-xref">Theorem&nbsp;<span>7.2</span></a> 을 생각해 보면 <span class="math inline">\(\{X_n \}_{n=2}^{\infty}\)</span>는 큰 수의 약법칙을 만족한다.</p></li>
+\]</span></p></li>
 </ul>
 </div>
+</section>
+</section>
+<section id="리만-적분과-르베그-적분" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="리만-적분과-르베그-적분"><span class="header-section-number">2.4</span> 리만 적분과 르베그 적분</h2>
+<p>여기는 <a href="https://math.stackexchange.com/questions/2958787/confused-when-changing-from-lebesgue-integral-to-riemann-integral">Confused when changing from Lebesgue Integral to Riemann Integral</a> 에 올라왔던 내용을 살펴보기로 한다. 여기서 질문자는 리만 적분을 어떻게 르베그 적분으로 바꾸는지에 대해 관심이 있다.</p>
+<p>다음과 같이 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>에서 정의된 음이 아닌 확률변수 <span class="math inline">\(X\)</span>가 지수분포를 따른다고 하자. <span class="math display">\[
+P(X&lt;x) = 1-e^{-\lambda x}.
+\]</span> 한편, 르베그 적분으로 <span class="math inline">\(X\)</span>의 기댓값을 쓰면 다음과 같다. <span class="math display">\[
+E[X] = \int_{\{\omega | X(\omega) \geq 0 \}} X(\omega) dP(\omega).
+\]</span> 여기서 질문자는 이것을 리만 적분으로 어떻게 바꾸냐 <span class="math display">\[
+E[X] = \int_0^\infty x \lambda e^{-\lambda x}dx
+\]</span> 를 물어보고 있다.</p>
+<p>답변은 이것이 적분의 문제가 아닌 변수변환의 문제라고 한다.</p>
+<p>By definition, given <span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span> a random variable, <span class="math inline">\(E[X] = \int_{\Omega} X\)</span>. <span class="math inline">\(X\)</span> defines a measure <span class="math inline">\(\tilde{m}\)</span> in <span class="math inline">\(\mathbb{R}\)</span>, called the <strong>push-forward</strong>, by <span class="math inline">\(\tilde{m}(A) = P(X^{-1}(A))\)</span>. By definition, this measure is invariant under <span class="math inline">\(X\)</span>, and hence <span class="math display">\[
+\int_{\mathbb{R}} f d\tilde{m} = \int_{\Omega} f \circ X dP.
+\]</span> The equality follows from the usual arguments (prove for characteristics, simple functions, then use convergence. Recall that <span class="math inline">\(1_A \circ X = 1_{X^{-1}(A)}\)</span>).</p>
+<p>Let <span class="math inline">\(h\)</span> be the density of <span class="math inline">\(X\)</span>. We then have, by definition of density, that <span class="math inline">\(\tilde{m}(A) = P(X^{-1}(A)) = \int_A h dm\)</span> for any <span class="math inline">\(A \in \mathcal{B}(\mathbb{R})\)</span>, where <span class="math inline">\(m\)</span> is the Lebesgue measure. By <strong>change of variables</strong>, we have <span class="math display">\[
+\int_{\mathbb{R}}f d\tilde{m} = \int_{\mathbb{R}} f\cdot h dm.
+\]</span> Combining these equations, <span class="math display">\[
+\int_{\mathbb{R}} f \cdot h dm =\int_{\Omega} f \circ X dP.
+\]</span> Taking <span class="math inline">\(f=\text{Id}\)</span> yields <span class="math display">\[
+\int_{\mathbb{R}}xh(x)dx = \int_{\Omega} X dP = E[X].
+\]</span> Taking <span class="math inline">\(f = \text{Id} \cdot \mathbf{1}_{I}\)</span>, where <span class="math inline">\(I\)</span> is some interval (for example, <span class="math inline">\((0, +\infty)\)</span> as in your case), we have <span class="math display">\[
+\int_{I}xh(x)dx = \int_{X^{-1}}XdP,
+\]</span> recalling again that <span class="math inline">\(\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}\)</span>. Since <span class="math inline">\(P(X&lt;0)\)</span> in your case is <span class="math inline">\(0\)</span>, this last integral is actually equal to the integral over the whole space, and hence to <span class="math inline">\(E[X]\)</span>, which gives your equality.</p>
 
 
 </section>
@@ -927,13 +893,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./conv.html" class="pagination-link" aria-label="Convergence">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Convergence</span></span>
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./clt.html" class="pagination-link" aria-label="Central Limit Theorem">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prob.html" class="pagination-link" aria-label="Probabilty">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probabilty</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -16,13 +16,201 @@
 
 다음의 정의들은 확률론에서 많이 등장하는 정의들이다. $X_1,X_2,\ldots$를 확률변수열이라 하자.
 
+## Almost Sure Convergence
+
+<!--
+송익호 확률변수론
+-->
+
+::: {#def-sconv}
+## Sure convergence (틀림없는 수렴)
+
+확률변수열 $X_n$이 표본공간 안에 어떤 점 $\omega$를 잡아도
+$$
+\lim_{n\rightarrow\infty} X_n (\omega) = X(\omega)
+$$ 
+을 만족하면 $X_n$ **converges surely (a.s.)** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{s}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+:::
+
 ::: {#def-asconv}
-## Almost sure convergence
+## Almost sure convergence (거의 틀림없는 수렴)
 
 확률변수열 $X_n$은 $$
 P\{ \omega: X_n (\omega)\rightarrow X(\omega) \text{ as } n\rightarrow \infty\})=1
 $$ 을 만족하면 $X_n$ **converges almost surely (a.s.)** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{a.s.}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
 :::
+
+<!--
+송익호 확률변수론
+-->
+
+::: callout-note
+## Remark
+
+- 거의 틀림없이 수렴하는 확률변수 $\{ X_n (\omega)\}$에서는 $P(\tilde{\Omega})=1$이고 $\tilde{\Omega} \subseteq \Omega$일 때 $\omega \in \tilde{\Omega}$를 어떻게 고르더라도 $\lim_{n\rightarrow \infty} X_n (\omega) = X(\omega)$임
+
+- 다만, $\omega \notin \tilde{\Omega}$인 수열 $\{ X_n (\omega)\}$는 수렴하지 않을 수는 있지만, $P\{ \omega: \omega \notin \tilde{\Omega}, \omega \in \Omega\} = 0$임
+
+- $X_n \stackrel{\text{a.s.}}{\rightarrow}0$은 $0$보다 큰 수 $\varepsilon$을 어떻게 잡더라도 $P\{ |X_n| \geq \varepsilon\} =0$이라는 것과 필요충분조건임
+:::
+
+::: {#exm-asconv01}
+## 거의 틀림없는 수렴 예제
+
+- 구간 $[0,1]$에서 아무렇게나 한 점을 골라서 $\omega$라 하고, $\omega$가 $[0,1]$의 어느 부분 구간에 들어갈 확률은 그 부분 구간의 길이와 같다고 가정
+
+| $A_n(\omega)$ | $B_n(\omega)$ | $C_n(\omega)$ | $D_n(\omega)$ | $H_n(\omega)$ |
+|:---:|:---:|:---:|:---:|:---:|
+| $\frac{\omega}{n}$ | $\omega (1-\frac{1}{n})$ | $\omega e^n$ | $\cos 2\pi n \omega$ | $\exp \{ -n (n\omega -1) \}$ |
+
+- $A_n(\omega)$는 $\omega$가 어떤 값이더라도 늘 0에 수렴하므로 틀림없이 0에 수렴
+
+- $B_n(\omega)$는 $\omega$가 어떤 값이더라도 $\omega$에 수렴하므로 틀림없이 $\omega$에 수렴하며, 그 극한 분포는 $U[0,1]$
+
+- $C_n (\omega)$는 $\omega =0$이면 0에 수렴하고, $\omega \in (0,1]$이면 발산, 즉 $C_n (\omega)$는 수렴하지 않음
+
+- $D_n (\omega)$는 $\omega \in \{0,1\}$이면 1에 수렴하고, $\omega \in (0,1)$이면 -1과 1 사이에서 진동, 즉 $D_n (\omega)$는 수렴하지 않음
+
+- $\omega=0$이면 $H_n (0) = e^n \rightarrow \infty$이고 $\omega \in (0,1]$이면 $H_n  (\omega) \rightarrow 0$이므로 $H_n (\omega)$는 틀림없이 수렴하지는 않지만, $P\{\omega >0\}=1$이므로 $H_n (\omega)$는 거의 틀림 없이 0으로 수렴
+
+:::
+
+::: {#exm-asconv02}
+## 보렐-칸텔리 정리와 거의 어디서나 수렴
+
+- ($\Longrightarrow$) 확률변수 열 $\{X_n\}_{n=1}^{\infty}$는 $\varepsilon>0$일 때
+$$
+\sum_{n=1}^\infty P\{ |X_n | > \varepsilon\} < \infty
+$$
+이면 보렐-칸텔리 정리를 써서 $n\rightarrow \infty$일 때 $X_n \stackrel{\text{a.s.}}{\rightarrow} 0$이라는 것을 알 수 있음
+
+- ($\Longleftarrow$) $\omega$의 분포가 $[0,1]$에서 고르고
+$$
+X_n (\omega)=
+\begin{cases}
+0, & 0 \leq \omega \leq 1-\frac{1}{n},\\
+1, & 1- \frac{1}{n}< \omega \leq 1
+\end{cases}
+$$
+인 확률변수 열 $\{X_n\}_{n=1}^{\infty}$는 $n\rightarrow \infty$일 때, $X_n \stackrel{\text{a.s.}}{\rightarrow}0$이다. 그러나 $\varepsilon_n \downarrow 0$인 $\varepsilon_n$을 어떻게 잡더라도 $n$이 충분히 크면 $P\{ |X_n| > \varepsilon_n \} = P\{ X_n = 1\}= \frac{1}{n}$이므로 $\sum_{n=1}^{\infty}P\{ |X_n| > \varepsilon_n\}\rightarrow \infty$이다. 그러므로 앞서 조건은 거의 틀림없이 수렴하는 충분조건이나 필요조건은 아니다.
+
+:::
+
+::: {#thm-asconv}
+
+## Almost sure convergence와 동치조건
+
+확률변수 열 $\{X_n\}_{n=1}^{\infty}$가 $X_n \stackrel{\text{a.s}}{\rightarrow}X$이면 0보다 큰 수 $\varepsilon$을 어떻게 고르더라도
+$$
+\lim_{n\rightarrow\infty} P \{ \sup_{m\geq n} |X_m - X| > \varepsilon \} = 0
+$$
+이고, 그 역도 성립한다.
+
+:::
+
+::: callout-note
+## Remark
+
+- 확률변수 열이 거의 틀림없이 수렴하는지를 보이려면, $\omega$의 분포와 $\omega$와 확률변수 사이의 관계를 알든지, 아니면 수렴을 손쉽게 보일 수 있을 만큼 확률변수가 간단해야 함
+:::
+
+## Convergence in Mean
+
+**Q**. 거의 틀림없는 수렴보다 조금 더 느슨한 수렴은 없을까?
+
+::: {#def-rmeanconv}
+## Converge in $r$-mean
+
+확률변수열 $X_n$가 $$
+E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
+$$ 을 만족하면 $X_n$ **converges in** $r-$mean to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$ 또는 $X_n \stackrel{L^\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+:::
+
+::: callout-note
+## Remark
+
+- 특별히 $r=2$일 때를 제곱 평균 수렴이라 부르며, 해석이 쉽고 공학적인 응용에서도 많이 쓰임
+
+- 제곱 평균 수렴은 어떤 시점 $n$에서 $E\{ (X_n-X)^2\}$이 작다는 관점에서 대부분의 수열 $X_n$이 $X$에 가깝기만 바라는 것임
+
+- 이런 수렴은 시간에 중점을 두는 것인데, 거의 틀림없는 수렴과는 달리 수열 모두의 수렴을 생각하는 것이 아니고, 수렴하는지 아닌지 보이기도 더 쉬움
+:::
+
+- 코쉬 기준: 극한 확률변수 $X$를 모를 때에서 확률변수 열이 제곱 평균 수렴하는지 알아볼 수 있음
+
+::: {#thm-cauchycond}
+## Cauchy condition
+
+확률변수 열 $\{X_n\}$이 제곱 평균 수렴할 필요충분조건은
+$$
+\lim_{n,m\rightarrow\infty} E \{ (X_n - X_m)^2 \} = 0
+$$
+이다.
+
+:::
+
+::: {#exm-rmeanconv01}
+
+- @exm-asconv02 의 $B_n(\omega) = (1-\frac{1}{n})\omega$는 @thm-cauchycond 를 이용해보면
+$$
+\begin{align*}
+\lim_{n,m\rightarrow\infty}E\{(B_n - B_m)^2 \}&= \lim_{n,m\rightarrow\infty}E\{(\frac{1}{n}-\frac{1}{m} )^2 \omega^2 \}\\ &= E\{\omega^2\}\lim_{n,m\rightarrow\infty} (\frac{1}{n}-\frac{1}{m})^2 =0
+\end{align*}
+$$
+이므로 코쉬 기준을 만족함을 알 수 있고, 따라서 제곱 평균 수렴할 것임을 알 수 있음
+
+
+- 또한 다음을 알고 있으므로
+$$
+\begin{align*}
+\lim_{n\rightarrow\infty} E[\{ B_n(\omega) - \omega\}^2] &= \lim_{n\rightarrow\infty}E\{ (\frac{\omega}{n})^2 \} \\
+&= \lim_{n\rightarrow\infty}\frac{1}{3n^2}=0
+\end{align*}
+$$
+$B_n(\omega)$는 $\omega$에 제곱 평균 수렴
+
+:::
+
+::: callout-note
+## Remark
+
+- 제곱 평균 수렴은 $n$이 커질 때 점점 더 많은 수열들이 $X$에 가까이 간다는 것을 의미하나, 거의 틀림없는 수렴과 달리 한 번 $X$에 가까이 간 수열이 그 뒤로도 늘 $X$ 가까이에 머물러 있는 것은 아님
+
+:::
+
+::: {#exm-rmeanconv01}
+
+- @exm-asconv02 의 $H_n(\omega)=\exp \{-n (n\omega - 1) \}$은 거의 틀림없이 0으로 수렴하나
+$$
+\begin{align*}
+\lim_{n\rightarrow\infty}E[\{ H_n (\omega) - 0 \}^2] &= \lim_{n\rightarrow\infty} e^{2n} \int_{0}^1 \exp (-2n^2 \omega) d\omega\\ &= \lim_{n\rightarrow\infty}\frac{e^{2n}}{2n^2}\{ 1-\exp(-2n^2)\}\rightarrow\infty
+\end{align*}
+$$
+이므로 $\{H_n(\omega)\}$은 0으로 제곱 평균 수렴하지는 않음
+
+:::
+ 
+## Convergence in Probability
+
+```{=html}
+<!--
+::: panel-tabset
+## SNU, 2020 Winter, Problem 1 {.unlisted .unnumbered}
+
+Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probability. Then, show the following three propositions are equivalent.
+
+(a) $\{|X_n|^r\}$ is uniformly integrable.
+
+(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
+
+(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
+:::
+-->
+```
 
 ::: {#def-pconv}
 ## Converge in Probability
@@ -32,13 +220,34 @@ P\{ |X_n-X| >\varepsilon) \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \
 $$ 을 만족하면 $X_n$ **converges in probability** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{p}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
 :::
 
-::: {#def-rmeanconv}
-## Converge in $r$-mean
+::: callout-note
+## Remark
 
-확률변수열 $X_n$가 $$
-E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
-$$ 을 만족하면 $X_n$ **converges in** $r-$mean to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
+- @def-pconv 에 적혀 있는 식은 어떤 순간에는 거의 모든 수열이 $2\varepsilon$이라는 범위 안에 들어가 있지만 그 수열들이 그 안에 꼭 머물러 있는 것은 아니라는 것을 뜻함
+
+- 따라서 한 번 $2\varepsilon$이라는 범위 안에 들어가면 그 안에 꼭 머문다는 것을 뜻하는 @thm-asconv 의 식과 다름
+
+- 이 사실은 $\{|X_n - X|> \varepsilon\}$과 $\{\sup_{m\geq n} |X_m-X|>\varepsilon \}$의 뜻의 차이로부터 옴
+
 :::
+
+## Convergence in Distribution
+
+```{=html}
+<!--
+::: panel-tabset
+## SNU, 2019 Summer, Problem 3 {.unlisted .unnumbered}
+
+Show that, if $X_n$ converges weakly to $X$ and $\{X_n, n\geq 1\}$ is uniformly integrable, then $X$ is integrable and $EX_n \rightarrow EX$ as $n\rightarrow \infty$.
+
+## Solution {.unlisted .unnumbered}
+
+일단 integrable random variable에 대해 모르면 @def-integrablerv 를 참고하자.
+
+@Gut2014 책의 Theorem 5.5.9 참고
+:::
+-->
+```
 
 ::: {#def-distnconv}
 ## Converge in Distribution
@@ -56,15 +265,50 @@ $$ 을 만족하면 $X_n$ **converges in distribution** to the random variable $
 
 때때로 $X_n \stackrel{\text{d}}{\rightarrow} \mathcal{N}(0,1)$처럼 쓰기도 한다.
 
+::: {#exm-distnconv01}
+
+- 확률변수 $X_n$의 누적분포함수를 $F_n (x) = \int_{-\infty}^x \frac{\sqrt{n}}{\sigma \sqrt{2\pi}}e^{-\frac{nt^2}{2\sigma^2}}dt$처럼 두면
+$$
+\lim_{n\rightarrow\infty} F_n (x)
+=
+\begin{cases}
+0, & x<0,\\
+\frac{1}{2}, & x=0,\\
+1, & x >0.
+\end{cases}
+$$
+따라서, $\{X_n\}$은 누적분포함수가 
+$$
+F(x) = 
+\begin{cases}
+0, & x< 0,\\
+1, & x \geq 0
+\end{cases}
+$$
+인 확률변수 $X$로 분포에서 수렴한다.
+
+- $\lim_{n\rightarrow\infty}F_n (0) \neq F(0)$이지만, 분포수렴은 누적분포함수의 불연속 점에서 수렴을 따지지 않기 때문에 $F(x)$의 불연속점인 $x=0$에서 $F_n(x)$가 수렴하는지 따지지 않아도 된다.
+:::
+ 
+
+### Weak convergence
+
 Distributional convergence is often called weak convergence in these more general settings. [@Gut2014]
 
 ::: {#def-wconv}
 ## Converge Weakly
 
-이는 [@Durrett2019] 의 3.2에 나온다. A sequence of distribution functions is said to **converge weakly** to a limit $F$ (written $F_n \Rightarrow F$) if $F_n(y) \rightarrow F(y)$ for all $y$ that are continuity points of $F$. A sequence of random variables $X_n$ is said to **converge weakly** or **converge in distribution** to a limit $X_{\infty}$ (written $X_n \Rightarrow X_{\infty})$ if their distribution functions $F_n (x) = P(X_n \leq x)$ converges weakly.
+이는 @Durrett2019 의 3.2에 나온다. A sequence of distribution functions is said to **converge weakly** to a limit $F$ (written $F_n \Rightarrow F$) if $F_n(y) \rightarrow F(y)$ for all $y$ that are continuity points of $F$. A sequence of random variables $X_n$ is said to **converge weakly** or **converge in distribution** to a limit $X_{\infty}$ (written $X_n \Rightarrow X_{\infty})$ if their distribution functions $F_n (x) = P(X_n \leq x)$ converges weakly.
 :::
 
-[@Polansky2011]의 4장에서는 converges weakly를 converge in distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채 $\{F_n\}_{n=1}^{\infty}$와 $F$로만 정의한 것으로 보았다. 또한 converges weakly를 $F_n \rightsquigarrow F$로 표기하기도 하였다.
+::: callout-note
+## Remark
+
+@Polansky2011 의 4장에서는 converges weakly를 converge in distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채 $\{F_n\}_{n=1}^{\infty}$와 $F$로만 정의한 것으로 보았다. 또한 converges weakly를 $F_n \rightsquigarrow F$로 표기하기도 하였다.
+
+:::
+
+### Vague convergence
 
 다음은 @Gut2014 의 5.8.1에 나오는 vague convergence이다. Vague convergence의 limiting random variable이 **proper**하지 않아도 된다는 점이 distributional convergence와의 차이점이다.
 
@@ -76,20 +320,68 @@ F_n(I) \rightarrow H(I) \quad{} \text{as} \quad{} n \rightarrow \infty.
 $$ Notation: $F_n \stackrel{\text{v}}{\rightarrow}H$ as $n\rightarrow \infty$.
 :::
 
+## Relationship Among Convergences
+
+::: {#exm-dnotp}
+## 분포수렴하나 확률수렴하지 않는 확률변수열
+
+- 확률변수 $X$의 확률밀도함수가 대칭이라고 하고 $X_n = - X$라고 두자. 그러면
+$$
+X_n \stackrel{d}{=}X
+$$
+이므로 $X_n \stackrel{d}{\rightarrow}X$이다. 
+
+- 그러나 $n\rightarrow\infty$일 때 $P \{ |X_n - X| > \varepsilon \} = P \{ |X| > \frac{\varepsilon}{2} \} \not\rightarrow 0$이므로 $X_n \stackrel{p}{\not\rightarrow}X$이다.
+
+:::
+
+::: {#exm-pnotas}
+## 확률수렴하나 거의 틀림없이 수렴하지는 않는 확률변수열
+
+- 독립인 확률변수열 $\{X_n\}_{n=1}^{\infty}$에서 $P\{X_n=1\}=\frac{1}{n}$이고 $P\{X_n =0\}=1-\frac{1}{n}$이라고 두자. 그러면 $\varepsilon \in (0,1)$을 어떻게 고르더라도 $n\rightarrow\infty$일 떄 $P\{ |X_n - 0| > \varepsilon\}= P\{X_n = 1\} =\frac{1}{n}\rightarrow 0$이므로 $X_n \stackrel{p}{\rightarrow}0$이다.
+
+- 그러나 $A_n (\varepsilon) = \{|X_n - 0|>\varepsilon\}$이라고 두고 $B_m (\varepsilon) = \cup_{n=m}^{\infty}A_n (\varepsilon)$이라고 두면
+$$
+P\{B_m (\varepsilon)\} = 1- \lim_{M\rightarrow \infty}P\{ X_n =0, \forall n \text{ s.t. } m\leq n \leq M\}
+$$
+이다. $X_n$이 독립이므로 자연수 $m$에 대해 $\prod_{k=m}^{\infty}(1-\frac{1}{k})=0$이라는 것을 쓰면
+$$
+\begin{align*}
+P\{B_m (\varepsilon)\} &= 1- \lim_{M\rightarrow \infty} \Big(1-\frac{1}{m} \Big) \Big(1-\frac{1}{m+1} \Big)\cdots  \Big(1-\frac{1}{M} \Big)\\
+&=1.
+\end{align*}
+$$
+따라서 $\lim_{m\rightarrow\infty} P\{B_m (\varepsilon) \} \neq 0$이고 @thm-asconv 에서 $X_n \stackrel{\text{a.s.}}{\not\rightarrow}0$이다.
+
+:::
+
+::: {#exm-pnotmean}
+## 확률수렴하나 평균수렴하지 않는 확률변수열
+
+- 확률변수열 $\{X_n\}_{n=1}^{\infty}$에서
+$$
+P\{ X_n = x\} =
+\begin{cases}
+\frac{1}{n}, &  x= e^n\\
+1-\frac{1}{n}, & x=0
+\end{cases}
+$$
+이면 $\varepsilon>0$이고 $n\rightarrow\infty$일 때 $P\{ |X_n| < \varepsilon\}= P\{X_n =0\} = 1-\frac{1}{n} \rightarrow 1$이므로 $X_n \stackrel{p}{\rightarrow}0$이다.
+
+- 그러나 $E\{X_n^r\}=\frac{e^{rn}}{n}\rightarrow\infty$이므로 $X_n \stackrel{L^r}{\not\rightarrow} 0$이다.
+
+:::
+
 ## Bounded in Probability
 
-[@Polansky2011] Convergence of distribution과 관련된 중요한 질문 중 하나는 limiting distribution이 valid distribution function이냐는 것이다. 이 말인 즉슨 sequence of distribution functions $\{ F_n \}_{n=1}^{\infty}$가
-$$
+[@Polansky2011] Convergence of distribution과 관련된 중요한 질문 중 하나는 limiting distribution이 valid distribution function이냐는 것이다. 이 말인 즉슨 sequence of distribution functions $\{ F_n \}_{n=1}^{\infty}$가 $$
 \lim_{n\rightarrow\infty} F_n (x) = F(x), \quad{} \forall x \in C(F) \quad{} \text{for some fct } F(x)
-$$
-일 때 $F(x)$가 distribution functions여야 할 필요가 있는가? 여기에서 $F(x) \in [0,1]$, $F(x)$가 non-decreasing, right continuity 등은 미적분학 등의 내용을 이용해 보일 수 있으므로 
-$$
+$$ 일 때 $F(x)$가 distribution functions여야 할 필요가 있는가? 여기에서 $F(x) \in [0,1]$, $F(x)$가 non-decreasing, right continuity 등은 미적분학 등의 내용을 이용해 보일 수 있으므로 $$
 \lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
-$$
-을 만족하면 $F$가 valid distribution function이 될 것이다.
+$$ 을 만족하면 $F$가 valid distribution function이 될 것이다.
 
 ::: {#def-bip}
-## Bounded in Probability
+## Bounded in Probability (확률유계)
 
 Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables. The sequence is **bounded in probability** if for every $\varepsilon>0$, $\exists x_{\varepsilon} \in \mathbb{R}$ and $n_{\varepsilon} \in \mathbb{N}$ such that $P(|X_n| \leq x_{\varepsilon})>1-\varepsilon$ for all $n > n_{\varepsilon}$.
 :::
@@ -97,33 +389,86 @@ Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables. The sequence is 
 ::: {#exm-notbip}
 ## Bounded in Probability가 아닌 확률변수열
 
-Consider the situation that $\{X_n\}_{n=1}^{\infty}$ is a sequence of random variables sucht that the distribution function of $X_n$ is given by
-$$
+Consider the situation that $\{X_n\}_{n=1}^{\infty}$ is a sequence of random variables such that the distribution function of $X_n$ is given by $$
 F_n(x) =
 \begin{cases}
 0, & x<0\\
 1-p_n, & 0 \leq x < n\\
 1, & x\geq n
 \end{cases},
-$$
-where $\{p_n\}_{n=1}^{\infty}$ is a sequence of real numbers such that
-$$
+$$ where $\{p_n\}_{n=1}^{\infty}$ is a sequence of real numbers such that $$
 \lim_{n\rightarrow \infty} p_n = p.
 $$
 
-- $p=0$이면 bounded in probability
+-   $p=0$이면 bounded in probability
 
-- 그러나 $p>0$이면 we set a value of $\varepsilon$ such that $0< \varepsilon < p$. Let $x$ be a positive real value. For any $n>x$ we have the property that $P(|X_m|\leq x) = 1-p \leq 1- \varepsilon$ for all $m>n$. Therefore, it is not possible to find the value of $x$ required in the definition of bounded in probability.
+-   그러나 $p>0$이면 we set a value of $\varepsilon$ such that $0< \varepsilon < p$. Let $x$ be a positive real value. For any $n>x$ we have the property that $P(|X_m|\leq x) = 1-p \leq 1- \varepsilon$ for all $m>n$. Therefore, it is not possible to find the value of $x$ required in the definition of bounded in probability.
 :::
 
 ::: {#thm-validbip}
 ## Bounded in Probability는 Limiting distribution이 valid인 것과 동치
 
-Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables where $X_n$ has distribution function $F_n$ for all $n\in \mathbb{N}$. Suppose that $F_n \rightsquigarrow F$ as $n\rightarrow \infty$ where $F$ may or may not be a vaild distribution function. Then,
-$$
+Let $\{X_n\}_{n=1}^{\infty}$ be a sequence of random variables where $X_n$ has distribution function $F_n$ for all $n\in \mathbb{N}$. Suppose that $F_n \rightsquigarrow F$ as $n\rightarrow \infty$ where $F$ may or may not be a vaild distribution function. Then, $$
 \lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
+$$ if and only if the sequence $\{X_n \}_{n=1}^{\infty}$ is bounded in probability.
+:::
+
+### Bounded in probability와 converge in distribution
+
+<!--
+Hogg책 5.2.1
+-->
+
+::: {#thm-convdbp}
+## 분포수렴이면 확률유계
+
+$\{X_n\}$이 확률변수 열이고 $X$가 확률변수라고 하자. $X_n \rightarrow X$로 분포수렴하면 $\{X_n\}$은 확률유계이다.
+:::
+
+::: {.proof}
+$\varepsilon>0$일 때 $X$에 대해 $P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon$이 성립하는 $x_{\varepsilon}$을 선택하자. $x_{\varepsilon}$와 $-x_{\varepsilon}$가 $F$의 연속인 점이 되도록 항상 $x_{\varepsilon}$를 선택할 수 있다. 그러면 다음을 얻는다.
+
+\begin{align*}
+\lim_{n\rightarrow \infty}P(|X_n|&\leq x_{\varepsilon})\geq \lim_{n\rightarrow\infty}F_{X_n}(x_{\varepsilon}) - \lim_{n\rightarrow\infty}F_{X_n}(-x_{\varepsilon}-0)\\
+&= F_{X}(x_{\varepsilon})-F_X(-x_{\varepsilon})\geq 1-\varepsilon.
+\end{align*}
+
+정확하게 하기 위해 $n\geq N$에 대해 $P(|X_n| \leq x_{\varepsilon})\geq 1-\varepsilon$이 성립하도록 충분히 큰 $N$을 선택할 수 있다.
+:::
+
+그러나 앞선 정리의 역은 성립하지 않는다.
+
+::: {#exm-notbpconvd}
+## 확률유계이나 분포수렴하지 않는 예
+
+$\{X_n\}$이 짝수 $n=2m$에 대해 $X_{2m}=2+ \frac{1}{2m}$일 확률이 1이고, 홀수 $n=2m-1$에 대해 $X_{2m-1}=1+\frac{1}{2m}$일 확률이 1인 퇴화확률변수열이라고 하자. 그러면 열 $\{X_2,X_4,X_6,\ldots\}$은 퇴화확률변수 $Y=2$에 분포수렴하고, 열 $\{X_1,X_3,X_5,\ldots\}$은 퇴화확률변수 $W=1$에 분포수렴한다. $Y$와 $W$의 분포가 동일하지 않으므로 열 $\{X_n\}$은 분포수렴하지 않는다. 그러나 열 $\{X_n\}$의 모든 값이 구간 $[1,\frac{5}{2}]$안에 있으므로 열 $\{X_n\}$은 확률유계이다.
+:::
+
+확률유계인 열(또는 확률변수로 분포수렴하는 것)을 생각하는 한 가지 방법은 $|X_n|$의 확률질량이 $\infty$로 벗어나지 않는다는 것이다. 종종 분포수렴 대신 확률유계성을 이용할 수 있다.
+
+::: {#thm-bppconvp}
+## 확률유계인 확률변수열과 확률수렴하는 확률변수열의 곱은 확률수렴
+
+$\{X_n\}$이 확률유계인 확률변수 열이고 $\{Y_n\}$이 0으로 확률수렴하는 확률변수 열이라면
 $$
-if and only if the sequence $\{X_n \}_{n=1}^{\infty}$ is bounded in probability.
+X_n Y_n \stackrel{P}{\rightarrow}0.
+$$
+
+:::
+
+::: {.proof}
+$\varepsilon>0$이라고 하자. 다음이 성립하도록 $B_{\varepsilon}>0$과 정수 $N_{\varepsilon}$을 선택한다.
+$$
+n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\varepsilon.
+$$
+그러면 다음과 같으며, 이것으로부터 원하는 결과가 도출된다.
+
+\begin{align*}
+\overline{\lim}_{n\rightarrow\infty}P(|X_nY_n|\geq \varepsilon) &\leq \overline{\lim}_{n\rightarrow\infty}P(|X_nY_n|\geq \varepsilon, |X_n| \leq B_\varepsilon)\\
+&+ \overline{\lim}_{n\rightarrow\infty}P(|X_nY_n|\geq \varepsilon, |X_n| > B_\varepsilon)\\
+&\leq \overline{\lim}_{n\rightarrow\infty} P(|Y_n|\geq \frac{\varepsilon}{B_\varepsilon}) + \varepsilon = \varepsilon.
+\end{align*}
+
 :::
 
 ## Uniform Integrability
@@ -150,40 +495,8 @@ $X_1, X_2 , \ldots$이 유한한 평균을 갖고 있다는 뜻은 $E|X_n|I\{|X_
 
 We are now in the position to show that uniform integrability is the **correct** concept, that is, that a sequence that converges almost surely, in probability, or in distribution, and is uniformly integrable, converges in the mean, that moments converge and that uniform integrability is the minimal additional assumption for this to happen. [@Gut2014]
 
-## Almost Sure Convergence
+## References
 
-## Convergence in Probability
+- [확률변수론](https://product.kyobobook.co.kr/detail/S000001075892)
 
-<!--
-::: panel-tabset
-## SNU, 2020 Winter, Problem 1 {.unlisted .unnumbered}
 
-Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probability. Then, show the following three propositions are equivalent.
-
-(a) $\{|X_n|^r\}$ is uniformly integrable.
-
-(b) $X_n \rightarrow X$ in $\mathcal{L}^r$.
-
-(c) $E(|X_n|^r) \rightarrow E(|X|^r) < \infty$.
-
-## Solution {.unlisted .unnumbered}
-
-@Gut2014 책에는 almost sure convergence에만 초점을 맞추어 서술하였다. (Theorem 5.5.2) 실제 converge in probability에서도 성립함이 알려져 있다. (Theorem 5.5.4) 이 증명을 하기 위해서는 Fatou's lemma가 필요하다.
-:::
--->
-
-## Convergence in Distribution
-
-<!--
-::: panel-tabset
-## SNU, 2019 Summer, Problem 3 {.unlisted .unnumbered}
-
-Show that, if $X_n$ converges weakly to $X$ and $\{X_n, n\geq 1\}$ is uniformly integrable, then $X$ is integrable and $EX_n \rightarrow EX$ as $n\rightarrow \infty$.
-
-## Solution {.unlisted .unnumbered}
-
-일단 integrable random variable에 대해 모르면 @def-integrablerv 를 참고하자.
-
-@Gut2014 책의 Theorem 5.5.9 참고
-:::
--->
