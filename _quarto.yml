@@ -28,8 +28,9 @@ book:
       chapters:
         - ev.qmd
         - mev.qmd
-    - part: "Intro"
+    - part: "Appendix"
       chapters:
+        - bigoh.qmd
         - summary.qmd
         - references.qmd
 

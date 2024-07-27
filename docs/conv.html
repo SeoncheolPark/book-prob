@@ -231,7 +231,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ineq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Inequalities</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inequalities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -292,7 +292,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Appendix</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -300,8 +300,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./bigoh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,7 +400,7 @@ P\{ \omega: X_n (\omega)\rightarrow X(\omega) \text{ as } n\rightarrow \infty\})
 <!--
 송익호 확률변수론
 -->
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -471,7 +477,7 @@ X_n (\omega)=
 \lim_{n\rightarrow\infty} P \{ \sup_{m\geq n} |X_m - X| &gt; \varepsilon \} = 0
 \]</span> 이고, 그 역도 성립한다.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -495,7 +501,7 @@ Remark
 E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges in</strong> <span class="math inline">\(r-\)</span>mean to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{r}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> 또는 <span class="math inline">\(X_n \stackrel{L^\text{r}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -536,7 +542,7 @@ Remark
 \]</span> <span class="math inline">\(B_n(\omega)\)</span>는 <span class="math inline">\(\omega\)</span>에 제곱 평균 수렴</p></li>
 </ul>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -586,7 +592,7 @@ Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probab
 P\{ |X_n-X| &gt;\varepsilon) \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges in probability</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{p}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -656,7 +662,7 @@ F(x) =
 <div id="def-wconv" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 6.6 (Converge Weakly)</strong></span> 이는 <span class="citation" data-cites="Durrett2019">Durrett (<a href="references.html#ref-Durrett2019" role="doc-biblioref">2019</a>)</span> 의 3.2에 나온다. A sequence of distribution functions is said to <strong>converge weakly</strong> to a limit <span class="math inline">\(F\)</span> (written <span class="math inline">\(F_n \Rightarrow F\)</span>) if <span class="math inline">\(F_n(y) \rightarrow F(y)\)</span> for all <span class="math inline">\(y\)</span> that are continuity points of <span class="math inline">\(F\)</span>. A sequence of random variables <span class="math inline">\(X_n\)</span> is said to <strong>converge weakly</strong> or <strong>converge in distribution</strong> to a limit <span class="math inline">\(X_{\infty}\)</span> (written <span class="math inline">\(X_n \Rightarrow X_{\infty})\)</span> if their distribution functions <span class="math inline">\(F_n (x) = P(X_n \leq x)\)</span> converges weakly.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1250,8 +1256,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ineq.html" class="pagination-link" aria-label="Probability Inequalities">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Inequalities</span></span>
+      <a href="./ineq.html" class="pagination-link" aria-label="Inequalities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inequalities</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

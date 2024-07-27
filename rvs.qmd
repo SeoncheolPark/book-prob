@@ -51,7 +51,7 @@ $$
 Rigorous 3.1
 -->
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 확률변수는 확률공간 위에서 잴 수 있는 **함수**임
@@ -219,7 +219,7 @@ $$
 
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 다음의 notation들은 모두 $X$의 기댓값을 의미

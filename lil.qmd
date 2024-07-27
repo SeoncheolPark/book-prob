@@ -46,6 +46,28 @@ $$
 
 :::
 
+::: callout-tip
+## Remark
+
+<!--
+https://mathoverflow.net/questions/132388/intuition-of-law-of-iterated-logarithm
+-->
+
+왜 하필 $\log \log n$이라는 생각이 들 수도 있는데, 어떤 사람들은 normal distribution의 density에 $\exp (-x^2/2)$가 있어서 이 효과를 상쇄하려면 대략 $\sqrt{\log \log n}$을 쓰는 것으로 이해해 볼 수도 있음
+
+:::
+
+::: callout-tip
+## Remark
+
+<!--
+Gut 9.1
+-->
+
+왜 하필 $\log \log n$이라는 생각이 들 수도 있는데, 어떤 사람들은 normal distribution의 density에 $\exp (-x^2/2)$가 있어서 이 효과를 상쇄하려면 대략 $\sqrt{\log \log n}$을 쓰는 것으로 이해해 볼 수도 있음
+
+:::
+
 ## R 코드
 
 @Haigh2013 의 Example 6.21
@@ -104,7 +126,7 @@ lines(ind[-c(1:2)], -sqrt(2*ind[-c(1:2)]*log(log(ind[-c(1:2)]))), lty=3, lwd=4, 
 axis(1, at = c(1E0, 1E1, 1E2, 1E3, 1E4, 1E5, 1E6), labels = c("1", "10", expression(10^2), expression(10^3), expression(10^4), expression(10^5), expression(10^6)))
 
 plot(ind, S[,1]/sqrt(ind), type='n', log='x', xaxt='n', xlim=c(1,1000000), ylim=c(-4,4),
-     xlab="n", ylab=expression(S[n]), main=expression(paste("(b) CLT, ", S[n]/sqrt(n))))
+     xlab="n", ylab=expression(S[n]/sqrt(n)), main=expression(paste("(b) CLT, ", S[n]/sqrt(n))))
 for(j in 1:100){
   lines(ind, S[,j]/sqrt(ind), col=j)
 }
@@ -113,7 +135,7 @@ abline(h=-qnorm(0.01), lty=3, lwd=4, col=2)
 axis(1, at = c(1E0, 1E1, 1E2, 1E3, 1E4, 1E5, 1E6), labels = c("1", "10", expression(10^2), expression(10^3), expression(10^4), expression(10^5), expression(10^6)))
 
 plot(ind[-c(1:2)], S[-c(1:2),1]/sqrt(ind[-c(1:2)]*log(log(ind[-c(1:2)]))), type='n', log='x', xaxt='n', xlim=c(1,1000000), ylim=c(-7.5,7.5),
-     xlab="n", ylab=expression(S[n]), main=expression(paste("(c) LIL, ", S[n]/sqrt(n*log(log(n))) )))
+     xlab="n", ylab=expression(S[n]/sqrt(n*log(log(n)))), main=expression(paste("(c) LIL, ", S[n]/sqrt(n*log(log(n))) )))
 for(j in 1:100){
   lines(ind[-c(1:2)], S[-c(1:2),j]/sqrt(ind[-c(1:2)]*log(log(ind[-c(1:2)]))), col=j)
 }
@@ -122,7 +144,7 @@ abline(h=-sqrt(2), lty=3, lwd=4, col=2)
 axis(1, at = c(1E0, 1E1, 1E2, 1E3, 1E4, 1E5, 1E6), labels = c("1", "10", expression(10^2), expression(10^3), expression(10^4), expression(10^5), expression(10^6)))
 
 plot(ind, S[,1]/ind, type='n', log='x', xaxt='n', xlim=c(1,1000000), ylim=c(-2,2),
-     xlab="n", ylab=expression(S[n]), main=expression(paste("(d) LLN, ", S[n]/n)))
+     xlab="n", ylab=expression(S[n]/n), main=expression(paste("(d) LLN, ", S[n]/n)))
 for(j in 1:100){
   lines(ind, S[,j]/ind, col=j)
 }

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Seoncheol Park">
-<meta name="dcterms.date" content="2024-07-27">
 
-<title>A Biggner’s Guide to Probability and Extremes</title>
+<title>A Biggner's Guide to Probability and Extremes – 13&nbsp; Order Notation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -66,7 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./intro.html" rel="next">
+<link href="./summary.html" rel="next">
+<link href="./mev.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -124,6 +89,35 @@ MathJax = {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -136,7 +130,7 @@ MathJax = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Intro</a></li><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bigoh.html">Appendix</a></li><li class="breadcrumb-item"><a href="./bigoh.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -175,7 +169,7 @@ MathJax = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -286,7 +280,7 @@ MathJax = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bigoh.html" class="sidebar-item-text sidebar-link">
+  <a href="./bigoh.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
   </div>
 </li>
@@ -314,35 +308,24 @@ MathJax = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#preface" id="toc-preface" class="nav-link active" data-scroll-target="#preface">Preface</a></li>
+  <li><a href="#big-o-and-small-o-notation-deterministic-versions" id="toc-big-o-and-small-o-notation-deterministic-versions" class="nav-link active" data-scroll-target="#big-o-and-small-o-notation-deterministic-versions"><span class="header-section-number">13.1</span> Big <span class="math inline">\(O\)</span> and small <span class="math inline">\(o\)</span> notation (deterministic versions)</a></li>
+  <li><a href="#stochastic-versions" id="toc-stochastic-versions" class="nav-link" data-scroll-target="#stochastic-versions"><span class="header-section-number">13.2</span> Stochastic versions</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Intro</a></li><li class="breadcrumb-item"><a href="./index.html">Preface</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bigoh.html">Appendix</a></li><li class="breadcrumb-item"><a href="./bigoh.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">A Biggner’s Guide to Probability and Extremes</h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Seoncheol Park </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">July 27, 2024</p>
-    </div>
-  </div>
   
     
   </div>
@@ -352,18 +335,229 @@ MathJax = {
 </header>
 
 
-<section id="preface" class="level1 unnumbered">
-<h1 class="unnumbered">Preface</h1>
-<p>확률론은 통계학을 공부하는 데 있어 굉장히 중요한 과목이다. 그러므로 열심히 공부해야 한다.</p>
-<p>덤으로 극단값 이론의 기초도 수록하였다.</p>
-<p>최대한 제가 이해할 수 있는 수준의 내용으로 구성하였으므로, 그러므로 기초 레벨에 해당이 된다.</p>
-<p>This is a Quarto book.</p>
-<p>To learn more about Quarto books visit <a href="https://quarto.org/docs/books" class="uri">https://quarto.org/docs/books</a>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<!--
+https://bookdown.org/egarpor/NP-UC3M/intro-ohs.html#fn9
+-->
+<section id="big-o-and-small-o-notation-deterministic-versions" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="big-o-and-small-o-notation-deterministic-versions"><span class="header-section-number">13.1</span> Big <span class="math inline">\(O\)</span> and small <span class="math inline">\(o\)</span> notation (deterministic versions)</h2>
+<ul>
+<li>In mathematical analysis, <span class="math inline">\(O\)</span>-related notation is mostly used to bound sequences that shrink to <span class="math inline">\(0\)</span>.</li>
+</ul>
+<div id="def-bigoh" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 13.1 (Big-<span class="math inline">\(O\)</span>)</strong></span> Given two strictly positive sequence <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>, <span class="math display">\[
+a_n = O(b_n): \Longleftrightarrow \text{limsup}_{n\rightarrow \infty}\frac{a_n}{b_n} \leq C, \quad{} \text{for a } C&gt;0
+\]</span> If <span class="math inline">\(a_n = O(b_n)\)</span>, then we say that <span class="math inline">\(a_n\)</span> is <strong>big-O</strong> of <span class="math inline">\(b_n\)</span>. To indicate that <span class="math inline">\(a_n\)</span> is bounded, we write <span class="math inline">\(a_n = O(1)\)</span>.</p>
 </div>
+<p>For a deterministic sequence <span class="math inline">\(a_n\)</span>, <span class="math inline">\(\text{limsup}_{n\rightarrow \infty}:=\lim_{n\rightarrow \infty}(\sup_{k \geq n} a_k)\)</span> is the largest limit of the subsequences of <span class="math inline">\(a_n\)</span>. It can be defined even if <span class="math inline">\(\lim_{n\rightarrow\infty}a_n\)</span> does not exist (e.g., in trigonometric functions). If <span class="math inline">\(\lim_{n\rightarrow\infty} a_n\)</span> exists, as in most of the common usages of the big-<span class="math inline">\(O\)</span> notation, then <span class="math inline">\(\text{limsup}_{n\rightarrow\infty}a_n = \lim_{n\rightarrow\infty}a_n\)</span>.</p>
+<div id="def-littleoh" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 13.2 (Little-<span class="math inline">\(o\)</span>)</strong></span> Given two strictly positive sequence <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>, <span class="math display">\[
+a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
+\]</span> If <span class="math inline">\(a_n = o(b_n)\)</span>, then we say that <span class="math inline">\(a_n\)</span> is <strong>little-o</strong> of <span class="math inline">\(b_n\)</span>. To indicate that <span class="math inline">\(a_n\rightarrow 0\)</span>, we write <span class="math inline">\(a_n = o(1)\)</span>.</p>
+</div>
+<div id="exr-bigohlittleoh" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.1</strong></span> &nbsp;</p>
+<ol type="1">
+<li><span class="math inline">\(n^{-2} =o(n^{-1})\)</span> since <span class="math inline">\(\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0\)</span></li>
+</ol>
+<!--
+https://math.stackexchange.com/questions/1561912/prove-logn-on-using-induction
+https://math.stackexchange.com/questions/741600/prove-that-logx-x-for-x-0-x-in-mathbbn?rq=1
+-->
+<ol start="2" type="1">
+<li><p><span class="math inline">\(\log n = O(n)\)</span>: We want to show that <span class="math inline">\(\forall n\geq 1, \log (n) \leq n\)</span>. The proof is by indunction on <span class="math inline">\(n\)</span>. The claim is true for <span class="math inline">\(n=1\)</span>, since <span class="math inline">\(0&lt;1\)</span>. Now suppose <span class="math inline">\(n\geq 1\)</span> and <span class="math inline">\(\log (n) \leq n\)</span>. Since <span class="math inline">\(n+1\leq 2n\)</span>, (밑이 2인 로그를 쓴 듯) <span class="math display">\[
+\log (n+1) \leq \log (2n) = \log(n) + 1 \leq n+1
+\]</span> or <span class="math display">\[
+\log (n+1) = \log n \log (1 + \frac{1}{n}) &lt; n + \log (1 + \frac{1}{n}) &lt; n+1 \because \text{ since } \log 2 &lt; 1
+\]</span></p></li>
+<li><p><span class="math inline">\(n^{-1} = o((\log n)^{-1})\)</span>: 로피탈의 정리를 쓰면 <span class="math display">\[
+\lim_{n\rightarrow \infty} \frac{n^{-1}}{(\log n)^{-1}}=\lim_{n\rightarrow \infty}  \frac{\log n}{n}=0
+\]</span> 임을 보일 수 있음</p></li>
+<li><p><span class="math inline">\(n^{-4/5} = o(n^{-2/3})\)</span> <span class="math display">\[
+\lim_{n\rightarrow \infty} \frac{n^{-4/5}}{n^{-2/3}} = \lim_{n\rightarrow \infty} n^{2/3 - 4/5}
+\]</span></p></li>
+</ol>
+</div>
+<p>The interpretation of these two definitions is:</p>
+<ul>
+<li><p><span class="math inline">\(a_n = O(b_n)\)</span> means that <span class="math inline">\(a_n\)</span> is <strong>not larger than</strong> <span class="math inline">\(b_n\)</span> asymptotically. If <span class="math inline">\(a_n , b_n \rightarrow 0\)</span>, then it means that <span class="math inline">\(a_n\)</span> <strong>does not decrease more slowly</strong> than <span class="math inline">\(b_n\)</span>, i.e., that <span class="math inline">\(a_n\)</span> either decreases as fast as <span class="math inline">\(b_n\)</span> or faster than <span class="math inline">\(b_n\)</span>.</p></li>
+<li><p><span class="math inline">\(a_n = o(b_n)\)</span> means that <span class="math inline">\(a_n\)</span> is <strong>smaller than</strong> <span class="math inline">\(b_n\)</span> asymptotically. If <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>, then it means that <span class="math inline">\(a_n\)</span> <strong>decrease faster</strong> than <span class="math inline">\(b_n\)</span>.</p></li>
+</ul>
+<p>Obviously, taken any <span class="math inline">\(C&gt;0\)</span>, <strong>little-o implies big-O</strong>. Playing with limits we can get a list of useful facts.</p>
+<!--
+::: {#prp-bigolittleo}
+
+Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold:
+
+1. $kO(a_n) = O(a_n)$, $ko(a_n) = o(a_n)$, $k\mathbb{R}$.
+
+2. $o(a_n) + o(b_n) = o(a_n + b_n)$, $O(a_n) + O(b_n) = O(a_n + b_n)$.
+
+3. $o(a_n)o(b_n) = o(a_nb_n)$, $O(a_n)O(b_n) = O(a_nb_n)$.
+
+4. $o(a_n) + O(b_n) = O(a_n + b_n)$, $o(a_n)O(b_n) = o(a_nb_n)$.
+
+5. $o(1)O(a_n) = o(a_n)$.
+
+6. $a_n^r = o(a_n^s)$, for $r>s\geq 0$.
+
+7. $a_nb_n =o(a_n^2 +b_n^2)$ (아마 $O(a_n^2 + b_n^2)$이 되어야 할 듯)
+
+8. $(a_n + b_n)^k = O(a_n^k + b_n^k)$.
+:::
+
+-->
+<table class="table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sequence</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(b_n = 1/\log (n)\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{1,n}=\frac{2}{n}+\frac{50}{n^2}\)</span></td>
+<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a_{2,n}=\frac{\sin (n/5)+2}{n^{5/4}}\)</span></td>
+<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{3,n}=\frac{3(1+5\exp(-(n-55.5)^2/200))}{n}\)</span></td>
+<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a_{4,n}=\frac{n+3}{4n\log_{10}(n)}+\frac{a_{3,n}}{2}\)</span></td>
+<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{5,n}=\frac{1}{4\log_{2} (\frac{n}{2})}\)</span></td>
+<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a_{6,n}=\frac{1}{\log (n^2+n)}\)</span></td>
+<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{7,n}=\frac{1}{2\log(5n+3)^{1/4}}\)</span></td>
+<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(a_{8,n}=\frac{1}{4\log(\log (10n+2))}\)</span></td>
+<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(a_{9,n}=\frac{1}{2\log(\log (n^2+10n+2))}\)</span></td>
+<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bigoh_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>오른쪽의 그림들을 보면 수렴에 대해 파악할 수 있음
+<ul>
+<li>위: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 0으로 수렴, 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{o}(1)\)</span> 이고 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)\)</span>임</li>
+<li>가운데: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 0이 아닌 어떤 값으로 수렴하는 것처럼 보임, 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)\)</span> 이나 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)\)</span>임</li>
+<li>아래: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 발산하는 것으로 보이며 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)\)</span> 이고 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{O}(1)\)</span>임</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!--
+The last result is a consequence of a useful inequality.
+
+::: {#lem-Cp}
+
+## $C_p$ inequality
+
+Given $a,b\in \mathbb{R}$ and $p>0$,
+$$
+|a+b|^p \leq C_p (|a|^p + |b|^p), \quad{} C_p=
+\begin{cases}
+1, & p\leq 1\\
+2^{p-1}, & p >1.
+\end{cases}
+$$
+
+:::
+-->
+</section>
+<section id="stochastic-versions" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="stochastic-versions"><span class="header-section-number">13.2</span> Stochastic versions</h2>
+<div id="def-littleop" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 13.3 (Little-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
+X_n = o_P (a_n): &amp;\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\rightarrow}0\\
+&amp;\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}&gt;\varepsilon \Big] =0, \quad{} \forall \varepsilon &gt;0.
+\end{align*}\]</span> If <span class="math inline">\(X_n = o_p (a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>little</strong>-<span class="math inline">\(o_p\)</span> of <span class="math inline">\(a_n\)</span>. To indicate that <span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>, we write <span class="math inline">\(X_n = o_p(1)\)</span>.</p>
+</div>
+<p>Therefore, little-<span class="math inline">\(o_p\)</span> allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.</p>
+<!--
+::: {#exm-littleop}
+
+Let $Y_n = o_p (n^{-1/2})$ and $Z_n = o_p(n^{-1})$. Then $Z_n$ converges faster to zero in probability than $Y_n$. To visualize this, recall that $X_n = o_p(a_n)$ and that limit definitions entail that
+$$
+\forall \varepsilon, \delta >0, \exists n_0 = n_0 (\varepsilon, \delta)\in \mathbb{N}: \forall n \geq n_0(\varepsilon, \delta), \quad{} P[|X_n|>a_n\varepsilon]<\delta.
+$$
+Therefore, for fixed $\varepsilon, \delta>0$ and a fixed $n\geq \max (n_{0,Y}, n_{0,Z})$, then $P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]>1-\delta$ and $P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]>1-\delta$, but the latter interval is much shorter, hence $Z_n$ is forced to be more tightly concentrated about $0$.
+
+:::
+-->
+<p>Big <span class="math inline">\(O_p\)</span> allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold <span class="math inline">\(C\)</span> converges to zero. As with its deterministic versions <span class="math inline">\(o\)</span> and <span class="math inline">\(O\)</span>, a <strong>little-</strong><span class="math inline">\(o_p\)</span> <strong>is more restrictive than a big-</strong><span class="math inline">\(O_p\)</span>, and the former implies the latter.</p>
+<div id="def-bigop" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 13.4 (Big-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
+X_n = O_P (a_n): \Longleftrightarrow&amp;  \forall \varepsilon&gt;0, \exists C_{\varepsilon}&gt;0, n_0(\varepsilon) \in \mathbb{N}:\\
+&amp;\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} &gt; C_{\varepsilon} \Big] &lt; \varepsilon\\
+\Longleftrightarrow &amp;\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} &gt;C \Big]=0.
+\end{align*}\]</span> If <span class="math inline">\(X_n = O_p(a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>big-</strong><span class="math inline">\(O_p\)</span> of <span class="math inline">\(a_n\)</span>.</p>
+</div>
+<div id="exm-bigop" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.1</strong></span> Chebyshev inequality entails that <span class="math inline">\(P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2\)</span>, <span class="math inline">\(\forall t&gt;0\)</span>. Setting <span class="math inline">\(\varepsilon :=\text{Var}[X_n]/t^2\)</span> and <span class="math inline">\(C_{\varepsilon}:=1/\sqrt{\varepsilon}\)</span>, then <span class="math inline">\(P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon\)</span>. Therefore, <span class="math display">\[
+X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
+\]</span> This is a very useful result, as it gives an efficient way of deriving the big-<span class="math inline">\(O_p\)</span> form of a sequence of random variables <span class="math inline">\(X_n\)</span> with finite variances.</p>
+</div>
+<p>An application of <a href="#exm-bigop" class="quarto-xref">Example&nbsp;<span>13.1</span></a> shows that <span class="math inline">\(X_n = O_p (n^{-1/2})\)</span> for <span class="math inline">\(X_n \stackrel{d}{=}\mathcal{N}(0,1/n)\)</span>. The nature of this statement and its relation with little-<span class="math inline">\(o_p\)</span> is visualized, which shows a particular realization <span class="math inline">\(X_n(\omega)\)</span> of the sequence of random variables.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="bigoh_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="exr-probconvexr" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 13.2</strong></span> It is actually true that:</p>
+<ol type="1">
+<li><p><span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>.</p></li>
+<li><p><span class="math inline">\(n^{1/3}X_n \stackrel{P}{\rightarrow} 0\)</span>.</p></li>
+<li><p><span class="math inline">\(n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)\)</span>.</p></li>
+</ol>
 </div>
 
 
@@ -792,10 +986,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./mev.html" class="pagination-link" aria-label="Multivariate Extreme Value Theory">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Multivariate Extreme Value Theory</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text">Summary</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

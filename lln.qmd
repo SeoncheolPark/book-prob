@@ -68,7 +68,7 @@ $$
 Probability and Statistics for Economists 7.6
 -->
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - $E|X|< \infty$ 조건이 빠지게 되면 표본평균이 유한한 값에 확률수렴하지 않을 수 있음
@@ -101,7 +101,7 @@ $$
 
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 마르코프 조건은 WLLN에 대한 충분조건이나 필요조건은 아님
@@ -124,7 +124,7 @@ $$
 
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 큰 수의 센 법칙을 따르는 확률변수열 은 (당연히) 큰 수의 약한 법칙도 성립함
@@ -185,3 +185,28 @@ $$
 이고 마르코프 조건 @thm-markovthm 을 생각해 보면 $\{X_n \}_{n=2}^{\infty}$는 큰 수의 약법칙을 만족한다.
 
 :::
+
+<!--
+::: callout-tip
+## Remark
+-->
+
+<!--
+https://math.stackexchange.com/questions/2024255/what-is-the-difference-between-the-weak-and-strong-law-of-large-numbers
+-->
+
+<!--
+WLLN과 SLLN을 대략 다음과 같이 쓸 수 있다.
+$$
+\begin{cases}
+\text{WLLN}: \lim_{n\rightarrow\infty} P( |\overline{X}_n - E[X]|<\varepsilon)=1\\
+\text{SLLN}: P(\lim_{n\rightarrow\infty}  |\overline{X}_n - E[X]|=0)=1\\
+\end{cases}
+$$
+
+- WLLN에서는 sample size에 따른 확률의 sequence $\{P_1, P_2, \ldots, P_n\}$을 생각했을 때, 매우 작은 $\varepsilon>0$을 고르더라도 sample mean과 population mean 사이의 차이 ($|\overline{X}_n - E[X]|$)가 $\varepsilon$보다 작을 확률이 $n\rightarrow \infty$임에 따라 1로 수렴한다는 뜻
+
+- SLLN에서는 sample mean과 population mean 사이의 차이가 0이 될 확률이 1로 수렴한다는 뜻
+
+:::
+-->

@@ -211,7 +211,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ineq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Inequalities</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inequalities</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -272,7 +272,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Intro</span></a>
+ <span class="menu-text">Appendix</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -280,8 +280,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./bigoh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+ <span class="menu-text">Summary</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -393,7 +399,7 @@ Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_
 <!--
 Probability and Statistics for Economists 7.6
 -->
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -424,7 +430,7 @@ Counterexamples in prob 15장
 \frac{1}{n^2} \text{Var}(X_1 + \cdots + X_n) \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
 \]</span> 을 만족하는 확률변수열이라 하자. 그러면 <span class="math inline">\(\{X_n\}\)</span>은 WLLN을 만족한다.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -447,7 +453,7 @@ Remark
 \sum_{i=1}^{\infty} \sigma_i^2 &lt; \infty
 \]</span> 이면 <span class="math inline">\(\sum_{i=1}^{\infty}(X_i - \mu_i)\)</span>는 거의 틀림없이 0으로 수렴한다.</p>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -500,6 +506,28 @@ P\{|X_n|\geq n \text{ i.o.}\} = P \{ \Big\vert\frac{X_n}{n}\Big\vert \geq \text{
 \]</span> 이고 마르코프 조건 <a href="#thm-markovthm" class="quarto-xref">Theorem&nbsp;<span>7.2</span></a> 을 생각해 보면 <span class="math inline">\(\{X_n \}_{n=2}^{\infty}\)</span>는 큰 수의 약법칙을 만족한다.</p></li>
 </ul>
 </div>
+<!--
+::: callout-tip
+## Remark
+-->
+<!--
+https://math.stackexchange.com/questions/2024255/what-is-the-difference-between-the-weak-and-strong-law-of-large-numbers
+-->
+<!--
+WLLN과 SLLN을 대략 다음과 같이 쓸 수 있다.
+$$
+\begin{cases}
+\text{WLLN}: \lim_{n\rightarrow\infty} P( |\overline{X}_n - E[X]|<\varepsilon)=1\\
+\text{SLLN}: P(\lim_{n\rightarrow\infty}  |\overline{X}_n - E[X]|=0)=1\\
+\end{cases}
+$$
+
+- WLLN에서는 sample size에 따른 확률의 sequence $\{P_1, P_2, \ldots, P_n\}$을 생각했을 때, 매우 작은 $\varepsilon>0$을 고르더라도 sample mean과 population mean 사이의 차이 ($|\overline{X}_n - E[X]|$)가 $\varepsilon$보다 작을 확률이 $n\rightarrow \infty$임에 따라 1로 수렴한다는 뜻
+
+- SLLN에서는 sample mean과 population mean 사이의 차이가 0이 될 확률이 1로 수렴한다는 뜻
+
+:::
+-->
 
 
 </section>

@@ -44,7 +44,7 @@ $$ 을 만족하면 $X_n$ **converges almost surely (a.s.)** to the random varia
 송익호 확률변수론
 -->
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 거의 틀림없이 수렴하는 확률변수 $\{ X_n (\omega)\}$에서는 $P(\tilde{\Omega})=1$이고 $\tilde{\Omega} \subseteq \Omega$일 때 $\omega \in \tilde{\Omega}$를 어떻게 고르더라도 $\lim_{n\rightarrow \infty} X_n (\omega) = X(\omega)$임
@@ -108,7 +108,7 @@ $$
 
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 확률변수 열이 거의 틀림없이 수렴하는지를 보이려면, $\omega$의 분포와 $\omega$와 확률변수 사이의 관계를 알든지, 아니면 수렴을 손쉽게 보일 수 있을 만큼 확률변수가 간단해야 함
@@ -126,7 +126,7 @@ E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
 $$ 을 만족하면 $X_n$ **converges in** $r-$mean to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$ 또는 $X_n \stackrel{L^\text{r}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 특별히 $r=2$일 때를 제곱 평균 수렴이라 부르며, 해석이 쉽고 공학적인 응용에서도 많이 쓰임
@@ -171,7 +171,7 @@ $B_n(\omega)$는 $\omega$에 제곱 평균 수렴
 
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - 제곱 평균 수렴은 $n$이 커질 때 점점 더 많은 수열들이 $X$에 가까이 간다는 것을 의미하나, 거의 틀림없는 수렴과 달리 한 번 $X$에 가까이 간 수열이 그 뒤로도 늘 $X$ 가까이에 머물러 있는 것은 아님
@@ -220,7 +220,7 @@ P\{ |X_n-X| >\varepsilon) \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \
 $$ 을 만족하면 $X_n$ **converges in probability** to the random variable $X$ as $n\rightarrow \infty$라 하고, $X_n \stackrel{\text{p}}{\rightarrow}X$ as $n\rightarrow \infty$라 쓴다.
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 - @def-pconv 에 적혀 있는 식은 어떤 순간에는 거의 모든 수열이 $2\varepsilon$이라는 범위 안에 들어가 있지만 그 수열들이 그 안에 꼭 머물러 있는 것은 아니라는 것을 뜻함
@@ -301,7 +301,7 @@ Distributional convergence is often called weak convergence in these more genera
 이는 @Durrett2019 의 3.2에 나온다. A sequence of distribution functions is said to **converge weakly** to a limit $F$ (written $F_n \Rightarrow F$) if $F_n(y) \rightarrow F(y)$ for all $y$ that are continuity points of $F$. A sequence of random variables $X_n$ is said to **converge weakly** or **converge in distribution** to a limit $X_{\infty}$ (written $X_n \Rightarrow X_{\infty})$ if their distribution functions $F_n (x) = P(X_n \leq x)$ converges weakly.
 :::
 
-::: callout-note
+::: callout-tip
 ## Remark
 
 @Polansky2011 의 4장에서는 converges weakly를 converge in distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채 $\{F_n\}_{n=1}^{\infty}$와 $F$로만 정의한 것으로 보았다. 또한 converges weakly를 $F_n \rightsquigarrow F$로 표기하기도 하였다.

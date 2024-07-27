@@ -1,0 +1,359 @@
+# Order Notation
+
+<!--
+https://bookdown.org/egarpor/NP-UC3M/intro-ohs.html#fn9
+-->
+
+## Big $O$ and small $o$ notation (deterministic versions)
+
+- In mathematical analysis, $O$-related notation is mostly used to bound sequences that shrink to $0$.
+
+::: {#def-bigoh}
+
+## Big-$O$
+
+Given two strictly positive sequence $a_n$ and $b_n$,
+$$
+a_n = O(b_n): \Longleftrightarrow \text{limsup}_{n\rightarrow \infty}\frac{a_n}{b_n} \leq C, \quad{} \text{for a } C>0
+$$
+If $a_n = O(b_n)$, then we say that $a_n$ is **big-O** of $b_n$. To indicate that $a_n$ is bounded, we write $a_n = O(1)$.
+:::
+
+For a deterministic sequence $a_n$, $\text{limsup}_{n\rightarrow \infty}:=\lim_{n\rightarrow \infty}(\sup_{k \geq n} a_k)$ is the largest limit of the subsequences of $a_n$. It can be defined even if $\lim_{n\rightarrow\infty}a_n$ does not exist (e.g., in trigonometric functions). If $\lim_{n\rightarrow\infty} a_n$ exists, as in most of the common usages of the big-$O$ notation, then $\text{limsup}_{n\rightarrow\infty}a_n = \lim_{n\rightarrow\infty}a_n$.
+
+::: {#def-littleoh}
+
+## Little-$o$
+
+Given two strictly positive sequence $a_n$ and $b_n$,
+$$
+a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
+$$
+If $a_n = o(b_n)$, then we say that $a_n$ is **little-o** of $b_n$. To indicate that $a_n\rightarrow 0$, we write $a_n = o(1)$.
+:::
+
+::: {#exr-bigohlittleoh}
+
+1. $n^{-2} =o(n^{-1})$ since $\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0$
+
+<!--
+https://math.stackexchange.com/questions/1561912/prove-logn-on-using-induction
+https://math.stackexchange.com/questions/741600/prove-that-logx-x-for-x-0-x-in-mathbbn?rq=1
+-->
+2. $\log n = O(n)$: We want to show that $\forall n\geq 1, \log (n) \leq n$. The proof is by indunction on $n$. The claim is true for $n=1$, since $0<1$. Now suppose $n\geq 1$ and $\log (n) \leq n$. Since $n+1\leq 2n$, (밑이 2인 로그를 쓴 듯)
+$$
+\log (n+1) \leq \log (2n) = \log(n) + 1 \leq n+1
+$$
+or
+$$
+\log (n+1) = \log n \log (1 + \frac{1}{n}) < n + \log (1 + \frac{1}{n}) < n+1 \because \text{ since } \log 2 < 1
+$$
+
+3. $n^{-1} = o((\log n)^{-1})$: 로피탈의 정리를 쓰면
+$$
+\lim_{n\rightarrow \infty} \frac{n^{-1}}{(\log n)^{-1}}=\lim_{n\rightarrow \infty}  \frac{\log n}{n}=0
+$$
+임을 보일 수 있음
+
+4. $n^{-4/5} = o(n^{-2/3})$
+$$
+\lim_{n\rightarrow \infty} \frac{n^{-4/5}}{n^{-2/3}} = \lim_{n\rightarrow \infty} n^{2/3 - 4/5} 
+$$
+
+:::
+
+The interpretation of these two definitions is:
+
+- $a_n = O(b_n)$ means that $a_n$ is **not larger than** $b_n$ asymptotically. If $a_n , b_n \rightarrow 0$, then it means that $a_n$ **does not decrease more slowly** than $b_n$, i.e., that $a_n$ either decreases as fast as $b_n$ or faster than $b_n$.
+
+- $a_n = o(b_n)$ means that $a_n$ is **smaller than** $b_n$ asymptotically. If $a_n, b_n \rightarrow 0$, then it means that $a_n$ **decrease faster** than $b_n$.
+
+Obviously, taken any $C>0$, **little-o implies big-O**. Playing with limits we can get a list of useful facts.
+
+<!--
+::: {#prp-bigolittleo}
+
+Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold:
+
+1. $kO(a_n) = O(a_n)$, $ko(a_n) = o(a_n)$, $k\mathbb{R}$.
+
+2. $o(a_n) + o(b_n) = o(a_n + b_n)$, $O(a_n) + O(b_n) = O(a_n + b_n)$.
+
+3. $o(a_n)o(b_n) = o(a_nb_n)$, $O(a_n)O(b_n) = O(a_nb_n)$.
+
+4. $o(a_n) + O(b_n) = O(a_n + b_n)$, $o(a_n)O(b_n) = o(a_nb_n)$.
+
+5. $o(1)O(a_n) = o(a_n)$.
+
+6. $a_n^r = o(a_n^s)$, for $r>s\geq 0$.
+
+7. $a_nb_n =o(a_n^2 +b_n^2)$ (아마 $O(a_n^2 + b_n^2)$이 되어야 할 듯)
+
+8. $(a_n + b_n)^k = O(a_n^k + b_n^k)$.
+:::
+
+-->
+
+| Sequence | Result |
+|---|---|
+| $b_n = 1/\log (n)$ |  |
+| $a_{1,n}=\frac{2}{n}+\frac{50}{n^2}$ | $o(b_n)$ (hence also $O(b_n)$) |
+| $a_{2,n}=\frac{\sin (n/5)+2}{n^{5/4}}$ | $o(b_n)$ (hence also $O(b_n)$) |
+| $a_{3,n}=\frac{3(1+5\exp(-(n-55.5)^2/200))}{n}$ | $o(b_n)$ (hence also $O(b_n)$) |
+| $a_{4,n}=\frac{n+3}{4n\log_{10}(n)}+\frac{a_{3,n}}{2}$ | $O(b_n)$, but not $o(b_n)$ |
+| $a_{5,n}=\frac{1}{4\log_{2} (\frac{n}{2})}$ | $O(b_n)$, but not $o(b_n)$ |
+| $a_{6,n}=\frac{1}{\log (n^2+n)}$ | $O(b_n)$, but not $o(b_n)$ |
+| $a_{7,n}=\frac{1}{2\log(5n+3)^{1/4}}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
+| $a_{8,n}=\frac{1}{4\log(\log (10n+2))}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
+| $a_{9,n}=\frac{1}{2\log(\log (n^2+10n+2))}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
+
+```{r, echo=F, fig.align='center', fig.height=10, fig.width=8}
+n0 <- c(0.00001, 0.0001, 0.001, 0.01, 0.1, 0.5, seq(1:200))
+n <- seq(1:200)
+b_n <- c(1/log(n)); b_n0 <- c(1/log(n0))
+a_1n <- (2/n) + 50/(n^2)
+a_2n <- (sin(n/5)+2)/(n^(5/4))
+a_3n <- 3*(1+5*exp(-(n-55.5)^2/200))/n
+a_4n <- 0.5 / log10(n) * ((n + 3) / (2 * n)) + a_3n/2
+a_5n <- (4*log2(n/2))^(-1)
+a_6n <- (log(n^2+n))^(-1)
+a_7n <- log(5*n+3)^(-1/4)/2
+a_8n <- (4*log(log(10*n+2)))^(-1)
+a_9n <- (2*log(log(n^2+10*n+2)))^(-1)
+
+par(mfrow=c(3,2))
+par(mar=c(4.1,4.1,2.1,1.1))
+plot(n, n, xlim=c(0,200), ylim=c(0, 0.5), type='n', xlab="n", ylab=expression(a['i,n']* ' vs. '*b[n]),
+     main=expression(a['i,n']* ' = ' * o(b[n]) *', '* a['i,n'] * ' = ' *O(b[n])))
+lines(n, b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*b_n, lty=2)
+lines(n, 0.5*b_n, lty=2)
+lines(n, 0.75*b_n, lty=2)
+lines(n, 1.25*b_n, lty=2)
+lines(n, 1.5*b_n, lty=2)
+lines(n, 1.75*b_n, lty=2)
+lines(n, 2*b_n, lty=2)
+lines(n, a_1n, col="red", lwd=2)
+lines(n, a_2n, col="green", lwd=2)
+lines(n, a_3n, col="blue", lwd=2)
+legend("top", c(expression(b[n]), expression(Cb[n]), expression(a['1,n']), expression(a['2,n']), expression(a['3,n'])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+
+plot(n, n, xlim=c(0,200), ylim=c(0, 2.0), type='n', xlab="n", ylab=expression(a['i,n']* ' / '*b[n]),
+     main=expression(a['i,n']*' / '*b[n]* ' = ' * 'o(1)' *', '* a['i,n']*' / '*b[n] * ' = ' *O(1)))
+lines(n, b_n/b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*(b_n/b_n), lty=2)
+lines(n, 0.5*(b_n/b_n), lty=2)
+lines(n, 0.75*(b_n/b_n), lty=2)
+lines(n, 1.25*(b_n/b_n), lty=2)
+lines(n, 1.5*(b_n/b_n), lty=2)
+lines(n, 1.75*(b_n/b_n), lty=2)
+lines(n, 2*(b_n/b_n), lty=2)
+lines(n, a_1n/b_n, col="red", lwd=2)
+lines(n, a_2n/b_n, col="green", lwd=2)
+lines(n, a_3n/b_n, col="blue", lwd=2)
+legend("top", c("1", "C", expression(a['1,n']*' / '*b[n]), expression(a['2,n']*' / '*b[n]), expression(a['3,n']*' / '*b[n])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+
+plot(n, n, xlim=c(0,200), ylim=c(0, 0.5), type='n', xlab="n", ylab=expression(a['i,n']* ' vs. '*b[n]),
+     main=expression(a['i,n'] != o(b[n]) *', '* a['i,n'] * ' = ' *O(b[n])))
+lines(n, b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*b_n, lty=2)
+lines(n, 0.5*b_n, lty=2)
+lines(n, 0.75*b_n, lty=2)
+lines(n, 1.25*b_n, lty=2)
+lines(n, 1.5*b_n, lty=2)
+lines(n, 1.75*b_n, lty=2)
+lines(n, 2*b_n, lty=2)
+lines(n, a_4n, col="red", lwd=2)
+lines(n, a_5n, col="green", lwd=2)
+lines(n, a_6n, col="blue", lwd=2)
+legend("top", c(expression(b[n]), expression(Cb[n]), expression(a['4,n']), expression(a['5,n']), expression(a['6,n'])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+
+plot(n, n, xlim=c(0,200), ylim=c(0, 2.0), type='n', xlab="n", ylab=expression(a['i,n']* ' / '*b[n]),
+     main=expression(a['i,n']*' / '*b[n] !=  'o(1)' *', '* a['i,n']*' / '*b[n] * ' = ' *O(1)))
+lines(n, b_n/b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*(b_n/b_n), lty=2)
+lines(n, 0.5*(b_n/b_n), lty=2)
+lines(n, 0.75*(b_n/b_n), lty=2)
+lines(n, 1.25*(b_n/b_n), lty=2)
+lines(n, 1.5*(b_n/b_n), lty=2)
+lines(n, 1.75*(b_n/b_n), lty=2)
+lines(n, 2*(b_n/b_n), lty=2)
+lines(n, a_4n/b_n, col="red", lwd=2)
+lines(n, a_5n/b_n, col="green", lwd=2)
+lines(n, a_6n/b_n, col="blue", lwd=2)
+legend("top", c("1", "C", expression(a['4,n']*' / '*b[n]), expression(a['5,n']*' / '*b[n]), expression(a['6,n']*' / '*b[n])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+
+plot(n, n, xlim=c(0,200), ylim=c(0, 0.5), type='n', xlab="n", ylab=expression(a['i,n']* ' vs. '*b[n]),
+     main=expression(list(a[list(i, n)] != o(b[n]), a[list(i, n)] != O(b[n]))))
+lines(n, b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*b_n, lty=2)
+lines(n, 0.5*b_n, lty=2)
+lines(n, 0.75*b_n, lty=2)
+lines(n, 1.25*b_n, lty=2)
+lines(n, 1.5*b_n, lty=2)
+lines(n, 1.75*b_n, lty=2)
+lines(n, 2*b_n, lty=2)
+lines(n, a_7n, col="red", lwd=2)
+lines(n, a_8n, col="green", lwd=2)
+lines(n, a_9n, col="blue", lwd=2)
+legend("top", c(expression(b[n]), expression(Cb[n]), expression(a['7,n']), expression(a['8,n']), expression(a['9,n'])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+
+plot(n, n, xlim=c(0,200), ylim=c(0, 2.0), type='n', xlab="n", ylab=expression(a['i,n']* ' / '*b[n]),
+     main=expression(list(a[list(i, n)] / b[n] != o(1), a[list(i, n)] / b[n] != O(1))))
+lines(n, b_n/b_n, lwd=2)
+abline(h=0, col="gray")
+lines(n, 0.25*(b_n/b_n), lty=2)
+lines(n, 0.5*(b_n/b_n), lty=2)
+lines(n, 0.75*(b_n/b_n), lty=2)
+lines(n, 1.25*(b_n/b_n), lty=2)
+lines(n, 1.5*(b_n/b_n), lty=2)
+lines(n, 1.75*(b_n/b_n), lty=2)
+lines(n, 2*(b_n/b_n), lty=2)
+lines(n, a_7n/b_n, col="red", lwd=2)
+lines(n, a_8n/b_n, col="green", lwd=2)
+lines(n, a_9n/b_n, col="blue", lwd=2)
+legend("top", c("1", "C", expression(a['7,n']*' / '*b[n]), expression(a['8,n']*' / '*b[n]), expression(a['9,n']*' / '*b[n])), lwd=c(2,1,2,2,2), lty=c(1,2,1,1,1), col=c(1,1,2,3,4), horiz=TRUE)
+```
+
+::: callout-tip
+## Remark
+
+- 오른쪽의 그림들을 보면 수렴에 대해 파악할 수 있음
+  + 위: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0으로 수렴, 따라서 $\frac{a_{i,n}}{b_{n}}=\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
+  + 가운데: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0이 아닌 어떤 값으로 수렴하는 것처럼 보임, 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이나 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
+  + 아래: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 발산하는 것으로 보이며 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{O}(1)$임
+:::
+
+<!--
+The last result is a consequence of a useful inequality.
+
+::: {#lem-Cp}
+
+## $C_p$ inequality
+
+Given $a,b\in \mathbb{R}$ and $p>0$,
+$$
+|a+b|^p \leq C_p (|a|^p + |b|^p), \quad{} C_p=
+\begin{cases}
+1, & p\leq 1\\
+2^{p-1}, & p >1.
+\end{cases}
+$$
+
+:::
+-->
+
+## Stochastic versions
+
+::: {#def-littleop}
+
+## Little-$o_p$
+
+Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$,
+\begin{align*}
+X_n = o_P (a_n): &\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\rightarrow}0\\
+&\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}>\varepsilon \Big] =0, \quad{} \forall \varepsilon >0.
+\end{align*} 
+If $X_n = o_p (a_n)$, then we say that $X_n$ is **little**-$o_p$ of $a_n$. To indicate that $X_n \stackrel{P}{\rightarrow}0$, we write $X_n = o_p(1)$.
+
+:::
+
+Therefore, little-$o_p$ allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.
+
+<!--
+::: {#exm-littleop}
+
+Let $Y_n = o_p (n^{-1/2})$ and $Z_n = o_p(n^{-1})$. Then $Z_n$ converges faster to zero in probability than $Y_n$. To visualize this, recall that $X_n = o_p(a_n)$ and that limit definitions entail that
+$$
+\forall \varepsilon, \delta >0, \exists n_0 = n_0 (\varepsilon, \delta)\in \mathbb{N}: \forall n \geq n_0(\varepsilon, \delta), \quad{} P[|X_n|>a_n\varepsilon]<\delta.
+$$
+Therefore, for fixed $\varepsilon, \delta>0$ and a fixed $n\geq \max (n_{0,Y}, n_{0,Z})$, then $P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]>1-\delta$ and $P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]>1-\delta$, but the latter interval is much shorter, hence $Z_n$ is forced to be more tightly concentrated about $0$.
+
+:::
+-->
+
+Big $O_p$ allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold $C$ converges to zero. As with its deterministic versions $o$ and $O$, a **little-**$o_p$ **is more restrictive than a big-**$O_p$, and the former implies the latter.
+
+::: {#def-bigop}
+
+## Big-$o_p$
+
+Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$,
+\begin{align*}
+X_n = O_P (a_n): \Longleftrightarrow&  \forall \varepsilon>0, \exists C_{\varepsilon}>0, n_0(\varepsilon) \in \mathbb{N}:\\
+&\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} > C_{\varepsilon} \Big] < \varepsilon\\
+\Longleftrightarrow &\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} >C \Big]=0.
+\end{align*} 
+If $X_n = O_p(a_n)$, then we say that $X_n$ is **big-**$O_p$ of $a_n$.
+
+:::
+
+::: {#exm-bigop}
+
+Chebyshev inequality entails that $P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2$, $\forall t>0$. Setting $\varepsilon :=\text{Var}[X_n]/t^2$ and $C_{\varepsilon}:=1/\sqrt{\varepsilon}$, then $P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon$. Therefore,
+$$
+X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
+$$
+This is a very useful result, as it gives an efficient way of deriving the big-$O_p$ form of a sequence of random variables $X_n$ with finite variances.
+
+:::
+
+An application of @exm-bigop shows that $X_n = O_p (n^{-1/2})$ for $X_n \stackrel{d}{=}\mathcal{N}(0,1/n)$. The nature of this statement and its relation with little-$o_p$ is visualized, which shows a particular realization $X_n(\omega)$ of the sequence of random variables.
+
+```{r, echo=F, fig.align='center', fig.height=6, fig.width=6}
+n <- 1:500
+set.seed(1)
+X_n <- rnorm(length(n), 0, sd=1/sqrt(n))
+
+a_0n <- rep(1, length(n))
+a_1n <- n^(-1/3)
+a_2n <- n^(-1/2)
+a_3n <- n^(-2/3)
+
+par(mfrow=c(2,2))
+par(mar=c(4.1,4.1,2.1,1.1))
+plot(n, X_n, type="l", xlab="n", ylab=expression(1* ' / '*X[n]),
+     xlim=c(0,500), ylim=c(-2,2),
+     main=expression(X[n]*' = '*o[p]* '(1), ' * X[n] *' = '* O[p] * '(1)'))
+lines(n, qnorm(0.025)/(a_0n*sqrt(n)), col="red")
+lines(n, qnorm(0.975)/(a_0n*sqrt(n)), col="red")
+abline(h=0, col="gray")
+
+plot(n, X_n/(n^(-1/3)), type="l", xlab="n", ylab=expression(n^'1/3'* ' / '*X[n]),
+     xlim=c(0,500), ylim=c(-2,2),
+     main=expression(X[n]*' = '*o[p]* '(' * n^'-1/3' * '), ' * X[n] *' = '* O[p] * '(' * n^'-1/3' * ')'))
+lines(n, qnorm(0.025)/(a_1n*sqrt(n)), col="red")
+lines(n, qnorm(0.975)/(a_1n*sqrt(n)), col="red")
+abline(h=0, col="gray")
+
+plot(n, X_n/(n^(-1/2)), type="l", xlab="n", ylab=expression(n^'1/2'* ' / '*X[n]),
+     xlim=c(0,500), ylim=c(-2,2),
+     main=expression(X[n]*' = '*o[p]* '(' * n^'-1/2' * '), ' * X[n] *' = '* O[p] * '(' * n^'-1/2' * ')'))
+lines(n, qnorm(0.025)/(a_2n*sqrt(n)), col="red")
+lines(n, qnorm(0.975)/(a_2n*sqrt(n)), col="red")
+abline(h=0, col="gray")
+
+plot(n, X_n/(n^(-2/3)), type="l", xlab="n", ylab=expression(n^'2/3'* ' / '*X[n]),
+     xlim=c(0,500), ylim=c(-6,6),
+     main=expression(X[n]*' = '*o[p]* '(' * n^'-2/3' * '), ' * X[n] *' = '* O[p] * '(' * n^'-2/3' * ')'))
+lines(n, qnorm(0.025)/(a_3n*sqrt(n)), col="red")
+lines(n, qnorm(0.975)/(a_3n*sqrt(n)), col="red")
+abline(h=0, col="gray")
+
+```
+
+::: {#exr-probconvexr}
+It is actually true that:
+
+1. $X_n \stackrel{P}{\rightarrow}0$.
+
+2. $n^{1/3}X_n \stackrel{P}{\rightarrow} 0$.
+
+3. $n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)$.
+
+:::
