@@ -21,7 +21,7 @@ library(ggplot2)
 
 ## The Law of the iterated logarithm (LIL)
 
-::: {#def-lil}
+::: {#thm-lil}
 ## Hartman and Wintner LIL
 
 <!--
@@ -57,16 +57,18 @@ https://mathoverflow.net/questions/132388/intuition-of-law-of-iterated-logarithm
 
 :::
 
-::: callout-tip
-## Remark
+한편, @thm-lil 과 같은 상황에서 체비세프 부등식을 적용하면
+$$
+P\Big( \Big\vert \frac{S_n}{\sqrt{2\sigma^2 n \log \log n}}  \Big\vert > \varepsilon \Big)\leq \frac{1}{2\varepsilon^2 \log \log n} \stackrel{n\rightarrow \infty}{\rightarrow} 0
+$$
+이기 때문에
+$$
+\frac{S_n}{\sqrt{2\sigma^2 n \log \log n}} \stackrel{p}{\rightarrow} 0 \quad{} \text{as }n \rightarrow \infty
+$$
+즉, $\frac{S_n}{\sqrt{2\sigma^2 n \log \log n}}$는 0으로 확률수렴한다.
 
-<!--
-Gut 9.1
--->
+그러나 sample-wise, path-wise (a.s. 관점에서)로는 $-1$과 $1$ 사이에서 진동한다.
 
-왜 하필 $\log \log n$이라는 생각이 들 수도 있는데, 어떤 사람들은 normal distribution의 density에 $\exp (-x^2/2)$가 있어서 이 효과를 상쇄하려면 대략 $\sqrt{\log \log n}$을 쓰는 것으로 이해해 볼 수도 있음
-
-:::
 
 ## R 코드
 

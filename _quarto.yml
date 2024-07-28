@@ -28,6 +28,9 @@ book:
       chapters:
         - ev.qmd
         - mev.qmd
+    - part: "High-Dimensional Probability"
+      chapters:
+        - rmatrices.qmd
     - part: "Appendix"
       chapters:
         - bigoh.qmd

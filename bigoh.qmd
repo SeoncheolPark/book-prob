@@ -248,6 +248,55 @@ $$
 :::
 -->
 
+
+### Big-$\mathcal{O}$의 적분
+
+<!--
+https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
+-->
+
+Big-$\mathcal{O}$의 정의를 다시 생각해보자.
+$$
+f(x) =\mathcal{O}(g(x)) \Longleftrightarrow \exists M, c \quad{}\text{ s.t. }\quad{}\forall x > c, \quad{} |f(x)| \leq M |g(x)|
+$$
+따라서 $a<c<b$에 대해
+$$
+\Big\vert \int_a^b f(x) dx \Big\vert \leq \int_a^b \Big\vert f(x)\Big\vert  dx \leq \int_a^c \Big\vert f(x)\Big\vert  dx + M \int_c^{b} |g(x)| dx
+$$
+
+::: {#exm-bigoh-01}
+
+- 함수가
+$$
+f(x) = \mathcal{O}(x^{\alpha})
+$$
+라고 하자. 그러면
+    - $\alpha <-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(1)$이라고 말할 수 있는 것이 최선
+    - $\alpha >-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(x^{\alpha + 1})$인데
+    $$
+    \int_0^c |f(y)|dy = \mathcal{O}(1)
+    $$
+    이고 $\alpha \neq -1$일 때에는
+    $$
+    \int_c^x |f(y)|dy \leq M \int_c^x y^\alpha dy =\frac{M}{\alpha+1}(x^{\alpha+1}-c^{\alpha+1}) = \mathcal{O}(x^{\alpha + 1}) + \mathcal{O}(1)
+    $$
+
+:::
+
+### Big-$\mathcal{O}$의 미분
+
+<!--
+https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
+-->
+
+안타깝게도 big-$\mathcal{O}$의 미분에 대해서는 estimate를 얻을 수 없다. 즉 $f(x) = \mathcal{O}(g(x))$라고 해서 $f'(x) =\mathcal{O}(g'(x))$를 만족하지는 않는다는 것이다.
+
+::: {#exm-bigoh-01}
+
+예를 들어 $f(x) = \mathcal{O}(g(x))$이고 $h(x) = \sin (x^n) f(x)$라고 하자. 그러면 $h(x) = \mathcal{O}(g(x))$이다. 그러나 $h'(x) = \mathcal{O}(x^{n-1}g(x)) + O(f'(x))$이므로, 첫 번째 항이 $f'(x)$보다 빨리 grow할 것이라고 짐작할 수 있다.
+
+:::
+
 ## Stochastic versions
 
 ::: {#def-littleop}

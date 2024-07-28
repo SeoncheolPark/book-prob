@@ -292,7 +292,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">High-Dimensional Probability</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -300,8 +300,25 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./rmatrices.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Random Matrices</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./bigoh.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -361,8 +378,8 @@ window.Quarto = {
 
 <section id="the-law-of-the-iterated-logarithm-lil" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="the-law-of-the-iterated-logarithm-lil"><span class="header-section-number">9.1</span> The Law of the iterated logarithm (LIL)</h2>
-<div id="def-lil" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 9.1 (Hartman and Wintner LIL)</strong></span> &nbsp;</p>
+<div id="thm-lil" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.1 (Hartman and Wintner LIL)</strong></span> &nbsp;</p>
 <!--
 Gut Thm 9.1.2.
 -->
@@ -394,22 +411,12 @@ https://mathoverflow.net/questions/132388/intuition-of-law-of-iterated-logarithm
 <p>왜 하필 <span class="math inline">\(\log \log n\)</span>이라는 생각이 들 수도 있는데, 어떤 사람들은 normal distribution의 density에 <span class="math inline">\(\exp (-x^2/2)\)</span>가 있어서 이 효과를 상쇄하려면 대략 <span class="math inline">\(\sqrt{\log \log n}\)</span>을 쓰는 것으로 이해해 볼 수도 있음</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<!--
-Gut 9.1
--->
-<p>왜 하필 <span class="math inline">\(\log \log n\)</span>이라는 생각이 들 수도 있는데, 어떤 사람들은 normal distribution의 density에 <span class="math inline">\(\exp (-x^2/2)\)</span>가 있어서 이 효과를 상쇄하려면 대략 <span class="math inline">\(\sqrt{\log \log n}\)</span>을 쓰는 것으로 이해해 볼 수도 있음</p>
-</div>
-</div>
+<p>한편, <a href="#thm-lil" class="quarto-xref">Theorem&nbsp;<span>9.1</span></a> 과 같은 상황에서 체비세프 부등식을 적용하면 <span class="math display">\[
+P\Big( \Big\vert \frac{S_n}{\sqrt{2\sigma^2 n \log \log n}}  \Big\vert &gt; \varepsilon \Big)\leq \frac{1}{2\varepsilon^2 \log \log n} \stackrel{n\rightarrow \infty}{\rightarrow} 0
+\]</span> 이기 때문에 <span class="math display">\[
+\frac{S_n}{\sqrt{2\sigma^2 n \log \log n}} \stackrel{p}{\rightarrow} 0 \quad{} \text{as }n \rightarrow \infty
+\]</span> 즉, <span class="math inline">\(\frac{S_n}{\sqrt{2\sigma^2 n \log \log n}}\)</span>는 0으로 확률수렴한다.</p>
+<p>그러나 sample-wise, path-wise (a.s. 관점에서)로는 <span class="math inline">\(-1\)</span>과 <span class="math inline">\(1\)</span> 사이에서 진동한다.</p>
 </section>
 <section id="r-코드" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="r-코드"><span class="header-section-number">9.2</span> R 코드</h2>

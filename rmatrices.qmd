@@ -1,0 +1,85 @@
+# Random Matrices {.rmatrices}
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-align: center
+#| fig-cap: "Figure: 급성 백혈병 환자의 유전자 발현 정도 데이터."
+#| out-width: 70%
+#| fig-height: 3
+#| fig-weight: 2
+#| view-distance: 10
+
+library(tidyverse) 
+library(DescTools)
+library(showtext)
+library(dplyr)
+library(ggplot2)
+
+```
+
+## Intro: R 예제
+
+<!--
+https://www.stats.ox.ac.uk/~cucuring/CDT_06_PCA_HighDim_RMTX_FoDS.pdf
+-->
+
+### 실험 1: Normal random symmetric matrix
+
+- $A_{ij} \sim \mathcal{N}(0,1)$에서 $5000\times 5000$ random symmetric matrix 작성
+
+- Eigenvalue 계산 후 histogram 그림
+
+### 실험 2: Uniform random symmetric matrix
+
+- $A_{ij} \sim \text{Uniform}(0,1)$에서 $5000\times 5000$ random symmetric matrix 작성
+
+- Eigenvalue 계산 후 histogram 그림
+
+```{r}
+#| echo: false
+#| message: false
+#| fig-align: center
+#| fig-cap: "Figure: (왼쪽) Normal random matrix의 eigenvalue의 distribution. (오른쪽) Uniform random matrix의 eigenvalue의 distribution."
+#| out-width: 70%
+#| fig-height: 3
+#| fig-weight: 2
+#| view-distance: 10
+
+#R-code to generate a symmetric random matrix whose off-diagonal
+#elements have variance 1/N
+#n <- 5000
+#m <- array(rnorm(n^2), c(n,n))
+#m2 <- (m+t(m))/sqrt(2*n) #make m symmetric
+#lambda <- eigen(m2, symmetric=T, only.values=T)
+#
+#mu <- array(runif(n^2), c(n,n))
+#mu2 <- sqrt(12)*(mu+t(mu)-1)/sqrt(2*n)
+#lambdau <- eigen(mu2, symmetric=T, only.values = T)
+#
+#t <- 5000
+#m <- 1000
+#h = array(rnorm(m*t),c(m,t)); # Time series in rows
+#e = h %*% t(h)/t; # Form the correlation matrix
+#lambdae = eigen(e, symmetric=T, only.values = T)
+#
+#lambda_list <- list()
+#lambda_list$lambda <- lambda
+#lambda_list$lambdau <- lambdau
+#lambda_list$lambdae <- lambdae
+#
+#saveRDS(lambda_list, "rmatrices.RDS")
+lambda_list <- readRDS("rmatrices.RDS")
+par(mfrow=c(1,2))
+ev <- lambda_list$lambda$values
+hist(ev, breaks=seq(-2.01,2.01,0.02),main="(a) Normal",xlab="Eigenvalues",freq=F)
+curve(0.5*sqrt(4-x^2)/pi, add=T, from=-2, to=2, col="red", lwd=2)
+
+evu <- lambda_list$lambdau$values
+hist(evu, breaks=seq(-2.01,2.01,0.02),main="(b) Uniform",xlab="Eigenvalues",freq=F)
+curve(0.5*sqrt(4-x^2)/pi, add=T, from=-2, to=2, col="red", lwd=2)
+
+```
+
+- 붉은 선은 [Wigner semicircle distribution
+](https://en.wikipedia.org/wiki/Wigner_semicircle_distribution)
