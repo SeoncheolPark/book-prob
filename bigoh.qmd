@@ -389,18 +389,34 @@ It is actually true that:
 3.  $n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)$.
 :::
 
-::: {#thm-convdbigop}
+다음은 [@Jiang2022] 에 나와있는 정리다.
 
-## 분포수렴이면 $O_p(1)$
+::: {#thm-suffbigop}
 
-If $X_n \stackrel{d}{\rightarrow}X$, then $X_n = O_p(1)$.
+## $O_p(1)$이기 위한 충분조건
+
+다음 세 가지 조건 중 하나를 만족하면 $X_n = O_p(1)$이다.
+
+1. There is $p>0$ such that $E(|X_n|^p), n\geq 1$ is bounded.
+
+2. $X_n\stackrel{p}{\rightarrow}X$ as $n\rightarrow\infty$ for some random variable $X$.
+
+3. $X_n \stackrel{d}{\rightarrow}X$ as $n\rightarrow\infty$ for some random variable $X$.
 
 :::
 
 ::: {.callout-note collapse="true"}
 ## Proof
 
-- [StackExchange](https://stats.stackexchange.com/questions/567308/converge-in-distribution-and-order-of-convergence) 참고
+- 1번이 성립한다고 하자. $\varepsilon>0$에 대해 Chebyshev 부등식을 쓰면
+$$
+\begin{align*}
+P(|X_n|>M) &= P(|X_n|^p > M^p)\\
+&\leq \frac{E(|X_n|^p)}{M^p} \leq \frac{c}{M^p},
+$$
+where $c= \sup_{n\geq 1}E(|X_n|^p)<\infty$. Thus, if we choose $M$ such that $M>(c/\varepsilon)^{1/p}$, we have $P(|X_n|>M)<\varepsilon$. Hence, $P(|X_n|\leq M) > 1-\varepsilon$ for any $n\geq 1$.
+
+- 3번 관련 [StackExchange](https://stats.stackexchange.com/questions/567308/converge-in-distribution-and-order-of-convergence) 참고
 :::
 
 다음은 big-$O_p$ 및 little-$o_p$에 관한 성질들이다. 

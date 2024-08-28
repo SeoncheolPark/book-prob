@@ -738,6 +738,19 @@ P\{B_m (\varepsilon)\} &amp;= 1- \lim_{M\rightarrow \infty} \Big(1-\frac{1}{m} \
 \]</span> 따라서 <span class="math inline">\(\lim_{m\rightarrow\infty} P\{B_m (\varepsilon) \} \neq 0\)</span>이고 <a href="#thm-asconv" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a> 에서 <span class="math inline">\(X_n \stackrel{\text{a.s.}}{\not\rightarrow}0\)</span>이다.</p></li>
 </ul>
 </div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>이는 즉 <span class="math inline">\(m\leq n\)</span>인 모든 <span class="math inline">\(n\)</span>에 대해 <span class="math inline">\(X_n\)</span>이 전부 0이 나올 확률이 0이기 때문에 거의 어디서나 수렴하지 않는 것으로 생각할 수 있다. 그러나 분명 <span class="math inline">\(P\{X_n&gt;0\}=P\{X_n=1\} \stackrel{n\rightarrow\infty}{\longrightarrow}0\)</span>이므로 이 확률변수열은 0으로 확률수렴한다.</p>
+</div>
+</div>
 <div id="exm-pnotmean" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.8 (확률수렴하나 평균수렴하지 않는 확률변수열)</strong></span> &nbsp;</p>
 <ul>
@@ -792,7 +805,7 @@ Hogg책 5.2.1
 <p><span class="theorem-title"><strong>Theorem 7.4 (분포수렴이면 확률유계)</strong></span> <span class="math inline">\(\{X_n\}\)</span>이 확률변수 열이고 <span class="math inline">\(X\)</span>가 확률변수라고 하자. <span class="math inline">\(X_n \rightarrow X\)</span>로 분포수렴하면 <span class="math inline">\(\{X_n\}\)</span>은 확률유계이다.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -801,7 +814,7 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\varepsilon&gt;0\)</span>일 때 <span class="math inline">\(X\)</span>에 대해 <span class="math inline">\(P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon\)</span>이 성립하는 <span class="math inline">\(x_{\varepsilon}\)</span>을 선택하자. <span class="math inline">\(x_{\varepsilon}\)</span>와 <span class="math inline">\(-x_{\varepsilon}\)</span>가 <span class="math inline">\(F\)</span>의 연속인 점이 되도록 항상 <span class="math inline">\(x_{\varepsilon}\)</span>를 선택할 수 있다. 그러면 다음을 얻는다.</p>
 <p><span class="math display">\[\begin{align*}
@@ -823,7 +836,7 @@ X_n Y_n \stackrel{P}{\rightarrow}0.
 \]</span></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -832,7 +845,7 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\varepsilon&gt;0\)</span>이라고 하자. 다음이 성립하도록 <span class="math inline">\(B_{\varepsilon}&gt;0\)</span>과 정수 <span class="math inline">\(N_{\varepsilon}\)</span>을 선택한다. <span class="math display">\[
 n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\varepsilon.

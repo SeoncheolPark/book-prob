@@ -355,6 +355,13 @@ $$
 
 :::
 
+::: callout-tip
+## Remark
+
+이는 즉 $m\leq n$인 모든 $n$에 대해 $X_n$이 전부 0이 나올 확률이 0이기 때문에 거의 어디서나 수렴하지 않는 것으로 생각할 수 있다. 그러나 분명 $P\{X_n>0\}=P\{X_n=1\} \stackrel{n\rightarrow\infty}{\longrightarrow}0$이므로 이 확률변수열은 0으로 확률수렴한다.
+ 
+:::
+
 ::: {#exm-pnotmean}
 ## 확률수렴하나 평균수렴하지 않는 확률변수열
 
