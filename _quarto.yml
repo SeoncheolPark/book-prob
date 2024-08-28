@@ -19,11 +19,13 @@ book:
         - prob.qmd
         - rvs.qmd
         - ineq.qmd
+        - char.qmd
         - conv.qmd
         - lln.qmd
         - clt.qmd
         - lil.qmd
         - limext.qmd
+    - part: "Stochastic Processes"
     - part: "Extremes"
       chapters:
         - ev.qmd

@@ -1,76 +1,76 @@
 # Order Notation
 
+출처:
+
+- [@Garcia-Portugues2024]
+
+```{=html}
 <!--
 https://bookdown.org/egarpor/NP-UC3M/intro-ohs.html#fn9
 -->
-
+```
 ## Big $O$ and small $o$ notation (deterministic versions)
 
-- In mathematical analysis, $O$-related notation is mostly used to bound sequences that shrink to $0$.
+-   In mathematical analysis, $O$-related notation is mostly used to bound sequences that shrink to $0$.
 
 ::: {#def-bigoh}
-
 ## Big-$O$
 
-Given two strictly positive sequence $a_n$ and $b_n$,
-$$
+Given two strictly positive sequence $a_n$ and $b_n$, $$
 a_n = O(b_n): \Longleftrightarrow \text{limsup}_{n\rightarrow \infty}\frac{a_n}{b_n} \leq C, \quad{} \text{for a } C>0
-$$
-If $a_n = O(b_n)$, then we say that $a_n$ is **big-O** of $b_n$. To indicate that $a_n$ is bounded, we write $a_n = O(1)$.
+$$ If $a_n = O(b_n)$, then we say that $a_n$ is **big-O** of $b_n$. To indicate that $a_n$ is bounded, we write $a_n = O(1)$.
 :::
 
 For a deterministic sequence $a_n$, $\text{limsup}_{n\rightarrow \infty}:=\lim_{n\rightarrow \infty}(\sup_{k \geq n} a_k)$ is the largest limit of the subsequences of $a_n$. It can be defined even if $\lim_{n\rightarrow\infty}a_n$ does not exist (e.g., in trigonometric functions). If $\lim_{n\rightarrow\infty} a_n$ exists, as in most of the common usages of the big-$O$ notation, then $\text{limsup}_{n\rightarrow\infty}a_n = \lim_{n\rightarrow\infty}a_n$.
 
 ::: {#def-littleoh}
-
 ## Little-$o$
 
-Given two strictly positive sequence $a_n$ and $b_n$,
-$$
+Given two strictly positive sequence $a_n$ and $b_n$, $$
 a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
-$$
-If $a_n = o(b_n)$, then we say that $a_n$ is **little-o** of $b_n$. To indicate that $a_n\rightarrow 0$, we write $a_n = o(1)$.
+$$ If $a_n = o(b_n)$, then we say that $a_n$ is **little-o** of $b_n$. To indicate that $a_n\rightarrow 0$, we write $a_n = o(1)$.
 :::
 
 ::: {#exr-bigohlittleoh}
+1.  $n^{-2} =o(n^{-1})$ since $\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0$
 
-1. $n^{-2} =o(n^{-1})$ since $\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0$
-
+```{=html}
 <!--
 https://math.stackexchange.com/questions/1561912/prove-logn-on-using-induction
 https://math.stackexchange.com/questions/741600/prove-that-logx-x-for-x-0-x-in-mathbbn?rq=1
 -->
-2. $\log n = O(n)$: We want to show that $\forall n\geq 1, \log (n) \leq n$. The proof is by indunction on $n$. The claim is true for $n=1$, since $0<1$. Now suppose $n\geq 1$ and $\log (n) \leq n$. Since $n+1\leq 2n$, (밑이 2인 로그를 쓴 듯)
-$$
-\log (n+1) \leq \log (2n) = \log(n) + 1 \leq n+1
-$$
-or
-$$
-\log (n+1) = \log n \log (1 + \frac{1}{n}) < n + \log (1 + \frac{1}{n}) < n+1 \because \text{ since } \log 2 < 1
-$$
+```
+2.  $\log n = O(n)$: We want to show that $\forall n\geq 1, \log (n) \leq n$. The proof is by indunction on $n$. The claim is true for $n=1$, since $0<1$. Now suppose $n\geq 1$ and $\log (n) \leq n$. Since $n+1\leq 2n$, (밑이 2인 로그를 쓴 듯) $$
+    \log (n+1) \leq \log (2n) = \log(n) + 1 \leq n+1
+    $$ or $$
+    \log (n+1) = \log n \log (1 + \frac{1}{n}) < n + \log (1 + \frac{1}{n}) < n+1 \because \text{ since } \log 2 < 1
+    $$
 
-3. $n^{-1} = o((\log n)^{-1})$: 로피탈의 정리를 쓰면
-$$
-\lim_{n\rightarrow \infty} \frac{n^{-1}}{(\log n)^{-1}}=\lim_{n\rightarrow \infty}  \frac{\log n}{n}=0
-$$
-임을 보일 수 있음
+3.  $n^{-1} = o((\log n)^{-1})$: 로피탈의 정리를 쓰면 $$
+    \lim_{n\rightarrow \infty} \frac{n^{-1}}{(\log n)^{-1}}=\lim_{n\rightarrow \infty}  \frac{\log n}{n}=0
+    $$ 임을 보일 수 있음
 
-4. $n^{-4/5} = o(n^{-2/3})$
-$$
-\lim_{n\rightarrow \infty} \frac{n^{-4/5}}{n^{-2/3}} = \lim_{n\rightarrow \infty} n^{2/3 - 4/5} 
-$$
-
+4.  $n^{-4/5} = o(n^{-2/3})$ $$
+    \lim_{n\rightarrow \infty} \frac{n^{-4/5}}{n^{-2/3}} = \lim_{n\rightarrow \infty} n^{2/3 - 4/5} = \lim_{n\rightarrow\infty} n^{-2/15}=0  
+    $$ 으로 알 수 있음
+    
+5. $3\sin (n) = O(1)$: $\sin$함수는 진동함수이다.
 :::
 
-The interpretation of these two definitions is:
+::: callout-tip
+## Remark
 
-- $a_n = O(b_n)$ means that $a_n$ is **not larger than** $b_n$ asymptotically. If $a_n , b_n \rightarrow 0$, then it means that $a_n$ **does not decrease more slowly** than $b_n$, i.e., that $a_n$ either decreases as fast as $b_n$ or faster than $b_n$.
+Big-O, small-o의 정의로부터 다음을 알 수 있다.
 
-- $a_n = o(b_n)$ means that $a_n$ is **smaller than** $b_n$ asymptotically. If $a_n, b_n \rightarrow 0$, then it means that $a_n$ **decrease faster** than $b_n$.
+-   $a_n = O(b_n)$ means that $a_n$ is **not larger than** $b_n$ asymptotically. If $a_n , b_n \rightarrow 0$, then it means that $a_n$ **does not decrease more slowly** than $b_n$, i.e., that $a_n$ either decreases as fast as $b_n$ or faster than $b_n$.
 
-Obviously, taken any $C>0$, **little-o implies big-O**. Playing with limits we can get a list of useful facts.
+-   $a_n = o(b_n)$ means that $a_n$ is **smaller than** $b_n$ asymptotically. If $a_n, b_n \rightarrow 0$, then it means that $a_n$ **decrease faster** than $b_n$.
 
-<!--
+위의 사실로부터, big-O는 같은 속도로 수렴하거나 더 빠른 속도로 수렴하는 두 가지 경우를 모두 포함하고 있고, small-o는 더 빠른 속도로 수렴하는 경우만 포함하기 때문에 어떤 $C>0$에 대해 **little-o implies big-O**라고 할 수 있다.
+:::
+
+다음은 [@Garcia-Portugues2024]에 적혀 있는 big-O, small-o에 대한 몇 가지 성질들이다.
+
 ::: {#prp-bigolittleo}
 
 Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold:
@@ -92,20 +92,18 @@ Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following
 8. $(a_n + b_n)^k = O(a_n^k + b_n^k)$.
 :::
 
--->
-
-| Sequence | Result |
-|---|---|
-| $b_n = 1/\log (n)$ |  |
-| $a_{1,n}=\frac{2}{n}+\frac{50}{n^2}$ | $o(b_n)$ (hence also $O(b_n)$) |
-| $a_{2,n}=\frac{\sin (n/5)+2}{n^{5/4}}$ | $o(b_n)$ (hence also $O(b_n)$) |
-| $a_{3,n}=\frac{3(1+5\exp(-(n-55.5)^2/200))}{n}$ | $o(b_n)$ (hence also $O(b_n)$) |
-| $a_{4,n}=\frac{n+3}{4n\log_{10}(n)}+\frac{a_{3,n}}{2}$ | $O(b_n)$, but not $o(b_n)$ |
-| $a_{5,n}=\frac{1}{4\log_{2} (\frac{n}{2})}$ | $O(b_n)$, but not $o(b_n)$ |
-| $a_{6,n}=\frac{1}{\log (n^2+n)}$ | $O(b_n)$, but not $o(b_n)$ |
-| $a_{7,n}=\frac{1}{2\log(5n+3)^{1/4}}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
-| $a_{8,n}=\frac{1}{4\log(\log (10n+2))}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
-| $a_{9,n}=\frac{1}{2\log(\log (n^2+10n+2))}$ | not $O(b_n)$ (hence neither $o(b_n)$) |
+| Sequence                                               | Result                                |
+|------------------------------------------|------------------------------|
+| $b_n = 1/\log (n)$                                     |                                       |
+| $a_{1,n}=\frac{2}{n}+\frac{50}{n^2}$                   | $o(b_n)$ (hence also $O(b_n)$)        |
+| $a_{2,n}=\frac{\sin (n/5)+2}{n^{5/4}}$                 | $o(b_n)$ (hence also $O(b_n)$)        |
+| $a_{3,n}=\frac{3(1+5\exp(-(n-55.5)^2/200))}{n}$        | $o(b_n)$ (hence also $O(b_n)$)        |
+| $a_{4,n}=\frac{n+3}{4n\log_{10}(n)}+\frac{a_{3,n}}{2}$ | $O(b_n)$, but not $o(b_n)$            |
+| $a_{5,n}=\frac{1}{4\log_{2} (\frac{n}{2})}$            | $O(b_n)$, but not $o(b_n)$            |
+| $a_{6,n}=\frac{1}{\log (n^2+n)}$                       | $O(b_n)$, but not $o(b_n)$            |
+| $a_{7,n}=\frac{1}{2\log(5n+3)^{1/4}}$                  | not $O(b_n)$ (hence neither $o(b_n)$) |
+| $a_{8,n}=\frac{1}{4\log(\log (10n+2))}$                | not $O(b_n)$ (hence neither $o(b_n)$) |
+| $a_{9,n}=\frac{1}{2\log(\log (n^2+10n+2))}$            | not $O(b_n)$ (hence neither $o(b_n)$) |
 
 ```{r, echo=F, fig.align='center', fig.height=10, fig.width=8}
 n0 <- c(0.00001, 0.0001, 0.001, 0.01, 0.1, 0.5, seq(1:200))
@@ -223,14 +221,13 @@ legend("top", c("1", "C", expression(a['7,n']*' / '*b[n]), expression(a['8,n']*'
 ::: callout-tip
 ## Remark
 
-- 오른쪽의 그림들을 보면 수렴에 대해 파악할 수 있음
-  + 위: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0으로 수렴, 따라서 $\frac{a_{i,n}}{b_{n}}=\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
-  + 가운데: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0이 아닌 어떤 값으로 수렴하는 것처럼 보임, 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이나 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
-  + 아래: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 발산하는 것으로 보이며 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{O}(1)$임
+-   오른쪽의 그림들을 보면 수렴에 대해 파악할 수 있음
+    -   위: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0으로 수렴, 따라서 $\frac{a_{i,n}}{b_{n}}=\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
+    -   가운데: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 0이 아닌 어떤 값으로 수렴하는 것처럼 보임, 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이나 $\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)$임
+    -   아래: $\frac{a_{i,n}}{b_{n}}$이 $n\rightarrow \infty$일 때 발산하는 것으로 보이며 따라서 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)$ 이고 $\frac{a_{i,n}}{b_{n}}\neq\mathcal{O}(1)$임
 :::
 
-<!--
-The last result is a consequence of a useful inequality.
+다음은 [@Garcia-Portugues2024]가 소개한 $C_p$ inequality이다.
 
 ::: {#lem-Cp}
 
@@ -246,75 +243,60 @@ $$
 $$
 
 :::
--->
 
 
 ### Big-$\mathcal{O}$의 적분
 
+```{=html}
 <!--
 https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
 -->
-
-Big-$\mathcal{O}$의 정의를 다시 생각해보자.
-$$
+```
+Big-$\mathcal{O}$의 정의를 다시 생각해보자. $$
 f(x) =\mathcal{O}(g(x)) \Longleftrightarrow \exists M, c \quad{}\text{ s.t. }\quad{}\forall x > c, \quad{} |f(x)| \leq M |g(x)|
-$$
-따라서 $a<c<b$에 대해
-$$
+$$ 따라서 $a<c<b$에 대해 $$
 \Big\vert \int_a^b f(x) dx \Big\vert \leq \int_a^b \Big\vert f(x)\Big\vert  dx \leq \int_a^c \Big\vert f(x)\Big\vert  dx + M \int_c^{b} |g(x)| dx
 $$
 
 ::: {#exm-bigoh-01}
-
-- 함수가
-$$
-f(x) = \mathcal{O}(x^{\alpha})
-$$
-라고 하자. 그러면
-    - $\alpha <-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(1)$이라고 말할 수 있는 것이 최선
-    - $\alpha >-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(x^{\alpha + 1})$인데
-    $$
-    \int_0^c |f(y)|dy = \mathcal{O}(1)
-    $$
-    이고 $\alpha \neq -1$일 때에는
-    $$
-    \int_c^x |f(y)|dy \leq M \int_c^x y^\alpha dy =\frac{M}{\alpha+1}(x^{\alpha+1}-c^{\alpha+1}) = \mathcal{O}(x^{\alpha + 1}) + \mathcal{O}(1)
-    $$
-
+-   함수가 $$
+    f(x) = \mathcal{O}(x^{\alpha})
+    $$ 라고 하자. 그러면
+    -   $\alpha <-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(1)$이라고 말할 수 있는 것이 최선
+    -   $\alpha >-1$일 때에는 $\int_0^x f(y)dy =\mathcal{O}(x^{\alpha + 1})$인데 $$
+          \int_0^c |f(y)|dy = \mathcal{O}(1)
+          $$ 이고 $\alpha \neq -1$일 때에는 $$
+          \int_c^x |f(y)|dy \leq M \int_c^x y^\alpha dy =\frac{M}{\alpha+1}(x^{\alpha+1}-c^{\alpha+1}) = \mathcal{O}(x^{\alpha + 1}) + \mathcal{O}(1)
+          $$
 :::
 
 ### Big-$\mathcal{O}$의 미분
 
+```{=html}
 <!--
 https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
 -->
-
+```
 안타깝게도 big-$\mathcal{O}$의 미분에 대해서는 estimate를 얻을 수 없다. 즉 $f(x) = \mathcal{O}(g(x))$라고 해서 $f'(x) =\mathcal{O}(g'(x))$를 만족하지는 않는다는 것이다.
 
-::: {#exm-bigoh-01}
+<div>
 
 예를 들어 $f(x) = \mathcal{O}(g(x))$이고 $h(x) = \sin (x^n) f(x)$라고 하자. 그러면 $h(x) = \mathcal{O}(g(x))$이다. 그러나 $h'(x) = \mathcal{O}(x^{n-1}g(x)) + O(f'(x))$이므로, 첫 번째 항이 $f'(x)$보다 빨리 grow할 것이라고 짐작할 수 있다.
 
-:::
+</div>
 
 ## Stochastic versions
 
 ::: {#def-littleop}
-
 ## Little-$o_p$
 
-Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$,
-\begin{align*}
+Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$, \begin{align*}
 X_n = o_P (a_n): &\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\rightarrow}0\\
 &\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}>\varepsilon \Big] =0, \quad{} \forall \varepsilon >0.
-\end{align*} 
-If $X_n = o_p (a_n)$, then we say that $X_n$ is **little**-$o_p$ of $a_n$. To indicate that $X_n \stackrel{P}{\rightarrow}0$, we write $X_n = o_p(1)$.
-
+\end{align*} If $X_n = o_p (a_n)$, then we say that $X_n$ is **little**-$o_p$ of $a_n$. To indicate that $X_n \stackrel{P}{\rightarrow}0$, we write $X_n = o_p(1)$.
 :::
 
-Therefore, little-$o_p$ allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.
 
-<!--
 ::: {#exm-littleop}
 
 Let $Y_n = o_p (n^{-1/2})$ and $Z_n = o_p(n^{-1})$. Then $Z_n$ converges faster to zero in probability than $Y_n$. To visualize this, recall that $X_n = o_p(a_n)$ and that limit definitions entail that
@@ -324,32 +306,33 @@ $$
 Therefore, for fixed $\varepsilon, \delta>0$ and a fixed $n\geq \max (n_{0,Y}, n_{0,Z})$, then $P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]>1-\delta$ and $P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]>1-\delta$, but the latter interval is much shorter, hence $Z_n$ is forced to be more tightly concentrated about $0$.
 
 :::
--->
 
-Big $O_p$ allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold $C$ converges to zero. As with its deterministic versions $o$ and $O$, a **little-**$o_p$ **is more restrictive than a big-**$O_p$, and the former implies the latter.
 
-::: {#def-bigop}
+::: callout-tip
+## Remark
 
-## Big-$o_p$
+- Little-$o_p$ allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.
 
-Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$,
-\begin{align*}
-X_n = O_P (a_n): \Longleftrightarrow&  \forall \varepsilon>0, \exists C_{\varepsilon}>0, n_0(\varepsilon) \in \mathbb{N}:\\
-&\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} > C_{\varepsilon} \Big] < \varepsilon\\
-\Longleftrightarrow &\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} >C \Big]=0.
-\end{align*} 
-If $X_n = O_p(a_n)$, then we say that $X_n$ is **big-**$O_p$ of $a_n$.
+- Big $O_p$ allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold $C$ converges to zero. 
+
+- As with its deterministic versions $o$ and $O$, a **little-**$o_p$ **is more restrictive than a big-**$O_p$, and the former implies the latter.
 
 :::
 
+::: {#def-bigop}
+## Big-$o_p$
+
+Given a strictly positive sequence $a_n$ and a sequence of random variable $X_n$, \begin{align*}
+X_n = O_P (a_n): \Longleftrightarrow&  \forall \varepsilon>0, \exists C_{\varepsilon}>0, n_0(\varepsilon) \in \mathbb{N}:\\
+&\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} > C_{\varepsilon} \Big] < \varepsilon\\
+\Longleftrightarrow &\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} >C \Big]=0.
+\end{align*} If $X_n = O_p(a_n)$, then we say that $X_n$ is **big-**$O_p$ of $a_n$.
+:::
+
 ::: {#exm-bigop}
-
-Chebyshev inequality entails that $P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2$, $\forall t>0$. Setting $\varepsilon :=\text{Var}[X_n]/t^2$ and $C_{\varepsilon}:=1/\sqrt{\varepsilon}$, then $P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon$. Therefore,
-$$
+Chebyshev inequality entails that $P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2$, $\forall t>0$. Setting $\varepsilon :=\text{Var}[X_n]/t^2$ and $C_{\varepsilon}:=1/\sqrt{\varepsilon}$, then $P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon$. Therefore, $$
 X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
-$$
-This is a very useful result, as it gives an efficient way of deriving the big-$O_p$ form of a sequence of random variables $X_n$ with finite variances.
-
+$$ This is a very useful result, as it gives an efficient way of deriving the big-$O_p$ form of a sequence of random variables $X_n$ with finite variances.
 :::
 
 An application of @exm-bigop shows that $X_n = O_p (n^{-1/2})$ for $X_n \stackrel{d}{=}\mathcal{N}(0,1/n)$. The nature of this statement and its relation with little-$o_p$ is visualized, which shows a particular realization $X_n(\omega)$ of the sequence of random variables.
@@ -399,10 +382,9 @@ abline(h=0, col="gray")
 ::: {#exr-probconvexr}
 It is actually true that:
 
-1. $X_n \stackrel{P}{\rightarrow}0$.
+1.  $X_n \stackrel{P}{\rightarrow}0$.
 
-2. $n^{1/3}X_n \stackrel{P}{\rightarrow} 0$.
+2.  $n^{1/3}X_n \stackrel{P}{\rightarrow} 0$.
 
-3. $n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)$.
-
+3.  $n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)$.
 :::

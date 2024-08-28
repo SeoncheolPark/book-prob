@@ -1,0 +1,118 @@
+# Characteristic Functions {.char}
+
+## Fourier transform
+
+<!---
+https://math.stackexchange.com/questions/2408193/characteristic-functions-as-a-fourier-transform
+-->
+
+- **Fourier transform**: exists for any real function $f(x)$ for which the integral 
+$$
+\int_{-\infty}^{\infty} f(x) e^{i\omega x} dx
+$$
+exists (the same as $E[e^{i\omega x}])$.
+
+- Fourier transform은 기저 $\Omega = \{ e^{i\omega x} \vert \omega \in [0,\infty) \}$와 이것의 계수를 이용해 표현한 것으로 볼 수 있음
+
+- If we were to write it this way, we would need some function $\tilde{f}(\cdot)$ so that $F(\omega)$ would return the coefficient of $e^{i\omega t}$ for any $\omega \in [0,\infty)$. In other words, we would have
+$$
+f(x) = \sum_{\omega [0,\infty)}\tilde{f}(\omega)e^{i\omega x},
+$$
+which is for all practical purposes the same as
+$$
+f(x) = \int_0^{\infty}\tilde{f}(\omega) e^{i\omega x} d\omega.
+$$
+
+-  What we now have is technically known as a Fredholm integral equation of $\tilde{f}(\omega)$, and one which has the solution
+$$
+\tilde{f}(\omega) = \int_{-\infty}^{\infty}f(x) e^{-i\omega x}dx,
+$$
+which is the same as the **Fourier transform**. 이 적분을 하는 상황, 즉 푸리에 변환을 취하는 상황을 $\tilde{f} = \mathcal{F}[f]$로 쓸 수 있다.
+
+### Fourier transform과 convolution
+
+<!--
+https://www.damtp.cam.ac.uk/user/dbs26/1BMethods/FourierT.pdf
+-->
+
+푸리에 변환에는 몇 가지 성질이 있다. $c_1, c_2 \in \mathbb{C}$, 적분가능 함수 $f,g$에 대해
+
+- (푸리에 변환은 선형) $\mathcal{F}[c_1 f + c_2 g] = c_1 \mathcal{F}[f] + c_2 \mathcal{F}[g]$
+
+- (translation) $\mathcal{F}[f(x-a)] = e^{-i\omega a}\tilde{f}(\omega)$
+
+- (re-phasing) $\mathcal{F}[e^{i \ell x} f(x)] = \tilde{f}(\omega - \ell)$
+
+- (scaling) $\mathcal{F}[f(cx)] = \frac{1}{|c|}\tilde{f}(k/c)$
+
+다음과 같이 convolution $f*g$를 
+$$
+f*g(x) = \int_{-\infty}^{\infty}f(x-y)g(y)dy,
+$$
+then, provided $f$ and $g$ are sufficiently well-behaved for us to change the order of integration, the Fourier transform is
+$$
+\begin{align*}
+\mathcal{F}[f*g(x)] &= \int_{-\infty}^{\infty}e^{-i\omega x}\Big[\int_{-\infty}^{\infty} f(x-y) g(y) dy \Big] dx = \int_{\mathbb{R}^2} e^{-i \omega (x-y)}\\
+&= \int_{\mathbb{R}^2}e^{-i\omega (x-y)}f(x-y)e^{-i\omega y}g(y)dx dy\\
+&= \int_{-\infty}^{\infty}e^{-i\omega u}f(u)du \int_{-\infty}^{\infty}e^{-i\omega y}g(y)dy = \mathcal{F}[f]\mathcal{F}[g].
+\end{align*}
+$$
+즉 두 함수의 convolution의 푸리에 변환은 각각의 함수의 푸리에 변환의 곱으로 표현할 수 있다.
+
+## Characteristic function: basics
+
+::: {#def-stabledistn}
+## Characteristic function
+
+확률변수 $X$의 **characteristic function**은
+$$
+\varphi_X (t) = E[e^{i tX}] = \int_{-\infty}^{\infty} e^{itx} d F_X(x).
+$$
+
+:::
+
+::: callout-tip
+## Remark
+앞선 푸리에 변환의 정의와 부호 등이 다르지만, [Characteristic function and Fourier transform](https://stats.stackexchange.com/questions/44944/characteristic-function-and-fourier-transform) 를 보면 characteristic function도 pdf의 Fourier transform으로 이해할 수 있다.
+:::
+
+<!--
+https://math.stackexchange.com/questions/3698934/characteristic-function-as-a-fourier-transform
+-->
+
+**Q**. 왜 characteristic function을 생각하는가?
+
+Characteristic function과 비슷한 역할을 하는 것으로 MGF가 있다.
+$$
+\begin{align*}
+M_X &: \mathbb{R} \rightarrow \mathbb{R}\\
+M_X(t) &= E[e^{tX}].
+\end{align*}
+$$
+MGF를 이용하면 $E[X^n]$은 $M_X^{(n)}(0)$으로 계산하면 된다. 또한 두 개의 독립인 확률변수 $X$, $Y$에 대해
+$$
+\begin{align*}
+M_{X+Y}(t) &= E[e^{t(X+Y)}]\\
+&= E[e^{tX}e^{tY}]\\
+&= E[e^{tX}]E[e^{tY}]\\
+&= M_X(t) M_Y(t).
+\end{align*}
+$$
+그러나 MGF는 항상 존재하지 않는다고 한다.
+
+한편, characteristic function은 
+$$
+\begin{align*}
+\varphi_X &: \mathbb{R} \rightarrow \mathbb{C}\\
+\varphi_X (t) &= E[e^{itX}].
+\end{align*}
+$$
+그리고
+
+- the $n$-th moment of $X$ 가 존재한다면 $(-i)^{(n)}\varphi_X^{(n)}(0)$
+
+- 두 개의 확률변수가 같은 chracteristic function을 갖는다면 same distribution을 갖음
+
+- $\varphi_{X+Y}(t) = \varphi_X (t) \varphi_Y (t)$ for independent random varialbe $X,Y$
+
+이며, 무엇보다도 MGF와는 달리, 적어도 실수값을 갖는 확률변수에서는 characteristic function이 항상 존재한다고 한다.
