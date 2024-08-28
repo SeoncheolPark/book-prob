@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 15&nbsp; Order Notation</title>
+<title>A Biggner's Guide to Probability and Extremes – 4&nbsp; Random Variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./summary.html" rel="next">
-<link href="./rmatrices.html" rel="prev">
+<link href="./ineq.html" rel="next">
+<link href="./prob.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -150,7 +150,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bigoh.html">Appendix</a></li><li class="breadcrumb-item"><a href="./bigoh.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Order Notation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,7 +224,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./rvs.html" class="sidebar-item-text sidebar-link">
+  <a href="./rvs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></span></a>
   </div>
 </li>
@@ -327,7 +327,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./bigoh.html" class="sidebar-item-text sidebar-link active">
+  <a href="./bigoh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Order Notation</span></span></a>
   </div>
 </li>
@@ -355,21 +355,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#big-o-and-small-o-notation-deterministic-versions" id="toc-big-o-and-small-o-notation-deterministic-versions" class="nav-link active" data-scroll-target="#big-o-and-small-o-notation-deterministic-versions"><span class="header-section-number">15.1</span> Big <span class="math inline">\(O\)</span> and small <span class="math inline">\(o\)</span> notation (deterministic versions)</a>
-  <ul class="collapse">
-  <li><a href="#big-mathcalo의-적분" id="toc-big-mathcalo의-적분" class="nav-link" data-scroll-target="#big-mathcalo의-적분"><span class="header-section-number">15.1.1</span> Big-<span class="math inline">\(\mathcal{O}\)</span>의 적분</a></li>
-  <li><a href="#big-mathcalo의-미분" id="toc-big-mathcalo의-미분" class="nav-link" data-scroll-target="#big-mathcalo의-미분"><span class="header-section-number">15.1.2</span> Big-<span class="math inline">\(\mathcal{O}\)</span>의 미분</a></li>
-  </ul></li>
-  <li><a href="#stochastic-versions" id="toc-stochastic-versions" class="nav-link" data-scroll-target="#stochastic-versions"><span class="header-section-number">15.2</span> Stochastic versions</a></li>
+  <li><a href="#random-variables" id="toc-random-variables" class="nav-link active" data-scroll-target="#random-variables"><span class="header-section-number">4.1</span> Random Variables</a></li>
+  <li><a href="#radon-nikodym-derivative" id="toc-radon-nikodym-derivative" class="nav-link" data-scroll-target="#radon-nikodym-derivative"><span class="header-section-number">4.2</span> Radon-nikodym derivative</a></li>
+  <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">4.3</span> Distribution</a></li>
+  <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="header-section-number">4.4</span> Expectation</a></li>
+  <li><a href="#cantor-random-variable" id="toc-cantor-random-variable" class="nav-link" data-scroll-target="#cantor-random-variable"><span class="header-section-number">4.5</span> Cantor Random Variable</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./bigoh.html">Appendix</a></li><li class="breadcrumb-item"><a href="./bigoh.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Order Notation</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./rvs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Order Notation</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Random Variables</span></h1>
 </div>
 
 
@@ -386,147 +385,161 @@ window.Quarto = {
 </header>
 
 
-<p>출처:</p>
-<ul>
-<li><span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span></li>
-</ul>
-<!--
-https://bookdown.org/egarpor/NP-UC3M/intro-ohs.html#fn9
--->
-<section id="big-o-and-small-o-notation-deterministic-versions" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="big-o-and-small-o-notation-deterministic-versions"><span class="header-section-number">15.1</span> Big <span class="math inline">\(O\)</span> and small <span class="math inline">\(o\)</span> notation (deterministic versions)</h2>
-<ul>
-<li>In mathematical analysis, <span class="math inline">\(O\)</span>-related notation is mostly used to bound sequences that shrink to <span class="math inline">\(0\)</span>.</li>
-</ul>
-<div id="def-bigoh" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.1 (Big-<span class="math inline">\(O\)</span>)</strong></span> Given two strictly positive sequence <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>, <span class="math display">\[
-a_n = O(b_n): \Longleftrightarrow \text{limsup}_{n\rightarrow \infty}\frac{a_n}{b_n} \leq C, \quad{} \text{for a } C&gt;0
-\]</span> If <span class="math inline">\(a_n = O(b_n)\)</span>, then we say that <span class="math inline">\(a_n\)</span> is <strong>big-O</strong> of <span class="math inline">\(b_n\)</span>. To indicate that <span class="math inline">\(a_n\)</span> is bounded, we write <span class="math inline">\(a_n = O(1)\)</span>.</p>
+<div class="cell" data-layout-align="center" data-fig-weight="2" data-view-distance="10">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'DescTools' was built under R version 4.4.1</code></pre>
 </div>
-<p>For a deterministic sequence <span class="math inline">\(a_n\)</span>, <span class="math inline">\(\text{limsup}_{n\rightarrow \infty}:=\lim_{n\rightarrow \infty}(\sup_{k \geq n} a_k)\)</span> is the largest limit of the subsequences of <span class="math inline">\(a_n\)</span>. It can be defined even if <span class="math inline">\(\lim_{n\rightarrow\infty}a_n\)</span> does not exist (e.g., in trigonometric functions). If <span class="math inline">\(\lim_{n\rightarrow\infty} a_n\)</span> exists, as in most of the common usages of the big-<span class="math inline">\(O\)</span> notation, then <span class="math inline">\(\text{limsup}_{n\rightarrow\infty}a_n = \lim_{n\rightarrow\infty}a_n\)</span>.</p>
-<div id="def-littleoh" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.2 (Little-<span class="math inline">\(o\)</span>)</strong></span> Given two strictly positive sequence <span class="math inline">\(a_n\)</span> and <span class="math inline">\(b_n\)</span>, <span class="math display">\[
-a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
-\]</span> If <span class="math inline">\(a_n = o(b_n)\)</span>, then we say that <span class="math inline">\(a_n\)</span> is <strong>little-o</strong> of <span class="math inline">\(b_n\)</span>. To indicate that <span class="math inline">\(a_n\rightarrow 0\)</span>, we write <span class="math inline">\(a_n = o(1)\)</span>.</p>
 </div>
-<div id="exr-bigohlittleoh" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.1</strong></span> &nbsp;</p>
-<ol type="1">
-<li><span class="math inline">\(n^{-2} =o(n^{-1})\)</span> since <span class="math inline">\(\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0\)</span></li>
-</ol>
+<section id="random-variables" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">4.1</span> Random Variables</h2>
 <!--
-https://math.stackexchange.com/questions/1561912/prove-logn-on-using-induction
-https://math.stackexchange.com/questions/741600/prove-that-logx-x-for-x-0-x-in-mathbbn?rq=1
+확률변수론 3.1.2
 -->
-<ol start="2" type="1">
-<li><p><span class="math inline">\(\log n = O(n)\)</span>: We want to show that <span class="math inline">\(\forall n\geq 1, \log (n) \leq n\)</span>. The proof is by indunction on <span class="math inline">\(n\)</span>. The claim is true for <span class="math inline">\(n=1\)</span>, since <span class="math inline">\(0&lt;1\)</span>. Now suppose <span class="math inline">\(n\geq 1\)</span> and <span class="math inline">\(\log (n) \leq n\)</span>. Since <span class="math inline">\(n+1\leq 2n\)</span>, (밑이 2인 로그를 쓴 듯) <span class="math display">\[
-\log (n+1) \leq \log (2n) = \log(n) + 1 \leq n+1
-\]</span> or <span class="math display">\[
-\log (n+1) = \log n \log (1 + \frac{1}{n}) &lt; n + \log (1 + \frac{1}{n}) &lt; n+1 \because \text{ since } \log 2 &lt; 1
+<div id="def-measurablefct" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.1 (잴 수 있는 함수 (가측함수))</strong></span> &nbsp;</p>
+<ul>
+<li>확률공간: <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, <span class="math inline">\(f: \Omega \rightarrow \mathbb{R}\)</span> <span class="math display">\[
+B \in \mathcal{B}(\mathbb{R}) \Longrightarrow f^{-1}(B) \in \mathcal{F}
+\]</span> 이면 함수 <span class="math inline">\(f\)</span>를 <strong>잴 수 있는 함수(measurable function)</strong>라 부름</li>
+</ul>
+</div>
+<div id="exm-nonmeasurablefct" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.1 (잴 수 없는 함수의 예)</strong></span> &nbsp;</p>
+<ul>
+<li><p>표본공간 <span class="math inline">\(\Omega =\{1,2,3\}\)</span>, 사건공간 <span class="math inline">\(\mathcal{F} =\{ \Omega, \emptyset, \{1,2\},\{3\} \}\)</span></p></li>
+<li><p>이때 <span class="math inline">\(f(1)=1, f(2)=2, f(3)=3\)</span>인 함수 <span class="math inline">\(f: (\Omega,\mathcal{F}) \rightarrow (\mathbb{R}, \mathcal{B}(\mathbb{R}))\)</span>인 함수</p></li>
+<li><p>그런데 <span class="math inline">\(\{1\} \in \mathcal{B}(\mathbb{R})\)</span>이지만 <span class="math inline">\(f^{-1}(\{1\}) = \{1\}\notin \mathcal{F}\)</span>이므로 <span class="math inline">\(f\)</span>는 가측이 아니며, 따라서 확률변수가 아님</p></li>
+</ul>
+</div>
+<!--
+Rigorous 3.1
+-->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>확률변수는 확률공간 위에서 잴 수 있는 <strong>함수</strong>임</li>
+</ul>
+</div>
+</div>
+<div id="def-rvs" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.2 (Random Variables)</strong></span> Given a probability triple <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>, a <strong>random variable</strong> is a function <span class="math inline">\(X\)</span> from <span class="math inline">\(\Omega\)</span> to <span class="math inline">\(\mathbb{R}\)</span>, such that <span class="math display">\[
+\{ \omega \in \Omega; X(\omega) \leq x  \} \in \mathcal{F} ,\quad{} x \in \mathbb{R}.
+\]</span></p>
+</div>
+<p><strong>Q</strong>. Random variable을 정의하는데 왜 inverse image를 쓰는가?</p>
+<!--
+https://math.stackexchange.com/questions/1728645/why-do-we-have-to-use-pre-image-in-the-formal-definition-of-random-variable
+-->
+<p>Commonly a probability measure <span class="math inline">\(P\)</span> is added to <span class="math inline">\((\Omega, \mathcal{F})\)</span>. Then sets like <span class="math inline">\(\{X \in A\}:= \{\omega \in \Omega | X(\omega) \in A\}\)</span> can <span class="math inline">\(=X^{-1}(A)\)</span> be <strong>measured</strong> if they belong to <span class="math inline">\(\mathcal{F}\)</span>. 예를 들면 <span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span>이 확률변수일 때 <span class="math inline">\(X&lt;1\)</span>일 확률을 구하려면 <span class="math inline">\(X^{-1}(-\infty, 1)\)</span>이 가측이어야 할 것이다.</p>
+<div id="exm-rvs" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.2 (확률변수의 inverse image)</strong></span> <span class="citation" data-cites="Proschan2016">Proschan (<a href="#ref-Proschan2016" role="doc-biblioref">2016</a>)</span> 예제 4.2이다.</p>
+<ul>
+<li><p><span class="math inline">\((\Omega, \mathcal{F}, P) = ((0,1),\mathbb{B}_{(0,1)}, \mu_L)\)</span>에서의 확률변수 <span class="math display">\[
+X(\omega) = \frac{1}{\omega (1-\omega)}
+\]</span> 를 생각하자.</p></li>
+<li><p>Borel set <span class="math inline">\(B\)</span>를 <span class="math inline">\(\{ (6.25, \infty) \cup \{4\}\}\)</span></p></li>
+<li><p>역상: <span class="math inline">\(X^{-1}(B) = \{ (0,0.2) \cup (0.8,1) \cup \{0.5\} \} \in \mathcal{B}_{(0,1)}\)</span></p></li>
+</ul>
+<div class="cell" data-layout-align="center" data-fig-weight="6" data-view-distance="10">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="rvs_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Figure: 확률변수 <span class="math inline">\(X\)</span>의 그림.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="radon-nikodym-derivative" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="radon-nikodym-derivative"><span class="header-section-number">4.2</span> Radon-nikodym derivative</h2>
+<!--
+출처: http://www.statsathome.com/2017/06/26/measure-theory-made-ridiculously-simple/
+-->
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/radon-nikodym.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Change of measures.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>확률측도는 volume element의 일반화라고 볼 수 있다.</p>
+<ul>
+<li><p><span class="math inline">\(\mu(x)\)</span>: probability measure, interval이나 set of points들을 인풋으로 받고 area/volume에 해당하는 확률(양수)을 아웃풋으로 주는 함수다.</p></li>
+<li><p><span class="math inline">\(\lambda (x)\)</span>: reference measure. We often take <span class="math inline">\(\lambda (x)\)</span> as the Lebesgue measure which is essentially just a uniform function over the sample space.</p></li>
+</ul>
+<p>The reference measure <span class="math inline">\(\lambda (x)\)</span> is essentially just a meter-stick that allows us to express the probability measure as a simple function <span class="math inline">\(f(x)\)</span>. That is, we represent the probability measure <span class="math inline">\(\mu(x)\)</span> as <span class="math inline">\(f(x)\)</span> by comparing the probability measure to some specified reference measure <span class="math inline">\(\lambda (x)\)</span>. This is essentially the intuition that is given by the Radon-Nikodym derivative <span class="math display">\[
+f(x) = \frac{d\mu (x)}{d\lambda (x)}
+\]</span> or equivalently <span class="math display">\[
+\text{height = area / width.}
+\]</span> Note that we can also represent the same idea by <span class="math display">\[
+\mu (A) = \int_{A\in X} f(x) d\lambda (x),
+\]</span> where <span class="math inline">\(\mu(A)\)</span> is the sum of the probability of events in the set <span class="math inline">\(A\)</span> which is itself a subset of the entire sample space <span class="math inline">\(X\)</span>. Note that when <span class="math inline">\(A=X\)</span> then the integral must equal <span class="math inline">\(1\)</span> by definition of probability.</p>
+<p>라돈-니코딤 정리는 조건부 확률에 응용된다고 함.</p>
+<div id="def-integrablerv" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.3 (Integrable Random Variable)</strong></span> <span class="citation" data-cites="Gut2014">Gut (<a href="#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 53쪽에 따르면, <span class="math inline">\(E|X|&lt;\infty\)</span>인 경우 random variable <span class="math inline">\(X\)</span>가 integrable 하다고 부른다.</p>
+</div>
+<!--
+https://math.stackexchange.com/questions/243675/the-lebesgue-integral-int-omega-dp
+-->
+<div id="exm-lebesgueprob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.3</strong></span> Given a probability measure <span class="math inline">\(P\)</span> and sample space <span class="math inline">\(\Omega\)</span>, it is true that <span class="math display">\[
+\int_{\Omega} dP = 1.
+\]</span> Because <span class="math display">\[
+\int_{\Omega} dP = P(\Omega) = 1.
+\]</span> More generally <span class="math display">\[
+\int_A dP = \int_{\Omega} 1_A dP = P(A), \quad{} A \in \mathcal{F}.
+\]</span></p>
+</div>
+<div id="def-Lp" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.4 (<span class="math inline">\(\mathcal{L}^p\)</span>)</strong></span> 다음과 같은 확률공간 <span class="math inline">\((\Omega, \mathcal{F}, P)\)</span>를 생각하자. <span class="math inline">\(p&gt;1\)</span>에 대해, 확률변수 <span class="math inline">\(X\)</span>가 <span class="math inline">\(E|X|^p &lt; \infty\)</span>이면 <span class="math inline">\(X\in \mathcal{L}^p\)</span>라고 하며 다음과 같은 놈 <span class="math inline">\(\|X_p\| = (E|X|^p)^{\frac{1}{p}}\)</span>를 정의할 수 있다.</p>
+</div>
+</section>
+<section id="distribution" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="distribution"><span class="header-section-number">4.3</span> Distribution</h2>
+<!--
+https://math.stackexchange.com/questions/3379661/does-a-random-variable-always-have-a-cumulative-distribution-function
+-->
+<ul>
+<li><p>확률변수의 정의는 임의의 measurable subset of possible outcomes (points, bounded/unbounded intervals 등)에 measure (확률)를 부여할 수 있어야 함</p></li>
+<li><p>Semi-infinite interval <span class="math inline">\((-\infty, x]\)</span> 또한 이러한 measurable subset이므로 <span class="math inline">\(\mathbb{R}\)</span>에서 정의된 모든 확률변수는 CDF를 갖음</p></li>
+<li><p>PDF는 CDF의 도함수 개념이므로 CDF가 미분가능해야 전역적으로 PDF도 존재</p></li>
+</ul>
+</section>
+<section id="expectation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="expectation"><span class="header-section-number">4.4</span> Expectation</h2>
+<!--
+오슬로 확률론 5.5
+-->
+<ul>
+<li><strong>Expectation</strong>: integral with respect to the probability measure</li>
+</ul>
+<div id="def-expectation" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 4.5 (Expectation)</strong></span> &nbsp;</p>
+<ul>
+<li><p><span class="math inline">\((\Omega, \mathcal{A}, \mathbb{P})\)</span>: Probability space</p>
+<ul>
+<li><span class="math inline">\(\Omega\)</span>: set (sample space)</li>
+<li><span class="math inline">\(\mathcal{A}\)</span>: <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(\Omega\)</span></li>
+<li><span class="math inline">\(\mathbb{P}\)</span>: Probability measure</li>
+</ul></li>
+<li><p><span class="math inline">\(X: \Omega \rightarrow \mathbb{R}\)</span>: Random variable (a measurable fct)</p></li>
+<li><p><strong>Expectation</strong>: The concept of integral of <span class="math inline">\(X\)</span> w.r.t. <span class="math inline">\(\mathbb{P}\)</span> <span class="math display">\[
+E[X] \stackrel{\Delta}{=}\int_{\Omega} X(\omega) d\mathbb{P}[\omega]
 \]</span></p></li>
-<li><p><span class="math inline">\(n^{-1} = o((\log n)^{-1})\)</span>: 로피탈의 정리를 쓰면 <span class="math display">\[
-\lim_{n\rightarrow \infty} \frac{n^{-1}}{(\log n)^{-1}}=\lim_{n\rightarrow \infty}  \frac{\log n}{n}=0
-\]</span> 임을 보일 수 있음</p></li>
-<li><p><span class="math inline">\(n^{-4/5} = o(n^{-2/3})\)</span> <span class="math display">\[
-\lim_{n\rightarrow \infty} \frac{n^{-4/5}}{n^{-2/3}} = \lim_{n\rightarrow \infty} n^{2/3 - 4/5} = \lim_{n\rightarrow\infty} n^{-2/15}=0  
-\]</span> 으로 알 수 있음</p></li>
-<li><p><span class="math inline">\(3\sin (n) = O(1)\)</span>: <span class="math inline">\(\sin\)</span>함수는 진동함수이다.</p></li>
-</ol>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Big-O, small-o의 정의로부터 다음을 알 수 있다.</p>
-<ul>
-<li><p><span class="math inline">\(a_n = O(b_n)\)</span> means that <span class="math inline">\(a_n\)</span> is <strong>not larger than</strong> <span class="math inline">\(b_n\)</span> asymptotically. If <span class="math inline">\(a_n , b_n \rightarrow 0\)</span>, then it means that <span class="math inline">\(a_n\)</span> <strong>does not decrease more slowly</strong> than <span class="math inline">\(b_n\)</span>, i.e., that <span class="math inline">\(a_n\)</span> either decreases as fast as <span class="math inline">\(b_n\)</span> or faster than <span class="math inline">\(b_n\)</span>.</p></li>
-<li><p><span class="math inline">\(a_n = o(b_n)\)</span> means that <span class="math inline">\(a_n\)</span> is <strong>smaller than</strong> <span class="math inline">\(b_n\)</span> asymptotically. If <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>, then it means that <span class="math inline">\(a_n\)</span> <strong>decrease faster</strong> than <span class="math inline">\(b_n\)</span>.</p></li>
 </ul>
-<p>위의 사실로부터, big-O는 같은 속도로 수렴하거나 더 빠른 속도로 수렴하는 두 가지 경우를 모두 포함하고 있고, small-o는 더 빠른 속도로 수렴하는 경우만 포함하기 때문에 어떤 <span class="math inline">\(C&gt;0\)</span>에 대해 <strong>little-o implies big-O</strong>라고 할 수 있다.</p>
-</div>
-</div>
-<p>다음은 <span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span>에 적혀 있는 big-O, small-o에 대한 몇 가지 성질들이다.</p>
-<div id="prp-bigolittleo" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 15.1</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold:</p>
-<ol type="1">
-<li><p><span class="math inline">\(kO(a_n) = O(a_n)\)</span>, <span class="math inline">\(ko(a_n) = o(a_n)\)</span>, <span class="math inline">\(k\mathbb{R}\)</span>.</p></li>
-<li><p><span class="math inline">\(o(a_n) + o(b_n) = o(a_n + b_n)\)</span>, <span class="math inline">\(O(a_n) + O(b_n) = O(a_n + b_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(o(a_n)o(b_n) = o(a_nb_n)\)</span>, <span class="math inline">\(O(a_n)O(b_n) = O(a_nb_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(o(a_n) + O(b_n) = O(a_n + b_n)\)</span>, <span class="math inline">\(o(a_n)O(b_n) = o(a_nb_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(o(1)O(a_n) = o(a_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(a_n^r = o(a_n^s)\)</span>, for <span class="math inline">\(r&gt;s\geq 0\)</span>.</p></li>
-<li><p><span class="math inline">\(a_nb_n =o(a_n^2 +b_n^2)\)</span> (아마 <span class="math inline">\(O(a_n^2 + b_n^2)\)</span>이 되어야 할 듯)</p></li>
-<li><p><span class="math inline">\((a_n + b_n)^k = O(a_n^k + b_n^k)\)</span>.</p></li>
-</ol>
-</div>
-<table class="table">
-<colgroup>
-<col style="width: 58%">
-<col style="width: 41%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Sequence</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(b_n = 1/\log (n)\)</span></td>
-<td></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(a_{1,n}=\frac{2}{n}+\frac{50}{n^2}\)</span></td>
-<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(a_{2,n}=\frac{\sin (n/5)+2}{n^{5/4}}\)</span></td>
-<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(a_{3,n}=\frac{3(1+5\exp(-(n-55.5)^2/200))}{n}\)</span></td>
-<td><span class="math inline">\(o(b_n)\)</span> (hence also <span class="math inline">\(O(b_n)\)</span>)</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(a_{4,n}=\frac{n+3}{4n\log_{10}(n)}+\frac{a_{3,n}}{2}\)</span></td>
-<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(a_{5,n}=\frac{1}{4\log_{2} (\frac{n}{2})}\)</span></td>
-<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(a_{6,n}=\frac{1}{\log (n^2+n)}\)</span></td>
-<td><span class="math inline">\(O(b_n)\)</span>, but not <span class="math inline">\(o(b_n)\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(a_{7,n}=\frac{1}{2\log(5n+3)^{1/4}}\)</span></td>
-<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(a_{8,n}=\frac{1}{4\log(\log (10n+2))}\)</span></td>
-<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(a_{9,n}=\frac{1}{2\log(\log (n^2+10n+2))}\)</span></td>
-<td>not <span class="math inline">\(O(b_n)\)</span> (hence neither <span class="math inline">\(o(b_n)\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="bigoh_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-</figure>
-</div>
-</div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -539,185 +552,58 @@ Remark
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>오른쪽의 그림들을 보면 수렴에 대해 파악할 수 있음
+<li>다음의 notation들은 모두 <span class="math inline">\(X\)</span>의 기댓값을 의미
 <ul>
-<li>위: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 0으로 수렴, 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{o}(1)\)</span> 이고 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)\)</span>임</li>
-<li>가운데: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 0이 아닌 어떤 값으로 수렴하는 것처럼 보임, 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)\)</span> 이나 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}=\mathcal{O}(1)\)</span>임</li>
-<li>아래: <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\)</span>이 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 발산하는 것으로 보이며 따라서 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{o}(1)\)</span> 이고 <span class="math inline">\(\frac{a_{i,n}}{b_{n}}\neq\mathcal{O}(1)\)</span>임</li>
+<li><span class="math inline">\(\int_{\Omega} X(\omega) d\mathbb{P}[\omega]\)</span></li>
+<li><span class="math inline">\(\int_{\Omega} X d\mathbb{P}\)</span> (적분하려는 변수가 분명한 경우 생략)</li>
+<li><span class="math inline">\(\int_{\Omega} X(\omega) \mathbb{P}[d\omega]\)</span></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<p>다음은 <span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span>가 소개한 <span class="math inline">\(C_p\)</span> inequality이다.</p>
-<div id="lem-Cp" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemma 15.1 (<span class="math inline">\(C_p\)</span> inequality)</strong></span> Given <span class="math inline">\(a,b\in \mathbb{R}\)</span> and <span class="math inline">\(p&gt;0\)</span>, <span class="math display">\[
-|a+b|^p \leq C_p (|a|^p + |b|^p), \quad{} C_p=
-\begin{cases}
-1, &amp; p\leq 1\\
-2^{p-1}, &amp; p &gt;1.
-\end{cases}
-\]</span></p>
-</div>
-<section id="big-mathcalo의-적분" class="level3" data-number="15.1.1">
-<h3 data-number="15.1.1" class="anchored" data-anchor-id="big-mathcalo의-적분"><span class="header-section-number">15.1.1</span> Big-<span class="math inline">\(\mathcal{O}\)</span>의 적분</h3>
+</section>
+<section id="cantor-random-variable" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="cantor-random-variable"><span class="header-section-number">4.5</span> Cantor Random Variable</h2>
+<ul>
+<li><p><a href="https://en.wikipedia.org/wiki/Cantor_distribution">Cantor distribution</a>: 누적분포함수가 Cantor function인 probability distribution</p></li>
+<li><p>Cantor distribution은 PDF나 PMF가 존재하지 않음</p></li>
+<li><p>동전던지기를 할 때, <span class="math inline">\(n\)</span>번째 던지기에서 앞면이 나왔을 때 <span class="math inline">\(\frac{2}{3^n}\)</span>을 갖는 실험을 하면, 최종적으로 <span class="math inline">\(X\)</span> 달러를 받는다고 할 때, <span class="math inline">\(X\)</span>는 확률변수이며 Cantor distribution의 예가 됨</p></li>
+<li><p>특별히 <span class="math inline">\(\{\xi_n\}\)</span>을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 <span class="math inline">\(X\)</span>를 <span class="math inline">\(X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n\)</span>과 같이 놓을 수 있음 (위의 예제 참고)</p></li>
+</ul>
 <!--
-https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
+https://math.stackexchange.com/questions/3523916/prove-that-random-variable-is-not-absolutely-continuous-with-respect-to-lebesgue
 -->
-<p>Big-<span class="math inline">\(\mathcal{O}\)</span>의 정의를 다시 생각해보자. <span class="math display">\[
-f(x) =\mathcal{O}(g(x)) \Longleftrightarrow \exists M, c \quad{}\text{ s.t. }\quad{}\forall x &gt; c, \quad{} |f(x)| \leq M |g(x)|
-\]</span> 따라서 <span class="math inline">\(a&lt;c&lt;b\)</span>에 대해 <span class="math display">\[
-\Big\vert \int_a^b f(x) dx \Big\vert \leq \int_a^b \Big\vert f(x)\Big\vert  dx \leq \int_a^c \Big\vert f(x)\Big\vert  dx + M \int_c^{b} |g(x)| dx
-\]</span></p>
-<div id="exm-bigoh-01" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.1</strong></span> &nbsp;</p>
 <ul>
-<li>함수가 <span class="math display">\[
-f(x) = \mathcal{O}(x^{\alpha})
-\]</span> 라고 하자. 그러면
-<ul>
-<li><span class="math inline">\(\alpha &lt;-1\)</span>일 때에는 <span class="math inline">\(\int_0^x f(y)dy =\mathcal{O}(1)\)</span>이라고 말할 수 있는 것이 최선</li>
-<li><span class="math inline">\(\alpha &gt;-1\)</span>일 때에는 <span class="math inline">\(\int_0^x f(y)dy =\mathcal{O}(x^{\alpha + 1})\)</span>인데 <span class="math display">\[
-  \int_0^c |f(y)|dy = \mathcal{O}(1)
-  \]</span> 이고 <span class="math inline">\(\alpha \neq -1\)</span>일 때에는 <span class="math display">\[
-  \int_c^x |f(y)|dy \leq M \int_c^x y^\alpha dy =\frac{M}{\alpha+1}(x^{\alpha+1}-c^{\alpha+1}) = \mathcal{O}(x^{\alpha + 1}) + \mathcal{O}(1)
-  \]</span></li>
-</ul></li>
+<li>칸토를 집합을 <span class="math inline">\(C\)</span>라 하고, <span class="math inline">\(X\in C\)</span>라 할 때, <a href="https://en.wikipedia.org/wiki/Cantor_set#Measure_and_probability">칸트로 집합이 Lebesgue measure 0</a> 임을 알고 있으며, <span class="math inline">\(P(X\in C)=1&gt;0\)</span>이므로 <span class="math inline">\(X\)</span>는 <strong>not absolutely continuous with respect to the Lebesgue measure</strong>임</li>
 </ul>
-</div>
-</section>
-<section id="big-mathcalo의-미분" class="level3" data-number="15.1.2">
-<h3 data-number="15.1.2" class="anchored" data-anchor-id="big-mathcalo의-미분"><span class="header-section-number">15.1.2</span> Big-<span class="math inline">\(\mathcal{O}\)</span>의 미분</h3>
+<div id="exm-cantorexp" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.4 (Cantor distribution의 적률 계산)</strong></span> &nbsp;</p>
 <!--
-https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-symbols
+https://math.stackexchange.com/questions/737148/how-we-compute-expectation-of-a-singular-random-variable
 -->
-<p>안타깝게도 big-<span class="math inline">\(\mathcal{O}\)</span>의 미분에 대해서는 estimate를 얻을 수 없다. 즉 <span class="math inline">\(f(x) = \mathcal{O}(g(x))\)</span>라고 해서 <span class="math inline">\(f'(x) =\mathcal{O}(g'(x))\)</span>를 만족하지는 않는다는 것이다.</p>
-<div>
-<p>예를 들어 <span class="math inline">\(f(x) = \mathcal{O}(g(x))\)</span>이고 <span class="math inline">\(h(x) = \sin (x^n) f(x)\)</span>라고 하자. 그러면 <span class="math inline">\(h(x) = \mathcal{O}(g(x))\)</span>이다. 그러나 <span class="math inline">\(h'(x) = \mathcal{O}(x^{n-1}g(x)) + O(f'(x))\)</span>이므로, 첫 번째 항이 <span class="math inline">\(f'(x)\)</span>보다 빨리 grow할 것이라고 짐작할 수 있다.</p>
-</div>
-</section>
-</section>
-<section id="stochastic-versions" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="stochastic-versions"><span class="header-section-number">15.2</span> Stochastic versions</h2>
-<div id="def-littleop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.3 (Little-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
-X_n = o_P (a_n): &amp;\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\rightarrow}0\\
-&amp;\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}&gt;\varepsilon \Big] =0, \quad{} \forall \varepsilon &gt;0.
-\end{align*}\]</span> If <span class="math inline">\(X_n = o_p (a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>little</strong>-<span class="math inline">\(o_p\)</span> of <span class="math inline">\(a_n\)</span>. To indicate that <span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>, we write <span class="math inline">\(X_n = o_p(1)\)</span>.</p>
-</div>
-<div id="exm-littleop" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.2</strong></span> Let <span class="math inline">\(Y_n = o_p (n^{-1/2})\)</span> and <span class="math inline">\(Z_n = o_p(n^{-1})\)</span>. Then <span class="math inline">\(Z_n\)</span> converges faster to zero in probability than <span class="math inline">\(Y_n\)</span>. To visualize this, recall that <span class="math inline">\(X_n = o_p(a_n)\)</span> and that limit definitions entail that <span class="math display">\[
-\forall \varepsilon, \delta &gt;0, \exists n_0 = n_0 (\varepsilon, \delta)\in \mathbb{N}: \forall n \geq n_0(\varepsilon, \delta), \quad{} P[|X_n|&gt;a_n\varepsilon]&lt;\delta.
-\]</span> Therefore, for fixed <span class="math inline">\(\varepsilon, \delta&gt;0\)</span> and a fixed <span class="math inline">\(n\geq \max (n_{0,Y}, n_{0,Z})\)</span>, then <span class="math inline">\(P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]&gt;1-\delta\)</span> and <span class="math inline">\(P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]&gt;1-\delta\)</span>, but the latter interval is much shorter, hence <span class="math inline">\(Z_n\)</span> is forced to be more tightly concentrated about <span class="math inline">\(0\)</span>.</p>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Remark
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <ul>
-<li><p>Little-<span class="math inline">\(o_p\)</span> allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.</p></li>
-<li><p>Big <span class="math inline">\(O_p\)</span> allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold <span class="math inline">\(C\)</span> converges to zero.</p></li>
-<li><p>As with its deterministic versions <span class="math inline">\(o\)</span> and <span class="math inline">\(O\)</span>, a <strong>little-</strong><span class="math inline">\(o_p\)</span> <strong>is more restrictive than a big-</strong><span class="math inline">\(O_p\)</span>, and the former implies the latter.</p></li>
-</ul>
-</div>
-</div>
-<div id="def-bigop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.4 (Big-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
-X_n = O_P (a_n): \Longleftrightarrow&amp;  \forall \varepsilon&gt;0, \exists C_{\varepsilon}&gt;0, n_0(\varepsilon) \in \mathbb{N}:\\
-&amp;\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} &gt; C_{\varepsilon} \Big] &lt; \varepsilon\\
-\Longleftrightarrow &amp;\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} &gt;C \Big]=0.
-\end{align*}\]</span> If <span class="math inline">\(X_n = O_p(a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>big-</strong><span class="math inline">\(O_p\)</span> of <span class="math inline">\(a_n\)</span>.</p>
-</div>
-<div id="exm-bigop1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.3</strong></span> Chebyshev inequality entails that <span class="math inline">\(P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2\)</span>, <span class="math inline">\(\forall t&gt;0\)</span>. Setting <span class="math inline">\(\varepsilon :=\text{Var}[X_n]/t^2\)</span> and <span class="math inline">\(C_{\varepsilon}:=1/\sqrt{\varepsilon}\)</span>, then <span class="math inline">\(P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon\)</span>. Therefore, <span class="math display">\[
-X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
-\]</span> This is a very useful result, as it gives an efficient way of deriving the big-<span class="math inline">\(O_p\)</span> form of a sequence of random variables <span class="math inline">\(X_n\)</span> with finite variances.</p>
-</div>
-<p>An application of <a href="#exm-bigop1" class="quarto-xref">Example&nbsp;<span>15.3</span></a> shows that <span class="math inline">\(X_n = O_p (n^{-1/2})\)</span> for <span class="math inline">\(X_n \stackrel{d}{=}\mathcal{N}(0,1/n)\)</span>. The nature of this statement and its relation with little-<span class="math inline">\(o_p\)</span> is visualized, which shows a particular realization <span class="math inline">\(X_n(\omega)\)</span> of the sequence of random variables.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="bigoh_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
-</figure>
-</div>
-</div>
-</div>
-<div id="exr-probconvexr" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.2</strong></span> It is actually true that:</p>
-<ol type="1">
-<li><p><span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>.</p></li>
-<li><p><span class="math inline">\(n^{1/3}X_n \stackrel{P}{\rightarrow} 0\)</span>.</p></li>
-<li><p><span class="math inline">\(n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)\)</span>.</p></li>
-</ol>
-</div>
-<p>다음은 <span class="citation" data-cites="Jiang2022">(<a href="references.html#ref-Jiang2022" role="doc-biblioref">Jiang 2022</a>)</span> 에 나와있는 정리다.</p>
-<div id="thm-suffbigop" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 15.1 (<span class="math inline">\(O_p(1)\)</span>이기 위한 충분조건)</strong></span> 다음 세 가지 조건 중 하나를 만족하면 <span class="math inline">\(X_n = O_p(1)\)</span>이다.</p>
-<ol type="1">
-<li><p>There is <span class="math inline">\(p&gt;0\)</span> such that <span class="math inline">\(E(|X_n|^p), n\geq 1\)</span> is bounded.</p></li>
-<li><p><span class="math inline">\(X_n\stackrel{p}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> for some random variable <span class="math inline">\(X\)</span>.</p></li>
-<li><p><span class="math inline">\(X_n \stackrel{d}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> for some random variable <span class="math inline">\(X\)</span>.</p></li>
-</ol>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Proof
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>1번이 성립한다고 하자. <span class="math inline">\(\varepsilon&gt;0\)</span>에 대해 Chebyshev 부등식을 쓰면 <span class="math display">\[
+<li><p>PDF나 PMF가 존재하지 않더라도 Cantor distribution 같이 음이 아닌 확률변수에서는 <span class="math inline">\(F(x) = P(X&gt;x)\)</span>를 계산할 수 있고, 이를 이용해 <span class="math display">\[
 \begin{align*}
-P(|X_n|&gt;M) &amp;= P(|X_n|^p &gt; M^p)\\
-&amp;\leq \frac{E(|X_n|^p)}{M^p} \leq \frac{c}{M^p},
-\]</span> where <span class="math inline">\(c= \sup_{n\geq 1}E(|X_n|^p)&lt;\infty\)</span>. Thus, if we choose <span class="math inline">\(M\)</span> such that <span class="math inline">\(M&gt;(c/\varepsilon)^{1/p}\)</span>, we have <span class="math inline">\(P(|X_n|&gt;M)&lt;\varepsilon\)</span>. Hence, <span class="math inline">\(P(|X_n|\leq M) &gt; 1-\varepsilon\)</span> for any <span class="math inline">\(n\geq 1\)</span>.</p></li>
-<li><p>3번 관련 <a href="https://stats.stackexchange.com/questions/567308/converge-in-distribution-and-order-of-convergence">StackExchange</a> 참고</p></li>
-</ul>
-</div>
-</div>
-</div>
-<p>다음은 big-<span class="math inline">\(O_p\)</span> 및 little-<span class="math inline">\(o_p\)</span>에 관한 성질들이다.</p>
-<div id="prp-bigoplittleop" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 15.2</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold:</p>
-<ol type="1">
-<li><p><span class="math inline">\(o_p(a_n) = O_p(a_n)\)</span> (little-<span class="math inline">\(o_p\)</span> implies big-<span class="math inline">\(O_p\)</span>)</p></li>
-<li><p><span class="math inline">\(o(1) = o_p(1)\)</span>, <span class="math inline">\(O(1) = O_p(1)\)</span> (deterministic implies probabilistic)</p></li>
-<li><p><span class="math inline">\(kO_p(a_n) = O_p(a_n)\)</span>, <span class="math inline">\(k o_p(a_n) = o_p (a_n), k\in \mathbb{R}\)</span>.</p></li>
-<li><p><span class="math inline">\(o_p(a_n) + o_p(b_n) = o_p(a_n + b_n)\)</span>, <span class="math inline">\(O_p(a_n) + O_p(b_n) = O_p(a_n + b_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(o_p(a_n)o_p(b_n) = o_p(a_n b_n)\)</span>, <span class="math inline">\(O_p(a_n)O_p(b_n) = O_p(a_n b_n)\)</span> .</p></li>
-<li><p><span class="math inline">\(o_p(a_n) + O_p(b_n) = O_p(a_n + b_n)\)</span>, <span class="math inline">\(o_p(a_n)O_p(b_n)=o_p(a_n b_n)\)</span>.</p></li>
-<li><p><span class="math inline">\(o_p(1) O_p(a_n) = o_p (a_n)\)</span>.</p></li>
-<li><p><span class="math inline">\((1+o_p(1))^{-1} = O_p(1)\)</span>.</p></li>
-</ol>
-</div>
-<div id="exm-bigop2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.4</strong></span> 위 proposition의 2, 4번을 이용하면 <a href="#exm-bigop1" class="quarto-xref">Example&nbsp;<span>15.3</span></a> 에 다음과 같은 표현이 가능하다. <span class="math display">\[
-\begin{align*}
-X_n &amp;= O(E[X_n]) + O_p (\sqrt{\text{var}[X_n]})\\
-&amp;= O_p(E[X_n] + \sqrt{\text{var}[X_n]}).
+E(X) &amp;= \int_0^{\infty} F(x) dx\\
+\text{Var} (X) &amp;= \int_0^{\infty} 2x F(x) dx - \Big( \int_0^{\infty}F(x) dx \Big)^2
 \end{align*}
-\]</span></p>
+\]</span> 와 같이 기댓값과 분산을 구할 수 있음</p></li>
+<li><p>특별히 <span class="math inline">\(\{\xi_n\}\)</span>을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 <span class="math inline">\(X\)</span>를 <span class="math inline">\(X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n\)</span>과 같이 놓을 수 있고 (앞선 동전던지기 참고) <span class="math inline">\(E(\xi_n)=\frac{1}{2}\)</span>, <span class="math inline">\(\text{Var}(\xi_n) = \frac{1}{4}\)</span>라는 점을 이용해 다음과 같이 구할 수 있음 <span class="math display">\[
+\begin{align*}
+E(X) &amp;= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \frac{2}{3^n} E(\xi_n)\\&amp;= \sum_{n=1}^{\infty} \frac{2}{3^n }\cdot \frac{1}{2}= \sum_{n=1}^{\infty} \frac{1}{3^n} = \frac{1}{2}\\
+\text{Var}(X) &amp;= \sum_{n=1}^{\infty} \text{Var}\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \Big(\frac{2}{3^n}\Big)^2 \text{Var}(\xi_n)\\&amp;= \sum_{n=1}^{\infty} \frac{4}{9^n }\cdot \frac{1}{4}= \sum_{n=1}^{\infty} \frac{1}{9^n} = \frac{1}{8}.
+\end{align*}
+\]</span></p></li>
+</ul>
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-Garcia-Portugues2024" class="csl-entry" role="listitem">
-García-Portugués, E. 2024. <em>Notes for Nonparametric Statistics</em>. <a href="https://bookdown.org/egarpor/NP-UC3M/">https://bookdown.org/egarpor/NP-UC3M/</a>.
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Gut2014" class="csl-entry" role="listitem">
+Gut, Allan. 2014. <em>Probability: A Graduate Course</em>. 2nd ed. Springer New York.
 </div>
-<div id="ref-Jiang2022" class="csl-entry" role="listitem">
-Jiang, Jiming. 2022. <em>Large Sample Techniques for Statistics</em>. <em>Springer Texts in Statistics</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-91695-4">https://doi.org/10.1007/978-3-030-91695-4</a>.
+<div id="ref-Proschan2016" class="csl-entry" role="listitem">
+Proschan, Michael A. 2016. <em>Essentials of Probability Theory for Statisticians</em>. CRC Press.
 </div>
 </div>
 </section>
@@ -1145,13 +1031,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./rmatrices.html" class="pagination-link" aria-label="Random Matrices">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Random Matrices</span></span>
+      <a href="./prob.html" class="pagination-link" aria-label="Probabilty">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Probabilty</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./summary.html" class="pagination-link" aria-label="Summary">
-        <span class="nav-page-text">Summary</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ineq.html" class="pagination-link" aria-label="Inequalities">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Inequalities</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

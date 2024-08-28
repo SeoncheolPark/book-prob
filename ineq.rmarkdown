@@ -1,5 +1,10 @@
 # Inequalities {.ineq}
 
+
+
+
+
+
 ```{r}
 #| echo: false
 #| message: false
@@ -18,15 +23,30 @@ library(ggplot2)
 
 ```
 
+
+
+
+
+
 ## 왜 concentration inequality가 필요한가?
 
 -   출처: [Concentration Inequalities](https://gclinderman.github.io/blog/probability/2018/01/07/concentration-inequalities.html)
+
+
+
+
+
 
 ```{=html}
 <!--
 https://gclinderman.github.io/blog/probability/2018/01/07/concentration-inequalities.html
 -->
 ```
+
+
+
+
+
 -   [High-Dimensional Probability](https://www.math.uci.edu/~rvershyn/papers/HDP-book/HDP-book.html) 책에 있는 동전 던지기 예제 생각
 
 -   $i$번째 동전던지기: 앞면이 나오면 1, 뒷면이 나오면 0인 Bernoulli random variable로 간주 가능
@@ -38,6 +58,11 @@ https://gclinderman.github.io/blog/probability/2018/01/07/concentration-inequali
     $$ 이때 $$
     Z_N  = \frac{S_N - N_p}{\sqrt{Np (1-p)}}
     $$
+
+
+
+
+
 
 ```{r}
 #| echo: false
@@ -68,6 +93,11 @@ ggplot() + geom_density(data=toplots, aes(x=x,color=group)) +facet_wrap(~N,scale
 
 ```
 
+
+
+
+
+
 **Q**. $N$번 시행 시 $\frac{3}{4}$이상 앞면이 나올 확률을 구하고 싶다.
 
 -   Gaussian density는 exponential decay하는데, $Z_N$이 분포수렴하는 속도는 훨씬 느림
@@ -75,6 +105,11 @@ ggplot() + geom_density(data=toplots, aes(x=x,color=group)) +facet_wrap(~N,scale
 -   CLT의 quantitative version인 Berry-Essen CLT를 보면 $$
     |P\{Z_n \geq t\} - P\{Z \geq t\} | \leq \frac{C}{\sqrt{N}}
     $$ 이때 $C$는 상수이며, convergence의 order가 $\frac{1}{\sqrt{N}}$임을 (아래 그림에 녹색으로 표시) 확인 가능
+
+
+
+
+
 
 ```{r}
 #| echo: false
@@ -109,6 +144,11 @@ toplot <- data.frame(ns=c(ns,ns), probability= c(empirical_diff,berry_esseen),
 ggplot(toplot, aes(x=ns, probability, color=group)) +geom_line(aes(linetype=group),size=2)+theme(legend.title  = element_blank(), legend.position = "bottom") + xlab("")
 
 ```
+
+
+
+
+
 
 ## Markov inequality
 
@@ -202,6 +242,11 @@ $$ 여기서 $a=\begin{bmatrix} 1,1,\ldots, 1 \end{bmatrix}$로 두면 $\|a\|_2^
 P\{\sum_i X_i > \frac{3N}{4} \}\leq \exp (- \frac{(\frac{3N}{2}-N)^2}{2N}) = \exp (-\frac{N}{8})
 $$
 
+
+
+
+
+
 ```{r}
 #| echo: false
 #| message: false
@@ -235,6 +280,11 @@ g <- g_linear + g_log
 g
 
 ```
+
+
+
+
+
 
 ::: {#thm-hoeffdingineq}
 ## Hoeffding's inequality
@@ -284,11 +334,21 @@ $$ 여기서 마지막 부등식은 exponent를 최소화하는 $\lambda$를 잡
     P \{ \sum_i X_i > 10pN \} = P\{ \sum_i X_i - pN > 9pN \}\leq \exp (-\frac{2(9pN)^2}{N}) = \exp (-182p^2 N).
     $$ 식을 보면 Binomial random variable이 평균보다 9배 클 확률의 bound를 계산함
 
+
+
+
+
+
 ```{=html}
 <!--
 - $n=10, p=0.5$이면 
 -->
 ```
+
+
+
+
+
 ::: {#thm-chernoffineq}
 ## Chernoff inequality
 
@@ -322,6 +382,11 @@ $$
 -   다시 앞 예제에 Chernoff 부등식을 적용하면 $$
     P \{\sum_i X_i > 10pN \} \leq \exp (-p N) \Big( \frac{epN}{10pN}\Big)^{10pN} = \exp (-p N) \Big( \frac{e}{10}\Big)^{10pN}.
     $$
+
+
+
+
+
 
 ```{r}
 #| echo: false
@@ -357,6 +422,11 @@ g
 
 ```
 
+
+
+
+
+
 ## Gaussian tails and MGF
 
 -   출처: [High-Dimensional Statistics Lecture Notes](https://ocw.mit.edu/courses/18-s997-high-dimensional-statistics-spring-2015/a69e2f53bb2eeb9464520f3027fc61e6_MIT18_S997S15_Chapter1.pdf)
@@ -371,11 +441,21 @@ g
 
 -   Bounded support: $P(|X-\mu|\leq 3\sigma)$ 등의 확률 구할 때 사용
 
+
+
+
+
+
 ```{=html}
 <!--
 High-dimensional statistics lecture note 도입부
 -->
 ```
+
+
+
+
+
 ::: {#prp-millsineq}
 ## Mills inequality
 
@@ -414,11 +494,21 @@ Gaussian density tail의 decay 속도를 알려줌
     $$ 로부터 유도됨
 :::
 
+
+
+
+
+
 ```{=html}
 <!--
 https://adityam.github.io/stochastic-control/probability/sub-gaussian.html
 -->
 ```
+
+
+
+
+
 ::: {#prp-concentrationineqgaussian}
 ## Gaussian의 concentration inequality
 
@@ -569,3 +659,4 @@ $$ 일 때 $X \sim \text{subE}(\lambda)$라고 한다.
 P(\overline{X} >t) \vee P(\overline{X} < -t) \leq \exp \Big[ - \frac{n}{2}\Big(\frac{t^2}{\lambda^2}\wedge \frac{t}{\lambda} \Big) \Big] .
 $$
 :::
+
