@@ -1,4 +1,4 @@
-# Inequalities {.ineq}
+# Inequalities {#sec-ineq}
 
 ```{r}
 #| echo: false

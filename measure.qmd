@@ -1,34 +1,30 @@
-# Measure and Integration {.measure}
+# Measure and Integration {#sec-measure}
 
 ## Limit of sets
 
-
 ## Measures
 
+```{=html}
 <!--
 오슬로 확률론 강의노트 3.2
 -->
-
+```
 ::: {#def-pushforwardm}
 ## Push-forward measure
 
-- $(E,\mathcal{E},\mu)$: measure space, $(F, \mathcal{F})$: measurable space, $f: E\rightarrow F$: measurable transformation
+-   $(E,\mathcal{E},\mu)$: measure space, $(F, \mathcal{F})$: measurable space, $f: E\rightarrow F$: measurable transformation
 
-- 그러면 다음과 같은 변환
-$$
-\mu_f (A) \stackrel{\Delta}{=}\mu \circ f^{-1}(A) = \mu (f^{-1}(A)), \quad{} A\in \mathcal{F}
-$$
-은 $(F, \mathcal{F})$에서의 measure를 정의
+-   그러면 다음과 같은 변환 $$
+    \mu_f (A) \stackrel{\Delta}{=}\mu \circ f^{-1}(A) = \mu (f^{-1}(A)), \quad{} A\in \mathcal{F}
+    $$ 은 $(F, \mathcal{F})$에서의 measure를 정의
 
-- $\mu_f$ (또는 $f^\#\mu$로 씀): **push-forward measure** via $f$
-
+-   $\mu_f$ (또는 $f^\#\mu$로 씀): **push-forward measure** via $f$
 :::
 
 ::: callout-note
 ## Remark
 
-- Push-forward measure는 change-of-variables formula 등 적분이론에서 많이 쓰임
-
+-   Push-forward measure는 change-of-variables formula 등 적분이론에서 많이 쓰임
 :::
 
 ## Integration
@@ -39,19 +35,20 @@ $$
 ## Remark
 
 적분이론에서 굉장히 다양한 적분 notation을 쓰는데 알아두면 좋을 듯
-
 :::
 
+```{=html}
 <!--
 오슬로 확률론 강의노트 3.2
 -->
+```
+-   $(E,\mathcal{E},\mu)$: measure space, $f: E \rightarrow\mathbb{R}$: a real-valued transformation
 
-- $(E,\mathcal{E},\mu)$: measure space, $f: E \rightarrow\mathbb{R}$: a real-valued transformation
+-   다음의 세 개의 기호는 같은 것임
 
-- 다음의 세 개의 기호는 같은 것임
-    + $\int_E f(x) d\mu (x)$
-    + $\int_E f d\mu$ (적분하려는 변수가 분명한 경우 생략)
-    + $\int_E f(x) \mu (dx)$
+    -   $\int_E f(x) d\mu (x)$
+    -   $\int_E f d\mu$ (적분하려는 변수가 분명한 경우 생략)
+    -   $\int_E f(x) \mu (dx)$
 
 ### 리만-스틸체스 적분
 
@@ -84,29 +81,27 @@ $$
 ::: {#exm-riemmanstieltjesint01}
 ## 리만-스틸체스 적분을 이용한 기댓값의 계산
 
+```{=html}
 <!--
 https://www.statlect.com/fundamentals-of-probability/expected-value
 -->
+```
+-   $X$: random variable with support $R_X = [0,1]$ and distribution function $$
+    F_X(x) = \begin{cases}
+    0, &\text{if } x <0\\
+    \frac{1}{2}x, &\text{if } 0 \leq x < 1\\
+    1, &\text{if } x \geq 1.
+    \end{cases}
+    $$
 
-- $X$: random variable with support $R_X = [0,1]$ and distribution function
-$$
-F_X(x) = \begin{cases}
-0, &\text{if } x <0\\
-\frac{1}{2}x, &\text{if } 0 \leq x < 1\\
-1, &\text{if } x \geq 1.
-\end{cases}
-$$
-
-- 이때의 기댓값은
-$$
-\begin{align*}
-E[X] &= \int_{-\infty}^{\infty} x dF_X(x)\\
-&= \int_0^1 xdF_{X}(x) + 1\cdot \Big[ F_X(1) -\lim_{x\rightarrow 1, x < 1}F_X(x) \Big]\\
-&= \int_0^1 x \frac{d}{dx} \Big(\frac{1}{2}x \Big) dx  + 1 \cdot \Big[ 1- \frac{1}{2} \Big]\\
-&= \Big[\frac{1}{4}x^2 \Big]_{0}^1 + \frac{1}{2} = \frac{1}{4}+\frac{1}{2}=\frac{3}{4}.
-\end{align*}
-$$
-
+-   이때의 기댓값은 $$
+    \begin{align*}
+    E[X] &= \int_{-\infty}^{\infty} x dF_X(x)\\
+    &= \int_0^1 xdF_{X}(x) + 1\cdot \Big[ F_X(1) -\lim_{x\rightarrow 1, x < 1}F_X(x) \Big]\\
+    &= \int_0^1 x \frac{d}{dx} \Big(\frac{1}{2}x \Big) dx  + 1 \cdot \Big[ 1- \frac{1}{2} \Big]\\
+    &= \Big[\frac{1}{4}x^2 \Big]_{0}^1 + \frac{1}{2} = \frac{1}{4}+\frac{1}{2}=\frac{3}{4}.
+    \end{align*}
+    $$
 :::
 
 ## 리만 적분과 르베그 적분
@@ -136,4 +131,3 @@ $$ Taking $f=\text{Id}$ yields $$
 $$ Taking $f = \text{Id} \cdot \mathbf{1}_{I}$, where $I$ is some interval (for example, $(0, +\infty)$ as in your case), we have $$
 \int_{I}xh(x)dx = \int_{X^{-1}}XdP,
 $$ recalling again that $\mathbf{1}_A \circ X = \mathbf{1}_{X^{-1}(A)}$. Since $P(X<0)$ in your case is $0$, this last integral is actually equal to the integral over the whole space, and hence to $E[X]$, which gives your equality.
-

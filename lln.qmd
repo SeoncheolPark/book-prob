@@ -1,4 +1,4 @@
-# The Law of Large Numbers {.lln}
+# The Law of Large Numbers {#sec-lln}
 
 - 확률변수의 합에 대한 성질 알아보기
 

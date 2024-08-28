@@ -1,4 +1,4 @@
-# Characteristic Functions {.char}
+# Characteristic Functions {#sec-char}
 
 ## Fourier transform
 

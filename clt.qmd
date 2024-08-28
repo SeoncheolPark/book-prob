@@ -1,1 +1,92 @@
-# Central Limit Theorem {.clt}
+# Central Limit Theorem {#sec-clt}
+
+@Gut2014 의 설명: i.i.d. rvs with mean $\mu$인 $X, X_1, X_2,\ldots$가 있을 때
+
+- LLN: $\frac{1}{n}\sum_{k=1}^n X_k \stackrel{n\rightarrow\infty}{\longrightarrow} \mu$ in prob or almost surely
+
+- CLT: $\frac{1}{n}\sum_{k=1}-\mu$를 "blow up" (아마 적절한 값을 곱하고 나눈다는 뜻인듯)하여 $n\rightarrow \infty$일 때 어떤 nontrivial한 분포에 수렴하는지 알려줌
+
+- 물론, 흔히 아는 CLT는 variance가 존재할 때 앞선 통계량에 $\sqrt{n}$을 곱하면 그 극한분포가 정규분포임을 의미
+
+- 분산이 존재하지 않거나 summand가 독립이 아닌 상황에서의 CLT 등은 @sec-limext 참조
+
+## The i.i.d. case
+
+::: {#thm-clt}
+
+## i.i.d., 유한분산일때의 CLT
+
+Let $X, X_1, X_2, \ldots$ be i.i.d. random variables with finite expectation $\mu$, and positive, finite variance $\sigma^2$, and set $S_n = X_1 + X_2 + \cdots + X_n, n\geq 1$. Then
+$$
+\frac{S_n - n\mu}{\sigma \sqrt{n}} \stackrel{d}{\rightarrow}\mathcal{N}(0,1), \quad{} \text{as }n \rightarrow\infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+특성함수에 대한 continuity theorem @thm-cfdistn 의 관점에서
+$$
+\varphi_{\frac{S_n - n\mu}{\sigma \sqrt{n}}} (t) \rightarrow \infty e^{-t^2/2} \quad{} \text{as }n \rightarrow\infty, \text{ for} \quad{} -\infty < t < \infty
+$$
+일을 보이면 충분하다. 간단하게 $\mu=0, \sigma=1$이라고 두자. 그러면 특성함수의 성질에 의해
+$$
+\begin{align*}
+\varphi_{\frac{S_n - n\mu}{\sigma \sqrt{n}}} (t) &=\varphi_{\frac{S_n }{\sqrt{n}}} (t) = \varphi_{S_n}\Big( \frac{t}{\sqrt{n}} \Big) = \Big( \varphi_X \Big( \frac{t}{\sqrt{n}}\Big)\Big)^n = \Big( 1- \frac{t^2}{2n} + o\Big( \frac{t^2}{n}\Big) \Big)^n\\
+&\rightarrow e^{-t^2/2} \quad{} \text{as }n \rightarrow\infty.
+\end{align*}
+$$
+:::
+
+## The Lindeberg–Levy–Feller Theorem
+
+- 이번엔 summand가 independent이나 identically distributed는 아닌 상황을 생각
+
+- 이를 $X_1, X_2, \ldots$ be independent random variable with finite variances, and set, for $k\geq 1$, $E(X_k) = \mu_k$ $\text{var}(X_k) = \sigma_k^2$, and, for $n\geq 1$, $S_n =\sum_{k=1}^n X_k$, and $s_n^2 = \sum_{k=1}^n \sigma_k^2$. 그리고 degenerate한 케이스는 고려하지 않기로 한다.
+
+::: {#def-lindebergcond}
+
+## Lindeberg conditions
+
+다음 두 개의 조건은 **Lindeberg conditions**라고 하며 general form의 CLT와 관련이 있다.
+$$
+\begin{align*}
+L_1 (n) &= \max_{1\leq k \leq n} \frac{\sigma_k^2}{s_n^2} \rightarrow 0 \quad{} \text{as } n\rightarrow \infty,\\
+L_2 (n) &= \frac{1}{s_n^2} \sum_{k=1}^n E(X_k - \mu_k)^2 I\{ |X_k - \mu_k | > \varepsilon s_n\} \stackrel{n\rightarrow \infty}{\longrightarrow}0.
+\end{align*}
+$$
+
+:::
+
+::: {#thm-lindebergclt}
+
+## Lindeberg–Levy–Feller CLT
+
+$X_1, X_2,\ldots$가 앞서와 같이 주어져 있다고 하자.
+
+1. 만약 @def-lindebergcond 의 두 번째 식이 만족된다면, @def-lindebergcond 의 첫 번째 식도 만족되고 
+$$
+\frac{1}{s_n}\sum_{k=1}^n (X_k - \mu_k) \stackrel{d}{\rightarrow}\mathcal{N}(0,1) \quad{} \text{as }n\rightarrow\infty
+$$
+도**(Lindeberg–Levy–Feller 버전의 CLT)** 만족한다.
+
+2. 만약  @def-lindebergcond 의 첫 번째 식과 Lindeberg–Levy–Feller 버전의 CLT를 만족한다면, @def-lindebergcond 의 두 번째 식도 만족한다.
+
+:::
+
+### Lyapounov’s Condition
+
+- Lindeberg condition은 증명하기 어려운 측면이 있어 이것보다 약간 강한 충분조건을 생각할 수 있는데 이것을 **Lyapounov condition**이라 함
+
+::: {#thm-lyapounovcond}
+
+## Lyapounov condition
+
+$X_1, X_2,\ldots$가 앞서와 같이 주어져 있다고 하자. 추가로 $E\vert X_k \vert^r <\infty$ for all $k$ and some $r>2$라고 하자. 만약
+$$
+\beta(n,r) = \frac{\sum_{k=1}^n E\vert |X_k - \mu_k \vert^r}{s_n^r} \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
+$$
+를 만족한다면 @thm-lindebergclt 의 CLT도 성립한다.
+
+:::

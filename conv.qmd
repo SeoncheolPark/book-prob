@@ -1,4 +1,4 @@
-# Convergence {.convergence}
+# Convergence {#sec-convergence}
 
 이 장에서는 확률변수의 수렴에 대해 알아본다. $X_1, X_2, \ldots$가 확률변수라고 하자.
 
@@ -506,6 +506,32 @@ $X_1, X_2 , \ldots$이 유한한 평균을 갖고 있다는 뜻은 $E|X_n|I\{|X_
 위키의 설명에 따르면 $X_n \stackrel{L^r}{\rightarrow}X$이면 $\lim_{n\rightarrow \infty}E[|X_n|^r] = E[|X|^r]$이 성립한다고 한다. 그러나 일반적인 moment의 convergence에 대해서는 잘 알지 못한다. 여기서는 uniformly integrablility를 추가해 기존 확률변수의 수렴과 moment convergence 사이의 관계에 대해 알아본다.
 
 We are now in the position to show that uniform integrability is the **correct** concept, that is, that a sequence that converges almost surely, in probability, or in distribution, and is uniformly integrable, converges in the mean, that moments converge and that uniform integrability is the minimal additional assumption for this to happen. [@Gut2014]
+
+## Continuity theorems
+
+- Uniqueness theorem: 두 개의 transform이 같으면 이와 연관된 distribution도 같음
+
+- 이를 약간 약화시켜 두 개의 transform이 almost equal이면 이와 연관된 distribution도 그렇지 않을까 하는 생각을 할 수도 있음
+
+- 어떤 transform이 coverge하면 이것과 관련된 분포의 열이나 확률변수 열로 그러할 것이라 짐작해 볼 수 있음
+
+- 이러한 류의 정리들을 **continuity theorem**이라고 함
+
+### The chracteristic function
+
+<!--
+Gut책 9.1
+-->
+
+::: {#thm-cfdistn}
+## 확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴
+
+$X, X_1, X_2 ,\ldots$가 확률변수라고 하자. 그러면
+$$
+\varphi_{X_n}(t) \stackrel{n\rightarrow\infty}{\longrightarrow}\varphi(t) ,\quad{}\forall t \Longleftrightarrow X_n\stackrel{d}{\rightarrow}X \quad{} \text{as } n\rightarrow\infty.
+$$
+
+:::
 
 ## References
 

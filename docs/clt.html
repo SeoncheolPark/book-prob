@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -89,6 +109,35 @@ MathJax = {
 </script>
 <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -301,15 +350,25 @@ MathJax = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-i.i.d.-case" id="toc-the-i.i.d.-case" class="nav-link active" data-scroll-target="#the-i.i.d.-case"><span class="header-section-number">9.1</span> The i.i.d. case</a></li>
+  <li><a href="#the-lindeberglevyfeller-theorem" id="toc-the-lindeberglevyfeller-theorem" class="nav-link" data-scroll-target="#the-lindeberglevyfeller-theorem"><span class="header-section-number">9.2</span> The Lindeberg–Levy–Feller Theorem</a>
+  <ul class="collapse">
+  <li><a href="#lyapounovs-condition" id="toc-lyapounovs-condition" class="nav-link" data-scroll-target="#lyapounovs-condition"><span class="header-section-number">9.2.1</span> Lyapounov’s Condition</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./measure.html">Probability</a></li><li class="breadcrumb-item"><a href="./clt.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></h1>
+<h1 class="title"><span id="sec-clt" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span></h1>
 </div>
 
 
@@ -326,8 +385,86 @@ MathJax = {
 </header>
 
 
+<p><span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 설명: i.i.d. rvs with mean <span class="math inline">\(\mu\)</span>인 <span class="math inline">\(X, X_1, X_2,\ldots\)</span>가 있을 때</p>
+<ul>
+<li><p>LLN: <span class="math inline">\(\frac{1}{n}\sum_{k=1}^n X_k \stackrel{n\rightarrow\infty}{\longrightarrow} \mu\)</span> in prob or almost surely</p></li>
+<li><p>CLT: <span class="math inline">\(\frac{1}{n}\sum_{k=1}-\mu\)</span>를 “blow up” (아마 적절한 값을 곱하고 나눈다는 뜻인듯)하여 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 어떤 nontrivial한 분포에 수렴하는지 알려줌</p></li>
+<li><p>물론, 흔히 아는 CLT는 variance가 존재할 때 앞선 통계량에 <span class="math inline">\(\sqrt{n}\)</span>을 곱하면 그 극한분포가 정규분포임을 의미</p></li>
+<li><p>분산이 존재하지 않거나 summand가 독립이 아닌 상황에서의 CLT 등은 <a href="limext.html" class="quarto-xref"><span>Chapter 11</span></a> 참조</p></li>
+</ul>
+<section id="the-i.i.d.-case" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="the-i.i.d.-case"><span class="header-section-number">9.1</span> The i.i.d. case</h2>
+<div id="thm-clt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.1 (i.i.d., 유한분산일때의 CLT)</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be i.i.d. random variables with finite expectation <span class="math inline">\(\mu\)</span>, and positive, finite variance <span class="math inline">\(\sigma^2\)</span>, and set <span class="math inline">\(S_n = X_1 + X_2 + \cdots + X_n, n\geq 1\)</span>. Then <span class="math display">\[
+\frac{S_n - n\mu}{\sigma \sqrt{n}} \stackrel{d}{\rightarrow}\mathcal{N}(0,1), \quad{} \text{as }n \rightarrow\infty.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>특성함수에 대한 continuity theorem <a href="conv.html#thm-cfdistn" class="quarto-xref">Theorem&nbsp;<span>7.6</span></a> 의 관점에서 <span class="math display">\[
+\varphi_{\frac{S_n - n\mu}{\sigma \sqrt{n}}} (t) \rightarrow \infty e^{-t^2/2} \quad{} \text{as }n \rightarrow\infty, \text{ for} \quad{} -\infty &lt; t &lt; \infty
+\]</span> 일을 보이면 충분하다. 간단하게 <span class="math inline">\(\mu=0, \sigma=1\)</span>이라고 두자. 그러면 특성함수의 성질에 의해 <span class="math display">\[
+\begin{align*}
+\varphi_{\frac{S_n - n\mu}{\sigma \sqrt{n}}} (t) &amp;=\varphi_{\frac{S_n }{\sqrt{n}}} (t) = \varphi_{S_n}\Big( \frac{t}{\sqrt{n}} \Big) = \Big( \varphi_X \Big( \frac{t}{\sqrt{n}}\Big)\Big)^n = \Big( 1- \frac{t^2}{2n} + o\Big( \frac{t^2}{n}\Big) \Big)^n\\
+&amp;\rightarrow e^{-t^2/2} \quad{} \text{as }n \rightarrow\infty.
+\end{align*}
+\]</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="the-lindeberglevyfeller-theorem" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="the-lindeberglevyfeller-theorem"><span class="header-section-number">9.2</span> The Lindeberg–Levy–Feller Theorem</h2>
+<ul>
+<li><p>이번엔 summand가 independent이나 identically distributed는 아닌 상황을 생각</p></li>
+<li><p>이를 <span class="math inline">\(X_1, X_2, \ldots\)</span> be independent random variable with finite variances, and set, for <span class="math inline">\(k\geq 1\)</span>, <span class="math inline">\(E(X_k) = \mu_k\)</span> <span class="math inline">\(\text{var}(X_k) = \sigma_k^2\)</span>, and, for <span class="math inline">\(n\geq 1\)</span>, <span class="math inline">\(S_n =\sum_{k=1}^n X_k\)</span>, and <span class="math inline">\(s_n^2 = \sum_{k=1}^n \sigma_k^2\)</span>. 그리고 degenerate한 케이스는 고려하지 않기로 한다.</p></li>
+</ul>
+<div id="def-lindebergcond" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 9.1 (Lindeberg conditions)</strong></span> 다음 두 개의 조건은 <strong>Lindeberg conditions</strong>라고 하며 general form의 CLT와 관련이 있다. <span class="math display">\[
+\begin{align*}
+L_1 (n) &amp;= \max_{1\leq k \leq n} \frac{\sigma_k^2}{s_n^2} \rightarrow 0 \quad{} \text{as } n\rightarrow \infty,\\
+L_2 (n) &amp;= \frac{1}{s_n^2} \sum_{k=1}^n E(X_k - \mu_k)^2 I\{ |X_k - \mu_k | &gt; \varepsilon s_n\} \stackrel{n\rightarrow \infty}{\longrightarrow}0.
+\end{align*}
+\]</span></p>
+</div>
+<div id="thm-lindebergclt" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.2 (Lindeberg–Levy–Feller CLT)</strong></span> <span class="math inline">\(X_1, X_2,\ldots\)</span>가 앞서와 같이 주어져 있다고 하자.</p>
+<ol type="1">
+<li><p>만약 <a href="#def-lindebergcond" class="quarto-xref">Definition&nbsp;<span>9.1</span></a> 의 두 번째 식이 만족된다면, <a href="#def-lindebergcond" class="quarto-xref">Definition&nbsp;<span>9.1</span></a> 의 첫 번째 식도 만족되고 <span class="math display">\[
+\frac{1}{s_n}\sum_{k=1}^n (X_k - \mu_k) \stackrel{d}{\rightarrow}\mathcal{N}(0,1) \quad{} \text{as }n\rightarrow\infty
+\]</span> 도<strong>(Lindeberg–Levy–Feller 버전의 CLT)</strong> 만족한다.</p></li>
+<li><p>만약 <a href="#def-lindebergcond" class="quarto-xref">Definition&nbsp;<span>9.1</span></a> 의 첫 번째 식과 Lindeberg–Levy–Feller 버전의 CLT를 만족한다면, <a href="#def-lindebergcond" class="quarto-xref">Definition&nbsp;<span>9.1</span></a> 의 두 번째 식도 만족한다.</p></li>
+</ol>
+</div>
+<section id="lyapounovs-condition" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="lyapounovs-condition"><span class="header-section-number">9.2.1</span> Lyapounov’s Condition</h3>
+<ul>
+<li>Lindeberg condition은 증명하기 어려운 측면이 있어 이것보다 약간 강한 충분조건을 생각할 수 있는데 이것을 <strong>Lyapounov condition</strong>이라 함</li>
+</ul>
+<div id="thm-lyapounovcond" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 9.3 (Lyapounov condition)</strong></span> <span class="math inline">\(X_1, X_2,\ldots\)</span>가 앞서와 같이 주어져 있다고 하자. 추가로 <span class="math inline">\(E\vert X_k \vert^r &lt;\infty\)</span> for all <span class="math inline">\(k\)</span> and some <span class="math inline">\(r&gt;2\)</span>라고 하자. 만약 <span class="math display">\[
+\beta(n,r) = \frac{\sum_{k=1}^n E\vert |X_k - \mu_k \vert^r}{s_n^r} \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
+\]</span> 를 만족한다면 <a href="#thm-lindebergclt" class="quarto-xref">Theorem&nbsp;<span>9.2</span></a> 의 CLT도 성립한다.</p>
+</div>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Gut2014" class="csl-entry" role="listitem">
+Gut, Allan. 2014. <em>Probability: A Graduate Course</em>. 2nd ed. Springer New York.
+</div>
+</div>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -440,11 +440,22 @@
     ]
   },
   {
+    "objectID": "conv.html#continuity-theorems",
+    "href": "conv.html#continuity-theorems",
+    "title": "7  Convergence",
+    "section": "7.10 Continuity theorems",
+    "text": "7.10 Continuity theorems\n\nUniqueness theorem: 두 개의 transform이 같으면 이와 연관된 distribution도 같음\n이를 약간 약화시켜 두 개의 transform이 almost equal이면 이와 연관된 distribution도 그렇지 않을까 하는 생각을 할 수도 있음\n어떤 transform이 coverge하면 이것과 관련된 분포의 열이나 확률변수 열로 그러할 것이라 짐작해 볼 수 있음\n이러한 류의 정리들을 continuity theorem이라고 함\n\n\n7.10.1 The chracteristic function\n\n\nTheorem 7.6 (확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴) \\(X, X_1, X_2 ,\\ldots\\)가 확률변수라고 하자. 그러면 \\[\n\\varphi_{X_n}(t) \\stackrel{n\\rightarrow\\infty}{\\longrightarrow}\\varphi(t) ,\\quad{}\\forall t \\Longleftrightarrow X_n\\stackrel{d}{\\rightarrow}X \\quad{} \\text{as } n\\rightarrow\\infty.\n\\]",
+    "crumbs": [
+      "Probability",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convergence</span>"
+    ]
+  },
+  {
     "objectID": "conv.html#references",
     "href": "conv.html#references",
     "title": "7  Convergence",
-    "section": "7.10 References",
-    "text": "7.10 References\n\n확률변수론\n\n\n\n\n\nDurrett, Rick. 2019. Probability: Theory and Examples. 5th ed. Cambridge University Press. https://www.ebook.de/de/product/34699864/rick_duke_university_north_carolina_durrett_probability.html.\n\n\nGut, Allan. 2014. Probability: A Graduate Course. 2nd ed. Springer New York.\n\n\nPolansky, Alan M. 2011. Introduction to Statistical Limit Theory. CRC Press.",
+    "section": "7.11 References",
+    "text": "7.11 References\n\n확률변수론\n\n\n\n\n\nDurrett, Rick. 2019. Probability: Theory and Examples. 5th ed. Cambridge University Press. https://www.ebook.de/de/product/34699864/rick_duke_university_north_carolina_durrett_probability.html.\n\n\nGut, Allan. 2014. Probability: A Graduate Course. 2nd ed. Springer New York.\n\n\nPolansky, Alan M. 2011. Introduction to Statistical Limit Theory. CRC Press.",
     "crumbs": [
       "Probability",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Convergence</span>"
@@ -503,6 +514,39 @@
     "crumbs": [
       "Probability",
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>The Law of Large Numbers</span>"
+    ]
+  },
+  {
+    "objectID": "clt.html",
+    "href": "clt.html",
+    "title": "9  Central Limit Theorem",
+    "section": "",
+    "text": "9.1 The i.i.d. case",
+    "crumbs": [
+      "Probability",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Central Limit Theorem</span>"
+    ]
+  },
+  {
+    "objectID": "clt.html#the-i.i.d.-case",
+    "href": "clt.html#the-i.i.d.-case",
+    "title": "9  Central Limit Theorem",
+    "section": "",
+    "text": "Theorem 9.1 (i.i.d., 유한분산일때의 CLT) Let \\(X, X_1, X_2, \\ldots\\) be i.i.d. random variables with finite expectation \\(\\mu\\), and positive, finite variance \\(\\sigma^2\\), and set \\(S_n = X_1 + X_2 + \\cdots + X_n, n\\geq 1\\). Then \\[\n\\frac{S_n - n\\mu}{\\sigma \\sqrt{n}} \\stackrel{d}{\\rightarrow}\\mathcal{N}(0,1), \\quad{} \\text{as }n \\rightarrow\\infty.\n\\]\n\n\n\n\n\n\n\nProof\n\n\n\n\n\n특성함수에 대한 continuity theorem Theorem 7.6 의 관점에서 \\[\n\\varphi_{\\frac{S_n - n\\mu}{\\sigma \\sqrt{n}}} (t) \\rightarrow \\infty e^{-t^2/2} \\quad{} \\text{as }n \\rightarrow\\infty, \\text{ for} \\quad{} -\\infty &lt; t &lt; \\infty\n\\] 일을 보이면 충분하다. 간단하게 \\(\\mu=0, \\sigma=1\\)이라고 두자. 그러면 특성함수의 성질에 의해 \\[\n\\begin{align*}\n\\varphi_{\\frac{S_n - n\\mu}{\\sigma \\sqrt{n}}} (t) &=\\varphi_{\\frac{S_n }{\\sqrt{n}}} (t) = \\varphi_{S_n}\\Big( \\frac{t}{\\sqrt{n}} \\Big) = \\Big( \\varphi_X \\Big( \\frac{t}{\\sqrt{n}}\\Big)\\Big)^n = \\Big( 1- \\frac{t^2}{2n} + o\\Big( \\frac{t^2}{n}\\Big) \\Big)^n\\\\\n&\\rightarrow e^{-t^2/2} \\quad{} \\text{as }n \\rightarrow\\infty.\n\\end{align*}\n\\]",
+    "crumbs": [
+      "Probability",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Central Limit Theorem</span>"
+    ]
+  },
+  {
+    "objectID": "clt.html#the-lindeberglevyfeller-theorem",
+    "href": "clt.html#the-lindeberglevyfeller-theorem",
+    "title": "9  Central Limit Theorem",
+    "section": "9.2 The Lindeberg–Levy–Feller Theorem",
+    "text": "9.2 The Lindeberg–Levy–Feller Theorem\n\n이번엔 summand가 independent이나 identically distributed는 아닌 상황을 생각\n이를 \\(X_1, X_2, \\ldots\\) be independent random variable with finite variances, and set, for \\(k\\geq 1\\), \\(E(X_k) = \\mu_k\\) \\(\\text{var}(X_k) = \\sigma_k^2\\), and, for \\(n\\geq 1\\), \\(S_n =\\sum_{k=1}^n X_k\\), and \\(s_n^2 = \\sum_{k=1}^n \\sigma_k^2\\). 그리고 degenerate한 케이스는 고려하지 않기로 한다.\n\n\nDefinition 9.1 (Lindeberg conditions) 다음 두 개의 조건은 Lindeberg conditions라고 하며 general form의 CLT와 관련이 있다. \\[\n\\begin{align*}\nL_1 (n) &= \\max_{1\\leq k \\leq n} \\frac{\\sigma_k^2}{s_n^2} \\rightarrow 0 \\quad{} \\text{as } n\\rightarrow \\infty,\\\\\nL_2 (n) &= \\frac{1}{s_n^2} \\sum_{k=1}^n E(X_k - \\mu_k)^2 I\\{ |X_k - \\mu_k | &gt; \\varepsilon s_n\\} \\stackrel{n\\rightarrow \\infty}{\\longrightarrow}0.\n\\end{align*}\n\\]\n\n\nTheorem 9.2 (Lindeberg–Levy–Feller CLT) \\(X_1, X_2,\\ldots\\)가 앞서와 같이 주어져 있다고 하자.\n\n만약 Definition 9.1 의 두 번째 식이 만족된다면, Definition 9.1 의 첫 번째 식도 만족되고 \\[\n\\frac{1}{s_n}\\sum_{k=1}^n (X_k - \\mu_k) \\stackrel{d}{\\rightarrow}\\mathcal{N}(0,1) \\quad{} \\text{as }n\\rightarrow\\infty\n\\] 도(Lindeberg–Levy–Feller 버전의 CLT) 만족한다.\n만약 Definition 9.1 의 첫 번째 식과 Lindeberg–Levy–Feller 버전의 CLT를 만족한다면, Definition 9.1 의 두 번째 식도 만족한다.\n\n\n\n9.2.1 Lyapounov’s Condition\n\nLindeberg condition은 증명하기 어려운 측면이 있어 이것보다 약간 강한 충분조건을 생각할 수 있는데 이것을 Lyapounov condition이라 함\n\n\nTheorem 9.3 (Lyapounov condition) \\(X_1, X_2,\\ldots\\)가 앞서와 같이 주어져 있다고 하자. 추가로 \\(E\\vert X_k \\vert^r &lt;\\infty\\) for all \\(k\\) and some \\(r&gt;2\\)라고 하자. 만약 \\[\n\\beta(n,r) = \\frac{\\sum_{k=1}^n E\\vert |X_k - \\mu_k \\vert^r}{s_n^r} \\rightarrow 0 \\quad{} \\text{as }n \\rightarrow \\infty\n\\] 를 만족한다면 Theorem 9.2 의 CLT도 성립한다.\n\n\n\n\n\nGut, Allan. 2014. Probability: A Graduate Course. 2nd ed. Springer New York.",
+    "crumbs": [
+      "Probability",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Central Limit Theorem</span>"
     ]
   },
   {

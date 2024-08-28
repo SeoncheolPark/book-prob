@@ -1,4 +1,4 @@
-# Limit Theorems: Extensions and Generalizations {.limext}
+# Limit Theorems: Extensions and Generalizations {#sec-limext}
 
 ```{=html}
 <!--
