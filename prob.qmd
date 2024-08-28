@@ -1,4 +1,4 @@
-# Probabilty {.prob}
+# Probability {.prob}
 
 
 
