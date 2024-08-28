@@ -604,19 +604,28 @@ X_n = o_P (a_n): &amp;\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\righta
 &amp;\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}&gt;\varepsilon \Big] =0, \quad{} \forall \varepsilon &gt;0.
 \end{align*}\]</span> If <span class="math inline">\(X_n = o_p (a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>little</strong>-<span class="math inline">\(o_p\)</span> of <span class="math inline">\(a_n\)</span>. To indicate that <span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>, we write <span class="math inline">\(X_n = o_p(1)\)</span>.</p>
 </div>
-<p>Therefore, little-<span class="math inline">\(o_p\)</span> allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.</p>
-<!--
-::: {#exm-littleop}
-
-Let $Y_n = o_p (n^{-1/2})$ and $Z_n = o_p(n^{-1})$. Then $Z_n$ converges faster to zero in probability than $Y_n$. To visualize this, recall that $X_n = o_p(a_n)$ and that limit definitions entail that
-$$
-\forall \varepsilon, \delta >0, \exists n_0 = n_0 (\varepsilon, \delta)\in \mathbb{N}: \forall n \geq n_0(\varepsilon, \delta), \quad{} P[|X_n|>a_n\varepsilon]<\delta.
-$$
-Therefore, for fixed $\varepsilon, \delta>0$ and a fixed $n\geq \max (n_{0,Y}, n_{0,Z})$, then $P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]>1-\delta$ and $P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]>1-\delta$, but the latter interval is much shorter, hence $Z_n$ is forced to be more tightly concentrated about $0$.
-
-:::
--->
-<p>Big <span class="math inline">\(O_p\)</span> allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold <span class="math inline">\(C\)</span> converges to zero. As with its deterministic versions <span class="math inline">\(o\)</span> and <span class="math inline">\(O\)</span>, a <strong>little-</strong><span class="math inline">\(o_p\)</span> <strong>is more restrictive than a big-</strong><span class="math inline">\(O_p\)</span>, and the former implies the latter.</p>
+<div id="exm-littleop" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.2</strong></span> Let <span class="math inline">\(Y_n = o_p (n^{-1/2})\)</span> and <span class="math inline">\(Z_n = o_p(n^{-1})\)</span>. Then <span class="math inline">\(Z_n\)</span> converges faster to zero in probability than <span class="math inline">\(Y_n\)</span>. To visualize this, recall that <span class="math inline">\(X_n = o_p(a_n)\)</span> and that limit definitions entail that <span class="math display">\[
+\forall \varepsilon, \delta &gt;0, \exists n_0 = n_0 (\varepsilon, \delta)\in \mathbb{N}: \forall n \geq n_0(\varepsilon, \delta), \quad{} P[|X_n|&gt;a_n\varepsilon]&lt;\delta.
+\]</span> Therefore, for fixed <span class="math inline">\(\varepsilon, \delta&gt;0\)</span> and a fixed <span class="math inline">\(n\geq \max (n_{0,Y}, n_{0,Z})\)</span>, then <span class="math inline">\(P[Y_n \in (-n^{-1/2}\varepsilon, n^{-1/2}\varepsilon)]&gt;1-\delta\)</span> and <span class="math inline">\(P[Z_n \in (-n^{-1}\varepsilon, n^{-1}\varepsilon)]&gt;1-\delta\)</span>, but the latter interval is much shorter, hence <span class="math inline">\(Z_n\)</span> is forced to be more tightly concentrated about <span class="math inline">\(0\)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Little-<span class="math inline">\(o_p\)</span> allows us to easily quantify the speed at which a sequence of random variables converges to zero in probability.</p></li>
+<li><p>Big <span class="math inline">\(O_p\)</span> allows us to bound a sequence of random variables in probability, in the sense that we can state that the probability of being above an arbitrarily large threshold <span class="math inline">\(C\)</span> converges to zero.</p></li>
+<li><p>As with its deterministic versions <span class="math inline">\(o\)</span> and <span class="math inline">\(O\)</span>, a <strong>little-</strong><span class="math inline">\(o_p\)</span> <strong>is more restrictive than a big-</strong><span class="math inline">\(O_p\)</span>, and the former implies the latter.</p></li>
+</ul>
+</div>
+</div>
 <div id="def-bigop" class="theorem definition">
 <p><span class="theorem-title"><strong>Definition 15.4 (Big-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
 X_n = O_P (a_n): \Longleftrightarrow&amp;  \forall \varepsilon&gt;0, \exists C_{\varepsilon}&gt;0, n_0(\varepsilon) \in \mathbb{N}:\\
@@ -624,12 +633,12 @@ X_n = O_P (a_n): \Longleftrightarrow&amp;  \forall \varepsilon&gt;0, \exists C_{
 \Longleftrightarrow &amp;\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} &gt;C \Big]=0.
 \end{align*}\]</span> If <span class="math inline">\(X_n = O_p(a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>big-</strong><span class="math inline">\(O_p\)</span> of <span class="math inline">\(a_n\)</span>.</p>
 </div>
-<div id="exm-bigop" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.2</strong></span> Chebyshev inequality entails that <span class="math inline">\(P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2\)</span>, <span class="math inline">\(\forall t&gt;0\)</span>. Setting <span class="math inline">\(\varepsilon :=\text{Var}[X_n]/t^2\)</span> and <span class="math inline">\(C_{\varepsilon}:=1/\sqrt{\varepsilon}\)</span>, then <span class="math inline">\(P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon\)</span>. Therefore, <span class="math display">\[
+<div id="exm-bigop1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.3</strong></span> Chebyshev inequality entails that <span class="math inline">\(P[|X_n - E[X_n]|\geq t]\leq \text{Var}[X_n]/t^2\)</span>, <span class="math inline">\(\forall t&gt;0\)</span>. Setting <span class="math inline">\(\varepsilon :=\text{Var}[X_n]/t^2\)</span> and <span class="math inline">\(C_{\varepsilon}:=1/\sqrt{\varepsilon}\)</span>, then <span class="math inline">\(P\Big[ |X_n - E[X_n]|\geq \sqrt{\text{Var}[X_n]}C_{\varepsilon} \Big] \leq \varepsilon\)</span>. Therefore, <span class="math display">\[
 X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
 \]</span> This is a very useful result, as it gives an efficient way of deriving the big-<span class="math inline">\(O_p\)</span> form of a sequence of random variables <span class="math inline">\(X_n\)</span> with finite variances.</p>
 </div>
-<p>An application of <a href="#exm-bigop" class="quarto-xref">Example&nbsp;<span>15.2</span></a> shows that <span class="math inline">\(X_n = O_p (n^{-1/2})\)</span> for <span class="math inline">\(X_n \stackrel{d}{=}\mathcal{N}(0,1/n)\)</span>. The nature of this statement and its relation with little-<span class="math inline">\(o_p\)</span> is visualized, which shows a particular realization <span class="math inline">\(X_n(\omega)\)</span> of the sequence of random variables.</p>
+<p>An application of <a href="#exm-bigop1" class="quarto-xref">Example&nbsp;<span>15.3</span></a> shows that <span class="math inline">\(X_n = O_p (n^{-1/2})\)</span> for <span class="math inline">\(X_n \stackrel{d}{=}\mathcal{N}(0,1/n)\)</span>. The nature of this statement and its relation with little-<span class="math inline">\(o_p\)</span> is visualized, which shows a particular realization <span class="math inline">\(X_n(\omega)\)</span> of the sequence of random variables.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -646,6 +655,49 @@ X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
 <li><p><span class="math inline">\(n^{1/3}X_n \stackrel{P}{\rightarrow} 0\)</span>.</p></li>
 <li><p><span class="math inline">\(n^{1/2}X_n \stackrel{P}{\rightarrow} \mathcal{N}(0,1)\)</span>.</p></li>
 </ol>
+</div>
+<div id="thm-convdbigop" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 15.1 (분포수렴이면 <span class="math inline">\(O_p(1)\)</span>)</strong></span> If <span class="math inline">\(X_n \stackrel{d}{\rightarrow}X\)</span>, then <span class="math inline">\(X_n = O_p(1)\)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://stats.stackexchange.com/questions/567308/converge-in-distribution-and-order-of-convergence">StackExchange</a> 참고</li>
+</ul>
+</div>
+</div>
+</div>
+<p>다음은 big-<span class="math inline">\(O_p\)</span> 및 little-<span class="math inline">\(o_p\)</span>에 관한 성질들이다.</p>
+<div id="prp-bigoplittleop" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 15.2</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold:</p>
+<ol type="1">
+<li><p><span class="math inline">\(o_p(a_n) = O_p(a_n)\)</span> (little-<span class="math inline">\(o_p\)</span> implies big-<span class="math inline">\(O_p\)</span>)</p></li>
+<li><p><span class="math inline">\(o(1) = o_p(1)\)</span>, <span class="math inline">\(O(1) = O_p(1)\)</span> (deterministic implies probabilistic)</p></li>
+<li><p><span class="math inline">\(kO_p(a_n) = O_p(a_n)\)</span>, <span class="math inline">\(k o_p(a_n) = o_p (a_n), k\in \mathbb{R}\)</span>.</p></li>
+<li><p><span class="math inline">\(o_p(a_n) + o_p(b_n) = o_p(a_n + b_n)\)</span>, <span class="math inline">\(O_p(a_n) + O_p(b_n) = O_p(a_n + b_n)\)</span>.</p></li>
+<li><p><span class="math inline">\(o_p(a_n)o_p(b_n) = o_p(a_n b_n)\)</span>, <span class="math inline">\(O_p(a_n)O_p(b_n) = O_p(a_n b_n)\)</span> .</p></li>
+<li><p><span class="math inline">\(o_p(a_n) + O_p(b_n) = O_p(a_n + b_n)\)</span>, <span class="math inline">\(o_p(a_n)O_p(b_n)=o_p(a_n b_n)\)</span>.</p></li>
+<li><p><span class="math inline">\(o_p(1) O_p(a_n) = o_p (a_n)\)</span>.</p></li>
+<li><p><span class="math inline">\((1+o_p(1))^{-1} = O_p(1)\)</span>.</p></li>
+</ol>
+</div>
+<div id="exm-bigop2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.4</strong></span> 위 proposition의 2, 4번을 이용하면 <a href="#exm-bigop1" class="quarto-xref">Example&nbsp;<span>15.3</span></a> 에 다음과 같은 표현이 가능하다. <span class="math display">\[
+\begin{align*}
+X_n &amp;= O(E[X_n]) + O_p (\sqrt{\text{var}[X_n]})\\
+&amp;= O_p(E[X_n] + \sqrt{\text{var}[X_n]}).
+\end{align*}
+\]</span></p>
 </div>
 
 

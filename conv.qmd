@@ -425,7 +425,9 @@ Hogg책 5.2.1
 $\{X_n\}$이 확률변수 열이고 $X$가 확률변수라고 하자. $X_n \rightarrow X$로 분포수렴하면 $\{X_n\}$은 확률유계이다.
 :::
 
-::: {.proof}
+::: {.callout-note collapse="true"}
+## Proof
+
 $\varepsilon>0$일 때 $X$에 대해 $P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon$이 성립하는 $x_{\varepsilon}$을 선택하자. $x_{\varepsilon}$와 $-x_{\varepsilon}$가 $F$의 연속인 점이 되도록 항상 $x_{\varepsilon}$를 선택할 수 있다. 그러면 다음을 얻는다.
 
 \begin{align*}
@@ -456,7 +458,10 @@ $$
 
 :::
 
-::: {.proof}
+::: {.callout-note collapse="true"}
+
+## Proof
+
 $\varepsilon>0$이라고 하자. 다음이 성립하도록 $B_{\varepsilon}>0$과 정수 $N_{\varepsilon}$을 선택한다.
 $$
 n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\varepsilon.
