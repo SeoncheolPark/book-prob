@@ -627,7 +627,8 @@ $$
 
 A sequence $X_1, X_2, \ldots$ is called **uniformly integrable** iff $$
 E|X_n|I\{ |X_n| > a\} \rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
-$$ 분포함수를 이용해 다른 방법으로 정의할 수도 있다. $X_1, X_2,\ldots$ is unifomly integrable iff $$
+$$ 분포함수를 이용해 다른 방법으로 정의할 수도 있다. $X_1, X_2,\ldots$ is unifomly integrable iff 
+$$
 \int_{|x|>a} |x|dF_{X_n}(x)\rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
 $$
 :::
@@ -654,11 +655,6 @@ We are now in the position to show that uniform integrability is the **correct**
 
 - 이러한 류의 정리들을 **continuity theorem**이라고 함
 
-### The chracteristic function
-
-<!--
-Gut책 9.1
--->
 
 ::: {#thm-cfdistn}
 ## 확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴
@@ -668,6 +664,68 @@ $$
 \varphi_{X_n}(t) \stackrel{n\rightarrow\infty}{\longrightarrow}\varphi(t) ,\quad{}\forall t \Longleftrightarrow X_n\stackrel{d}{\rightarrow}X \quad{} \text{as } n\rightarrow\infty.
 $$
 
+:::
+
+## Convergence of Functions of Random Variables: The Continuous Mapping Theorem
+
+**Q**. $X_1,X_2,\ldots$가 어떤 형태로든 $X$로 수렴함이 알려져 있다고 하자. 그렇다면 어떤 실함수 $h$에 대해 $h(X_1), h(X_2),\ldots$도 같은 sense로 $h(X)$에 수렴할 것인가?
+
+::: {#thm-convfctas}
+
+Let $X, X_1, X_2, \ldots$ be random variables such that
+$$
+X_n \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty,
+$$
+and suppose that $h$ is a continuous function. Then
+$$
+h(X_n) \stackrel{\text{a.s.}}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow \infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+The definition of continuity implies that,
+$$
+\{ \omega: X_n(\omega) \rightarrow X(\omega)\} \subset \{ \omega: h(X_n(\omega)) \rightarrow h(X(\omega))\}
+$$
+and since the former set has probability 1, so has the latter. [@Gut2014]
+
+:::
+
+::: {#thm-convfctprob}
+
+Let $X, X_1, X_2, \ldots$ be random variables such that
+$$
+X_n \stackrel{p}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty,
+$$
+and suppose that $h$ is a continuous function. Then
+$$
+h(X_n) \stackrel{p}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow \infty.
+$$
+
+:::
+
+::: {#thm-convfctdist}
+
+## The continuous mapping theorem
+
+Let $X, X_1, X_2, \ldots$ be random variables and suppose that
+$$
+X_n \stackrel{d}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty.
+$$
+If $g$ is a continuous, then
+$$
+g(X_n) \stackrel{d}{\rightarrow} g(X) \quad{} \text{as } n \rightarrow \infty.
+$$
+
+:::
+
+::: callout-tip
+## Remark
+
+Continuous functions are limit-preserving. [@Hansen2022]
 :::
 
 ## References
