@@ -28,7 +28,7 @@ book:
     - part: "Stochastic Processes"
     - part: "Extremes"
       chapters:
-        - ev.qmd
+        - ht.qmd
         - mev.qmd
     - part: "High-Dimensional Probability"
       chapters:

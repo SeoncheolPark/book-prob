@@ -271,3 +271,60 @@ $$
 
 
 :::
+
+## Borel-Cantelli Lemmas
+
+- Almost sure convergence @def-sconv 와 관련된 툴
+
+::: {#thm-firstborelcantelli}
+## The first Borel-Cantelli lemma
+
+Let $\{A_n, n \geq 1\}$ be arbitrary events. Then
+$$
+\sum_{n=1}^{\infty}P(A_n) < \infty \Longrightarrow P(A_n \text{ i.o.})=0.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+$$
+\begin{align*}
+P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)\\
+&\leq P\Big( \bigcup_{m=n}^{\infty}A_m \Big) \leq \sum_{m=n}^{\infty}P(A_m) \stackrel{n\rightarrow\infty}{\longrightarrow}0.
+\end{align*}
+$$
+
+:::
+
+
+::: callout-tip
+## Remark
+
+- The first Borel-Cantelli lemma의 역은 성립하지 않는다. 그러나 독립 조건을 넣으면 다음과 같은 second Borel-Cantelli lemma를 얻을 수 있다.
+:::
+
+::: {#thm-secondborelcantelli}
+## The second Borel-Cantelli lemma
+
+Let $\{A_n, n \geq 1\}$ be **independent** events. Then
+$$
+\sum_{n=1}^{\infty}P(A_n) = \infty \Longrightarrow P(A_n \text{ i.o.})=1.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+By independence
+$$
+\begin{align*}
+P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)=1-P \Big (\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_m^c\Big)\\
+&=1 - \lim_{n\rightarrow\infty}P\Big( \bigcap_{m=n}^{\infty}A_m^c\Big) = 1-\lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}P(A_m^c)\\
+&=1 - \lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}(1-P(A_m)) = 1-0 = 1.
+\end{align*}
+$$
+
+:::

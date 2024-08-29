@@ -1,0 +1,22 @@
+# Regular Variation {.variation}
+
+## Scale invariance and power laws
+
+- Scale invariance: 어떤 분포로부터 얻은 sample의 scale (unit)이 바뀌더라도, 분포의 shape이 바뀌지 않는 상황 [@Nair2022]
+
+::: {#def-scaleinv}
+
+A distribution function $F$ is **scale invariant if there exists an $x_0 > 0$ and a continuous positive function $g$ such that
+$$
+\overline{F}(\lambda x) = g(\lambda)\overline{F}(x),
+$$ 
+$\forall x, \lambda$ satisfying $x, \lambda x \geq x_0$.
+
+:::
+
+::: callout-tip
+## Remark
+
+$\lambda$를 "change of scale"로 이해 가능
+
+:::

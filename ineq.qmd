@@ -221,11 +221,16 @@ chebyshev_upper_bounds <- 4/ns;
 hoeffding_upper_bounds <- exp(-ns/8 )
 empirical_upper_bounds <- rep(0,length(ns))
 test_size = 1E7;
-for (ni in 1:length(ns) ){
-  n <- ns[ni]
-  expvec <- rbinom(n=test_size,size=n,prob=p);
-  empirical_upper_bounds[ni] <- (sum(( expvec - n*p) > n/4 ))/test_size;
-}
+#for (ni in 1:length(ns) ){
+#  n <- ns[ni]
+#  expvec <- rbinom(n=test_size,size=n,prob=p);
+#  empirical_upper_bounds[ni] <- (sum(( expvec - n*p) > n/4 ))/test_size;
+#}
+#result1 <- list()
+#result1$ns <- ns; result1$expvec <- expvec; result1$empirical_upper_bounds <- empirical_upper_bounds
+#saveRDS(result1, "Hoeffding.RDS")
+result <- readRDS("Hoeffding.RDS")
+expvec <- result$expvec; empirical_upper_bounds <- result$empirical_upper_bounds
 
 toplot <- data.frame(ns=c(ns,ns,ns), probability= c(empirical_upper_bounds, chebyshev_upper_bounds, hoeffding_upper_bounds),
                      group=c(rep("Empirical",length(ns)),rep("Chebyshev",length(ns)), rep("Hoeffding",length(ns))))

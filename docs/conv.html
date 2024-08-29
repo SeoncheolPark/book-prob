@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Convergence – A Biggner's Guide to Probability and Extremes</title>
+<title>A Biggner's Guide to Probability and Extremes – 7&nbsp; Convergence</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -287,8 +287,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extreme Value Theory</span></span></a>
+  <a href="./ht.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Heavy-Tailed Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -356,26 +356,28 @@ window.Quarto = {
    
   <ul>
   <li><a href="#definitions" id="toc-definitions" class="nav-link active" data-scroll-target="#definitions"><span class="header-section-number">7.1</span> Definitions</a></li>
-  <li><a href="#almost-sure-convergence" id="toc-almost-sure-convergence" class="nav-link" data-scroll-target="#almost-sure-convergence"><span class="header-section-number">7.2</span> Almost Sure Convergence</a></li>
-  <li><a href="#convergence-in-mean" id="toc-convergence-in-mean" class="nav-link" data-scroll-target="#convergence-in-mean"><span class="header-section-number">7.3</span> Convergence in Mean</a></li>
-  <li><a href="#convergence-in-probability" id="toc-convergence-in-probability" class="nav-link" data-scroll-target="#convergence-in-probability"><span class="header-section-number">7.4</span> Convergence in Probability</a></li>
-  <li><a href="#convergence-in-distribution" id="toc-convergence-in-distribution" class="nav-link" data-scroll-target="#convergence-in-distribution"><span class="header-section-number">7.5</span> Convergence in Distribution</a>
+  <li><a href="#complete-convergence" id="toc-complete-convergence" class="nav-link" data-scroll-target="#complete-convergence"><span class="header-section-number">7.2</span> Complete Convergence</a></li>
+  <li><a href="#almost-sure-convergence" id="toc-almost-sure-convergence" class="nav-link" data-scroll-target="#almost-sure-convergence"><span class="header-section-number">7.3</span> Almost Sure Convergence</a></li>
+  <li><a href="#convergence-in-mean" id="toc-convergence-in-mean" class="nav-link" data-scroll-target="#convergence-in-mean"><span class="header-section-number">7.4</span> Convergence in Mean</a></li>
+  <li><a href="#convergence-in-probability" id="toc-convergence-in-probability" class="nav-link" data-scroll-target="#convergence-in-probability"><span class="header-section-number">7.5</span> Convergence in Probability</a></li>
+  <li><a href="#convergence-in-distribution" id="toc-convergence-in-distribution" class="nav-link" data-scroll-target="#convergence-in-distribution"><span class="header-section-number">7.6</span> Convergence in Distribution</a>
   <ul class="collapse">
-  <li><a href="#weak-convergence" id="toc-weak-convergence" class="nav-link" data-scroll-target="#weak-convergence"><span class="header-section-number">7.5.1</span> Weak convergence</a></li>
-  <li><a href="#vague-convergence" id="toc-vague-convergence" class="nav-link" data-scroll-target="#vague-convergence"><span class="header-section-number">7.5.2</span> Vague convergence</a></li>
+  <li><a href="#weak-convergence" id="toc-weak-convergence" class="nav-link" data-scroll-target="#weak-convergence"><span class="header-section-number">7.6.1</span> Weak convergence</a></li>
+  <li><a href="#vague-convergence" id="toc-vague-convergence" class="nav-link" data-scroll-target="#vague-convergence"><span class="header-section-number">7.6.2</span> Vague convergence</a></li>
   </ul></li>
-  <li><a href="#relationship-among-convergences" id="toc-relationship-among-convergences" class="nav-link" data-scroll-target="#relationship-among-convergences"><span class="header-section-number">7.6</span> Relationship Among Convergences</a></li>
-  <li><a href="#bounded-in-probability" id="toc-bounded-in-probability" class="nav-link" data-scroll-target="#bounded-in-probability"><span class="header-section-number">7.7</span> Bounded in Probability</a>
+  <li><a href="#relationship-among-convergences" id="toc-relationship-among-convergences" class="nav-link" data-scroll-target="#relationship-among-convergences"><span class="header-section-number">7.7</span> Relationship Among Convergences</a></li>
+  <li><a href="#bounded-in-probability" id="toc-bounded-in-probability" class="nav-link" data-scroll-target="#bounded-in-probability"><span class="header-section-number">7.8</span> Bounded in Probability</a>
   <ul class="collapse">
-  <li><a href="#bounded-in-probability와-converge-in-distribution" id="toc-bounded-in-probability와-converge-in-distribution" class="nav-link" data-scroll-target="#bounded-in-probability와-converge-in-distribution"><span class="header-section-number">7.7.1</span> Bounded in probability와 converge in distribution</a></li>
+  <li><a href="#bounded-in-probability와-converge-in-distribution" id="toc-bounded-in-probability와-converge-in-distribution" class="nav-link" data-scroll-target="#bounded-in-probability와-converge-in-distribution"><span class="header-section-number">7.8.1</span> Bounded in probability와 converge in distribution</a></li>
   </ul></li>
-  <li><a href="#uniform-integrability" id="toc-uniform-integrability" class="nav-link" data-scroll-target="#uniform-integrability"><span class="header-section-number">7.8</span> Uniform Integrability</a></li>
-  <li><a href="#convergence-of-moments" id="toc-convergence-of-moments" class="nav-link" data-scroll-target="#convergence-of-moments"><span class="header-section-number">7.9</span> Convergence of Moments</a></li>
-  <li><a href="#continuity-theorems" id="toc-continuity-theorems" class="nav-link" data-scroll-target="#continuity-theorems"><span class="header-section-number">7.10</span> Continuity theorems</a>
+  <li><a href="#converses" id="toc-converses" class="nav-link" data-scroll-target="#converses"><span class="header-section-number">7.9</span> Converses</a></li>
+  <li><a href="#uniform-integrability" id="toc-uniform-integrability" class="nav-link" data-scroll-target="#uniform-integrability"><span class="header-section-number">7.10</span> Uniform Integrability</a></li>
+  <li><a href="#convergence-of-moments" id="toc-convergence-of-moments" class="nav-link" data-scroll-target="#convergence-of-moments"><span class="header-section-number">7.11</span> Convergence of Moments</a></li>
+  <li><a href="#continuity-theorems" id="toc-continuity-theorems" class="nav-link" data-scroll-target="#continuity-theorems"><span class="header-section-number">7.12</span> Continuity theorems</a>
   <ul class="collapse">
-  <li><a href="#the-chracteristic-function" id="toc-the-chracteristic-function" class="nav-link" data-scroll-target="#the-chracteristic-function"><span class="header-section-number">7.10.1</span> The chracteristic function</a></li>
+  <li><a href="#the-chracteristic-function" id="toc-the-chracteristic-function" class="nav-link" data-scroll-target="#the-chracteristic-function"><span class="header-section-number">7.12.1</span> The chracteristic function</a></li>
   </ul></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.11</span> References</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.13</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -413,18 +415,28 @@ window.Quarto = {
 <h2 data-number="7.1" class="anchored" data-anchor-id="definitions"><span class="header-section-number">7.1</span> Definitions</h2>
 <p>다음의 정의들은 확률론에서 많이 등장하는 정의들이다. <span class="math inline">\(X_1,X_2,\ldots\)</span>를 확률변수열이라 하자.</p>
 </section>
-<section id="almost-sure-convergence" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="almost-sure-convergence"><span class="header-section-number">7.2</span> Almost Sure Convergence</h2>
+<section id="complete-convergence" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="complete-convergence"><span class="header-section-number">7.2</span> Complete Convergence</h2>
+<p><span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 에 나오는 내용으로 Borel-Cantelli lemma와 밀접한 관련이 있다고 한다.</p>
+<div id="def-ccconv" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 7.1 (Complete convergence)</strong></span> <span class="math inline">\(X_n\)</span> <strong>converges completely</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> iff <span class="math display">\[
+\sum_{n=1}^{\infty} P(\vert X_n - X \vert &gt; \varepsilon) &lt; \infty, \quad{} \forall \varepsilon&gt;0.
+\]</span></p>
+</div>
+<p>여기서는 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 <span class="math inline">\(X_n \stackrel{\text{c.c.}}{\rightarrow}X\)</span>로 표기하기로 한다.</p>
+</section>
+<section id="almost-sure-convergence" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="almost-sure-convergence"><span class="header-section-number">7.3</span> Almost Sure Convergence</h2>
 <!--
 송익호 확률변수론
 -->
 <div id="def-sconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.1 (Sure convergence (틀림없는 수렴))</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>이 표본공간 안에 어떤 점 <span class="math inline">\(\omega\)</span>를 잡아도 <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.2 (Sure convergence (틀림없는 수렴))</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>이 표본공간 안에 어떤 점 <span class="math inline">\(\omega\)</span>를 잡아도 <span class="math display">\[
 \lim_{n\rightarrow\infty} X_n (\omega) = X(\omega)
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges surely (a.s.)</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{s}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
 <div id="def-asconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.2 (Almost sure convergence (거의 틀림없는 수렴))</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>은 <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.3 (Almost sure convergence (거의 틀림없는 수렴))</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>은 <span class="math display">\[
 P\{ \omega: X_n (\omega)\rightarrow X(\omega) \text{ as } n\rightarrow \infty\})=1
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges almost surely (a.s.)</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{a.s.}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
@@ -453,7 +465,7 @@ Remark
 <ul>
 <li>구간 <span class="math inline">\([0,1]\)</span>에서 아무렇게나 한 점을 골라서 <span class="math inline">\(\omega\)</span>라 하고, <span class="math inline">\(\omega\)</span>가 <span class="math inline">\([0,1]\)</span>의 어느 부분 구간에 들어갈 확률은 그 부분 구간의 길이와 같다고 가정</li>
 </ul>
-<table class="caption-top table">
+<table class="table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -493,7 +505,7 @@ Remark
 <ul>
 <li><p>(<span class="math inline">\(\Longrightarrow\)</span>) 확률변수 열 <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span>는 <span class="math inline">\(\varepsilon&gt;0\)</span>일 때 <span class="math display">\[
 \sum_{n=1}^\infty P\{ |X_n | &gt; \varepsilon\} &lt; \infty
-\]</span> 이면 보렐-칸텔리 정리를 써서 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 <span class="math inline">\(X_n \stackrel{\text{a.s.}}{\rightarrow} 0\)</span>이라는 것을 알 수 있음</p></li>
+\]</span> 이면 보렐-칸텔리 정리 <a href="rvs.html#thm-firstborelcantelli" class="quarto-xref">Theorem&nbsp;<span>4.1</span></a> 를 써서 <span class="math inline">\(n\rightarrow \infty\)</span>일 때 <span class="math inline">\(X_n \stackrel{\text{a.s.}}{\rightarrow} 0\)</span>이라는 것을 알 수 있음</p></li>
 <li><p>(<span class="math inline">\(\Longleftarrow\)</span>) <span class="math inline">\(\omega\)</span>의 분포가 <span class="math inline">\([0,1]\)</span>에서 고르고 <span class="math display">\[
 X_n (\omega)=
 \begin{cases}
@@ -524,11 +536,11 @@ Remark
 </div>
 </div>
 </section>
-<section id="convergence-in-mean" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="convergence-in-mean"><span class="header-section-number">7.3</span> Convergence in Mean</h2>
+<section id="convergence-in-mean" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="convergence-in-mean"><span class="header-section-number">7.4</span> Convergence in Mean</h2>
 <p><strong>Q</strong>. 거의 틀림없는 수렴보다 조금 더 느슨한 수렴은 없을까?</p>
 <div id="def-rmeanconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.3 (Converge in <span class="math inline">\(r\)</span>-mean)</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>가 <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.4 (Converge in <span class="math inline">\(r\)</span>-mean)</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>가 <span class="math display">\[
 E|X_n - X|^r \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges in</strong> <span class="math inline">\(r-\)</span>mean to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{r}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> 또는 <span class="math inline">\(X_n \stackrel{L^\text{r}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
@@ -599,8 +611,8 @@ Remark
 </ul>
 </div>
 </section>
-<section id="convergence-in-probability" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="convergence-in-probability"><span class="header-section-number">7.4</span> Convergence in Probability</h2>
+<section id="convergence-in-probability" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="convergence-in-probability"><span class="header-section-number">7.5</span> Convergence in Probability</h2>
 <!--
 ::: panel-tabset
 ## SNU, 2020 Winter, Problem 1 {.unlisted .unnumbered}
@@ -619,7 +631,7 @@ Let $0 < r < \infty$, $X_n \in \mathcal{L}^r$, and $X_n \rightarrow X$ in probab
 :::
 -->
 <div id="def-pconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.4 (Converge in Probability)</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>이 임의의 <span class="math inline">\(\varepsilon&gt;0\)</span>에 대해 <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.5 (Converge in Probability)</strong></span> 확률변수열 <span class="math inline">\(X_n\)</span>이 임의의 <span class="math inline">\(\varepsilon&gt;0\)</span>에 대해 <span class="math display">\[
 P\{ |X_n-X| &gt;\varepsilon) \rightarrow 0 \quad{} \text{as} \quad{} n\rightarrow \infty.
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges in probability</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{p}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 </div>
@@ -634,15 +646,15 @@ Remark
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p><a href="#def-pconv" class="quarto-xref">Definition&nbsp;<span>7.4</span></a> 에 적혀 있는 식은 어떤 순간에는 거의 모든 수열이 <span class="math inline">\(2\varepsilon\)</span>이라는 범위 안에 들어가 있지만 그 수열들이 그 안에 꼭 머물러 있는 것은 아니라는 것을 뜻함</p></li>
+<li><p><a href="#def-pconv" class="quarto-xref">Definition&nbsp;<span>7.5</span></a> 에 적혀 있는 식은 어떤 순간에는 거의 모든 수열이 <span class="math inline">\(2\varepsilon\)</span>이라는 범위 안에 들어가 있지만 그 수열들이 그 안에 꼭 머물러 있는 것은 아니라는 것을 뜻함</p></li>
 <li><p>따라서 한 번 <span class="math inline">\(2\varepsilon\)</span>이라는 범위 안에 들어가면 그 안에 꼭 머문다는 것을 뜻하는 <a href="#thm-asconv" class="quarto-xref">Theorem&nbsp;<span>7.1</span></a> 의 식과 다름</p></li>
 <li><p>이 사실은 <span class="math inline">\(\{|X_n - X|&gt; \varepsilon\}\)</span>과 <span class="math inline">\(\{\sup_{m\geq n} |X_m-X|&gt;\varepsilon \}\)</span>의 뜻의 차이로부터 옴</p></li>
 </ul>
 </div>
 </div>
 </section>
-<section id="convergence-in-distribution" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="convergence-in-distribution"><span class="header-section-number">7.5</span> Convergence in Distribution</h2>
+<section id="convergence-in-distribution" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="convergence-in-distribution"><span class="header-section-number">7.6</span> Convergence in Distribution</h2>
 <!--
 ::: panel-tabset
 ## SNU, 2019 Summer, Problem 3 {.unlisted .unnumbered}
@@ -657,7 +669,7 @@ Show that, if $X_n$ converges weakly to $X$ and $\{X_n, n\geq 1\}$ is uniformly 
 :::
 -->
 <div id="def-distnconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.5 (Converge in Distribution)</strong></span> <span class="math inline">\(C(F_X)=\{x : F_X(x) \text{ is continuous at }x\}=\text{the continuity set of }F_X\)</span>라 하자. 확률변수열 <span class="math inline">\(X_n\)</span>가 <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.6 (Converge in Distribution)</strong></span> <span class="math inline">\(C(F_X)=\{x : F_X(x) \text{ is continuous at }x\}=\text{the continuity set of }F_X\)</span>라 하자. 확률변수열 <span class="math inline">\(X_n\)</span>가 <span class="math display">\[
 F_{X_n}(x) \rightarrow F_X(x) \text{as} \quad{} n\rightarrow \infty, \quad{} \forall x \in C(F_X).
 \]</span> 을 만족하면 <span class="math inline">\(X_n\)</span> <strong>converges in distribution</strong> to the random variable <span class="math inline">\(X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 하고, <span class="math inline">\(X_n \stackrel{\text{d}}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>라 쓴다.</p>
 <p>다음과 같이 정의할 수도 있다고 한다. 확률변수열 <span class="math inline">\(X_n\)</span>가 모든 <span class="math inline">\(h\in C_{B}\)</span>에 대해 <span class="math display">\[
@@ -687,11 +699,11 @@ F(x) =
 <li><p><span class="math inline">\(\lim_{n\rightarrow\infty}F_n (0) \neq F(0)\)</span>이지만, 분포수렴은 누적분포함수의 불연속 점에서 수렴을 따지지 않기 때문에 <span class="math inline">\(F(x)\)</span>의 불연속점인 <span class="math inline">\(x=0\)</span>에서 <span class="math inline">\(F_n(x)\)</span>가 수렴하는지 따지지 않아도 된다.</p></li>
 </ul>
 </div>
-<section id="weak-convergence" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="weak-convergence"><span class="header-section-number">7.5.1</span> Weak convergence</h3>
+<section id="weak-convergence" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="weak-convergence"><span class="header-section-number">7.6.1</span> Weak convergence</h3>
 <p>Distributional convergence is often called weak convergence in these more general settings. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
 <div id="def-wconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.6 (Converge Weakly)</strong></span> 이는 <span class="citation" data-cites="Durrett2019">Durrett (<a href="references.html#ref-Durrett2019" role="doc-biblioref">2019</a>)</span> 의 3.2에 나온다. A sequence of distribution functions is said to <strong>converge weakly</strong> to a limit <span class="math inline">\(F\)</span> (written <span class="math inline">\(F_n \Rightarrow F\)</span>) if <span class="math inline">\(F_n(y) \rightarrow F(y)\)</span> for all <span class="math inline">\(y\)</span> that are continuity points of <span class="math inline">\(F\)</span>. A sequence of random variables <span class="math inline">\(X_n\)</span> is said to <strong>converge weakly</strong> or <strong>converge in distribution</strong> to a limit <span class="math inline">\(X_{\infty}\)</span> (written <span class="math inline">\(X_n \Rightarrow X_{\infty})\)</span> if their distribution functions <span class="math inline">\(F_n (x) = P(X_n \leq x)\)</span> converges weakly.</p>
+<p><span class="theorem-title"><strong>Definition 7.7 (Converge Weakly)</strong></span> 이는 <span class="citation" data-cites="Durrett2019">Durrett (<a href="references.html#ref-Durrett2019" role="doc-biblioref">2019</a>)</span> 의 3.2에 나온다. A sequence of distribution functions is said to <strong>converge weakly</strong> to a limit <span class="math inline">\(F\)</span> (written <span class="math inline">\(F_n \Rightarrow F\)</span>) if <span class="math inline">\(F_n(y) \rightarrow F(y)\)</span> for all <span class="math inline">\(y\)</span> that are continuity points of <span class="math inline">\(F\)</span>. A sequence of random variables <span class="math inline">\(X_n\)</span> is said to <strong>converge weakly</strong> or <strong>converge in distribution</strong> to a limit <span class="math inline">\(X_{\infty}\)</span> (written <span class="math inline">\(X_n \Rightarrow X_{\infty})\)</span> if their distribution functions <span class="math inline">\(F_n (x) = P(X_n \leq x)\)</span> converges weakly.</p>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -707,18 +719,40 @@ Remark
 </div>
 </div>
 </section>
-<section id="vague-convergence" class="level3" data-number="7.5.2">
-<h3 data-number="7.5.2" class="anchored" data-anchor-id="vague-convergence"><span class="header-section-number">7.5.2</span> Vague convergence</h3>
+<section id="vague-convergence" class="level3" data-number="7.6.2">
+<h3 data-number="7.6.2" class="anchored" data-anchor-id="vague-convergence"><span class="header-section-number">7.6.2</span> Vague convergence</h3>
 <p>다음은 <span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 5.8.1에 나오는 vague convergence이다. Vague convergence의 limiting random variable이 <strong>proper</strong>하지 않아도 된다는 점이 distributional convergence와의 차이점이다.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Proper하지 않은 random variable이라는 것은 probability mass가 escape to infinity할 수도 있음을 의미</p>
+</div>
+</div>
 <div id="def-vconv" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.7 (Converge Vaguely)</strong></span> A sequence of distribution functions <span class="math inline">\(\{F_n, n\geq 1\}\)</span> <strong>converges vaguely</strong> to the <strong>pseudo-distribution function</strong> <span class="math inline">\(H\)</span> if, for every finite interval <span class="math inline">\(I=(a,b] \subset \mathbb{R}\)</span>, where <span class="math inline">\(a,b\in C(H)\)</span>, <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.8 (Converge Vaguely)</strong></span> A sequence of distribution functions <span class="math inline">\(\{F_n, n\geq 1\}\)</span> <strong>converges vaguely</strong> to the <strong>pseudo-distribution function</strong> <span class="math inline">\(H\)</span> if, for every finite interval <span class="math inline">\(I=(a,b] \subset \mathbb{R}\)</span>, where <span class="math inline">\(a,b\in C(H)\)</span>, <span class="math display">\[
 F_n(I) \rightarrow H(I) \quad{} \text{as} \quad{} n \rightarrow \infty.
 \]</span> Notation: <span class="math inline">\(F_n \stackrel{\text{v}}{\rightarrow}H\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p>
 </div>
 </section>
 </section>
-<section id="relationship-among-convergences" class="level2" data-number="7.6">
-<h2 data-number="7.6" class="anchored" data-anchor-id="relationship-among-convergences"><span class="header-section-number">7.6</span> Relationship Among Convergences</h2>
+<section id="relationship-among-convergences" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="relationship-among-convergences"><span class="header-section-number">7.7</span> Relationship Among Convergences</h2>
+<div id="thm-convrelationship" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 7.3 (수렴 사이의 관계)</strong></span> <span class="math inline">\(X, X_1, X_2,\ldots\)</span>를 확률변수라고 하자. 그러면 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 수렴 사이에 다음과 같은 관계가 성립한다. <span class="math display">\[
+\begin{align*}
+X_n \stackrel{\text{c.c.}}{\rightarrow} X \Longrightarrow X_n \stackrel{\text{a.s.}}{\rightarrow} X \Longrightarrow X_n &amp;\stackrel{p}{\rightarrow} X \Longrightarrow X_n \stackrel{d}{\rightarrow} X\\
+&amp;\Uparrow\\
+X_n &amp;\stackrel{r}{\rightarrow} X.
+\end{align*}
+\]</span></p>
+</div>
 <div id="exm-dnotp" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.6 (분포수렴하나 확률수렴하지 않는 확률변수열)</strong></span> &nbsp;</p>
 <ul>
@@ -769,15 +803,15 @@ P\{ X_n = x\} =
 </ul>
 </div>
 </section>
-<section id="bounded-in-probability" class="level2" data-number="7.7">
-<h2 data-number="7.7" class="anchored" data-anchor-id="bounded-in-probability"><span class="header-section-number">7.7</span> Bounded in Probability</h2>
+<section id="bounded-in-probability" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="bounded-in-probability"><span class="header-section-number">7.8</span> Bounded in Probability</h2>
 <p><span class="citation" data-cites="Polansky2011">(<a href="references.html#ref-Polansky2011" role="doc-biblioref">Polansky 2011</a>)</span> Convergence of distribution과 관련된 중요한 질문 중 하나는 limiting distribution이 valid distribution function이냐는 것이다. 이 말인 즉슨 sequence of distribution functions <span class="math inline">\(\{ F_n \}_{n=1}^{\infty}\)</span>가 <span class="math display">\[
 \lim_{n\rightarrow\infty} F_n (x) = F(x), \quad{} \forall x \in C(F) \quad{} \text{for some fct } F(x)
 \]</span> 일 때 <span class="math inline">\(F(x)\)</span>가 distribution functions여야 할 필요가 있는가? 여기에서 <span class="math inline">\(F(x) \in [0,1]\)</span>, <span class="math inline">\(F(x)\)</span>가 non-decreasing, right continuity 등은 미적분학 등의 내용을 이용해 보일 수 있으므로 <span class="math display">\[
 \lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
 \]</span> 을 만족하면 <span class="math inline">\(F\)</span>가 valid distribution function이 될 것이다.</p>
 <div id="def-bip" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.8 (Bounded in Probability (확률유계))</strong></span> Let <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> be a sequence of random variables. The sequence is <strong>bounded in probability</strong> if for every <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math inline">\(\exists x_{\varepsilon} \in \mathbb{R}\)</span> and <span class="math inline">\(n_{\varepsilon} \in \mathbb{N}\)</span> such that <span class="math inline">\(P(|X_n| \leq x_{\varepsilon})&gt;1-\varepsilon\)</span> for all <span class="math inline">\(n &gt; n_{\varepsilon}\)</span>.</p>
+<p><span class="theorem-title"><strong>Definition 7.9 (Bounded in Probability (확률유계))</strong></span> Let <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> be a sequence of random variables. The sequence is <strong>bounded in probability</strong> if for every <span class="math inline">\(\varepsilon&gt;0\)</span>, <span class="math inline">\(\exists x_{\varepsilon} \in \mathbb{R}\)</span> and <span class="math inline">\(n_{\varepsilon} \in \mathbb{N}\)</span> such that <span class="math inline">\(P(|X_n| \leq x_{\varepsilon})&gt;1-\varepsilon\)</span> for all <span class="math inline">\(n &gt; n_{\varepsilon}\)</span>.</p>
 </div>
 <div id="exm-notbip" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.9 (Bounded in Probability가 아닌 확률변수열)</strong></span> Consider the situation that <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> is a sequence of random variables such that the distribution function of <span class="math inline">\(X_n\)</span> is given by <span class="math display">\[
@@ -796,20 +830,20 @@ F_n(x) =
 </ul>
 </div>
 <div id="thm-validbip" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.3 (Bounded in Probability는 Limiting distribution이 valid인 것과 동치)</strong></span> Let <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> be a sequence of random variables where <span class="math inline">\(X_n\)</span> has distribution function <span class="math inline">\(F_n\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>. Suppose that <span class="math inline">\(F_n \rightsquigarrow F\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> where <span class="math inline">\(F\)</span> may or may not be a vaild distribution function. Then, <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.4 (Bounded in Probability는 Limiting distribution이 valid인 것과 동치)</strong></span> Let <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> be a sequence of random variables where <span class="math inline">\(X_n\)</span> has distribution function <span class="math inline">\(F_n\)</span> for all <span class="math inline">\(n\in \mathbb{N}\)</span>. Suppose that <span class="math inline">\(F_n \rightsquigarrow F\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span> where <span class="math inline">\(F\)</span> may or may not be a vaild distribution function. Then, <span class="math display">\[
 \lim_{x\rightarrow \infty} F(x) = 1, \quad{} \lim_{x\rightarrow -\infty} F(x) = 0
 \]</span> if and only if the sequence <span class="math inline">\(\{X_n \}_{n=1}^{\infty}\)</span> is bounded in probability.</p>
 </div>
-<section id="bounded-in-probability와-converge-in-distribution" class="level3" data-number="7.7.1">
-<h3 data-number="7.7.1" class="anchored" data-anchor-id="bounded-in-probability와-converge-in-distribution"><span class="header-section-number">7.7.1</span> Bounded in probability와 converge in distribution</h3>
+<section id="bounded-in-probability와-converge-in-distribution" class="level3" data-number="7.8.1">
+<h3 data-number="7.8.1" class="anchored" data-anchor-id="bounded-in-probability와-converge-in-distribution"><span class="header-section-number">7.8.1</span> Bounded in probability와 converge in distribution</h3>
 <!--
 Hogg책 5.2.1
 -->
 <div id="thm-convdbp" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.4 (분포수렴이면 확률유계)</strong></span> <span class="math inline">\(\{X_n\}\)</span>이 확률변수 열이고 <span class="math inline">\(X\)</span>가 확률변수라고 하자. <span class="math inline">\(X_n \rightarrow X\)</span>로 분포수렴하면 <span class="math inline">\(\{X_n\}\)</span>은 확률유계이다.</p>
+<p><span class="theorem-title"><strong>Theorem 7.5 (분포수렴이면 확률유계)</strong></span> <span class="math inline">\(\{X_n\}\)</span>이 확률변수 열이고 <span class="math inline">\(X\)</span>가 확률변수라고 하자. <span class="math inline">\(X_n \rightarrow X\)</span>로 분포수렴하면 <span class="math inline">\(\{X_n\}\)</span>은 확률유계이다.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -818,7 +852,7 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\varepsilon&gt;0\)</span>일 때 <span class="math inline">\(X\)</span>에 대해 <span class="math inline">\(P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon\)</span>이 성립하는 <span class="math inline">\(x_{\varepsilon}\)</span>을 선택하자. <span class="math inline">\(x_{\varepsilon}\)</span>와 <span class="math inline">\(-x_{\varepsilon}\)</span>가 <span class="math inline">\(F\)</span>의 연속인 점이 되도록 항상 <span class="math inline">\(x_{\varepsilon}\)</span>를 선택할 수 있다. 그러면 다음을 얻는다.</p>
 <p><span class="math display">\[\begin{align*}
@@ -835,12 +869,12 @@ Proof
 </div>
 <p>확률유계인 열(또는 확률변수로 분포수렴하는 것)을 생각하는 한 가지 방법은 <span class="math inline">\(|X_n|\)</span>의 확률질량이 <span class="math inline">\(\infty\)</span>로 벗어나지 않는다는 것이다. 종종 분포수렴 대신 확률유계성을 이용할 수 있다.</p>
 <div id="thm-bppconvp" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.5 (확률유계인 확률변수열과 확률수렴하는 확률변수열의 곱은 확률수렴)</strong></span> <span class="math inline">\(\{X_n\}\)</span>이 확률유계인 확률변수 열이고 <span class="math inline">\(\{Y_n\}\)</span>이 0으로 확률수렴하는 확률변수 열이라면 <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.6 (확률유계인 확률변수열과 확률수렴하는 확률변수열의 곱은 확률수렴)</strong></span> <span class="math inline">\(\{X_n\}\)</span>이 확률유계인 확률변수 열이고 <span class="math inline">\(\{Y_n\}\)</span>이 0으로 확률수렴하는 확률변수 열이라면 <span class="math display">\[
 X_n Y_n \stackrel{P}{\rightarrow}0.
 \]</span></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -849,7 +883,7 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><span class="math inline">\(\varepsilon&gt;0\)</span>이라고 하자. 다음이 성립하도록 <span class="math inline">\(B_{\varepsilon}&gt;0\)</span>과 정수 <span class="math inline">\(N_{\varepsilon}\)</span>을 선택한다. <span class="math display">\[
 n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\varepsilon.
@@ -864,47 +898,173 @@ n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\vare
 </div>
 </section>
 </section>
-<section id="uniform-integrability" class="level2" data-number="7.8">
-<h2 data-number="7.8" class="anchored" data-anchor-id="uniform-integrability"><span class="header-section-number">7.8</span> Uniform Integrability</h2>
-<p>Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터, 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. <strong>Uniform integrability</strong> 조건이 추가되면 그러함이 알려져 있다. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
+<section id="converses" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="converses"><span class="header-section-number">7.9</span> Converses</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>처음 두 개의 정리는 <span class="math inline">\(X\)</span>가 어떤 상수 <span class="math inline">\(c\)</span>에 대해 <span class="math inline">\(P(X=c)=1\)</span>을 만족하는 degenerate random variable일 경우 역이 성립함을 보여줌</p>
+</div>
+</div>
+<div id="thm-ascc" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 7.7</strong></span> If <span class="math inline">\(X_1, X_2, \ldots\)</span>are independent and <span class="math inline">\(c\)</span> a constant, then <span class="math display">\[
+X_n \stackrel{\text{c.c.}}{\rightarrow} c \Longleftrightarrow X_n \stackrel{\text{a.s.}}{\rightarrow} c  \quad{} \text{as } n \rightarrow \infty.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since both statements are equiv to <span class="math display">\[
+\sum_{n=1}^{\infty} P(\vert X_n - c\vert &gt; \varepsilon) &lt;\infty, \quad{} \forall \varepsilon&gt;0
+\]</span> the conclusion follows from the <a href="rvs.html#thm-firstborelcantelli" class="quarto-xref">Theorem&nbsp;<span>4.1</span></a> and <a href="rvs.html#thm-secondborelcantelli" class="quarto-xref">Theorem&nbsp;<span>4.2</span></a> .</p>
+</div>
+</div>
+</div>
+<div id="thm-dp" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 7.8</strong></span> Let <span class="math inline">\(X_1,X_2, \ldots\)</span> be random variables and <span class="math inline">\(c\)</span> a constant. Then <span class="math display">\[
+X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty \Longleftrightarrow X_n \stackrel{p}{\rightarrow} c \quad{} \text{as } n\rightarrow\infty.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>확률수렴이면 분포수렴이므로 분포수렴일때 확률수렴인지만 보면 됨. <span class="math inline">\(X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty\)</span>이 성립한다고 하자. 그러면 <span class="math display">\[
+\begin{align*}
+P(\vert X_n - c \vert &gt; \varepsilon) &amp;= 1-P(c-\varepsilon \leq X_n \leq c+\varepsilon)\\
+&amp;= 1 - F_{X_n}(c+\varepsilon) + F_{X_n} (c-\varepsilon) - P(X_n = c-\varepsilon)\\
+&amp;\leq 1 - F_{X_n}(c+\varepsilon) + F_{X_n} (c-\varepsilon) \rightarrow 1 - 1 + 0\\
+&amp;= 0 \quad{} \text{as } n\rightarrow \infty.
+\end{align*}
+\]</span></p>
+</div>
+</div>
+</div>
+<p>다음은 subsequence를 활용한 역으로 바꾸는 방법이다.</p>
+<div id="thm-subseqccas" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 7.9</strong></span> Let <span class="math inline">\(X_1,X_2, \ldots\)</span> be random variables such that <span class="math inline">\(X_n \stackrel{p}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>. Then there exists a non-decreasing subsequence <span class="math inline">\(\{n_k, k\geq 1\}\)</span> of the positive integers, such that <span class="math display">\[
+X_{n_k} \stackrel{\text{c.c.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \infty.
+\]</span> In particular, <span class="math display">\[
+X_{n_k} \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \infty.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By assumption, there exists a non-decreasing subsequence, <span class="math inline">\(\{n_k, k\geq 1\}\)</span>, such that <span class="math display">\[
+P\Big( \vert X_{n_k} - X\vert &gt; \frac{1}{2^k}\Big) &lt; \frac{1}{2^k}.
+\]</span> Consequently, <span class="math display">\[
+\sum_{k=1}^{\infty} P \Big(\vert X_{n_k} - X\vert &gt; \frac{1}{2^k} \Big) &lt;\infty.
+\]</span> Since <span class="math inline">\(\frac{1}{2^k} &lt; \varepsilon\)</span> for any <span class="math inline">\(\varepsilon&gt;0\)</span> whenever <span class="math inline">\(k&gt; \log (1/\varepsilon)/\log 2\)</span>, it follows that <span class="math display">\[
+\sum_{k=1}^{\infty}P \Big(\vert X_{n_k} - X\vert &gt; \varepsilon \Big) &lt;\infty.
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>수열에서 <a href="https://mathcs.org/analysis/reals/numseq/proofs/subconv.html"><span class="math inline">\(a\)</span>로 수렴하는 convergent sequence가 있는 것은 모든 subsequence에서 <span class="math inline">\(a\)</span>로 수렴하는 subsequence를 만들어낼 수 있음과 동치</a>인 유명한 정리가 있음</p></li>
+<li><p>(개인적인 생각) 확률수렴은 말 그대로 특정 확률변수에 수렴할 확률이 1인 것 뿐이라 어떤 <span class="math inline">\(\omega\)</span>를 생각할 때 sequence에서 매우 큰 <span class="math inline">\(N\)</span>을 잡는다 하더라도 <span class="math inline">\(X_n(\omega), n\geq N\)</span>이 항상 <span class="math inline">\(X(\omega)\)</span>에 어떤 threshold (예를 들면 <span class="math inline">\(\varepsilon\)</span>)보다 항상 가까이 있다고 말할 수는 없는 것 같다. 다만 확률이 1이므로 <span class="math inline">\(N\)</span>이 커지면 threshold 바깥으로 튈 가능성은 점점 주는 것 같다. 이를 이용해보면 튀는 친구들을 적절히 잘 피할 수 있는 확률변수열의 subsequence열을 항상 생각할 수 있다면 이 subsequence로 만든 새로운 확률변수열은 확률수렴이 아닌 거의 확실한 수렴등 더 강한 조건의 수렴을 만들어낼 수 있다는 것으로 보인다. (그림으로 그려두면 좋긴 한데 능력 부족)</p></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="uniform-integrability" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="uniform-integrability"><span class="header-section-number">7.10</span> Uniform Integrability</h2>
+<!--
+그Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터,
+-->
+<p>앞서 <a href="#thm-convrelationship" class="quarto-xref">Theorem&nbsp;<span>7.3</span></a> 로부터 <span class="math inline">\(X_n\stackrel{r}{\rightarrow}X \Longrightarrow X_n\stackrel{p}{\rightarrow} X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>임을 안다. 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. <strong>Uniform integrability</strong> 조건이 추가되면 그러함이 알려져 있다. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
 <div id="def-uintegrability" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 7.9 (Uniform Integrability)</strong></span> A sequence <span class="math inline">\(X_1, X_2, \ldots\)</span> is called <strong>uniformly integrable</strong> iff <span class="math display">\[
+<p><span class="theorem-title"><strong>Definition 7.10 (Uniform Integrability)</strong></span> A sequence <span class="math inline">\(X_1, X_2, \ldots\)</span> is called <strong>uniformly integrable</strong> iff <span class="math display">\[
 E|X_n|I\{ |X_n| &gt; a\} \rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
 \]</span> 분포함수를 이용해 다른 방법으로 정의할 수도 있다. <span class="math inline">\(X_1, X_2,\ldots\)</span> is unifomly integrable iff <span class="math display">\[
 \int_{|x|&gt;a} |x|dF_{X_n}(x)\rightarrow 0 \quad{} \text{as} \quad{} a \rightarrow \infty \quad{} \text{uniformly in } n.
 \]</span></p>
 </div>
-<div class="proof remark">
-<p><span class="proof-title"><em>Remark</em>. </span><span class="math inline">\(X_1, X_2 , \ldots\)</span>이 유한한 평균을 갖고 있다는 뜻은 <span class="math inline">\(E|X_n|I\{|X_n|&gt;a\}\rightarrow 0\)</span> as <span class="math inline">\(a \rightarrow \infty\)</span> for every <span class="math inline">\(n\)</span>을 의미한다. 즉 convergent integrals의 tail이 0으로 수렴해야 하는 것이다. Uniformly integragle은 the contributions in the tails of the integrals tend to <span class="math inline">\(0\)</span> <strong>uniformly</strong> for all members of the sequence임을 뜻한다. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><span class="math inline">\(X_1, X_2 , \ldots\)</span>이 유한한 평균을 갖고 있다는 뜻은 <span class="math inline">\(E|X_n|I\{|X_n|&gt;a\}\rightarrow 0\)</span> as <span class="math inline">\(a \rightarrow \infty\)</span> for every <span class="math inline">\(n\)</span>을 의미한다. 즉 convergent integrals의 tail이 0으로 수렴해야 하는 것이다. Uniformly integragle은 the contributions in the tails of the integrals tend to <span class="math inline">\(0\)</span> <strong>uniformly</strong> for all members of the sequence임을 뜻한다. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
+</div>
 </div>
 </section>
-<section id="convergence-of-moments" class="level2" data-number="7.9">
-<h2 data-number="7.9" class="anchored" data-anchor-id="convergence-of-moments"><span class="header-section-number">7.9</span> Convergence of Moments</h2>
+<section id="convergence-of-moments" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="convergence-of-moments"><span class="header-section-number">7.11</span> Convergence of Moments</h2>
 <p>위키의 설명에 따르면 <span class="math inline">\(X_n \stackrel{L^r}{\rightarrow}X\)</span>이면 <span class="math inline">\(\lim_{n\rightarrow \infty}E[|X_n|^r] = E[|X|^r]\)</span>이 성립한다고 한다. 그러나 일반적인 moment의 convergence에 대해서는 잘 알지 못한다. 여기서는 uniformly integrablility를 추가해 기존 확률변수의 수렴과 moment convergence 사이의 관계에 대해 알아본다.</p>
 <p>We are now in the position to show that uniform integrability is the <strong>correct</strong> concept, that is, that a sequence that converges almost surely, in probability, or in distribution, and is uniformly integrable, converges in the mean, that moments converge and that uniform integrability is the minimal additional assumption for this to happen. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
 </section>
-<section id="continuity-theorems" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="continuity-theorems"><span class="header-section-number">7.10</span> Continuity theorems</h2>
+<section id="continuity-theorems" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="continuity-theorems"><span class="header-section-number">7.12</span> Continuity theorems</h2>
 <ul>
 <li><p>Uniqueness theorem: 두 개의 transform이 같으면 이와 연관된 distribution도 같음</p></li>
 <li><p>이를 약간 약화시켜 두 개의 transform이 almost equal이면 이와 연관된 distribution도 그렇지 않을까 하는 생각을 할 수도 있음</p></li>
 <li><p>어떤 transform이 coverge하면 이것과 관련된 분포의 열이나 확률변수 열로 그러할 것이라 짐작해 볼 수 있음</p></li>
 <li><p>이러한 류의 정리들을 <strong>continuity theorem</strong>이라고 함</p></li>
 </ul>
-<section id="the-chracteristic-function" class="level3" data-number="7.10.1">
-<h3 data-number="7.10.1" class="anchored" data-anchor-id="the-chracteristic-function"><span class="header-section-number">7.10.1</span> The chracteristic function</h3>
+<section id="the-chracteristic-function" class="level3" data-number="7.12.1">
+<h3 data-number="7.12.1" class="anchored" data-anchor-id="the-chracteristic-function"><span class="header-section-number">7.12.1</span> The chracteristic function</h3>
 <!--
 Gut책 9.1
 -->
 <div id="thm-cfdistn" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.6 (확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴)</strong></span> <span class="math inline">\(X, X_1, X_2 ,\ldots\)</span>가 확률변수라고 하자. 그러면 <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.10 (확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴)</strong></span> <span class="math inline">\(X, X_1, X_2 ,\ldots\)</span>가 확률변수라고 하자. 그러면 <span class="math display">\[
 \varphi_{X_n}(t) \stackrel{n\rightarrow\infty}{\longrightarrow}\varphi(t) ,\quad{}\forall t \Longleftrightarrow X_n\stackrel{d}{\rightarrow}X \quad{} \text{as } n\rightarrow\infty.
 \]</span></p>
 </div>
 </section>
 </section>
-<section id="references" class="level2" data-number="7.11">
-<h2 data-number="7.11" class="anchored" data-anchor-id="references"><span class="header-section-number">7.11</span> References</h2>
+<section id="references" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="references"><span class="header-section-number">7.13</span> References</h2>
 <ul>
 <li><a href="https://product.kyobobook.co.kr/detail/S000001075892">확률변수론</a></li>
 </ul>

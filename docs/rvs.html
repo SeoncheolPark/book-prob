@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Random Variables – A Biggner's Guide to Probability and Extremes</title>
+<title>A Biggner's Guide to Probability and Extremes – 4&nbsp; Random Variables</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -287,8 +287,8 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ev.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Extreme Value Theory</span></span></a>
+  <a href="./ht.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Heavy-Tailed Distributions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -360,6 +360,7 @@ window.Quarto = {
   <li><a href="#distribution" id="toc-distribution" class="nav-link" data-scroll-target="#distribution"><span class="header-section-number">4.3</span> Distribution</a></li>
   <li><a href="#expectation" id="toc-expectation" class="nav-link" data-scroll-target="#expectation"><span class="header-section-number">4.4</span> Expectation</a></li>
   <li><a href="#cantor-random-variable" id="toc-cantor-random-variable" class="nav-link" data-scroll-target="#cantor-random-variable"><span class="header-section-number">4.5</span> Cantor Random Variable</a></li>
+  <li><a href="#borel-cantelli-lemmas" id="toc-borel-cantelli-lemmas" class="nav-link" data-scroll-target="#borel-cantelli-lemmas"><span class="header-section-number">4.6</span> Borel-Cantelli Lemmas</a></li>
   </ul>
 </nav>
     </div>
@@ -385,6 +386,11 @@ window.Quarto = {
 </header>
 
 
+<div class="cell" data-layout-align="center" data-fig-weight="2" data-view-distance="10">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'DescTools' was built under R version 4.4.1</code></pre>
+</div>
+</div>
 <section id="random-variables" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">4.1</span> Random Variables</h2>
 <!--
@@ -590,6 +596,80 @@ E(X) &amp;= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\i
 \end{align*}
 \]</span></p></li>
 </ul>
+</div>
+</section>
+<section id="borel-cantelli-lemmas" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="borel-cantelli-lemmas"><span class="header-section-number">4.6</span> Borel-Cantelli Lemmas</h2>
+<ul>
+<li>Almost sure convergence <a href="conv.html#def-sconv" class="quarto-xref">Definition&nbsp;<span>7.2</span></a> 와 관련된 툴</li>
+</ul>
+<div id="thm-firstborelcantelli" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.1 (The first Borel-Cantelli lemma)</strong></span> Let <span class="math inline">\(\{A_n, n \geq 1\}\)</span> be arbitrary events. Then <span class="math display">\[
+\sum_{n=1}^{\infty}P(A_n) &lt; \infty \Longrightarrow P(A_n \text{ i.o.})=0.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><span class="math display">\[
+\begin{align*}
+P(A_n \text{ i.o.}) &amp;= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)\\
+&amp;\leq P\Big( \bigcup_{m=n}^{\infty}A_m \Big) \leq \sum_{m=n}^{\infty}P(A_m) \stackrel{n\rightarrow\infty}{\longrightarrow}0.
+\end{align*}
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>The first Borel-Cantelli lemma의 역은 성립하지 않는다. 그러나 독립 조건을 넣으면 다음과 같은 second Borel-Cantelli lemma를 얻을 수 있다.</li>
+</ul>
+</div>
+</div>
+<div id="thm-secondborelcantelli" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 4.2 (The second Borel-Cantelli lemma)</strong></span> Let <span class="math inline">\(\{A_n, n \geq 1\}\)</span> be <strong>independent</strong> events. Then <span class="math display">\[
+\sum_{n=1}^{\infty}P(A_n) = \infty \Longrightarrow P(A_n \text{ i.o.})=1.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Proof
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>By independence <span class="math display">\[
+\begin{align*}
+P(A_n \text{ i.o.}) &amp;= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)=1-P \Big (\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_m^c\Big)\\
+&amp;=1 - \lim_{n\rightarrow\infty}P\Big( \bigcap_{m=n}^{\infty}A_m^c\Big) = 1-\lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}P(A_m^c)\\
+&amp;=1 - \lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}(1-P(A_m)) = 1-0 = 1.
+\end{align*}
+\]</span></p>
+</div>
+</div>
 </div>
 
 

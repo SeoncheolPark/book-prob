@@ -16,6 +16,22 @@
 
 다음의 정의들은 확률론에서 많이 등장하는 정의들이다. $X_1,X_2,\ldots$를 확률변수열이라 하자.
 
+## Complete Convergence
+
+@Gut2014 에 나오는 내용으로 Borel-Cantelli lemma와 밀접한 관련이 있다고 한다.
+
+::: {#def-ccconv}
+## Complete convergence
+
+$X_n$ **converges completely** to the random variable $X$ as $n\rightarrow \infty$ iff
+$$
+\sum_{n=1}^{\infty} P(\vert X_n - X \vert > \varepsilon) < \infty, \quad{} \forall \varepsilon>0.
+$$
+
+:::
+
+여기서는 $n\rightarrow \infty$일 때 $X_n \stackrel{\text{c.c.}}{\rightarrow}X$로 표기하기로 한다.
+
 ## Almost Sure Convergence
 
 <!--
@@ -82,7 +98,7 @@ $$ 을 만족하면 $X_n$ **converges almost surely (a.s.)** to the random varia
 $$
 \sum_{n=1}^\infty P\{ |X_n | > \varepsilon\} < \infty
 $$
-이면 보렐-칸텔리 정리를 써서 $n\rightarrow \infty$일 때 $X_n \stackrel{\text{a.s.}}{\rightarrow} 0$이라는 것을 알 수 있음
+이면 보렐-칸텔리 정리 @thm-firstborelcantelli 를 써서 $n\rightarrow \infty$일 때 $X_n \stackrel{\text{a.s.}}{\rightarrow} 0$이라는 것을 알 수 있음
 
 - ($\Longleftarrow$) $\omega$의 분포가 $[0,1]$에서 고르고
 $$
@@ -312,6 +328,13 @@ Distributional convergence is often called weak convergence in these more genera
 
 다음은 @Gut2014 의 5.8.1에 나오는 vague convergence이다. Vague convergence의 limiting random variable이 **proper**하지 않아도 된다는 점이 distributional convergence와의 차이점이다.
 
+::: callout-tip
+## Remark
+
+Proper하지 않은 random variable이라는 것은 probability mass가 escape to infinity할 수도 있음을 의미
+
+:::
+
 ::: {#def-vconv}
 ## Converge Vaguely
 
@@ -321,6 +344,21 @@ $$ Notation: $F_n \stackrel{\text{v}}{\rightarrow}H$ as $n\rightarrow \infty$.
 :::
 
 ## Relationship Among Convergences
+
+::: {#thm-convrelationship}
+
+## 수렴 사이의 관계
+
+$X, X_1, X_2,\ldots$를 확률변수라고 하자. 그러면 $n\rightarrow\infty$일 때 수렴 사이에 다음과 같은 관계가 성립한다.
+$$
+\begin{align*}
+X_n \stackrel{\text{c.c.}}{\rightarrow} X \Longrightarrow X_n \stackrel{\text{a.s.}}{\rightarrow} X \Longrightarrow X_n &\stackrel{p}{\rightarrow} X \Longrightarrow X_n \stackrel{d}{\rightarrow} X\\
+&\Uparrow\\
+X_n &\stackrel{r}{\rightarrow} X.
+\end{align*}
+$$
+
+:::
 
 ::: {#exm-dnotp}
 ## 분포수렴하나 확률수렴하지 않는 확률변수열
@@ -483,9 +521,106 @@ $$
 
 :::
 
+## Converses
+
+::: callout-tip
+## Remark
+
+처음 두 개의 정리는 $X$가 어떤 상수 $c$에 대해 $P(X=c)=1$을 만족하는 degenerate random variable일 경우 역이 성립함을 보여줌
+:::
+
+::: {#thm-ascc}
+ 
+If $X_1, X_2, \ldots$are independent and $c$ a constant, then
+$$
+X_n \stackrel{\text{c.c.}}{\rightarrow} c \Longleftrightarrow X_n \stackrel{\text{a.s.}}{\rightarrow} c  \quad{} \text{as } n \rightarrow \infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+Since both statements are equiv to
+$$
+\sum_{n=1}^{\infty} P(\vert X_n - c\vert > \varepsilon) <\infty, \quad{} \forall \varepsilon>0
+$$
+the conclusion follows from the @thm-firstborelcantelli and @thm-secondborelcantelli .
+
+:::
+
+::: {#thm-dp}
+ 
+Let $X_1,X_2, \ldots$ be random variables and $c$ a constant. Then
+$$
+X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty \Longleftrightarrow X_n \stackrel{p}{\rightarrow} c \quad{} \text{as } n\rightarrow\infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+확률수렴이면 분포수렴이므로 분포수렴일때 확률수렴인지만 보면 됨. $X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty$이 성립한다고 하자. 그러면
+$$
+\begin{align*}
+P(\vert X_n - c \vert > \varepsilon) &= 1-P(c-\varepsilon \leq X_n \leq c+\varepsilon)\\
+&= 1 - F_{X_n}(c+\varepsilon) + F_{X_n} (c-\varepsilon) - P(X_n = c-\varepsilon)\\
+&\leq 1 - F_{X_n}(c+\varepsilon) + F_{X_n} (c-\varepsilon) \rightarrow 1 - 1 + 0\\
+&= 0 \quad{} \text{as } n\rightarrow \infty.
+\end{align*}
+$$
+
+:::
+
+다음은 subsequence를 활용한 역으로 바꾸는 방법이다.
+
+::: {#thm-subseqccas}
+ 
+Let $X_1,X_2, \ldots$ be random variables such that $X_n \stackrel{p}{\rightarrow}X$ as $n\rightarrow \infty$. Then there exists a non-decreasing subsequence $\{n_k, k\geq 1\}$ of the positive integers, such that
+$$
+X_{n_k} \stackrel{\text{c.c.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \infty.
+$$
+In particular,
+$$
+X_{n_k} \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+By assumption, there exists a non-decreasing subsequence, $\{n_k, k\geq 1\}$, such that
+$$
+P\Big( \vert X_{n_k} - X\vert > \frac{1}{2^k}\Big) < \frac{1}{2^k}.
+$$
+Consequently,
+$$
+\sum_{k=1}^{\infty} P \Big(\vert X_{n_k} - X\vert > \frac{1}{2^k} \Big) <\infty.
+$$
+Since $\frac{1}{2^k} < \varepsilon$ for any $\varepsilon>0$ whenever $k> \log (1/\varepsilon)/\log 2$, it follows that
+$$
+\sum_{k=1}^{\infty}P \Big(\vert X_{n_k} - X\vert > \varepsilon \Big) <\infty.
+$$
+
+:::
+
+::: callout-tip
+## Remark
+
+- 수열에서 [$a$로 수렴하는 convergent sequence가 있는 것은 모든 subsequence에서 $a$로 수렴하는 subsequence를 만들어낼 수 있음과 동치](https://mathcs.org/analysis/reals/numseq/proofs/subconv.html)인 유명한 정리가 있음
+
+- (개인적인 생각) 확률수렴은 말 그대로 특정 확률변수에 수렴할 확률이 1인 것 뿐이라 어떤 $\omega$를 생각할 때 sequence에서 매우 큰 $N$을 잡는다 하더라도 $X_n(\omega), n\geq N$이 항상 $X(\omega)$에 어떤 threshold (예를 들면 $\varepsilon$)보다 항상 가까이 있다고 말할 수는 없는 것 같다. 다만 확률이 1이므로 $N$이 커지면 threshold 바깥으로 튈 가능성은 점점 주는 것 같다. 이를 이용해보면 튀는 친구들을 적절히 잘 피할 수 있는 확률변수열의 subsequence열을 항상 생각할 수 있다면 이 subsequence로 만든 새로운 확률변수열은 확률수렴이 아닌 거의 확실한 수렴등 더 강한 조건의 수렴을 만들어낼 수 있다는 것으로 보인다. (그림으로 그려두면 좋긴 한데 능력 부족)
+:::
+
 ## Uniform Integrability
 
-Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터, 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. **Uniform integrability** 조건이 추가되면 그러함이 알려져 있다. [@Gut2014]
+<!--
+그Converge in probability가 mean convergence를 imply하지 않는다는 사실로부터,
+-->
+
+앞서 @thm-convrelationship 로부터 $X_n\stackrel{r}{\rightarrow}X \Longrightarrow X_n\stackrel{p}{\rightarrow} X$ as $n\rightarrow\infty$임을 안다. 그러면 어떤 조건이 있을 때 converge in probability 하면 mean convergence를 보장하는지 궁금할 수 있다. **Uniform integrability** 조건이 추가되면 그러함이 알려져 있다. [@Gut2014]
 
 ::: {#def-uintegrability}
 ## Uniform Integrability
@@ -497,7 +632,9 @@ $$ 분포함수를 이용해 다른 방법으로 정의할 수도 있다. $X_1, 
 $$
 :::
 
-::: remark
+::: callout-tip
+## Remark
+
 $X_1, X_2 , \ldots$이 유한한 평균을 갖고 있다는 뜻은 $E|X_n|I\{|X_n|>a\}\rightarrow 0$ as $a \rightarrow \infty$ for every $n$을 의미한다. 즉 convergent integrals의 tail이 0으로 수렴해야 하는 것이다. Uniformly integragle은 the contributions in the tails of the integrals tend to $0$ **uniformly** for all members of the sequence임을 뜻한다. [@Gut2014]
 :::
 
