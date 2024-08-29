@@ -210,3 +210,105 @@ $$
 
 :::
 -->
+
+## The Glivenko–Cantelli Theorem
+
+Let $X_1, X_2, \ldots, X_n$ be a sample from the distribution $F$.
+
+- Empirical distribution function
+$$
+F_{n}(x) = \frac{1}{n}\sum_{k=1}^n I\{X_k \leq x\}.
+$$
+
+[@Gut2014] Strong law로부터 모든 $x$에 대해
+$$
+F_n(x) \stackrel{\text{a.s.}}{\rightarrow} F(x),\quad{} \text{as }n\rightarrow\infty.
+$$
+
+::: callout-tip
+## Remark
+
+Glivenko-Cantelli Theorem은 $n\rightarrow\infty$일 때 $F_n$이 $F$에 대해 converges uniformly한다는 것을 보여준다. [@Durrett2019]
+:::
+
+::: {#thm-glivenkocantelli}
+
+## The Glivenko-Cantelli theorem
+
+$$
+\sup_x \vert F_n (x) - F(x) \vert \stackrel{\text{a.s.}}{\rightarrow} 0 \quad{} \text{as }n \rightarrow \infty.
+$$
+
+:::
+
+::: {.callout-note collapse="true"}
+## Proof
+
+- Fix $x$ and let $Y_n = I_{(X_n \leq x)}$. Since $Y_n$ are i.i.d. with $E(Y_n) = P(X_n \leq x) = F(x)$, the SLLN implies that $F_n (x) = \frac{1}{n}\sum_{m=1}^n Y_m \stackrel{\text{a.s.}}{\rightarrow} F(x)$.
+
+- In general, if $F_n$ is a sequence of nondecreasing functions that converges pointwise to a bounded and **continuous** limit $F$, then $\sup_x \vert F_n (x) - F(x) \vert \rightarrow 0$.
+
+- 그러나 보통 $F(x)$는 jump를 가질 수 있고, 이때의 증명은 조금 복잡해진다. [@Durrett2019]
+
+- Fix $x$ and let $Z_n =  I_{(X_n \leq x)}$. Since $Z_n$ are i.i.d. with $E(Z_n) = P(X_n < x) = F(x-) = \lim_{y\uparrow x} F(y)$, the SLLN implies that $F_n (x-) = \frac{1}{n}\sum_{m=1}^n Z_m \rightarrow F(x-)$ a.s. For $1 \leq j \leq k-1$, let $x_{j,k} = \inf \{y: F(y)\geq j/k\}$. The pointwise convergence of $F_n(x)$ and $F_n(x-)$ imply that we can pick $N_k (\omega)$ so that if $n \geq N_k (\omega)$, then
+$$
+\vert F_n (x_{j,k}) - F(x_{j,k}) \vert \frac{1}{k} \quad{} \text{and} \quad{} \vert F_n (x_{j,k}-) - F(x_{j,k}-) \vert < \frac{1}{k}
+$$
+for $1 \leq j \leq k-1$. If we let $x_{0,k} = - \infty$ and $x_{k,k} = \infty$, then the last two inequalities hold for $j=0$ or $k$. If $x \in (x_{j-1, k}, x_{j,k})$ with $1\leq j \leq k$ and $n\geq N_k (\omega)$, then using the monotonicity of $F_n$ and $F$, and $F(x_{j,k}-) - F(x_{j-1},k) \leq \frac{1}{k}$, we have
+$$
+\begin{align*}
+F_n (x) &\leq F_n (x_{j,k}-) \leq F(x_{j,k}-) + \frac{1}{k}\leq F(x_{j-1,k}) + \frac{2}{k} \leq F(x) + \frac{2}{k}\\
+F_n (x) & \geq F_n (x_{j-1,k}) \geq F(x_{j-1,k}) - \frac{1}{k} \geq F(x_{j,k}-) - \frac{2}{k} \geq F(x) - \frac{2}{k}
+\end{align*}
+$$
+so $\sup_x \vert F_n(x) - F(x) \vert \leq \frac{2}{k}$, and we have proved the result.
+
+:::
+
+### Glivenko-Cantelli theorem의 R 예제
+
+- 출처: [Computer Intensive Statistics: APTS 2023–24 Computer Practical 1 Solutions](https://warwick.ac.uk/fac/sci/statistics/apts/students/resources/prac1sol.pdf)
+
+
+```{r}
+#| echo: true
+#| message: false
+#| fig-align: center
+#| fig-cap: "Figure: Illustration of Glivenko–Cantelli."
+#| out-width: 70%
+#| fig-height: 6
+#| fig-weight: 6
+#| view-distance: 10
+
+ru <- runif(10000); F10 <- ecdf(ru[1:10]); F50 <- ecdf(ru[1:50]) 
+F500 <- ecdf(ru[1:500]); F3000 <- ecdf(ru[1:3000]); F10000 <- ecdf(ru)
+
+eu <- c(10, max(abs(F10(ru[1:10]) - punif(ru[1:10]))))
+eu <- rbind(eu, c(50, max(abs(F50(ru[1:50]) - punif(ru[1:50])))))
+eu <- rbind(eu, c(500, max(abs(F500(ru[1:500]) - punif(ru[1:500])))))
+eu <- rbind(eu, c(3000, max(abs(F3000(ru[1:3000]) - punif(ru[1:3000])))))
+eu <- rbind(eu, c(10000, max(abs(F10000(ru[1:10000]) - punif(ru[1:10000])))))
+
+rn <- rnorm(10000); Fn10 <- ecdf(rn[1:10]); Fn50 <- ecdf(rn[1:50]) 
+Fn500 <- ecdf(rn[1:500]); Fn3000 <- ecdf(rn[1:3000]); Fn10000 <- ecdf(rn)
+
+en <- c(10, max(abs(Fn10(rn[1:10]) - pnorm(rn[1:10]))))
+en <- rbind(en, c(50, max(abs(Fn50(rn[1:50]) - pnorm(rn[1:50])))))
+en <- rbind(en, c(500, max(abs(Fn500(rn[1:500]) - pnorm(rn[1:500])))))
+en <- rbind(en, c(3000, max(abs(Fn3000(rn[1:3000]) - pnorm(rn[1:3000])))))
+en <- rbind(en, c(10000, max(abs(Fn10000(rn[1:10000]) - pnorm(rn[1:10000])))))
+
+rc <- rcauchy(10000); Fc10 <- ecdf(rc[1:10]); Fc50 <- ecdf(rc[1:50]) 
+Fc500 <- ecdf(rc[1:500]); Fc3000 <- ecdf(rc[1:3000]); Fc10000 <- ecdf(rc)
+
+ec <- c(10, max(abs(Fc10(rc[1:10]) - pcauchy(rc[1:10]))))
+ec <- rbind(ec, c(50, max(abs(Fc50(rc[1:50]) - pcauchy(rc[1:50])))))
+ec <- rbind(ec, c(500, max(abs(Fc500(rc[1:500]) - pcauchy(rc[1:500])))))
+ec <- rbind(ec, c(3000, max(abs(Fc3000(rc[1:3000]) - pcauchy(rc[1:3000]))))) 
+ec <- rbind(ec, c(10000, max(abs(Fc10000(rc[1:10000]) - pcauchy(rc[1:10000])))))
+
+plot(eu,type='l',col='red',main='Convergence of Empirical CDF')
+lines(en,col='blue')
+lines(ec,col='green')
+legend('topright',c('Uniform','Normal','Cauchy'), lty=1, col=c('red','blue','green'))
+```

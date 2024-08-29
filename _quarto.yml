@@ -47,6 +47,7 @@ filters:
 format:
   html:
     theme: cosmo
+    code-fold: true
     include-in-header:
       text: |
         <script>
