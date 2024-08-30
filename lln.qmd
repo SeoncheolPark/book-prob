@@ -10,6 +10,73 @@
 
 제일 많이 쓰이는 기술은 **truncation**이라고 하는 것으로, 이 방법의 특징은 원래 확률변수열과 asymptotically equivalent 하면서 좀 더 다루기 쉬운 수열을 생각하는 것이다.
 
+::: {#def-truncation}
+## Truncation
+
+(@Durrett2019 2.2.3)
+
+To **truncate** a random variable $X$ at level $M$ means considering
+$$
+\overline{X} = XI_{(\vert X \vert \leq M)}=
+\begin{cases}
+X & \text{if } \vert X \vert \leq M\\
+0 & \text{if } \vert X \vert > M
+\end{cases}.
+$$
+
+:::
+
+::: callout-tip
+## Remark
+
+예를 들어 finite second moment 없이 weak law를 하려면 truncation으로 자르고 Chebyshev's inequality를 적용하면 된다고 한다.
+:::
+
+## Convergence Equivalence
+
+**Q**. 두 개의 random variable의 sequence $\{X_n\}$과 $\{Y_n\}$의 같은 정도? 비슷한 정도는?
+
+::: {#def-convequiv}
+## Convergence equivalence
+
+The sequences $X_1, X_2, \ldots$ and $Y_1, Y_2, \ldots$ of random variables are said to be **convergence equivalent** if
+$$
+\sum_{n=1}^{\infty}P(X_n \neq Y_n) < \infty.
+$$
+
+:::
+
+다음 정리는 first Borel-Cantelli lemma @thm-firstborelcantelli 로부터 얻는다고 한다. [@Gut2014]
+
+::: {#thm-convequivthm1}
+
+If $X_1, X_2, \ldots$ and $Y_1, Y_2, \ldots$ are converge equivalent, then:
+
+1. $P(X_n \neq Y_n \text{ i.o.})=0$
+
+2. $\sum_{n=1}^{\infty}(X_n - Y_n)$ converges a.s.
+
+3. If $b_n \in \mathbb{R}$, $n\geq 1$, $b_n \uparrow \infty$ as $n\rightarrow\infty$, then
+$$
+\frac{1}{b_n} \sum_{k=1}^n (X_k - Y_k) \stackrel{\text{a.s.}}{\rightarrow}0 \quad{} \text{as }n\rightarrow\infty.
+$$
+
+:::
+
+::: callout-tip
+## Remark
+
+다음 예제는 truncation을 이용해 어떤 확률변수열 $\{X_n\}$의 convergence equivalent한 새로운 함수열을 만들 수 있음을 보인다.
+:::
+
+::: {#exm-truncconvequiv}
+
+## Truncation과 convergence equivalent
+
+If $X_1, X_2,\ldots$ is such that $\sum_{n=1}^{\infty} P (\vert X_n \vert >a)<\infty$, then we obtain a convergence equivalent sequence by introducing the random variables $Y_n = X_n I \{\vert X_n \vert  \leq a \}$.
+
+:::
+
 ## Moments and Tails
 
 ::: {#prp-momentsandtails}
@@ -25,7 +92,7 @@
     \Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|>a\}.
     $$
 
-3.  Let $a >0$. If $X$ is a random variable with mean $0$, then $Y=XI\{|X|\leq a\}$ does not in general havemean $0$. However, if $X$ is **symmetric**, then $EY=0$.
+3.  Let $a >0$. If $X$ is a random variable with mean $0$, then $Y=XI\{|X|\leq a\}$ does not in general have mean $0$. However, if $X$ is **symmetric**, then $EY=0$.
 :::
 
 ## A Weak Law for Partial Maxima
@@ -106,6 +173,25 @@ $$
 
 - 마르코프 조건은 WLLN에 대한 충분조건이나 필요조건은 아님
 :::
+
+## A Weak Law Without Finite Mean
+
+::: {#thm-WLLNwithoutfinite}
+## A Weak law without finite mean
+
+(@Gut2014 의 6.4, @Durrett2019 의 Theorem 2.2.12)
+
+Suppose that $X, X_1, X_2,\ldots$ are i.i.d. random variables with partial sums $S_n, n\geq 1$. Then
+$$
+\frac{S_n - n E(X I\{\vert X\vert \leq n\})}{n} \stackrel{p}{\rightarrow} 0 \quad{} \text{as } n \rightarrow\infty
+$$
+iff
+$$
+n P(\vert X \vert > n) \rightarrow 0 \quad{} \text{as } n \rightarrow \infty.
+$$
+
+:::
+
 
 
 ## The Strong Law of Large Numbers

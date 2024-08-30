@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.56">
+<meta name="generator" content="quarto-1.5.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; The Law of Large Numbers – A Biggner's Guide to Probability and Extremes</title>
+<title>A Biggner's Guide to Probability and Extremes – 8&nbsp; The Law of Large Numbers</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -390,13 +390,15 @@ window.Quarto = {
    
   <ul>
   <li><a href="#preliminaries" id="toc-preliminaries" class="nav-link active" data-scroll-target="#preliminaries"><span class="header-section-number">8.1</span> Preliminaries</a></li>
-  <li><a href="#moments-and-tails" id="toc-moments-and-tails" class="nav-link" data-scroll-target="#moments-and-tails"><span class="header-section-number">8.2</span> Moments and Tails</a></li>
-  <li><a href="#a-weak-law-for-partial-maxima" id="toc-a-weak-law-for-partial-maxima" class="nav-link" data-scroll-target="#a-weak-law-for-partial-maxima"><span class="header-section-number">8.3</span> A Weak Law for Partial Maxima</a></li>
-  <li><a href="#the-weak-law-of-large-numbers" id="toc-the-weak-law-of-large-numbers" class="nav-link" data-scroll-target="#the-weak-law-of-large-numbers"><span class="header-section-number">8.4</span> The Weak Law of Large Numbers</a></li>
-  <li><a href="#the-strong-law-of-large-numbers" id="toc-the-strong-law-of-large-numbers" class="nav-link" data-scroll-target="#the-strong-law-of-large-numbers"><span class="header-section-number">8.5</span> The Strong Law of Large Numbers</a></li>
-  <li><a href="#the-glivenkocantelli-theorem" id="toc-the-glivenkocantelli-theorem" class="nav-link" data-scroll-target="#the-glivenkocantelli-theorem"><span class="header-section-number">8.6</span> The Glivenko–Cantelli Theorem</a>
+  <li><a href="#convergence-equivalence" id="toc-convergence-equivalence" class="nav-link" data-scroll-target="#convergence-equivalence"><span class="header-section-number">8.2</span> Convergence Equivalence</a></li>
+  <li><a href="#moments-and-tails" id="toc-moments-and-tails" class="nav-link" data-scroll-target="#moments-and-tails"><span class="header-section-number">8.3</span> Moments and Tails</a></li>
+  <li><a href="#a-weak-law-for-partial-maxima" id="toc-a-weak-law-for-partial-maxima" class="nav-link" data-scroll-target="#a-weak-law-for-partial-maxima"><span class="header-section-number">8.4</span> A Weak Law for Partial Maxima</a></li>
+  <li><a href="#the-weak-law-of-large-numbers" id="toc-the-weak-law-of-large-numbers" class="nav-link" data-scroll-target="#the-weak-law-of-large-numbers"><span class="header-section-number">8.5</span> The Weak Law of Large Numbers</a></li>
+  <li><a href="#a-weak-law-without-finite-mean" id="toc-a-weak-law-without-finite-mean" class="nav-link" data-scroll-target="#a-weak-law-without-finite-mean"><span class="header-section-number">8.6</span> A Weak Law Without Finite Mean</a></li>
+  <li><a href="#the-strong-law-of-large-numbers" id="toc-the-strong-law-of-large-numbers" class="nav-link" data-scroll-target="#the-strong-law-of-large-numbers"><span class="header-section-number">8.7</span> The Strong Law of Large Numbers</a></li>
+  <li><a href="#the-glivenkocantelli-theorem" id="toc-the-glivenkocantelli-theorem" class="nav-link" data-scroll-target="#the-glivenkocantelli-theorem"><span class="header-section-number">8.8</span> The Glivenko–Cantelli Theorem</a>
   <ul class="collapse">
-  <li><a href="#glivenko-cantelli-theorem의-r-예제" id="toc-glivenko-cantelli-theorem의-r-예제" class="nav-link" data-scroll-target="#glivenko-cantelli-theorem의-r-예제"><span class="header-section-number">8.6.1</span> Glivenko-Cantelli theorem의 R 예제</a></li>
+  <li><a href="#glivenko-cantelli-theorem의-r-예제" id="toc-glivenko-cantelli-theorem의-r-예제" class="nav-link" data-scroll-target="#glivenko-cantelli-theorem의-r-예제"><span class="header-section-number">8.8.1</span> Glivenko-Cantelli theorem의 R 예제</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -431,9 +433,68 @@ window.Quarto = {
 <section id="preliminaries" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="preliminaries"><span class="header-section-number">8.1</span> Preliminaries</h2>
 <p>제일 많이 쓰이는 기술은 <strong>truncation</strong>이라고 하는 것으로, 이 방법의 특징은 원래 확률변수열과 asymptotically equivalent 하면서 좀 더 다루기 쉬운 수열을 생각하는 것이다.</p>
+<div id="def-truncation" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 8.1 (Truncation)</strong></span> (<span class="citation" data-cites="Durrett2019">Durrett (<a href="references.html#ref-Durrett2019" role="doc-biblioref">2019</a>)</span> 2.2.3)</p>
+<p>To <strong>truncate</strong> a random variable <span class="math inline">\(X\)</span> at level <span class="math inline">\(M\)</span> means considering <span class="math display">\[
+\overline{X} = XI_{(\vert X \vert \leq M)}=
+\begin{cases}
+X &amp; \text{if } \vert X \vert \leq M\\
+0 &amp; \text{if } \vert X \vert &gt; M
+\end{cases}.
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>예를 들어 finite second moment 없이 weak law를 하려면 truncation으로 자르고 Chebyshev’s inequality를 적용하면 된다고 한다.</p>
+</div>
+</div>
 </section>
-<section id="moments-and-tails" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="moments-and-tails"><span class="header-section-number">8.2</span> Moments and Tails</h2>
+<section id="convergence-equivalence" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="convergence-equivalence"><span class="header-section-number">8.2</span> Convergence Equivalence</h2>
+<p><strong>Q</strong>. 두 개의 random variable의 sequence <span class="math inline">\(\{X_n\}\)</span>과 <span class="math inline">\(\{Y_n\}\)</span>의 같은 정도? 비슷한 정도는?</p>
+<div id="def-convequiv" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 8.2 (Convergence equivalence)</strong></span> The sequences <span class="math inline">\(X_1, X_2, \ldots\)</span> and <span class="math inline">\(Y_1, Y_2, \ldots\)</span> of random variables are said to be <strong>convergence equivalent</strong> if <span class="math display">\[
+\sum_{n=1}^{\infty}P(X_n \neq Y_n) &lt; \infty.
+\]</span></p>
+</div>
+<p>다음 정리는 first Borel-Cantelli lemma <a href="rvs.html#thm-firstborelcantelli" class="quarto-xref">Theorem&nbsp;<span>4.1</span></a> 로부터 얻는다고 한다. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
+<div id="thm-convequivthm1" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 8.1</strong></span> If <span class="math inline">\(X_1, X_2, \ldots\)</span> and <span class="math inline">\(Y_1, Y_2, \ldots\)</span> are converge equivalent, then:</p>
+<ol type="1">
+<li><p><span class="math inline">\(P(X_n \neq Y_n \text{ i.o.})=0\)</span></p></li>
+<li><p><span class="math inline">\(\sum_{n=1}^{\infty}(X_n - Y_n)\)</span> converges a.s.</p></li>
+<li><p>If <span class="math inline">\(b_n \in \mathbb{R}\)</span>, <span class="math inline">\(n\geq 1\)</span>, <span class="math inline">\(b_n \uparrow \infty\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math display">\[
+\frac{1}{b_n} \sum_{k=1}^n (X_k - Y_k) \stackrel{\text{a.s.}}{\rightarrow}0 \quad{} \text{as }n\rightarrow\infty.
+\]</span></p></li>
+</ol>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>다음 예제는 truncation을 이용해 어떤 확률변수열 <span class="math inline">\(\{X_n\}\)</span>의 convergence equivalent한 새로운 함수열을 만들 수 있음을 보인다.</p>
+</div>
+</div>
+<div id="exm-truncconvequiv" class="theorem example">
+<p><span class="theorem-title"><strong>Example 8.1 (Truncation과 convergence equivalent)</strong></span> If <span class="math inline">\(X_1, X_2,\ldots\)</span> is such that <span class="math inline">\(\sum_{n=1}^{\infty} P (\vert X_n \vert &gt;a)&lt;\infty\)</span>, then we obtain a convergence equivalent sequence by introducing the random variables <span class="math inline">\(Y_n = X_n I \{\vert X_n \vert  \leq a \}\)</span>.</p>
+</div>
+</section>
+<section id="moments-and-tails" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="moments-and-tails"><span class="header-section-number">8.3</span> Moments and Tails</h2>
 <div id="prp-momentsandtails" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 8.1 (Moments and Tails)</strong></span> &nbsp;</p>
 <ol type="1">
@@ -445,12 +506,12 @@ EXI\{ |X| \leq a\}= - EXI\{ |X|&gt;a\},
 \]</span> and <span class="math display">\[
 \Big| E \sum_{k=1}^n X_k I\{ |X_k| \leq a\} \Big|\leq n E|X| I\{|X|&gt;a\}.
 \]</span></p></li>
-<li><p>Let <span class="math inline">\(a &gt;0\)</span>. If <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(0\)</span>, then <span class="math inline">\(Y=XI\{|X|\leq a\}\)</span> does not in general havemean <span class="math inline">\(0\)</span>. However, if <span class="math inline">\(X\)</span> is <strong>symmetric</strong>, then <span class="math inline">\(EY=0\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(a &gt;0\)</span>. If <span class="math inline">\(X\)</span> is a random variable with mean <span class="math inline">\(0\)</span>, then <span class="math inline">\(Y=XI\{|X|\leq a\}\)</span> does not in general have mean <span class="math inline">\(0\)</span>. However, if <span class="math inline">\(X\)</span> is <strong>symmetric</strong>, then <span class="math inline">\(EY=0\)</span>.</p></li>
 </ol>
 </div>
 </section>
-<section id="a-weak-law-for-partial-maxima" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="a-weak-law-for-partial-maxima"><span class="header-section-number">8.3</span> A Weak Law for Partial Maxima</h2>
+<section id="a-weak-law-for-partial-maxima" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="a-weak-law-for-partial-maxima"><span class="header-section-number">8.4</span> A Weak Law for Partial Maxima</h2>
 <!--
 ::: panel-tabset
 ## SNU, 2017 Winter, Problem 3 {.unlisted .unnumbered}
@@ -469,13 +530,13 @@ Suppose that $X_n$ are i.i.d. r.v.'s with $EX_1 >0$ and $S_n = X_1 + \cdots + X_
 :::
 -->
 </section>
-<section id="the-weak-law-of-large-numbers" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="the-weak-law-of-large-numbers"><span class="header-section-number">8.4</span> The Weak Law of Large Numbers</h2>
+<section id="the-weak-law-of-large-numbers" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="the-weak-law-of-large-numbers"><span class="header-section-number">8.5</span> The Weak Law of Large Numbers</h2>
 <!--
 정의: Gut의 책, 확률변수론
 -->
 <div id="thm-WLLN" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 8.1 (WLLN)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Theorem 8.2 (WLLN)</strong></span> &nbsp;</p>
 <ul>
 <li><span class="math inline">\(X,X_1,X_2,\ldots\)</span>가 유한한 기댓값 <span class="math inline">\(\mu\)</span>, 즉 <span class="math inline">\(E(X)&lt;\infty\)</span>를 갖는 i.i.d. 확률변수들이라고 하고 <span class="math inline">\(S_n,n\geq 1\)</span>을 그들의 partial sum이라고 하자. 그러면 <span class="math display">\[
 \frac{S_n}{n}\stackrel{p}{\rightarrow}\mu \quad{} \text{as } n\rightarrow \infty.
@@ -501,7 +562,7 @@ Remark
 </div>
 </div>
 <div id="exm-notbip" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.1 (큰 수의 약법칙을 따르지 않는 확률변수열)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Example 8.2 (큰 수의 약법칙을 따르지 않는 확률변수열)</strong></span> &nbsp;</p>
 <ul>
 <li><p>독립이고 한계분포가 모두 <span class="math inline">\(\text{Cauchy}(1,0)\)</span>인 확률벡터를 생각하면, <span class="math inline">\(\frac{S_n}{n}\sim \text{Cauchy}(1,0)\)</span>이라고 함</p></li>
 <li><p>즉 <span class="math inline">\(\frac{S_n}{n}\)</span>이 0에 확률수렴하지 않으므로 독립이고 분포가 같은 코시 확률변수열에서는 큰 수의 약한 법칙이 성립하지 않음</p></li>
@@ -511,7 +572,7 @@ Remark
 Counterexamples in prob 15장
 -->
 <div id="thm-markovthm" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 8.2 (Markov theorem)</strong></span> <span class="math inline">\(\{X_n, n\geq 1\}\)</span>을 다음의 조건 (<strong>Markov condition</strong>) <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 8.3 (Markov theorem)</strong></span> <span class="math inline">\(\{X_n, n\geq 1\}\)</span>을 다음의 조건 (<strong>Markov condition</strong>) <span class="math display">\[
 \frac{1}{n^2} \text{Var}(X_1 + \cdots + X_n) \rightarrow 0 \quad{} \text{as }n \rightarrow \infty
 \]</span> 을 만족하는 확률변수열이라 하자. 그러면 <span class="math inline">\(\{X_n\}\)</span>은 WLLN을 만족한다.</p>
 </div>
@@ -531,10 +592,21 @@ Remark
 </div>
 </div>
 </section>
-<section id="the-strong-law-of-large-numbers" class="level2" data-number="8.5">
-<h2 data-number="8.5" class="anchored" data-anchor-id="the-strong-law-of-large-numbers"><span class="header-section-number">8.5</span> The Strong Law of Large Numbers</h2>
+<section id="a-weak-law-without-finite-mean" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="a-weak-law-without-finite-mean"><span class="header-section-number">8.6</span> A Weak Law Without Finite Mean</h2>
+<div id="thm-WLLNwithoutfinite" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 8.4 (A Weak law without finite mean)</strong></span> (<span class="citation" data-cites="Gut2014">Gut (<a href="references.html#ref-Gut2014" role="doc-biblioref">2014</a>)</span> 의 6.4, <span class="citation" data-cites="Durrett2019">Durrett (<a href="references.html#ref-Durrett2019" role="doc-biblioref">2019</a>)</span> 의 Theorem 2.2.12)</p>
+<p>Suppose that <span class="math inline">\(X, X_1, X_2,\ldots\)</span> are i.i.d. random variables with partial sums <span class="math inline">\(S_n, n\geq 1\)</span>. Then <span class="math display">\[
+\frac{S_n - n E(X I\{\vert X\vert \leq n\})}{n} \stackrel{p}{\rightarrow} 0 \quad{} \text{as } n \rightarrow\infty
+\]</span> iff <span class="math display">\[
+n P(\vert X \vert &gt; n) \rightarrow 0 \quad{} \text{as } n \rightarrow \infty.
+\]</span></p>
+</div>
+</section>
+<section id="the-strong-law-of-large-numbers" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="the-strong-law-of-large-numbers"><span class="header-section-number">8.7</span> The Strong Law of Large Numbers</h2>
 <div id="thm-SLLNsuff" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 8.3 (큰 수의 센 법칙을 따르는 충분조건)</strong></span> 확률변수열 <span class="math inline">\(\{x_i\}_{i=1}^n\)</span>의 평균이 <span class="math inline">\(\mu_i\)</span>, 분산이 <span class="math inline">\(\sigma_i^2\)</span>일 때 <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 8.5 (큰 수의 센 법칙을 따르는 충분조건)</strong></span> 확률변수열 <span class="math inline">\(\{x_i\}_{i=1}^n\)</span>의 평균이 <span class="math inline">\(\mu_i\)</span>, 분산이 <span class="math inline">\(\sigma_i^2\)</span>일 때 <span class="math display">\[
 \sum_{i=1}^{\infty} \sigma_i^2 &lt; \infty
 \]</span> 이면 <span class="math inline">\(\sum_{i=1}^{\infty}(X_i - \mu_i)\)</span>는 거의 틀림없이 0으로 수렴한다.</p>
 </div>
@@ -557,7 +629,7 @@ Remark
 Gut책 295쪽
 -->
 <div id="thm-SLLNKolmogorov" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 8.4 (The Kolmogorov strong law)</strong></span> &nbsp;</p>
+<p><span class="theorem-title"><strong>Theorem 8.6 (The Kolmogorov strong law)</strong></span> &nbsp;</p>
 <ol type="a">
 <li><p>만약 <span class="math inline">\(E|X|&lt;\infty\)</span>이고 <span class="math inline">\(E(X)=\mu\)</span>라면 <span class="math display">\[
 \frac{S_n}{n}\stackrel{\text{a.s.}}{\rightarrow}\mu \quad{} \text{as } n \rightarrow \infty.
@@ -571,7 +643,7 @@ E(X) &lt;\infty \quad{} \text{and} \quad{} c= E(X).
 </ol>
 </div>
 <div id="exm-WLLNnotSLLN" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.2 (WLLN은 성립하니 SLLN은 만족하지 않는 예)</strong></span> 확률질량함수 <span class="math inline">\(p_{X_n}(x) = P\{ X_n = x\}\)</span>가 <span class="math display">\[
+<p><span class="theorem-title"><strong>Example 8.3 (WLLN은 성립하니 SLLN은 만족하지 않는 예)</strong></span> 확률질량함수 <span class="math inline">\(p_{X_n}(x) = P\{ X_n = x\}\)</span>가 <span class="math display">\[
 p_{X_n}(x) =
 \begin{cases}
 1- \frac{1}{n\log n}, &amp; x=0,\\
@@ -588,7 +660,7 @@ P\{|X_n|\geq n \text{ i.o.}\} = P \{ \Big\vert\frac{X_n}{n}\Big\vert \geq \text{
 &amp;\leq \frac{2}{n^2 \log 2} + \frac{(n-2)(n+1)}{n^2 \log n}\\
 &amp;\rightarrow 0
 \end{align*}
-\]</span> 이고 마르코프 조건 <a href="#thm-markovthm" class="quarto-xref">Theorem&nbsp;<span>8.2</span></a> 을 생각해 보면 <span class="math inline">\(\{X_n \}_{n=2}^{\infty}\)</span>는 큰 수의 약법칙을 만족한다.</p></li>
+\]</span> 이고 마르코프 조건 <a href="#thm-markovthm" class="quarto-xref">Theorem&nbsp;<span>8.3</span></a> 을 생각해 보면 <span class="math inline">\(\{X_n \}_{n=2}^{\infty}\)</span>는 큰 수의 약법칙을 만족한다.</p></li>
 </ul>
 </div>
 <!--
@@ -614,8 +686,8 @@ $$
 :::
 -->
 </section>
-<section id="the-glivenkocantelli-theorem" class="level2" data-number="8.6">
-<h2 data-number="8.6" class="anchored" data-anchor-id="the-glivenkocantelli-theorem"><span class="header-section-number">8.6</span> The Glivenko–Cantelli Theorem</h2>
+<section id="the-glivenkocantelli-theorem" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="the-glivenkocantelli-theorem"><span class="header-section-number">8.8</span> The Glivenko–Cantelli Theorem</h2>
 <p>Let <span class="math inline">\(X_1, X_2, \ldots, X_n\)</span> be a sample from the distribution <span class="math inline">\(F\)</span>.</p>
 <ul>
 <li>Empirical distribution function <span class="math display">\[
@@ -624,14 +696,27 @@ F_{n}(x) = \frac{1}{n}\sum_{k=1}^n I\{X_k \leq x\}.
 </ul>
 <p><span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span> Strong law로부터 모든 <span class="math inline">\(x\)</span>에 대해 <span class="math display">\[
 F_n(x) \stackrel{\text{a.s.}}{\rightarrow} F(x),\quad{} \text{as }n\rightarrow\infty.
-\]</span> Glivenko-Cantelli Theorem은 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(F_n\)</span>이 <span class="math inline">\(F\)</span>에 대해 converges uniformly한다는 것을 보여준다. <span class="citation" data-cites="Durrett2019">(<a href="references.html#ref-Durrett2019" role="doc-biblioref">Durrett 2019</a>)</span></p>
+\]</span></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Glivenko-Cantelli Theorem은 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(F_n\)</span>이 <span class="math inline">\(F\)</span>에 대해 converges uniformly한다는 것을 보여준다. <span class="citation" data-cites="Durrett2019">(<a href="references.html#ref-Durrett2019" role="doc-biblioref">Durrett 2019</a>)</span></p>
+</div>
+</div>
 <div id="thm-glivenkocantelli" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 8.5 (The Glivenko-Cantelli theorem)</strong></span> <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 8.7 (The Glivenko-Cantelli theorem)</strong></span> <span class="math display">\[
 \sup_x \vert F_n (x) - F(x) \vert \stackrel{\text{a.s.}}{\rightarrow} 0 \quad{} \text{as }n \rightarrow \infty.
 \]</span></p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -640,7 +725,7 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Fix <span class="math inline">\(x\)</span> and let <span class="math inline">\(Y_n = I_{(X_n \leq x)}\)</span>. Since <span class="math inline">\(Y_n\)</span> are i.i.d. with <span class="math inline">\(E(Y_n) = P(X_n \leq x) = F(x)\)</span>, the SLLN implies that <span class="math inline">\(F_n (x) = \frac{1}{n}\sum_{m=1}^n Y_m \stackrel{\text{a.s.}}{\rightarrow} F(x)\)</span>.</p></li>
@@ -658,8 +743,8 @@ F_n (x) &amp; \geq F_n (x_{j-1,k}) \geq F(x_{j-1,k}) - \frac{1}{k} \geq F(x_{j,k
 </div>
 </div>
 </div>
-<section id="glivenko-cantelli-theorem의-r-예제" class="level3" data-number="8.6.1">
-<h3 data-number="8.6.1" class="anchored" data-anchor-id="glivenko-cantelli-theorem의-r-예제"><span class="header-section-number">8.6.1</span> Glivenko-Cantelli theorem의 R 예제</h3>
+<section id="glivenko-cantelli-theorem의-r-예제" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="glivenko-cantelli-theorem의-r-예제"><span class="header-section-number">8.8.1</span> Glivenko-Cantelli theorem의 R 예제</h3>
 <ul>
 <li>출처: <a href="https://warwick.ac.uk/fac/sci/statistics/apts/students/resources/prac1sol.pdf">Computer Intensive Statistics: APTS 2023–24 Computer Practical 1 Solutions</a></li>
 </ul>
