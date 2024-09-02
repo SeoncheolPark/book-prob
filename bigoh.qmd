@@ -31,6 +31,23 @@ a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
 $$ If $a_n = o(b_n)$, then we say that $a_n$ is **little-o** of $b_n$. To indicate that $a_n\rightarrow 0$, we write $a_n = o(1)$.
 :::
 
+::: {#def-asymptequiv}
+## Asymptotically equivalent
+
+[@Polansky2011] The notation $x_n \asymp y_n$ means that
+$$
+\lim_{n\rightarrow\infty} \frac{x_n}{y_n}=1,
+$$
+or that the two sequences are **asymptotically equivalent** as $n\rightarrow\infty$.
+
+:::
+
+::: callout-tip
+## Remark
+
+Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다. [@Polansky2011] 예를 들어 $a_n = O(n^{-1})$이라고 하자. 그렇다는 것은 $\vert n a_n \vert$가 모든 $n\in \mathbb{N}$에 대해 bounded하다는 것이다. 그런데 $|n^{1/2}a_n| \leq |na_n|$, $\forall n\in\mathbb{N}$이므로, $a_n = O(n^{-1/2})$이기도 하다.
+:::
+
 ::: {#exr-bigohlittleoh}
 1.  $n^{-2} =o(n^{-1})$ since $\lim_{n\rightarrow\infty}\frac{n^{-2}}{n^{-1}}\lim_{n\rightarrow\infty}\frac{1}{n}=0$
 
@@ -73,7 +90,7 @@ Big-O, small-o의 정의로부터 다음을 알 수 있다.
 
 ::: {#prp-bigolittleo}
 
-Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold:
+Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold [@Garcia-Portugues2024]:
 
 1. $kO(a_n) = O(a_n)$, $ko(a_n) = o(a_n)$, $k\mathbb{R}$.
 
@@ -244,6 +261,21 @@ $$
 
 :::
 
+다음으로 생각해 볼 만한 것은 $n\rightarrow\infty$일 때 $O(n^{-1/2})$와 $O(n^{-1})$처럼 차수가 다른 수열의 수렴에 대한 비교이다.
+
+::: {#thm-bigosmalloaddition}
+
+([@Polansky2011 의 thm 1.19]) Consider two sequences $\{a_n\}_{n=1}^{\infty}$ and $\{b_n\}_{n=1}^{\infty}$ and positive real numbers $k$ and $m$ where $k \leq m$. Then
+
+1. If $a_n = o(n^{-k})$ and $b_n = o(n^{-m})$ as $n\rightarrow \infty$, then $a_n + b_n = o(n^{-k})$ as $n\rightarrow \infty$.
+
+2. If $a_n = O(n^{-k})$ and $b_n = O(n^{-m})$ as $n\rightarrow \infty$, then $a_n + b_n = O(n^{-k})$ as $n\rightarrow \infty$.
+
+3. If $a_n = O(n^{-k})$ and $b_n = o(n^{-m})$ as $n\rightarrow \infty$, then $a_n + b_n = O(n^{-k})$ as $n\rightarrow \infty$.
+
+4. If $a_n = o(n^{-k})$ and $b_n = O(n^{-m})$ as $n\rightarrow \infty$, then $a_n + b_n = O(n^{-k})$ as $n\rightarrow \infty$.
+
+:::
 
 ### Big-$\mathcal{O}$의 적분
 
@@ -401,7 +433,7 @@ It is actually true that:
 
 2. $X_n\stackrel{p}{\rightarrow}X$ as $n\rightarrow\infty$ for some random variable $X$.
 
-3. $X_n \stackrel{d}{\rightarrow}X$ as $n\rightarrow\infty$ for some random variable $X$.
+3. $X_n \stackrel{d}{\rightarrow}X$ as $n\rightarrow\infty$ for some random variable $X$. (@Polansky2011 의 theorem 8.1)
 
 :::
 
@@ -413,6 +445,7 @@ $$
 \begin{align*}
 P(|X_n|>M) &= P(|X_n|^p > M^p)\\
 &\leq \frac{E(|X_n|^p)}{M^p} \leq \frac{c}{M^p},
+\end{align*}
 $$
 where $c= \sup_{n\geq 1}E(|X_n|^p)<\infty$. Thus, if we choose $M$ such that $M>(c/\varepsilon)^{1/p}$, we have $P(|X_n|>M)<\varepsilon$. Hence, $P(|X_n|\leq M) > 1-\varepsilon$ for any $n\geq 1$.
 
@@ -423,7 +456,7 @@ where $c= \sup_{n\geq 1}E(|X_n|^p)<\infty$. Thus, if we choose $M$ such that $M>
 
 ::: {#prp-bigoplittleop}
 
-Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold:
+Consider two strictly positive sequences $a_n, b_n \rightarrow 0$. The following properties hold [@Garcia-Portugues2024] :
 
 1. $o_p(a_n) = O_p(a_n)$ (little-$o_p$ implies big-$O_p$)
 
@@ -450,4 +483,54 @@ X_n &= O(E[X_n]) + O_p (\sqrt{\text{var}[X_n]})\\
 &= O_p(E[X_n] + \sqrt{\text{var}[X_n]}).
 \end{align*}
 $$
+:::
+
+@Polansky2011 의 theorem 8.3에서는 big-O, small-o, big-$O_p$, small-$o_p$에 대한 모든 곱의 상황을 정리해 놓았다.
+
+::: {#thm-bigoplittleopinteraction}
+
+Let $\{X_n\}_{n=1}^{\infty}$ and $\{Y_n \}_{n=1}^{\infty}$ be sequences of random variables and let $\{y_n\}_{n=1}^{\infty}$ be a sequence of real numbers.
+
+1. If $X_n = O_p (n^{-a})$ and $Y_n = O_p(n^{-b})$ as $n\rightarrow\infty$, then $X_n Y_n = O_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+2. If $X_n = O_p (n^{-a})$ and $Y_n = o(n^{-b})$ as $n\rightarrow\infty$, then $X_n y_n = o_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+3. If $X_n = O_p (n^{-a})$ and $Y_n = o_p(n^{-b})$ as $n\rightarrow\infty$, then $X_n Y_n = o_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+4. If $X_n = o_p (n^{-a})$ and $y_n = o(n^{-b})$ as $n\rightarrow\infty$, then $X_n y_n = o_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+5. If $X_n = O_p (n^{-a})$ and $y_n = O(n^{-b})$ as $n\rightarrow\infty$, then $X_n y_n = O_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+6. If $X_n = o_p (n^{-a})$ and $y_n = O(n^{-b})$ as $n\rightarrow\infty$, then $X_n y_n = o_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+7. If $X_n = o_p (n^{-a})$ and $Y_n = o_p(n^{-b})$ as $n\rightarrow\infty$, then $X_n Y_n = o_p(n^{-(a+b)})$ as $n\rightarrow\infty$.
+
+:::
+
+다음은 [Richard Lockhart 교수님의 강의노트](https://www.sfu.ca/~lockhart/richard/830/20_3/) 나 @Shumway2017 의 appendix A에서 알 수 있는 big-O, small-o, big-$O_p$, small-$o_p$ 덧셈 관련 내용이다.
+
+::: {#thm-bigoplittleopaddition}
+
+$a_n>0$, $b_n>0$
+
+1. $O(a_n) + O(b_n) = O(\max \{a_n ,b_n\})$
+
+2. $o(a_n) + o(b_n) = o(\max \{a_n ,b_n\})$
+
+3. $O_p(a_n) + O_p(b_n) = O_p(\max \{a_n ,b_n\})$
+
+4. $o_p(a_n) + o_p(b_n) = o_p(\max \{a_n ,b_n\})$
+
+5. $o(O(a_n)) = o(a_n)$
+
+6. $o(a_n) + O(b_n) = O(\max \{a_n ,b_n\})$
+
+7. $o_p(a_n) + O_p(b_n) = O_p(\max \{a_n ,b_n\})$
+
+You can't cancel because each new occurence of $O$ is different
+$$
+O(a_n) - O(a_n) \neq 0,
+$$
+only add and multiply and use positive rates.
+
 :::

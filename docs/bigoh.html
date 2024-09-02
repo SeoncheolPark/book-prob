@@ -409,6 +409,24 @@ a_n = O(b_n): \Longleftrightarrow \text{limsup}_{n\rightarrow \infty}\frac{a_n}{
 a_n = o(b_n): \Longleftrightarrow \lim_{n\rightarrow\infty} \frac{a_n}{b_n} = 0.
 \]</span> If <span class="math inline">\(a_n = o(b_n)\)</span>, then we say that <span class="math inline">\(a_n\)</span> is <strong>little-o</strong> of <span class="math inline">\(b_n\)</span>. To indicate that <span class="math inline">\(a_n\rightarrow 0\)</span>, we write <span class="math inline">\(a_n = o(1)\)</span>.</p>
 </div>
+<div id="def-asymptequiv" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 15.3 (Asymptotically equivalent)</strong></span> <span class="citation" data-cites="Polansky2011">(<a href="references.html#ref-Polansky2011" role="doc-biblioref">Polansky 2011</a>)</span> The notation <span class="math inline">\(x_n \asymp y_n\)</span> means that <span class="math display">\[
+\lim_{n\rightarrow\infty} \frac{x_n}{y_n}=1,
+\]</span> or that the two sequences are <strong>asymptotically equivalent</strong> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Remark
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다. <span class="citation" data-cites="Polansky2011">(<a href="references.html#ref-Polansky2011" role="doc-biblioref">Polansky 2011</a>)</span> 예를 들어 <span class="math inline">\(a_n = O(n^{-1})\)</span>이라고 하자. 그렇다는 것은 <span class="math inline">\(\vert n a_n \vert\)</span>가 모든 <span class="math inline">\(n\in \mathbb{N}\)</span>에 대해 bounded하다는 것이다. 그런데 <span class="math inline">\(|n^{1/2}a_n| \leq |na_n|\)</span>, <span class="math inline">\(\forall n\in\mathbb{N}\)</span>이므로, <span class="math inline">\(a_n = O(n^{-1/2})\)</span>이기도 하다.</p>
+</div>
+</div>
 <div id="exr-bigohlittleoh" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.1</strong></span> &nbsp;</p>
 <ol type="1">
@@ -453,7 +471,7 @@ Remark
 </div>
 <p>다음은 <span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span>에 적혀 있는 big-O, small-o에 대한 몇 가지 성질들이다.</p>
 <div id="prp-bigolittleo" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 15.1</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold:</p>
+<p><span class="theorem-title"><strong>Proposition 15.1</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold <span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span>:</p>
 <ol type="1">
 <li><p><span class="math inline">\(kO(a_n) = O(a_n)\)</span>, <span class="math inline">\(ko(a_n) = o(a_n)\)</span>, <span class="math inline">\(k\mathbb{R}\)</span>.</p></li>
 <li><p><span class="math inline">\(o(a_n) + o(b_n) = o(a_n + b_n)\)</span>, <span class="math inline">\(O(a_n) + O(b_n) = O(a_n + b_n)\)</span>.</p></li>
@@ -558,6 +576,16 @@ Remark
 \end{cases}
 \]</span></p>
 </div>
+<p>다음으로 생각해 볼 만한 것은 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(O(n^{-1/2})\)</span>와 <span class="math inline">\(O(n^{-1})\)</span>처럼 차수가 다른 수열의 수렴에 대한 비교이다.</p>
+<div id="thm-bigosmalloaddition" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 15.1</strong></span> (<span class="citation" data-cites="Polansky2011">(<a href="references.html#ref-Polansky2011" role="doc-biblioref">Polansky 2011</a> 의 thm 1.19)</span>) Consider two sequences <span class="math inline">\(\{a_n\}_{n=1}^{\infty}\)</span> and <span class="math inline">\(\{b_n\}_{n=1}^{\infty}\)</span> and positive real numbers <span class="math inline">\(k\)</span> and <span class="math inline">\(m\)</span> where <span class="math inline">\(k \leq m\)</span>. Then</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(a_n = o(n^{-k})\)</span> and <span class="math inline">\(b_n = o(n^{-m})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, then <span class="math inline">\(a_n + b_n = o(n^{-k})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(a_n = O(n^{-k})\)</span> and <span class="math inline">\(b_n = O(n^{-m})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, then <span class="math inline">\(a_n + b_n = O(n^{-k})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(a_n = O(n^{-k})\)</span> and <span class="math inline">\(b_n = o(n^{-m})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, then <span class="math inline">\(a_n + b_n = O(n^{-k})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(a_n = o(n^{-k})\)</span> and <span class="math inline">\(b_n = O(n^{-m})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>, then <span class="math inline">\(a_n + b_n = O(n^{-k})\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>.</p></li>
+</ol>
+</div>
 <section id="big-mathcalo의-적분" class="level3" data-number="15.1.1">
 <h3 data-number="15.1.1" class="anchored" data-anchor-id="big-mathcalo의-적분"><span class="header-section-number">15.1.1</span> Big-<span class="math inline">\(\mathcal{O}\)</span>의 적분</h3>
 <!--
@@ -599,7 +627,7 @@ https://math.stackexchange.com/questions/116668/how-does-one-integrate-landau-sy
 <section id="stochastic-versions" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="stochastic-versions"><span class="header-section-number">15.2</span> Stochastic versions</h2>
 <div id="def-littleop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.3 (Little-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Definition 15.4 (Little-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
 X_n = o_P (a_n): &amp;\Longleftrightarrow  \frac{|X_n|}{a_n}\stackrel{P}{\rightarrow}0\\
 &amp;\Longleftrightarrow\lim_{n\rightarrow\infty}P\Big[ \frac{|X_n|}{a_n}&gt;\varepsilon \Big] =0, \quad{} \forall \varepsilon &gt;0.
 \end{align*}\]</span> If <span class="math inline">\(X_n = o_p (a_n)\)</span>, then we say that <span class="math inline">\(X_n\)</span> is <strong>little</strong>-<span class="math inline">\(o_p\)</span> of <span class="math inline">\(a_n\)</span>. To indicate that <span class="math inline">\(X_n \stackrel{P}{\rightarrow}0\)</span>, we write <span class="math inline">\(X_n = o_p(1)\)</span>.</p>
@@ -627,7 +655,7 @@ Remark
 </div>
 </div>
 <div id="def-bigop" class="theorem definition">
-<p><span class="theorem-title"><strong>Definition 15.4 (Big-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
+<p><span class="theorem-title"><strong>Definition 15.5 (Big-<span class="math inline">\(o_p\)</span>)</strong></span> Given a strictly positive sequence <span class="math inline">\(a_n\)</span> and a sequence of random variable <span class="math inline">\(X_n\)</span>, <span class="math display">\[\begin{align*}
 X_n = O_P (a_n): \Longleftrightarrow&amp;  \forall \varepsilon&gt;0, \exists C_{\varepsilon}&gt;0, n_0(\varepsilon) \in \mathbb{N}:\\
 &amp;\forall n \geq n_0 (\varepsilon), P \Big[\frac{|X_n|}{a_n} &gt; C_{\varepsilon} \Big] &lt; \varepsilon\\
 \Longleftrightarrow &amp;\lim_{C\rightarrow\infty}\text{limsup}_{n\rightarrow\infty} P\Big[\frac{|X_n|}{a_n} &gt;C \Big]=0.
@@ -658,15 +686,15 @@ X_n - E[X_n] = O_p (\sqrt{\text{Var}[X_n]}).
 </div>
 <p>다음은 <span class="citation" data-cites="Jiang2022">(<a href="references.html#ref-Jiang2022" role="doc-biblioref">Jiang 2022</a>)</span> 에 나와있는 정리다.</p>
 <div id="thm-suffbigop" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 15.1 (<span class="math inline">\(O_p(1)\)</span>이기 위한 충분조건)</strong></span> 다음 세 가지 조건 중 하나를 만족하면 <span class="math inline">\(X_n = O_p(1)\)</span>이다.</p>
+<p><span class="theorem-title"><strong>Theorem 15.2 (<span class="math inline">\(O_p(1)\)</span>이기 위한 충분조건)</strong></span> 다음 세 가지 조건 중 하나를 만족하면 <span class="math inline">\(X_n = O_p(1)\)</span>이다.</p>
 <ol type="1">
 <li><p>There is <span class="math inline">\(p&gt;0\)</span> such that <span class="math inline">\(E(|X_n|^p), n\geq 1\)</span> is bounded.</p></li>
 <li><p><span class="math inline">\(X_n\stackrel{p}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> for some random variable <span class="math inline">\(X\)</span>.</p></li>
-<li><p><span class="math inline">\(X_n \stackrel{d}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> for some random variable <span class="math inline">\(X\)</span>.</p></li>
+<li><p><span class="math inline">\(X_n \stackrel{d}{\rightarrow}X\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span> for some random variable <span class="math inline">\(X\)</span>. (<span class="citation" data-cites="Polansky2011">Polansky (<a href="references.html#ref-Polansky2011" role="doc-biblioref">2011</a>)</span> 의 theorem 8.1)</p></li>
 </ol>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -675,13 +703,14 @@ Proof
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>1번이 성립한다고 하자. <span class="math inline">\(\varepsilon&gt;0\)</span>에 대해 Chebyshev 부등식을 쓰면 <span class="math display">\[
 \begin{align*}
 P(|X_n|&gt;M) &amp;= P(|X_n|^p &gt; M^p)\\
 &amp;\leq \frac{E(|X_n|^p)}{M^p} \leq \frac{c}{M^p},
+\end{align*}
 \]</span> where <span class="math inline">\(c= \sup_{n\geq 1}E(|X_n|^p)&lt;\infty\)</span>. Thus, if we choose <span class="math inline">\(M\)</span> such that <span class="math inline">\(M&gt;(c/\varepsilon)^{1/p}\)</span>, we have <span class="math inline">\(P(|X_n|&gt;M)&lt;\varepsilon\)</span>. Hence, <span class="math inline">\(P(|X_n|\leq M) &gt; 1-\varepsilon\)</span> for any <span class="math inline">\(n\geq 1\)</span>.</p></li>
 <li><p>3번 관련 <a href="https://stats.stackexchange.com/questions/567308/converge-in-distribution-and-order-of-convergence">StackExchange</a> 참고</p></li>
 </ul>
@@ -690,7 +719,7 @@ P(|X_n|&gt;M) &amp;= P(|X_n|^p &gt; M^p)\\
 </div>
 <p>다음은 big-<span class="math inline">\(O_p\)</span> 및 little-<span class="math inline">\(o_p\)</span>에 관한 성질들이다.</p>
 <div id="prp-bigoplittleop" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 15.2</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold:</p>
+<p><span class="theorem-title"><strong>Proposition 15.2</strong></span> Consider two strictly positive sequences <span class="math inline">\(a_n, b_n \rightarrow 0\)</span>. The following properties hold <span class="citation" data-cites="Garcia-Portugues2024">(<a href="references.html#ref-Garcia-Portugues2024" role="doc-biblioref">García-Portugués 2024</a>)</span> :</p>
 <ol type="1">
 <li><p><span class="math inline">\(o_p(a_n) = O_p(a_n)\)</span> (little-<span class="math inline">\(o_p\)</span> implies big-<span class="math inline">\(O_p\)</span>)</p></li>
 <li><p><span class="math inline">\(o(1) = o_p(1)\)</span>, <span class="math inline">\(O(1) = O_p(1)\)</span> (deterministic implies probabilistic)</p></li>
@@ -710,6 +739,35 @@ X_n &amp;= O(E[X_n]) + O_p (\sqrt{\text{var}[X_n]})\\
 \end{align*}
 \]</span></p>
 </div>
+<p><span class="citation" data-cites="Polansky2011">Polansky (<a href="references.html#ref-Polansky2011" role="doc-biblioref">2011</a>)</span> 의 theorem 8.3에서는 big-O, small-o, big-<span class="math inline">\(O_p\)</span>, small-<span class="math inline">\(o_p\)</span>에 대한 모든 곱의 상황을 정리해 놓았다.</p>
+<div id="thm-bigoplittleopinteraction" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 15.3</strong></span> Let <span class="math inline">\(\{X_n\}_{n=1}^{\infty}\)</span> and <span class="math inline">\(\{Y_n \}_{n=1}^{\infty}\)</span> be sequences of random variables and let <span class="math inline">\(\{y_n\}_{n=1}^{\infty}\)</span> be a sequence of real numbers.</p>
+<ol type="1">
+<li><p>If <span class="math inline">\(X_n = O_p (n^{-a})\)</span> and <span class="math inline">\(Y_n = O_p(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n Y_n = O_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = O_p (n^{-a})\)</span> and <span class="math inline">\(Y_n = o(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n y_n = o_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = O_p (n^{-a})\)</span> and <span class="math inline">\(Y_n = o_p(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n Y_n = o_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = o_p (n^{-a})\)</span> and <span class="math inline">\(y_n = o(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n y_n = o_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = O_p (n^{-a})\)</span> and <span class="math inline">\(y_n = O(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n y_n = O_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = o_p (n^{-a})\)</span> and <span class="math inline">\(y_n = O(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n y_n = o_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X_n = o_p (n^{-a})\)</span> and <span class="math inline">\(Y_n = o_p(n^{-b})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>, then <span class="math inline">\(X_n Y_n = o_p(n^{-(a+b)})\)</span> as <span class="math inline">\(n\rightarrow\infty\)</span>.</p></li>
+</ol>
+</div>
+<p>다음은 <a href="https://www.sfu.ca/~lockhart/richard/830/20_3/">Richard Lockhart 교수님의 강의노트</a> 나 <span class="citation" data-cites="Shumway2017">Shumway and Stoffer (<a href="references.html#ref-Shumway2017" role="doc-biblioref">2017</a>)</span> 의 appendix A에서 알 수 있는 big-O, small-o, big-<span class="math inline">\(O_p\)</span>, small-<span class="math inline">\(o_p\)</span> 덧셈 관련 내용이다.</p>
+<div id="thm-bigoplittleopaddition" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 15.4</strong></span> <span class="math inline">\(a_n&gt;0\)</span>, <span class="math inline">\(b_n&gt;0\)</span></p>
+<ol type="1">
+<li><p><span class="math inline">\(O(a_n) + O(b_n) = O(\max \{a_n ,b_n\})\)</span></p></li>
+<li><p><span class="math inline">\(o(a_n) + o(b_n) = o(\max \{a_n ,b_n\})\)</span></p></li>
+<li><p><span class="math inline">\(O_p(a_n) + O_p(b_n) = O_p(\max \{a_n ,b_n\})\)</span></p></li>
+<li><p><span class="math inline">\(o_p(a_n) + o_p(b_n) = o_p(\max \{a_n ,b_n\})\)</span></p></li>
+<li><p><span class="math inline">\(o(O(a_n)) = o(a_n)\)</span></p></li>
+<li><p><span class="math inline">\(o(a_n) + O(b_n) = O(\max \{a_n ,b_n\})\)</span></p></li>
+<li><p><span class="math inline">\(o_p(a_n) + O_p(b_n) = O_p(\max \{a_n ,b_n\})\)</span></p></li>
+</ol>
+<p>You can’t cancel because each new occurence of <span class="math inline">\(O\)</span> is different <span class="math display">\[
+O(a_n) - O(a_n) \neq 0,
+\]</span> only add and multiply and use positive rates.</p>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -718,6 +776,12 @@ García-Portugués, E. 2024. <em>Notes for Nonparametric Statistics</em>. <a hre
 </div>
 <div id="ref-Jiang2022" class="csl-entry" role="listitem">
 Jiang, Jiming. 2022. <em>Large Sample Techniques for Statistics</em>. <em>Springer Texts in Statistics</em>. Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-91695-4">https://doi.org/10.1007/978-3-030-91695-4</a>.
+</div>
+<div id="ref-Polansky2011" class="csl-entry" role="listitem">
+Polansky, Alan M. 2011. <em>Introduction to Statistical Limit Theory</em>. CRC Press.
+</div>
+<div id="ref-Shumway2017" class="csl-entry" role="listitem">
+Shumway, Robert H., and David S. Stoffer. 2017. <em>Time Series Analysis and Its Applications</em>. Springer-Verlag GmbH. <a href="https://www.ebook.de/de/product/28224354/robert_h_shumway_david_s_stoffer_time_series_analysis_and_its_applications.html">https://www.ebook.de/de/product/28224354/robert_h_shumway_david_s_stoffer_time_series_analysis_and_its_applications.html</a>.
 </div>
 </div>
 </section>
