@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.37">
+<meta name="generator" content="quarto-1.5.56">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>A Biggner's Guide to Probability and Extremes – 7&nbsp; Convergence</title>
+<title>7&nbsp; Convergence – A Biggner's Guide to Probability and Extremes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -373,9 +373,13 @@ window.Quarto = {
   <li><a href="#converses" id="toc-converses" class="nav-link" data-scroll-target="#converses"><span class="header-section-number">7.9</span> Converses</a></li>
   <li><a href="#uniform-integrability" id="toc-uniform-integrability" class="nav-link" data-scroll-target="#uniform-integrability"><span class="header-section-number">7.10</span> Uniform Integrability</a></li>
   <li><a href="#convergence-of-moments" id="toc-convergence-of-moments" class="nav-link" data-scroll-target="#convergence-of-moments"><span class="header-section-number">7.11</span> Convergence of Moments</a></li>
-  <li><a href="#continuity-theorems" id="toc-continuity-theorems" class="nav-link" data-scroll-target="#continuity-theorems"><span class="header-section-number">7.12</span> Continuity theorems</a></li>
-  <li><a href="#convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" id="toc-convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" class="nav-link" data-scroll-target="#convergence-of-functions-of-random-variables-the-continuous-mapping-theorem"><span class="header-section-number">7.13</span> Convergence of Functions of Random Variables: The Continuous Mapping Theorem</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.14</span> References</a></li>
+  <li><a href="#distributional-convergence-revisited" id="toc-distributional-convergence-revisited" class="nav-link" data-scroll-target="#distributional-convergence-revisited"><span class="header-section-number">7.12</span> Distributional convergence revisited</a>
+  <ul class="collapse">
+  <li><a href="#scheffes-lemma" id="toc-scheffes-lemma" class="nav-link" data-scroll-target="#scheffes-lemma"><span class="header-section-number">7.12.1</span> Scheffe’s lemma</a></li>
+  </ul></li>
+  <li><a href="#continuity-theorems" id="toc-continuity-theorems" class="nav-link" data-scroll-target="#continuity-theorems"><span class="header-section-number">7.13</span> Continuity theorems</a></li>
+  <li><a href="#convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" id="toc-convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" class="nav-link" data-scroll-target="#convergence-of-functions-of-random-variables-the-continuous-mapping-theorem"><span class="header-section-number">7.14</span> Convergence of Functions of Random Variables: The Continuous Mapping Theorem</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">7.15</span> References</a></li>
   </ul>
 </nav>
     </div>
@@ -463,7 +467,7 @@ Remark
 <ul>
 <li>구간 <span class="math inline">\([0,1]\)</span>에서 아무렇게나 한 점을 골라서 <span class="math inline">\(\omega\)</span>라 하고, <span class="math inline">\(\omega\)</span>가 <span class="math inline">\([0,1]\)</span>의 어느 부분 구간에 들어갈 확률은 그 부분 구간의 길이와 같다고 가정</li>
 </ul>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 20%">
 <col style="width: 20%">
@@ -1041,8 +1045,62 @@ Remark
 <p>위키의 설명에 따르면 <span class="math inline">\(X_n \stackrel{L^r}{\rightarrow}X\)</span>이면 <span class="math inline">\(\lim_{n\rightarrow \infty}E[|X_n|^r] = E[|X|^r]\)</span>이 성립한다고 한다. 그러나 일반적인 moment의 convergence에 대해서는 잘 알지 못한다. 여기서는 uniformly integrablility를 추가해 기존 확률변수의 수렴과 moment convergence 사이의 관계에 대해 알아본다.</p>
 <p>We are now in the position to show that uniform integrability is the <strong>correct</strong> concept, that is, that a sequence that converges almost surely, in probability, or in distribution, and is uniformly integrable, converges in the mean, that moments converge and that uniform integrability is the minimal additional assumption for this to happen. <span class="citation" data-cites="Gut2014">(<a href="references.html#ref-Gut2014" role="doc-biblioref">Gut 2014</a>)</span></p>
 </section>
-<section id="continuity-theorems" class="level2" data-number="7.12">
-<h2 data-number="7.12" class="anchored" data-anchor-id="continuity-theorems"><span class="header-section-number">7.12</span> Continuity theorems</h2>
+<section id="distributional-convergence-revisited" class="level2" data-number="7.12">
+<h2 data-number="7.12" class="anchored" data-anchor-id="distributional-convergence-revisited"><span class="header-section-number">7.12</span> Distributional convergence revisited</h2>
+<section id="scheffes-lemma" class="level3" data-number="7.12.1">
+<h3 data-number="7.12.1" class="anchored" data-anchor-id="scheffes-lemma"><span class="header-section-number">7.12.1</span> Scheffe’s lemma</h3>
+<ul>
+<li><span class="math inline">\(X_n\)</span>이 분포수렴하더라도 density는 어떤 특정 density fct로 수렴하지 않을 수 있음</li>
+</ul>
+<div id="exm-distconvnotdensity" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.11</strong></span> <span class="math inline">\(X_1, X_2,\ldots\)</span>이 다음과 같은 density <span class="math display">\[
+f_{X_n}(x) =
+\begin{cases}
+1 - \cos (2\pi n x), &amp; \text{for } 0 \leq x 1,\\
+0, &amp; \text{o.w.}
+\end{cases}
+\]</span> 를 갖는 확률변수라고 하자. 그러면 다음과 같이 <span class="math display">\[
+F_{X_n}(x)=
+\begin{cases}
+0, &amp; \text{for } x\leq 0,\\
+x - \frac{\sin (2\pi n x)}{2\pi n} \rightarrow x, &amp; \text{for }0 \leq x 1,\\
+1, &amp; \text{for } x\geq 1,
+\end{cases}
+\]</span> <span class="math inline">\(X_n \stackrel{d}{\rightarrow} U(0,1)\)</span> as <span class="math inline">\(n\rightarrow \infty\)</span>이다. 그러나 density는 oscillation하고 있어 수렴하지 않는다.</p>
+</div>
+<div id="def-totalvariation" class="theorem definition">
+<p><span class="theorem-title"><strong>Definition 7.11 (Converges of total variance)</strong></span> &nbsp;</p>
+<ul>
+<li><p>두 개의 분포함수 <span class="math inline">\(F\)</span>와 <span class="math inline">\(G\)</span>의 <strong>variational distance</strong>는 <span class="math display">\[
+d(F,G)= \sup_{A\in \mathbb{R}} \vert F(A) - G(A) \vert.
+\]</span></p></li>
+<li><p><span class="math inline">\(F\)</span>와 <span class="math inline">\(G\)</span>와 관련된 확률변수가 <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>일 때, 위의 정의는 다음과 같음 <span class="math display">\[
+d(X,Y) =  \sup_{A\in \mathbb{R}} \vert P(X\in A) - P(Y\in A)\vert .
+\]</span></p></li>
+<li><p>확률변수 <span class="math inline">\(X, X_1, X_2, \ldots\)</span>가 <span class="math display">\[
+d(X_n ,X ) \rightarrow 0 \quad{} \text{as} \quad{} n \rightarrow \infty
+\]</span> 일 때, 확률변수열 <span class="math inline">\(X_n\)</span>이 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(X\)</span>에 <strong>converges in total variation</strong>이라고 한다.</p></li>
+</ul>
+</div>
+<p><span class="math inline">\((-\infty, x]\)</span>가 <span class="math inline">\(x\)</span>가 주어졌을 때 Borel set이라고 할 때, <span class="math display">\[
+\vert P(X_n \leq x) - P(X\leq x) \vert \leq \sup_{A\in\mathbb{R}} \vert P(X_n \in A) - P(X \in A) \vert
+\]</span> 이므로 다음의 따름정리를 얻는다.</p>
+<div id="lem-totalvariationlem" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemma 7.1</strong></span> <span class="math inline">\(X_1, X_2, \ldots\)</span>가 확률변수라고 하자. 만약 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(X_n \rightarrow X\)</span> in total variation이면 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(X_n \stackrel{d}{\rightarrow}X\)</span>이다.</p>
+</div>
+<div id="thm-scheffe" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 7.10 (Scheffe’s lemma)</strong></span> <span class="math inline">\(X, X_1, X_2,\ldots\)</span>가 absolutely continous random variable이라고 하자. 그러면 <span class="math display">\[
+\sup_{A\in\mathbb{R}} \vert P(X_n \in A) - P(X \in A) \vert \leq \int_{\mathbb{R}} \vert f_{X_n}(x) - f_X(x)\vert dx
+\]</span> 이고 만약 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math inline">\(f_{X_n}(x) \rightarrow f_{X}(x)\)</span> almost everywhere라고 하면 <span class="math display">\[
+d(X_n, X) \stackrel{n\rightarrow \infty}{\longrightarrow} 0
+\]</span> 이다. 특별히 <span class="math inline">\(n\rightarrow\infty\)</span>일 때 <span class="math display">\[
+X_n \stackrel{d}{\rightarrow}X
+\]</span> 이다.</p>
+</div>
+</section>
+</section>
+<section id="continuity-theorems" class="level2" data-number="7.13">
+<h2 data-number="7.13" class="anchored" data-anchor-id="continuity-theorems"><span class="header-section-number">7.13</span> Continuity theorems</h2>
 <ul>
 <li><p>Uniqueness theorem: 두 개의 transform이 같으면 이와 연관된 distribution도 같음</p></li>
 <li><p>이를 약간 약화시켜 두 개의 transform이 almost equal이면 이와 연관된 distribution도 그렇지 않을까 하는 생각을 할 수도 있음</p></li>
@@ -1050,16 +1108,16 @@ Remark
 <li><p>이러한 류의 정리들을 <strong>continuity theorem</strong>이라고 함</p></li>
 </ul>
 <div id="thm-cfdistn" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.10 (확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴)</strong></span> <span class="math inline">\(X, X_1, X_2 ,\ldots\)</span>가 확률변수라고 하자. 그러면 <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.11 (확률변수열의 특성함수가 수렴하면 확률변수열도 분포수렴)</strong></span> <span class="math inline">\(X, X_1, X_2 ,\ldots\)</span>가 확률변수라고 하자. 그러면 <span class="math display">\[
 \varphi_{X_n}(t) \stackrel{n\rightarrow\infty}{\longrightarrow}\varphi(t) ,\quad{}\forall t \Longleftrightarrow X_n\stackrel{d}{\rightarrow}X \quad{} \text{as } n\rightarrow\infty.
 \]</span></p>
 </div>
 </section>
-<section id="convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" class="level2" data-number="7.13">
-<h2 data-number="7.13" class="anchored" data-anchor-id="convergence-of-functions-of-random-variables-the-continuous-mapping-theorem"><span class="header-section-number">7.13</span> Convergence of Functions of Random Variables: The Continuous Mapping Theorem</h2>
+<section id="convergence-of-functions-of-random-variables-the-continuous-mapping-theorem" class="level2" data-number="7.14">
+<h2 data-number="7.14" class="anchored" data-anchor-id="convergence-of-functions-of-random-variables-the-continuous-mapping-theorem"><span class="header-section-number">7.14</span> Convergence of Functions of Random Variables: The Continuous Mapping Theorem</h2>
 <p><strong>Q</strong>. <span class="math inline">\(X_1,X_2,\ldots\)</span>가 어떤 형태로든 <span class="math inline">\(X\)</span>로 수렴함이 알려져 있다고 하자. 그렇다면 어떤 실함수 <span class="math inline">\(h\)</span>에 대해 <span class="math inline">\(h(X_1), h(X_2),\ldots\)</span>도 같은 sense로 <span class="math inline">\(h(X)\)</span>에 수렴할 것인가?</p>
 <div id="thm-convfctas" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.11</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables such that <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.12</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables such that <span class="math display">\[
 X_n \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty,
 \]</span> and suppose that <span class="math inline">\(h\)</span> is a continuous function. Then <span class="math display">\[
 h(X_n) \stackrel{\text{a.s.}}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow \infty.
@@ -1084,14 +1142,14 @@ Proof
 </div>
 </div>
 <div id="thm-convfctprob" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.12</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables such that <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.13</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables such that <span class="math display">\[
 X_n \stackrel{p}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty,
 \]</span> and suppose that <span class="math inline">\(h\)</span> is a continuous function. Then <span class="math display">\[
 h(X_n) \stackrel{p}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow \infty.
 \]</span></p>
 </div>
 <div id="thm-convfctdist" class="theorem">
-<p><span class="theorem-title"><strong>Theorem 7.13 (The continuous mapping theorem)</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables and suppose that <span class="math display">\[
+<p><span class="theorem-title"><strong>Theorem 7.14 (The continuous mapping theorem)</strong></span> Let <span class="math inline">\(X, X_1, X_2, \ldots\)</span> be random variables and suppose that <span class="math display">\[
 X_n \stackrel{d}{\rightarrow} X \quad{} \text{as } n \rightarrow \infty.
 \]</span> If <span class="math inline">\(g\)</span> is a continuous, then <span class="math display">\[
 g(X_n) \stackrel{d}{\rightarrow} g(X) \quad{} \text{as } n \rightarrow \infty.
@@ -1111,8 +1169,8 @@ Remark
 </div>
 </div>
 </section>
-<section id="references" class="level2" data-number="7.14">
-<h2 data-number="7.14" class="anchored" data-anchor-id="references"><span class="header-section-number">7.14</span> References</h2>
+<section id="references" class="level2" data-number="7.15">
+<h2 data-number="7.15" class="anchored" data-anchor-id="references"><span class="header-section-number">7.15</span> References</h2>
 <ul>
 <li><a href="https://product.kyobobook.co.kr/detail/S000001075892">확률변수론</a></li>
 </ul>
