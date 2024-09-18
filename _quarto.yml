@@ -47,6 +47,7 @@ filters:
 format:
   html:
     theme: cosmo
+    css: style.css
     code-fold: true
     include-in-header:
       text: |
@@ -70,7 +71,13 @@ format:
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   pdf:
     documentclass: scrreprt
+    keep-tex: true
+    fig-pos: th
+    fig-width: 10
+    fig-height: 6.18
+    fig-align: center
     mainfont: "Noto Sans KR"
+    fontsize: 13pt
     filters:
       - watermark
     watermark:
