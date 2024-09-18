@@ -210,7 +210,7 @@ https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf
 
 - $S = \{ (a,b] \cap [0,1]\}$은 $\mathcal{B}$를 생성하는 $\pi$-system이다. 따라서 @lem-pisysequivprob 에 의해 uniqueness가 증명된다.
 
-- Existence는 증명이 길고 복잡한데, 몇 가지 개요만을 아래에서 서술한다. 좀 더 자세한 사항은 PROBABILITY THEORY - PART 1 MEASURE THEORETICAL FRAMEWORK](https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf) 를 보길 바란다. 여기서는 $\Omega = [0,1]$로 둔다.
+- Existence는 증명이 길고 복잡한데, 몇 가지 개요만을 아래에서 서술한다. 좀 더 자세한 사항은 [PROBABILITY THEORY - PART 1 MEASURE THEORETICAL FRAMEWORK](https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf) 를 보길 바란다. 여기서는 $\Omega = [0,1]$로 둔다.
 
 :::
 
