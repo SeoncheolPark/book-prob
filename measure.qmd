@@ -19,7 +19,7 @@ https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf
     + $A, B \in S$ and $A \subseteq B \Longrightarrow B \backslash A \in S$
     + $A_n \uparrow A$ and $A_n \in S \Longrightarrow A \in S$
     
-3. **Algebra** if
+3. **Algebra** (field) if
     + $\emptyset , \Omega \in S$
     + $A \in S \Longrightarrow A^c \in S$
     + $A, B \in S \Longrightarrow A\cup B \in S$
@@ -29,7 +29,7 @@ https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf
     + $A_n \in S$ and $A_n \downarrow A \Longrightarrow A \in S$
     + Recall that $A_n \uparrow A$ means that $A_1 \subseteq A_2 \subseteq \ldots$ and $\cup_n A_n = A$ and $A_n \downarrow A$ means that $A_n \supseteq A_2 \supseteq \ldots$ and $\cap_n A_n = A$
     
-5. $\sigma$-**algebra** if
+5. $\sigma$-**algebra** (field) if
     + $\emptyset, \Omega \in S$
     + $A \in S \Longrightarrow A^c \in S$
     + $A_n \in S \Longrightarrow \cup A_n \in S$
@@ -368,13 +368,14 @@ https://www.statlect.com/fundamentals-of-probability/expected-value
     \end{cases}
     $$
 
--   이때의 기댓값은 $$
-    \begin{align*}
+-   이때의 기댓값은 
+    $$
+    \begin{aligned}
     E[X] &= \int_{-\infty}^{\infty} x dF_X(x)\\
     &= \int_0^1 xdF_{X}(x) + 1\cdot \Big[ F_X(1) -\lim_{x\rightarrow 1, x < 1}F_X(x) \Big]\\
     &= \int_0^1 x \frac{d}{dx} \Big(\frac{1}{2}x \Big) dx  + 1 \cdot \Big[ 1- \frac{1}{2} \Big]\\
     &= \Big[\frac{1}{4}x^2 \Big]_{0}^1 + \frac{1}{2} = \frac{1}{4}+\frac{1}{2}=\frac{3}{4}.
-    \end{align*}
+    \end{aligned}
     $$
 :::
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.3)  18 SEP 2024 15:25
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.5.3)  16 DEC 2024 20:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1044,12 +1044,12 @@ Package: amsthm 2020/05/29 v2.20.6
 Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
 )
 Class scrreprt Info: amsthm's \deferred@thm@head patched.
-\c@definition=\count341
-\c@lemma=\count342
-\c@exercise=\count343
-\c@theorem=\count344
-\c@proposition=\count345
-\c@example=\count346
+\c@proposition=\count341
+\c@example=\count342
+\c@definition=\count343
+\c@lemma=\count344
+\c@exercise=\count345
+\c@theorem=\count346
 \c@refremark=\count347
 \c@refsolution=\count348
 (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/subcaption.sty
@@ -1909,34 +1909,34 @@ No file index.toc.
 
 LaTeX Info: Completed page discarded.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 11.4647pt on input line 363.
+(Font)              scaled to size 11.4647pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.18907pt on input line 363.
+(Font)              scaled to size 8.18907pt on input line 360.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 3
-63.
+60.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 16.37973pt on input line 363.
+(Font)              scaled to size 16.37973pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 11.4658pt on input line 363.
+(Font)              scaled to size 11.4658pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.18987pt on input line 363.
+(Font)              scaled to size 8.18987pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 16.37656pt on input line 363.
+(Font)              scaled to size 16.37656pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.4636pt on input line 363.
+(Font)              scaled to size 11.4636pt on input line 360.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.18828pt on input line 363.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 363
+(Font)              scaled to size 8.18828pt on input line 360.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 360
 .
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 363
+LaTeX Font Info:    Trying to load font information for U+msb on input line 360
 .
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1944,21 +1944,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(1)/m/n' will be
-(Font)              scaled to size 13.89561pt on input line 366.
+(Font)              scaled to size 13.89561pt on input line 363.
 [2
 
 ]
 part I.
 Package scrkbase Info: You've told me to use the font selection of the element
 (scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 375.
+(scrkbase)              on input line 372.
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/bx/n' in size <32.34409> not 
 available
 (Font)              Font shape `TU/UnDotum.ttf(0)/b/n' tried instead on input l
-ine 375.
+ine 372.
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/b/n' will be
-(Font)              scaled to size 34.57237pt on input line 375.
+(Font)              scaled to size 34.57237pt on input line 372.
 [3
+
+]
+part II.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 374.
+[4
 
 ]
 chapter 1.
@@ -1980,45 +1987,111 @@ Class scrreprt Warning: \float@addtolists detected!
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/bx/n' in size <18.72003> not 
 available
 (Font)              Font shape `TU/UnDotum.ttf(0)/b/n' tried instead on input l
-ine 379.
+ine 378.
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/b/n' will be
-(Font)              scaled to size 20.0097pt on input line 379.
+(Font)              scaled to size 20.0097pt on input line 378.
 LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/b/n' will be
-(Font)              scaled to size 13.0pt on input line 388.
-LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/m/n' will be
-(Font)              scaled to size 9.1pt on input line 398.
-LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/m/n' will be
-(Font)              scaled to size 6.5pt on input line 398.
-[4
-
-]
-part II.
-Package scrkbase Info: You've told me to use the font selection of the element
-(scrkbase)             `partprefix' that is an alias of element `partnumber'
-(scrkbase)              on input line 401.
+(Font)              scaled to size 13.0pt on input line 383.
 [5
 
-]
-chapter 2.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-TU-empty.cfg
+] (/usr/local/texlive/2024/texmf-dist/tex/latex/microtype/mt-TU-empty.cfg
 File: mt-TU-empty.cfg 2021/06/22 v1.1 microtype config. file: fonts with nonsta
 ndard glyph set (RS)
 )
+LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/m/n' will be
+(Font)              scaled to size 9.1pt on input line 493.
+LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 493.
+
+Overfull \hbox (41.50356pt too wide) in paragraph at lines 493--493
+ [][][]$| 
+ []
+
+
+Overfull \hbox (41.50356pt too wide) in paragraph at lines 496--496
+ [][][]$| 
+ []
+
+
+Overfull \hbox (41.50356pt too wide) in paragraph at lines 499--499
+ [][][]$| 
+ []
+
+
+LaTeX Font Warning: Font shape `TU/NotoSansKR(0)/m/it' undefined
+(Font)              using `TU/NotoSansKR(0)/m/n' instead on input line 514.
+
+LaTeX Font Info:    Font shape `TU/NotoSansKR(0)/m/it' will be
+(Font)              scaled to size 13.0pt on input line 522.
+[6] [7]
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
+(Font)              scaled to size 13.0pt on input line 657.
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
+(Font)              scaled to size 9.1pt on input line 657.
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
+(Font)              scaled to size 6.5pt on input line 657.
+
+LaTeX Warning: Reference `lem-pilambdathm' on page 8 undefined on input line 66
+1.
+
+[8]
+
+LaTeX Warning: Reference `exm-differentprobmeasures' on page 9 undefined on inp
+ut line 667.
+
+[9]
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/bx/n' in size <15.59996> not 
 available
 (Font)              Font shape `TU/UnDotum.ttf(0)/b/n' tried instead on input l
-ine 442.
+ine 768.
 LaTeX Font Info:    Font shape `TU/UnDotum.ttf(0)/b/n' will be
-(Font)              scaled to size 16.67468pt on input line 442.
-[6
+(Font)              scaled to size 16.67468pt on input line 768.
 
-] [7]
-LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
-(Font)              scaled to size 13.0pt on input line 499.
-LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
-(Font)              scaled to size 9.1pt on input line 499.
-LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/m/n' will be
-(Font)              scaled to size 6.5pt on input line 499.
+LaTeX Warning: Reference `lem-pisysequivprob' on page 10 undefined on input lin
+e 789.
+
+
+Overfull \hbox (117.05307pt too wide) detected at line 806
+[][][][][] [] [][][] [][][][] [] [][][][][][][][][][][][]
+ []
+
+[10] [11] [12] [13] [14]
+Underfull \hbox (badness 1533) in paragraph at lines 1026--1030
+[][][][][][][][]$\TU/NotoSansKR(0)/m/it/13 . By definition, this measure is inv
+ariant under $[]$, and
+ []
+
+[15]
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/b/n' will be
+(Font)              scaled to size 13.0pt on input line 1045.
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/b/n' will be
+(Font)              scaled to size 9.1pt on input line 1045.
+LaTeX Font Info:    Font shape `TU/NotoSansKR(1)/b/n' will be
+(Font)              scaled to size 6.5pt on input line 1045.
+[16]
+chapter 2.
+
+LaTeX Warning: Reference `def-algebra' on page 17 undefined on input line 1093.
+
+
+[17
+
+] [18] [19]
+chapter 3.
+[20
+
+]
+File: rvs_files/figure-pdf/unnamed-chunk-2-1.pdf Graphic file (type pdf)
+<use rvs_files/figure-pdf/unnamed-chunk-2-1.pdf>
+File: images/radon-nikodym.png Graphic file (type bmp)
+<images/radon-nikodym.png>
+[21]
+Underfull \hbox (badness 1102) in paragraph at lines 1305--1308
+[]$[][][][]$\TU/NotoSansKR(0)/m/it/13 : reference measure. We often take $[][][
+][]$ as the Lebesgue
+ []
+
+[22] [23] [24]
 
 ! Package amsmath Error: Erroneous nesting of equation structures;
 (amsmath)                trying to recover with `aligned'.
@@ -2027,15 +2100,15 @@ See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.527   \end{align*}
-                     
+l.1470   \end{align*}
+                      
 Here is how much of TeX's memory you used:
- 44194 strings out of 474773
- 863124 string characters out of 5757725
- 2004839 words of memory out of 5000000
- 65705 multiletter control sequences out of 15000+600000
- 561807 words of font info for 94 fonts, out of 8000000 for 9000
+ 44285 strings out of 474773
+ 865365 string characters out of 5757725
+ 2003839 words of memory out of 5000000
+ 65787 multiletter control sequences out of 15000+600000
+ 561831 words of font info for 97 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  108i,19n,123p,10900b,2745s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on index.pdf (6 pages).
+Output written on index.pdf (23 pages).

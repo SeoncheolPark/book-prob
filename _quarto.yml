@@ -12,7 +12,6 @@ book:
     - part: "Intro"
       chapters:
         - index.qmd
-        - intro.qmd
     - part: "Probability"
       chapters:
         - measure.qmd

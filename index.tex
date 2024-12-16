@@ -233,6 +233,10 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[chapter]
 \theoremstyle{plain}
@@ -241,10 +245,6 @@
 \newtheorem{exercise}{Exercise}[chapter]
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[chapter]
-\theoremstyle{plain}
-\newtheorem{proposition}{Proposition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -318,7 +318,7 @@
 
 \title{A Biggner's Guide to Probability and Extremes}
 \author{Seoncheol Park}
-\date{2024-09-18}
+\date{2024-12-16}
 
 \begin{document}
 \maketitle
@@ -349,13 +349,10 @@
 
 \markboth{Preface}{Preface}
 
-확률론은 통계학을 공부하는 데 있어 굉장히 중요한 과목이다. 그러므로
-열심히 공부해야 한다.
+확률론은 통계학을 공부하는 데 있어 굉장히 중요한 과목이다. 여기에서는
+통계에 필요한 부분만 적었다.
 
 덤으로 극단값 이론의 기초도 수록하였다.
-
-최대한 제가 이해할 수 있는 수준의 내용으로 구성하였으므로, 그러므로 기초
-레벨에 해당이 된다.
 
 This is a Quarto book.
 
@@ -374,37 +371,505 @@ To learn more about Quarto books visit
 
 \part{Intro}
 
-\chapter{Introduction}\label{introduction}
-
-\section{Probability Theory}\label{probability-theory}
-
-\begin{itemize}
-\item
-  Probability models: random experiment를 묘사하는데 목적이 있음
-\item
-  Random experiment: 무작위성이 있어 미래에 일어날 결과물을 정확하게
-  예측할 수 없는 실험
-\item
-  \textbf{Probability space}: 확률론의 기초가 됨, 확률공간의 키가 되는
-  아이디어는 \textbf{stabilization of the relative frequencies}임
-\end{itemize}
-
-우리가 random experiement를 \textbf{독립}적으로, 반복적으로 수행한다고
-하고 어떤 특정한 \textbf{사건(event)} \(A\)가 일어나는지 아닌지를
-기록한다고 하자. \(f_n (A)\)를 처음 \(n\)개의 독립시행에서 \(A\)사건이
-일어난 횟수라고 하고, \(r_n (A) = f_n (A)/n\)이라고 하자. 그러면 이
-relative frequency \(r_n (A)\)는 \(n\rightarrow \infty\)일 때 다음과
-같다고 생각하는 것이다(stabilization). \[
-r_n(A) \stackrel{n\rightarrow \infty}{\longrightarrow} \text{some real number.}
-\]
-
 \part{Probability}
 
 \chapter{Measure and Integration}\label{sec-measure}
 
 \section{Limit of sets}\label{limit-of-sets}
 
+우리는 \(\sigma\)-field 에만 관심을 갖고 있지만 이를 설명하는 데 유용한
+더 작은 하위 클래스들이 있다.
+
+\begin{definition}[]\protect\hypertarget{def-algebra}{}\label{def-algebra}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  \(S\): a collection of subsets of \(\Omega\). We say that \(S\) is a
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\pi\)-\textbf{system}: if
+  \(A, B \in S \Longrightarrow A\cap B \in S\)
+\item
+  \(\lambda\)-\textbf{system}: if
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\Omega \in S\)
+  \item
+    \(A, B \in S\) and
+    \(A \subseteq B \Longrightarrow B \backslash A \in S\)
+  \item
+    \(A_n \uparrow A\) and \(A_n \in S \Longrightarrow A \in S\)
+  \end{itemize}
+\item
+  \textbf{Algebra} (field) if
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\emptyset , \Omega \in S\)
+  \item
+    \(A \in S \Longrightarrow A^c \in S\)
+  \item
+    \(A, B \in S \Longrightarrow A\cup B \in S\)
+  \end{itemize}
+\item
+  \textbf{Monotone class} if
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(A_n \in S\) and \(A_n \uparrow A \Longrightarrow A \in S\)
+  \item
+    \(A_n \in S\) and \(A_n \downarrow A \Longrightarrow A \in S\)
+  \item
+    Recall that \(A_n \uparrow A\) means that
+    \(A_1 \subseteq A_2 \subseteq \ldots\) and \(\cup_n A_n = A\) and
+    \(A_n \downarrow A\) means that
+    \(A_n \supseteq A_2 \supseteq \ldots\) and \(\cap_n A_n = A\)
+  \end{itemize}
+\item
+  \(\sigma\)-\textbf{algebra} (field) if
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\emptyset, \Omega \in S\)
+  \item
+    \(A \in S \Longrightarrow A^c \in S\)
+  \item
+    \(A_n \in S \Longrightarrow \cup A_n \in S\)
+  \end{itemize}
+\end{enumerate}
+
+\end{definition}
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{itemize}
+\item
+  \(\sigma\)-algebra는 \(\pi\)-system, \(\lambda\)-system, monotone
+  class 그리고 algebra이다.
+\item
+  Arbitrary intersections of \(\sigma\)-algebra, algebra,
+  \(\pi\)-system, \(\lambda\)-system은 각각 \(\sigma\)-algebra, algebra,
+  \(\pi\)-system, \(\lambda\)-system이다.
+\end{itemize}
+
+\end{tcolorbox}
+
+다음은
+\href{https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf}{PROBABILITY
+THEORY - PART 1 MEASURE THEORETICAL FRAMEWORK} 에서 가져온 몇 가지
+예이다.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\centering
+\(\Omega\)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(S(\pi\)-system)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(\mathcal{A}(S)\) (algebra generated by \(S\))
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+\(\sigma(S)\)
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\((0,1]\) & \(\{(a,b]: 0<a\leq b \leq 1\}\) &
+\(\{ \cup_{k=1}^N I_k: I_k \in S \text{ are pairwise disjoint}\}\) &
+\(\mathcal{B}(0,1]\) \\
+\([0,1]\) & \(\{(a,b]\cap [0,1]: a \leq b\}\) &
+\(\{\cup_{k=1}^N R_k: R_k \in S \text{ are pairwise disjoint}\}\) &
+\(\mathcal{B}[0,1]\) \\
+\(\mathbb{R}^d\) & \(\{\prod_{i=1}^d (a_i, b_i]: a_i \leq b_i\}\) &
+\(\{\cup_{k=1}^N R_k: R_k \in S \text{ are pairwise disjoint}\}\) &
+\(\mathcal{B}_{\mathbb{R}^d}\) \\
+\(\{0,1\}^{\mathbb{N}}\) & Collection of all cylinder sets & Finite
+disjoint unions of cylinders & \(\mathcal{B}(\{0,1\}^{\mathbb{N}})\) \\
+\end{longtable}
+
+위 표를 보면, \(\pi\)-system이나 이 \(\pi\)-system으로 만든 algebra는
+명시적으로 표사되어 있으나, \(\sigma\)-algebra를 이해하기는 쉽지 않다.
+이는 Borel set은 countable number of operations on intervals로 표현하기
+쉽지 않기 때문이라고 한다.
+
+이렇게 원소를 파악하기 어려운 \(\sigma\)-algebra에 대해 말해주는
+보조정리 뒤 개가 있다. 이들이 말하고자 하는 바는 동일하고 많은 경우에
+둘을 바꿔서 사용할 수 있다고 한다.
+
+\begin{lemma}[\(\pi-\lambda\)
+theorem]\protect\hypertarget{lem-pilambdathm}{}\label{lem-pilambdathm}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(\Omega\) be a set and \(\mathcal{F}\) be a set of subsets of
+  \(\Omega\).
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\mathcal{F}\) is a \(\sigma\)-algebra \(\Longleftrightarrow\) it is
+  a \(\pi\)-system as well as a \(\lambda\)-system.
+\item
+  If \(S\) is a \(\pi\)-system, then \(\lambda (S) = \sigma(S)\). 이때
+  \(\lambda (S)\)는 \(S\)를 포함하는 모든 \(\lambda\)-system들의
+  intersection이다.
+\end{enumerate}
+
+\end{lemma}
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  한쪽 방향은 분명하다. \(\mathcal{F}\)가 \(\pi\)-system이면서
+  \(\lambda\)-system이라고 하자. 그러면 \(\Omega \in \mathcal{F}\)이고
+  만약 \(A\in \mathcal{F}\)이면,
+  \(A^c = \Omega \backslash A \in \mathcal{F}\)이다. 만약
+  \(A_n \in \mathcal{F}\)이면, 이것의 finite unions
+  \(B_n := \cup_{k=1}^n A_k = (\cap_{k=1}^n A_k^c)^c \in \mathcal{F}\)이다.
+  (intersection에서는 \(\mathcal{F}\)가 \(\pi\)-system이라는 것을 이용)
+  또한 countable union \(\cup A_n\) 또한 \(B_n\)의 increasing limit이고
+  \(\mathcal{F}\) 안에 들어가기에 \(\lambda\)-property를 만족
+\item
+  \(\lambda (S)\) 자체도 \(S\)를 포함하는 가장 작은
+  \(\lambda\)-system이다. 이에 \(\lambda (S) = \sigma (S)\)를 보이려면
+  \(\mathcal{F}:=\lambda (S)\)가 \(\pi\)-system임을 보이면 된다. 즉
+  \(A, B \in \mathcal{F}\)이면 \(A\cap B \in \mathcal{F}\)임을 보이면
+  된다. \(A\in S\)를 고정하고
+  \(\mathcal{F}_A := \{ B \in \mathcal{F}: B \cap A \in \mathcal{F}\}\)라
+  하자. \(S\)가 \(\pi\)-system이므로 \(\mathcal{F}_A \supset S\)이다.
+  여기서 \(\mathcal{F}_A\)가 \(\lambda\)-system임을 보이고자 한다.
+  \(\Omega \in \mathcal{F}_A\)이다. 만약 \(B, C \in \mathcal{F}_A\)이고
+  \(B\subseteq C\)이면, \(\mathcal{F}\)가 \(C\cap A\)와 \(B\cap A\)를
+  포함하는 \(\lambda\)-system이기 때문에
+  \((C\backslash B) \cap A = (C \cap A) \backslash (B \cap A) \in \mathcal{F}\)이다.
+  따라서 \((C\backslash B) \in \mathcal{F}_A\)이다. 마지막으로 만약
+  \(B_n \in \mathcal{F}_A\)이고 \(B_n \uparrow B\)이면,
+  \(B_n \cap A \in \mathcal{F}_A\)이고
+  \(B_n \cap A \uparrow B \cap A\)이다. 따라서
+  \(B \in \mathcal{F}_A\)이다. 이것은 \(\mathcal{F}_A\)가 \(S\)를
+  포함하는 \(\lambda\)-system임을 의미하며 따라서
+  \(\mathcal{F}_A \supset \mathcal{F}\)이다. 다른 말로, 모든
+  \(A \in S\)와 \(B \in \mathcal{F}\)에 대해
+  \(A \cap B \in \mathcal{F}\)이다. 이제 \(A\in\mathcal{F}\)를 고정하자.
+  다시
+  \(\mathcal{F}_A := \{ B\in \mathcal{F}: B\cap A \in \mathcal{F}\}\)라고
+  정의하자. 앞에서 보인대로 하면 \(\mathcal{F}_A \supset S\)임을 보일 수
+  있다. 이를 바탕으로 \(\mathcal{F}_A\)가 \(\lambda\)-system이며 모든
+  \(A \in \mathcal{F}\)에서 \(\mathcal{F}_A = \mathcal{F}\)임을 보일 수
+  있다. 즉 \(\mathcal{F}\)는 \(\pi\)-system이다.
+\end{enumerate}
+
+\end{tcolorbox}
+
+\begin{lemma}[Monotone class
+theorem]\protect\hypertarget{lem-monotoneclassthm}{}\label{lem-monotoneclassthm}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(\Omega\) be a set and let \(S\) be a collection of \(\Omega\).
+  If \(S\) is an algebra, then the monotone class generated by \(S\) is
+  a \(\sigma\)-algebra. That is, \(\mathcal{M}(S) = \sigma(S)\).
+\end{itemize}
+
+\end{lemma}
+
+\textbf{Q}. (Unique extension of measures)
+\((\mathbb{R}, \mathcal{B})\)에서의 두 확률측도가 모든 구간에서
+일치한다면, 이들은 같은가?
+
+다음 예를 통해 거짓이라는 것을 확인할 수 있다.
+
+\begin{example}[\(\pi-\lambda\)
+theorem]\protect\hypertarget{exm-differentprobmeasures}{}\label{exm-differentprobmeasures}
+
+~
+
+\begin{itemize}
+\item
+  \(\Omega = \{1,2,3,4\}\)이고 \(S = \{\{1,2\},\{2,3\},\{3,4\}\}\)라고
+  하자. 그러면 \(\sigma (S) = 2^{\Omega}\) (power set)이라는 것을 보일
+  수 있다.
+\item
+  \(\Omega\)에서 두 확률측도 \(\mu, \nu\)를 각각
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\mu_i = \frac{1}{4}, \forall i\)
+  \item
+    \(\nu_1 = \nu_3 =\frac{1}{2}\), \(\nu_2 = \nu_4 = 0\) 이라고 하자.
+    그러면 \(\mu(A)=\frac{1}{2}=\nu (A)\) for all \(A \in S\)이나,
+    \(\mu \neq \nu\) on \(\sigma (S)\)이다.
+  \end{itemize}
+\end{itemize}
+
+\end{example}
+
+다만 다음 따름정리와 같이 긍정적인 결과도 있다.
+
+\begin{lemma}[]\protect\hypertarget{lem-pisysequivprob}{}\label{lem-pisysequivprob}
+
+\(S\)가 \(\Omega\)의 부분집합의 \(\pi\)-system이고
+\(\mathcal{F} = \sigma (S)\)라 하자. 만약 \(\mathbb{P} = \mathbb{Q}\)가
+\(\mathcal{F}\)에서의 확률측도이며 모든 \(A \in S\)에서
+\(\mathbb{P}(A) =\mathbb{Q}(A)\)라 하자. 그러면 모든
+\(A\in \mathcal{F}\)에서 \(\mathbb{P}(A) =\mathbb{Q}(A)\)이다.
+
+\end{lemma}
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{itemize}
+\item
+  \(\mathcal{G} =\{A \in \mathcal{F}: \mathbb{P}(A) = \mathbb{Q}(A)\}\)라
+  하자. 가정에 의해 \(\mathcal{G} \supseteq S\)이다.
+\item
+  여기서 \(\mathcal{G}\)가 \(\lambda\)-system임을 밝히고자 한다. 분명히
+  \(\Omega \in \mathcal{G}\)이;다. 만약 \(A, B \in \mathcal{G}\)이고
+  \(A \supseteq B\)이면,
+  \(\mathbb{P}(A\backslash B) = \mathbb{P}(A) - \mathbb{P}(B) = \mathbb{Q}(A) - \mathbb{Q}(B) = \mathbb{Q}(A\backslash B)\)이다.
+  이는 즉 \(A \backslash B \in \mathcal{G}\)임을 내포한다. 마지막으로
+  만약 \(A_n \in \mathcal{G}\)이고 \(A_n \uparrow A\)이면,
+  \(\mathbb{P}(A) = \lim_{n\rightarrow \infty} \mathbb{P}(A_n) = \lim_{n\rightarrow \infty}\mathbb{Q}(A_n) = \mathbb{Q}(A)\)이다.
+  (이는 measure의 countable additivity로부터 옴)
+\item
+  따라서 \(\mathcal{G} \supseteq \lambda (S)\)이고 이는
+  Lemma~\ref{lem-pilambdathm} 에 의해 \(\sigma (S)\)와 같음을 보일 수
+  있다. 따라서 \(\mathcal{F}\)에서 \(\mathbb{P}= \mathbb{Q}\)이다.
+\end{itemize}
+
+\end{tcolorbox}
+
+다시 Example~\ref{exm-differentprobmeasures} 를 살펴보면, \(S\)가
+\(\pi\)-system이 아니라는 것을 알 수 있다.
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{itemize}
+\tightlist
+\item
+  \(\sigma\)-algebra의 집합, 특히 Borel 집합은 항상 어떤 interval의 가산
+  합집합이 아니기 때문에, \(\sigma\)-algebra의 모든 요소에 대해 어떤
+  성질이 성립함을 보이기 위해, 우리는 그 성질을 가진 모든 집합의
+  collection을 고려하고, 이 collection이 \(\sigma\)-algebra임을
+  보여준다. 이 과정에서 그것이 \(\lambda\)-system이거나 monotone class
+  (\(\pi\)-system과 algebra를 포함하는) 임을 보여주는 것이 더 쉬울 수
+  있다.
+\end{itemize}
+
+\end{tcolorbox}
+
 \section{Measures}\label{measures}
+
+\begin{definition}[\(\sigma\)-additive]\protect\hypertarget{def-sigmaadditive}{}\label{def-sigmaadditive}
+
+~
+
+\begin{itemize}
+\item
+  \(\mathcal{A}\): a collection of subsets of \(\Omega\) containing the
+  empty set \(\emptyset\)
+\item
+  A \textbf{set function} on \(\mathcal{A}\):
+  \(\mu : \mathcal{A} \rightarrow [0,\infty]\) with
+  \(\mu (\emptyset) = 0\)
+\item
+  We say that \(\mu\) is \textbf{countably additive}, or
+  \(\sigma\)-\textbf{additive}, if for all sequences \((A_n)\) of
+  disjoint sets in \(\mathcal{A}\) with
+  \(\cup_{n=1}^{\infty}A_n \in \mathcal{A}\) \[
+  \mu \Big( \bigcup_{n=1}^{\infty} A_n \Big) = \sum_{n=1}^{\infty}\mu (A_n).
+  \]
+\end{itemize}
+
+\end{definition}
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{itemize}
+\tightlist
+\item
+  Recall that a \textbf{measurable space} is a pair
+  \((\Omega, \mathcal{F})\), where \(\mathcal{F}\) is a
+  \(\sigma\)-algebra on \(\Omega\).
+\end{itemize}
+
+\end{tcolorbox}
+
+\begin{definition}[Measure
+space]\protect\hypertarget{def-measurespace}{}\label{def-measurespace}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  A \textbf{measure space} is a triple \((\Omega, \mathcal{F}, \mu)\),
+  where
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\Omega\): set
+  \item
+    \(\mathcal{F}\): \(\sigma\)-algebra on \(\Omega\)
+  \item
+    \(\mu\): \(\mathcal{F} \rightarrow [0,\infty]\) is a countably
+    additive set function.
+  \item
+    Then \(\mu\) is a measure on \((\Omega, \mathcal{F})\).
+  \end{itemize}
+\end{itemize}
+
+\end{definition}
+
+이산 측도를 생각하는 것은 그냥 power set에서 생각하면 되기에 쉽다.
+그러나 일반적인 상황에서는 \(\Omega\)의 모든 subset을 잴 수 있는
+measure를 정의할 수 없다. 그래서 ``충분히 큰'' collection of sets에서
+정의되는 측도의 존재를 보이는 것은 쉽지 않다. 한 가지 방법으로
+\(\Omega\)의 smaller class of subsets에서의 측도를 만들고
+\(\sigma\)-algebra를 generate하는 방법이 있다. 이를 위해 두 가지 문제를
+해결해야 한다.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  (Construction) 우리가 특정한 measure를 whole \(\sigma\)-algebra에
+  확장할 수 있을까? (\textbf{Caratheodory's Extension Theorem})
+\item
+  (Uniqueness) \(\sigma\)-algebra에서 우리가 만들고자 하는 측도가 단
+  한개만 존재하는가? (\(\pi-\lambda\) \textbf{systems Lemma})
+\end{enumerate}
+
+\subsection{Lebesgue measure}\label{lebesgue-measure}
+
+\begin{definition}[Existence and uniqueness of Lebesgue
+measure]\protect\hypertarget{def-existenceuniquenessLebesgue}{}\label{def-existenceuniquenessLebesgue}
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  There exists a unique Borel measure \(\lambda\) on \([0,1]\) such that
+  \(\lambda (I) = \vert I \vert\) for any interval \(I\).
+\end{itemize}
+
+\end{definition}
+
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+
+\begin{itemize}
+\item
+  \(S = \{ (a,b] \cap [0,1]\}\)은 \(\mathcal{B}\)를 생성하는
+  \(\pi\)-system이다. 따라서 Lemma~\ref{lem-pisysequivprob} 에 의해
+  uniqueness가 증명된다.
+\item
+  Existence는 증명이 길고 복잡한데, 몇 가지 개요만을 아래에서 서술한다.
+  좀 더 자세한 사항은
+  \href{https://math.iisc.ac.in/~manju/PT2019/Lectures-part1.pdf}{PROBABILITY
+  THEORY - PART 1 MEASURE THEORETICAL FRAMEWORK} 를 보길 바란다.
+  여기서는 \(\Omega = [0,1]\)로 둔다.
+\end{itemize}
+
+\end{tcolorbox}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Outer measure} \(\lambda_{*}\)를 정의한다. \[
+  \lambda_{*}(A) = \inf \{ \sum \vert I_k \vert : \text{ each }I_k \text{ is an open interval and } \{I_k\} \text{ a countable cover for } A \}.
+  \] 참고로 outer measure의 성질은 다음과 같다.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    모든 subset \(A\subseteq \Omega\)에 대해
+    \(0\leq \lambda_{*}(A) \leq 1\)
+  \item
+    \(\lambda_{*}(A\cup B) \leq \lambda_{*}(A) + \lambda_{*}(B)\), for
+    any \(A, B \subseteq \Omega\)
+  \item
+    \(\lambda_{*}(\Omega)=1\)
+  \end{itemize}
+\item
+  \(\lambda_{*}\)가 측도가 되도록 하는 \(\sigma\)-field를 잡는다.
+  \(\lambda_{*}\)를 a set \(\Omega\)에서의 outer measure라고 하자.
+  Caratheodary의 정의에 의해 \[
+  \mathcal{F}:= \{ A\subseteq \Omega : \lambda_{*}(E) = \lambda_{*}(A\cap E) + \lambda_{*}(A^c \cap E) \text{ for any } E\}.
+  \] 이때 \(\mathcal{F}\)가 \(\sigma\)-algebra이고 \(\lambda_{*}\)
+  restricted to \(\mathcal{F}\)가 확률측도임을 보일 수 있다.
+\item
+  \(A= (a,b]\subseteq [0,1]\)일 때 \(A\in \mathcal{F}\)임을 보여
+  \(\mathcal{F}\)가 모든 보렐 집합을 포함함을 보인다. 즉
+  \(\mathcal{F}\)가 충분히 큼을 보인다.
+\end{enumerate}
+
+\subsection{Construction of Lebesgue
+measure}\label{construction-of-lebesgue-measure}
+
+Lebesgue 측도의 구축은 충분히 풍부한 집합 class에서 시작하여 흥미로운
+측도를 구성하는 일반적인 절차로 발전할 수 있다.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  주어진 algebra \(\mathcal{A}\) (이 경우 유한 개의 \((a,b]\)의 합집합)
+  와 \(\mathcal{A}\) 위의 countably additive probability measure \(P\)
+  on \(\mathcal{A}\)에 대해, 모든 부분집합에 대해 outer measure
+  \(P^{*}\)를 \(\mathcal{A}\)의 집합들로 구성된 countable cover에 대한
+  최솟값을 취함으로써 구성한다. 구체적으로, 임의의 부분집합 \(E\)에 대해
+  \[
+  P^{*}(E) = \inf \{\sum_{i=1}^{\infty} P(A_i): E \supseteq \cup_{i=1}^{\infty}A_i, A_i \in \mathcal{A} \}.
+  \]
+\item
+  \(\mathcal{F}\)를 위에서와 같이 정의하고,
+  \(\mathcal{F}\supset \mathcal{A}\)가 \(\sigma\)-algebra이고
+  \(P^{*}\)가 \(\mathcal{A}\)에서의 확률측도임을 보인다.
+\item
+  \(P^{*}=P\) on \(\mathcal{A}\)임을 보인다.
+\end{enumerate}
+
+\subsection{Push-forward (image)
+measure}\label{push-forward-image-measure}
+
+\begin{itemize}
+\tightlist
+\item
+  Measure를 정의하는 방법
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Caratheodory Extension Theorem
+  \item
+    Transportation between spaces via functions.
+  \end{itemize}
+\end{itemize}
 
 \begin{definition}[Push-forward
 measure]\protect\hypertarget{def-pushforwardm}{}\label{def-pushforwardm}
@@ -413,26 +878,34 @@ measure]\protect\hypertarget{def-pushforwardm}{}\label{def-pushforwardm}
 
 \begin{itemize}
 \item
-  \((E,\mathcal{E},\mu)\): measure space, \((F, \mathcal{F})\):
-  measurable space, \(f: E\rightarrow F\): measurable transformation
+  \((\Omega, \mathcal{F}, \mathbb{P})\)를 확률공간이라 하고, \(X\)를
+  \((\Omega, \mathcal{F})\)에서 \((E, \mathcal{E})\)로 보내는 확률변수라
+  하자. 그러면 \[
+  \mathbb{Q}(A) = \mathbb{P}(X^{-1}(A)), \quad{} A\in \mathcal{E}
+  \] 는 \((E,\mathcal{E})\)에서 측도를 정의한다 (\textbf{push-forward
+  measure}).
 \item
-  그러면 다음과 같은 변환 \[
-  \mu_f (A) \stackrel{\Delta}{=}\mu \circ f^{-1}(A) = \mu (f^{-1}(A)), \quad{} A\in \mathcal{F}
-  \] 은 \((F, \mathcal{F})\)에서의 measure를 정의
-\item
-  \(\mu_f\) (또는 \(f^\#\mu\)로 씀): \textbf{push-forward measure} via
-  \(f\)
+  이때 \(\mathbb{Q} = \mathbb{P}\circ X^{-1}\)이라고 쓰고 \textbf{law of
+  the distribution} of \(X\)라고 부른다.
 \end{itemize}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
-\tightlist
+\item
+  집합 \(E\)의 측도로 먼저 이를 \(X^{-1}\)을 이용해 \(\Omega\)로 보내고
+  \(\mathbb{P}\)를 이용해 잰다.
 \item
   Push-forward measure는 change-of-variables formula 등 적분이론에서
   많이 쓰임
+\item
+  \(\mathbb{Q}\)가 측도인 이유는 만약 \(A_n\)이 pairwise disjoint이면
+  \(X^{-1}(A_n)\) 또한 pairwise disjoint이기 때문이다. 그러나 \(B_n\)이
+  \(\Omega\)에서 pairwise disjoint라고 해서, \(X(B_n)\)이 disjoint하지는
+  않다. 그래서 일반적으로 \textbf{pull-back measure}는 없다. 그러나
+  \(X\)가 일대일함수면 \(X^{-1}\)을 pull-back으로 생각할 수 있다.
 \end{itemize}
 
 \end{tcolorbox}
@@ -441,7 +914,7 @@ measure]\protect\hypertarget{def-pushforwardm}{}\label{def-pushforwardm}
 
 \subsection{Integration notations}\label{integration-notations}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 적분이론에서 굉장히 다양한 적분 notation을 쓰는데 알아두면 좋을 듯
 
@@ -519,12 +992,12 @@ Integral)}이라 한다. 리만 적분의 정의를 이용해 리만-스틸체�
   \]
 \item
   이때의 기댓값은 \[
-  \begin{align*}
+  \begin{aligned}
   E[X] &= \int_{-\infty}^{\infty} x dF_X(x)\\
   &= \int_0^1 xdF_{X}(x) + 1\cdot \Big[ F_X(1) -\lim_{x\rightarrow 1, x < 1}F_X(x) \Big]\\
   &= \int_0^1 x \frac{d}{dx} \Big(\frac{1}{2}x \Big) dx  + 1 \cdot \Big[ 1- \frac{1}{2} \Big]\\
   &= \Big[\frac{1}{4}x^2 \Big]_{0}^1 + \frac{1}{2} = \frac{1}{4}+\frac{1}{2}=\frac{3}{4}.
-  \end{align*}
+  \end{aligned}
   \]
 \end{itemize}
 
@@ -577,7 +1050,7 @@ interval (for example, \((0, +\infty)\) as in your case), we have \[
 your case is \(0\), this last integral is actually equal to the integral
 over the whole space, and hence to \(E[X]\), which gives your equality.
 
-\chapter{Probability}\label{probability-1}
+\chapter{Probability}\label{sec-prob}
 
 \section{Probability Triples}\label{probability-triples}
 
@@ -613,67 +1086,13 @@ over the whole space, and hence to \(E[X]\), which gives your equality.
   \end{itemize}
 \end{itemize}
 
-\section{\texorpdfstring{Field and
-\(\sigma\)-field}{Field and \textbackslash sigma-field}}\label{field-and-sigma-field}
-
-\begin{definition}[Field]\protect\hypertarget{def-field}{}\label{def-field}
-
-The class \(\mathcal{A}\) of subsets of \(\Omega\) is called a
-\textbf{field} if it contains \(\Omega\) and is closed under the
-formulation of complements and finite unions, that is if:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  \(\Omega \in \mathcal{A}\)
-\item
-  \(A\in\mathcal{A} \Longrightarrow A^c \in \mathcal{A}\)
-\item
-  \(A_1, A_2 \in \mathcal{A} \Longrightarrow A_1 \cup A_2 \in \mathcal{A}\)
-\end{enumerate}
-
-\end{definition}
-
-\begin{definition}[\(\sigma\)-field]\protect\hypertarget{def-sigmafield}{}\label{def-sigmafield}
-
-The class \(\mathcal{F}\) of subsets of \(\Omega\) is called a
-\(\sigma\)-\textbf{field} if it is a field and if it is closed under the
-formulation of countable unions, that is if:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{3}
-\tightlist
-\item
-  \(A_1, A_2, \ldots \in \mathcal{F} \Longrightarrow \cup_{n=1}^{\infty} A_n \in \mathcal{F}\)
-\end{enumerate}
-
-\end{definition}
-
 \begin{itemize}
 \tightlist
 \item
-  Recall that the elements of any field or \(\sigma\)-field are called
-  \textbf{random events} (or simply \textbf{events}).
+  Recall that the elements of any field or \(\sigma\)-field
+  (Definition~\ref{def-algebra} 참고) are called \textbf{random events}
+  (or simply \textbf{events}).
 \end{itemize}
-
-\section{\texorpdfstring{\(\pi-\lambda\)
-System}{\textbackslash pi-\textbackslash lambda System}}\label{pi-lambda-system}
-
-Some intuition for \(\pi-\lambda\) is that you can take a finite non
-\(\pi\)-system such as \(S = \{\{1,2\},\{2,3\}\}\), and this is not
-enought to guarantee uniqueness on the \(\sigma\)-algebra generated by
-\(S\), which includes sets like \(\{2\}, \{1,2,3\}\). But, at least in
-the countable case, you can use the \(\pi\)-system property to do
-disjointification/partitioning on \(\Omega\), which finished the proof.
-
-\begin{lemma}[\(\sigma\)-algebra and \(\pi\)-\(\lambda\)
-system]\protect\hypertarget{lem-pilambda}{}\label{lem-pilambda}
-
-A family of sets is a \(\sigma\)-algebra iff it is both \(\pi\) and
-\(\lambda\).
-
-\end{lemma}
 
 \section{Probabilities}\label{probabilities}
 
@@ -732,20 +1151,24 @@ interval \([0,1]\) and \(\mathcal{F}_1\) the class of the subsets of
 where \(a\) and \(b\) are rational numbers. Denote by \(\mathcal{F}_2\)
 the class of all finite sums of disjoint sets of \(\mathcal{F}_1\). Then
 \(\mathcal{F}_2\) is a field. Let us define the probability measure
-\(P\) as follows: \begin{align*}
+\(P\) as follows: \[
+\begin{aligned}
 P(A) &= b-a, \quad{} \text{if } A \in \mathcal{F}_1,\\
 P(B) &= \sum_{i=1}^n P(A_i), \quad{} \text{if } B\in \mathcal{F}_2, \text{ that is, } B=\sum_{i=1}^n A_i, A_i \in \mathcal{F}_1.
-\end{align*}
+\end{aligned}
+\]
 
 Consider two disjoint sets of \(\mathcal{F}_2\) say \[
 B=\sum_{i=1}^n A_i \quad{} \text{ and } B' = \sum_{j=1}^m A_j',
 \] where \(A_i, A_j' \in \mathcal{F}_1\) and all \(A_i, A_j'\) are
 disjoint. Then \(B+B' = \sum_{k=1}^{m+n}C_k\) where either \(C_k = A_i\)
 for some \(i=1, \ldots, n\), or \(C_k = A_j'\) for some
-\(j=1, \ldots, m\). Moreover, \begin{align*}
+\(j=1, \ldots, m\). Moreover, \[
+\begin{aligned}
 P(B+B')&= P\Big( \sum_k C_k \Big) = \sum_k P(C_k) = \sum_{i,j}(P(A_i) + P(A_j'))\\
 &= P(A_i) + \sum_{j} P(A_j') = P(B) + P(B').
-\end{align*}
+\end{aligned}
+\]
 
 and hence \(P\) is an additive measure.
 
@@ -799,7 +1222,7 @@ P(\Omega) = 1\neq 0 = \sum_{i=1}^{\infty} P(\{r_i\}).
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -983,7 +1406,7 @@ true that \[
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -1078,7 +1501,7 @@ Let \(\{A_n, n \geq 1\}\) be arbitrary events. Then \[
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \[
 \begin{align*}
@@ -1089,7 +1512,7 @@ P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -1109,7 +1532,7 @@ Let \(\{A_n, n \geq 1\}\) be \textbf{independent} events. Then \[
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 By independence \[
 \begin{align*}
@@ -1196,7 +1619,7 @@ P\{ X\geq t\} \leq \frac{E[X]}{t}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 확률공간 \((\Omega, \Sigma, P)\)을 생각하자. \[
 EX = \int X dP \geq \int_{\{X\geq t\}} X dP \geq t \int_{\{X\geq t \}}dP \geq t\cdot P\{ X\geq t\}
@@ -1204,7 +1627,7 @@ EX = \int X dP \geq \int_{\{X\geq t\}} X dP \geq t \int_{\{X\geq t \}}dP \geq t\
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -1227,7 +1650,7 @@ P\{|X-E(X)|\geq t \}\leq \frac{\text{Var}(X)}{t^2}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \(|X-E(X)|\geq t\)를 제곱한 후 마르코프 부등식을 적용 \[
 P\{ |X-E(X)|^2 \geq t^2\} \leq \frac{E[(X-E(X))]^2}{t^2} = \frac{\text{Var}(X)}{t^2}
@@ -1235,7 +1658,7 @@ P\{ |X-E(X)|^2 \geq t^2\} \leq \frac{E[(X-E(X))]^2}{t^2} = \frac{\text{Var}(X)}{
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -1267,7 +1690,7 @@ P\{ \sum_{i=1}^N a_i X_i \geq t \} \leq \exp \Big( - \frac{t^2}{2\|a\|^2} \Big)
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 마르코프 부등식을 적용하면 다음과 같다. \[
 P\{ \sum_{i=1}^N a_i X_i \geq t \} = P \{ \exp (\lambda \sum_{i=1}^N a_i X_i) \geq e^{\lambda t} \} \leq e^{-\lambda t}E\{ \exp (\lambda \sum_{i=1}^N a_i X_i) \}
@@ -1318,7 +1741,7 @@ P \{\sum_{i=1}^N (X_i - E(X_i))\geq t \} \leq \exp (- \frac{2t^2}{\sum_{i=1}^N (
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 앞에서처럼 \(\lambda\)를 곱하고 제곱근을 취한 다음 마르코프 부등식을
 이용한다 \[
@@ -1382,7 +1805,7 @@ P \{ S_N \geq t \} \leq \exp (-\mu) \Big( \frac{e\mu}{t} \Big)^t.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 다시 \(\lambda\)를 곱하고 마르코프 부등식을 적용하자. \[
 P\{ S_N \geq t \} \leq E\{ \exp (\lambda \sum_{i} X_i) \}e^{-\lambda t} = \prod_i E\{ \exp (\lambda X_i) \}e^{-\lambda t}.
@@ -1466,7 +1889,7 @@ Gaussian density tail의 decay 속도를 알려줌
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -1508,7 +1931,7 @@ P(\max_{1\leq i \leq n} |X_i | >t) \leq 2n \frac{\sigma}{t}\phi \Big( \frac{t}{\
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Mills 부등식에 union bound를 쓰면 된다고 함
 
@@ -1534,7 +1957,7 @@ E[\max_{1\leq i \leq n} |X_i|] \leq \sigma \sqrt{2\log 2n}
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -1596,7 +2019,7 @@ E[\exp (sX)] \leq \exp \Big( \frac{\sigma^2 s^2}{2} \Big), \forall s \in \mathbb
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -1789,7 +2212,7 @@ function]\protect\hypertarget{def-chardistn}{}\label{def-chardistn}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 앞선 푸리에 변환의 정의와 부호 등이 다르지만,
 \href{https://stats.stackexchange.com/questions/44944/characteristic-function-and-fourier-transform}{Characteristic
@@ -1952,7 +2375,7 @@ random variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -2079,7 +2502,7 @@ random variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -2108,7 +2531,7 @@ variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -2166,7 +2589,7 @@ condition]\protect\hypertarget{thm-cauchycond}{}\label{thm-cauchycond}
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -2210,7 +2633,7 @@ variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -2303,7 +2726,7 @@ weakly.
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Polansky (2011) 의 4장에서는 converges weakly를 converge in
 distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채
@@ -2318,7 +2741,7 @@ converges weakly를 \(F_n \rightsquigarrow F\)로 표기하기도 하였다.
 convergence의 limiting random variable이 \textbf{proper}하지 않아도
 된다는 점이 distributional convergence와의 차이점이다.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Proper하지 않은 random variable이라는 것은 probability mass가 escape to
 infinity할 수도 있음을 의미
@@ -2406,7 +2829,7 @@ X_n &\stackrel{r}{\rightarrow} X.
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 이는 즉 \(m\leq n\)인 모든 \(n\)에 대해 \(X_n\)이 전부 0이 나올 확률이
 0이기 때문에 거의 어디서나 수렴하지 않는 것으로 생각할 수 있다. 그러나
@@ -2519,7 +2942,7 @@ distribution}\label{bounded-in-probabilityuxc640-converge-in-distribution}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \(\varepsilon>0\)일 때 \(X\)에 대해
 \(P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon\)이 성립하는
@@ -2568,7 +2991,7 @@ X_n Y_n \stackrel{P}{\rightarrow}0.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \(\varepsilon>0\)이라고 하자. 다음이 성립하도록 \(B_{\varepsilon}>0\)과
 정수 \(N_{\varepsilon}\)을 선택한다. \[
@@ -2585,7 +3008,7 @@ n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\vare
 
 \section{Converses}\label{converses}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 처음 두 개의 정리는 \(X\)가 어떤 상수 \(c\)에 대해 \(P(X=c)=1\)을
 만족하는 degenerate random variable일 경우 역이 성립함을 보여줌
@@ -2600,7 +3023,7 @@ X_n \stackrel{\text{c.c.}}{\rightarrow} c \Longleftrightarrow X_n \stackrel{\tex
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Since both statements are equiv to \[
 \sum_{n=1}^{\infty} P(\vert X_n - c\vert > \varepsilon) <\infty, \quad{} \forall \varepsilon>0
@@ -2618,7 +3041,7 @@ X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty \
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 확률수렴이면 분포수렴이므로 분포수렴일때 확률수렴인지만 보면 됨.
 \(X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty\)이
@@ -2648,7 +3071,7 @@ X_{n_k} \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \i
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 By assumption, there exists a non-decreasing subsequence,
 \(\{n_k, k\geq 1\}\), such that \[
@@ -2662,7 +3085,7 @@ whenever \(k> \log (1/\varepsilon)/\log 2\), it follows that \[
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -2707,7 +3130,7 @@ is unifomly integrable iff \[
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \(X_1, X_2 , \ldots\)이 유한한 평균을 갖고 있다는 뜻은
 \(E|X_n|I\{|X_n|>a\}\rightarrow 0\) as \(a \rightarrow \infty\) for
@@ -2860,7 +3283,7 @@ h(X_n) \stackrel{\text{a.s.}}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 The definition of continuity implies that, \[
 \{ \omega: X_n(\omega) \rightarrow X(\omega)\} \subset \{ \omega: h(X_n(\omega)) \rightarrow h(X(\omega))\}
@@ -2890,7 +3313,7 @@ g(X_n) \stackrel{d}{\rightarrow} g(X) \quad{} \text{as } n \rightarrow \infty.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Continuous functions are limit-preserving. (Hansen 2022)
 
@@ -2939,7 +3362,7 @@ X & \text{if } \vert X \vert \leq M\\
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 예를 들어 finite second moment 없이 weak law를 하려면 truncation으로
 자르고 Chebyshev's inequality를 적용하면 된다고 한다.
@@ -2984,7 +3407,7 @@ equivalent, then:
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 다음 예제는 truncation을 이용해 어떤 확률변수열 \(\{X_n\}\)의
 convergence equivalent한 새로운 함수열을 만들 수 있음을 보인다.
@@ -3050,7 +3473,7 @@ Numbers}\label{the-weak-law-of-large-numbers}
   \]
 \end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -3089,7 +3512,7 @@ theorem]\protect\hypertarget{thm-markovthm}{}\label{thm-markovthm}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -3130,7 +3553,7 @@ Numbers}\label{the-strong-law-of-large-numbers}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -3218,7 +3641,7 @@ Let \(X_1, X_2, \ldots, X_n\) be a sample from the distribution \(F\).
 F_n(x) \stackrel{\text{a.s.}}{\rightarrow} F(x),\quad{} \text{as }n\rightarrow\infty.
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Glivenko-Cantelli Theorem은 \(n\rightarrow\infty\)일 때 \(F_n\)이
 \(F\)에 대해 converges uniformly한다는 것을 보여준다. (Durrett 2019)
@@ -3234,7 +3657,7 @@ theorem]\protect\hypertarget{thm-glivenkocantelli}{}\label{thm-glivenkocantelli}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -3364,7 +3787,7 @@ expectation \(\mu\), and positive, finite variance \(\sigma^2\), and set
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 특성함수에 대한 continuity theorem Theorem~\ref{thm-cfdistn} 의 관점에서
 \[
@@ -3477,7 +3900,7 @@ LIL]\protect\hypertarget{thm-lil}{}\label{thm-lil}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 왜 하필 \(\log \log n\)이라는 생각이 들 수도 있는데, 어떤 사람들은
 normal distribution의 density에 \(\exp (-x^2/2)\)가 있어서 이 효과를
@@ -3653,7 +4076,7 @@ distributions]\protect\hypertarget{def-stabledistn}{}\label{def-stabledistn}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 (Nolan (2020) 의 내용)
 
@@ -3732,7 +4155,7 @@ distributions]\protect\hypertarget{def-longtaileddist}{}\label{def-longtaileddis
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -4069,7 +4492,7 @@ equivalent]\protect\hypertarget{def-asymptequiv}{}\label{def-asymptequiv}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다.
 (Polansky 2011) 예를 들어 \(a_n = O(n^{-1})\)이라고 하자. 그렇다는 것은
@@ -4118,7 +4541,7 @@ Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다
 
 \end{exercise}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 Big-O, small-o의 정의로부터 다음을 알 수 있다.
 
@@ -4210,7 +4633,7 @@ neither \(o(b_n)\)) \\
 \includegraphics{bigoh_files/figure-pdf/unnamed-chunk-1-1.pdf}
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \tightlist
@@ -4364,7 +4787,7 @@ tightly concentrated about \(0\).
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-tip-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-tip-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
@@ -4456,7 +4879,7 @@ It is actually true that:
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-note-color-frame, bottomtitle=1mm, opacitybacktitle=0.6, breakable, leftrule=.75mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, colback=white, toprule=.15mm, toptitle=1mm, opacityback=0, arc=.35mm, rightrule=.15mm, bottomrule=.15mm, left=2mm, titlerule=0mm, coltitle=black, colbacktitle=quarto-callout-note-color!10!white]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
 
 \begin{itemize}
 \item
