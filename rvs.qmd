@@ -254,21 +254,63 @@ https://math.stackexchange.com/questions/737148/how-we-compute-expectation-of-a-
 
 - PDF나 PMF가 존재하지 않더라도 Cantor distribution 같이 음이 아닌 확률변수에서는 $F(x) = P(X>x)$를 계산할 수 있고, 이를 이용해
 $$
-\begin{align*}
+\begin{aligned}
 E(X) &= \int_0^{\infty} F(x) dx\\
 \text{Var} (X) &= \int_0^{\infty} 2x F(x) dx - \Big( \int_0^{\infty}F(x) dx \Big)^2
-\end{align*}
+\end{aligned}
 $$
 와 같이 기댓값과 분산을 구할 수 있음
 
 - 특별히 $\{\xi_n\}$을 i.i.d. Bernoulli라 할 때 칸토르 확률변수 $X$를 $X=\sum_{n=1}^{\infty}\frac{2}{3^n}\xi_n$과 같이 놓을 수 있고 (앞선 동전던지기 참고) $E(\xi_n)=\frac{1}{2}$, $\text{Var}(\xi_n) = \frac{1}{4}$라는 점을 이용해 다음과 같이 구할 수 있음
 $$
-\begin{align*}
+\begin{aligned}
 E(X) &= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \frac{2}{3^n} E(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{2}{3^n }\cdot \frac{1}{2}= \sum_{n=1}^{\infty} \frac{1}{3^n} = \frac{1}{2}\\
 \text{Var}(X) &= \sum_{n=1}^{\infty} \text{Var}\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \Big(\frac{2}{3^n}\Big)^2 \text{Var}(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{4}{9^n }\cdot \frac{1}{4}= \sum_{n=1}^{\infty} \frac{1}{9^n} = \frac{1}{8}.
-\end{align*}
+\end{aligned}
 $$
 
+
+:::
+
+<!--
+https://stats.stackexchange.com/questions/247470/expectation-of-discontinuous-functions-of-random-variables
+-->
+
+::: {#exm-expcont}
+
+## $g(X)$가 불연속이나 $E[g(X)]$는 연속인 예
+
+$X\sim \text{Exp}(1)$, $g(X)$를
+$$
+g(X) =
+\begin{cases}
+0, & \text{if }X=0\\
+1, & \text{if }X\in (0,3)\\
+1+0.4 (X-3), & \text{if }X \geq 3
+\end{cases}
+$$
+이라고 하자. 이때
+$$
+g(x) = 0I_{0}(x) + 1I_{(0,3)}(x) + \{ 1+0.4 (x-3) \} I_{(0,3)^c}(x)
+$$
+이다. 
+$$
+E[g(X)] = E[0I_{0}(X)] + E[1I_{(0,3)}(X)] + E[\{1+0.4(X-3)\}I_{(0,3)^c}(X)]
+$$
+인데, 첫 번째 항은 0이고
+$$
+E[1I_{(0,3)}(X)]  = \int 1 1I_{(0,3)}(x)\exp\{-x\}dx = \int_0^3 \exp \{-x\} dx = 1-\exp \{-3\},
+$$
+$$
+\begin{aligned}
+E[\{1+0.4(X-3)\}I_{(0,3)^c}(X)] &= \int \{1+0.4(x-3) \} I_{(0,3)^c}(x)\exp\{-x\}dx\\
+&= \int_3^{\infty}\{1+0.4(x-3) \}\exp \{-x\}dx\\
+&= \exp \{-3\}+0.4 \int_0^{\infty} x\exp \{-(x+3)\}dx\\
+&= \exp \{-3\}+0.4\exp \{-3\} \int_0^{\infty} x \exp \{-x\}dx\\
+&= \exp \{-3\} + 0.4 \exp \{-3\}
+\end{aligned}
+$$
+즉 $E[g(X)] = 1+0.4\exp\{-3\}$이다.
 
 :::
 
@@ -290,10 +332,10 @@ $$
 ## Proof
 
 $$
-\begin{align*}
+\begin{aligned}
 P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)\\
 &\leq P\Big( \bigcup_{m=n}^{\infty}A_m \Big) \leq \sum_{m=n}^{\infty}P(A_m) \stackrel{n\rightarrow\infty}{\longrightarrow}0.
-\end{align*}
+\end{aligned}
 $$
 
 :::
@@ -320,11 +362,11 @@ $$
 
 By independence
 $$
-\begin{align*}
+\begin{aligned}
 P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)=1-P \Big (\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_m^c\Big)\\
 &=1 - \lim_{n\rightarrow\infty}P\Big( \bigcap_{m=n}^{\infty}A_m^c\Big) = 1-\lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}P(A_m^c)\\
 &=1 - \lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}(1-P(A_m)) = 1-0 = 1.
-\end{align*}
+\end{aligned}
 $$
 
 :::

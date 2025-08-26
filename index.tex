@@ -1,29 +1,29 @@
 % Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
-  13pt,
   letterpaper,
   DIV=11,
   numbers=noendperiod]{scrreprt}
-
+\usepackage{xcolor}
 \usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
 \else % if luatex or xetex
-  \usepackage{unicode-math}
+  \usepackage{unicode-math} % this also loads fontspec
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 \usepackage{lmodern}
-\ifPDFTeX\else  
-    % xetex/luatex font selection
-    \setmainfont[]{Noto Sans KR}
+\ifPDFTeX\else
+  % xetex/luatex font selection
 \fi
 % Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -41,9 +41,6 @@
 }{% if KOMA class
   \KOMAoptions{parskip=half}}
 \makeatother
-\usepackage{xcolor}
-\setlength{\emergencystretch}{3em} % prevent overfull lines
-\setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
 \makeatletter
 \ifx\paragraph\undefined\else
@@ -109,8 +106,7 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
 
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -122,17 +118,21 @@
 \makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
 % Set default figure placement to htbp
-\makeatletter
 \def\fps@figure{htbp}
 \makeatother
+
+
 % definitions for citeproc citations
 \NewDocumentCommand\citeproctext{}{}
 \NewDocumentCommand\citeproc{mm}{%
@@ -167,18 +167,16 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\usepackage{makeidx}
-\makeindex
-\usepackage{titling}
-\usepackage{pdfpages}
-\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
-\usepackage{kotex}
-\let\oldmaketitle\maketitle
-\AtBeginDocument{\let\maketitle\relax}
-\AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}} % Discard next blank page
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
 
 
+ 
 
 
 \KOMAoption{captions}{tableheading}
@@ -233,18 +231,18 @@
 \floatname{codelisting}{Listing}
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \usepackage{amsthm}
-\theoremstyle{plain}
-\newtheorem{proposition}{Proposition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{plain}
-\newtheorem{lemma}{Lemma}[chapter]
 \theoremstyle{definition}
 \newtheorem{exercise}{Exercise}[chapter]
 \theoremstyle{plain}
 \newtheorem{theorem}{Theorem}[chapter]
+\theoremstyle{plain}
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{plain}
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
 \theoremstyle{remark}
 \AtBeginDocument{\renewcommand*{\proofname}{Proof}}
 \newtheorem*{remark}{Remark}
@@ -264,47 +262,9 @@
 \makeatletter
 \@ifpackageloaded{algpseudocode}{}{\usepackage{algpseudocode}}
 \makeatother
-\makeatletter
-\@ifpackageloaded{fontspec}{}{\usepackage{fontspec}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{draftwatermark}{}{\usepackage{draftwatermark}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{xcolor}{}{\usepackage{xcolor}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{forloop}{}{\usepackage{forloop}}
-\makeatother
-    \definecolor{watermark}{HTML}{000000}
-    
-    \newcounter{watermarkrow}
-    \newcounter{watermarkcol}
-
-    \DraftwatermarkOptions{
-      text={
-        \begin{tabular}{c}
-          \forloop{watermarkrow}{0}{\value{watermarkrow} < 50}{
-            \forloop{watermarkcol}{0}{\value{watermarkcol} < 10}{
-              { Seoncheol\ Park}\hspace{4.000000em}
-            }
-            \\[4.000000em]
-          }
-        \end{tabular}
-      },
-      fontsize=1.000000em,
-      angle=15.000000,
-      color=watermark!10
-    }
-    
-
-\ifLuaTeX
-  \usepackage{selnolig}  % disable illegal ligatures
-\fi
 \usepackage{bookmark}
-
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\urlstyle{same} % disable monospaced font for URLs
+\urlstyle{same}
 \hypersetup{
   pdftitle={A Biggner's Guide to Probability and Extremes},
   pdfauthor={Seoncheol Park},
@@ -318,22 +278,9 @@
 
 \title{A Biggner's Guide to Probability and Extremes}
 \author{Seoncheol Park}
-\date{2024-12-16}
-
+\date{2025-08-26}
 \begin{document}
 \maketitle
-
-\renewcommand{\Return}{\State \textbf{return}~}
-\newcommand{\Print}{\State \textbf{print}~}
-\newcommand{\Break}{\State \textbf{break}}
-\newcommand{\Continue}{\State \textbf{continue}}
-\newcommand{\True}{\textbf{true}}
-\newcommand{\False}{\textbf{false}}
-\renewcommand{\And}{\textbf{and}~}
-\newcommand{\Or}{\textbf{or}~}
-\renewcommand{\Not}{\textbf{not}~}
-\newcommand{\To}{\textbf{to}~}
-\newcommand{\DownTo}{\textbf{downto}~}
 
 \floatname{algorithm}{Algorithm}
 
@@ -433,7 +380,7 @@ To learn more about Quarto books visit
     Recall that \(A_n \uparrow A\) means that
     \(A_1 \subseteq A_2 \subseteq \ldots\) and \(\cup_n A_n = A\) and
     \(A_n \downarrow A\) means that
-    \(A_n \supseteq A_2 \supseteq \ldots\) and \(\cap_n A_n = A\)
+    \(A_1 \supseteq A_2 \supseteq \ldots\) and \(\cap_n A_n = A\)
   \end{itemize}
 \item
   \(\sigma\)-\textbf{algebra} (field) if
@@ -451,7 +398,7 @@ To learn more about Quarto books visit
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -471,10 +418,10 @@ THEORY - PART 1 MEASURE THEORETICAL FRAMEWORK} 에서 가져온 몇 가지
 예이다.
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \(\Omega\)
@@ -508,7 +455,7 @@ disjoint unions of cylinders & \(\mathcal{B}(\{0,1\}^{\mathbb{N}})\) \\
 쉽지 않기 때문이라고 한다.
 
 이렇게 원소를 파악하기 어려운 \(\sigma\)-algebra에 대해 말해주는
-보조정리 뒤 개가 있다. 이들이 말하고자 하는 바는 동일하고 많은 경우에
+보조정리 두 개가 있다. 이들이 말하고자 하는 바는 동일하고 많은 경우에
 둘을 바꿔서 사용할 수 있다고 한다.
 
 \begin{lemma}[\(\pi-\lambda\)
@@ -536,7 +483,7 @@ theorem]\protect\hypertarget{lem-pilambdathm}{}\label{lem-pilambdathm}
 
 \end{lemma}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -641,7 +588,7 @@ theorem]\protect\hypertarget{exm-differentprobmeasures}{}\label{exm-differentpro
 
 \end{lemma}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \item
@@ -667,7 +614,7 @@ theorem]\protect\hypertarget{exm-differentprobmeasures}{}\label{exm-differentpro
 다시 Example~\ref{exm-differentprobmeasures} 를 살펴보면, \(S\)가
 \(\pi\)-system이 아니라는 것을 알 수 있다.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -708,7 +655,7 @@ theorem]\protect\hypertarget{exm-differentprobmeasures}{}\label{exm-differentpro
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -781,7 +728,7 @@ measure]\protect\hypertarget{def-existenceuniquenessLebesgue}{}\label{def-existe
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \item
@@ -891,7 +838,7 @@ measure]\protect\hypertarget{def-pushforwardm}{}\label{def-pushforwardm}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -914,7 +861,7 @@ measure]\protect\hypertarget{def-pushforwardm}{}\label{def-pushforwardm}
 
 \subsection{Integration notations}\label{integration-notations}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 적분이론에서 굉장히 다양한 적분 notation을 쓰는데 알아두면 좋을 듯
 
@@ -1222,7 +1169,7 @@ P(\Omega) = 1\neq 0 = \sum_{i=1}^{\infty} P(\{r_i\}).
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -1270,9 +1217,9 @@ Proschan (2016) 예제 4.2이다.
   \(X^{-1}(B) = \{ (0,0.2) \cup (0.8,1) \cup \{0.5\} \} \in \mathcal{B}_{(0,1)}\)
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{rvs_files/figure-pdf/unnamed-chunk-2-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{rvs_files/figure-pdf/unnamed-chunk-2-1.pdf}
 
 }
 
@@ -1284,9 +1231,9 @@ Proschan (2016) 예제 4.2이다.
 
 \section{Radon-nikodym derivative}\label{radon-nikodym-derivative}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=1\textwidth,height=\textheight]{images/radon-nikodym.png}
+{\centering \includegraphics[width=1\linewidth,height=\textheight,keepaspectratio]{images/radon-nikodym.png}
 
 }
 
@@ -1406,7 +1353,7 @@ true that \[
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -1464,10 +1411,10 @@ true that \[
 \item
   PDF나 PMF가 존재하지 않더라도 Cantor distribution 같이 음이 아닌
   확률변수에서는 \(F(x) = P(X>x)\)를 계산할 수 있고, 이를 이용해 \[
-  \begin{align*}
+  \begin{aligned}
   E(X) &= \int_0^{\infty} F(x) dx\\
   \text{Var} (X) &= \int_0^{\infty} 2x F(x) dx - \Big( \int_0^{\infty}F(x) dx \Big)^2
-  \end{align*}
+  \end{aligned}
   \] 와 같이 기댓값과 분산을 구할 수 있음
 \item
   특별히 \(\{\xi_n\}\)을 i.i.d. Bernoulli라 할 때 칸토르 확률변수
@@ -1475,12 +1422,40 @@ true that \[
   있고 (앞선 동전던지기 참고) \(E(\xi_n)=\frac{1}{2}\),
   \(\text{Var}(\xi_n) = \frac{1}{4}\)라는 점을 이용해 다음과 같이 구할
   수 있음 \[
-  \begin{align*}
+  \begin{aligned}
   E(X) &= \sum_{n=1}^{\infty} E\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \frac{2}{3^n} E(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{2}{3^n }\cdot \frac{1}{2}= \sum_{n=1}^{\infty} \frac{1}{3^n} = \frac{1}{2}\\
   \text{Var}(X) &= \sum_{n=1}^{\infty} \text{Var}\Big( \frac{2}{3^n} \xi_n \Big)= \sum_{n=1}^{\infty}  \Big(\frac{2}{3^n}\Big)^2 \text{Var}(\xi_n)\\&= \sum_{n=1}^{\infty} \frac{4}{9^n }\cdot \frac{1}{4}= \sum_{n=1}^{\infty} \frac{1}{9^n} = \frac{1}{8}.
-  \end{align*}
+  \end{aligned}
   \]
 \end{itemize}
+
+\end{example}
+
+\begin{example}[\(g(X)\)가 불연속이나 \(E[g(X)]\)는 연속인
+예]\protect\hypertarget{exm-expcont}{}\label{exm-expcont}
+
+\(X\sim \text{Exp}(1)\), \(g(X)\)를 \[
+g(X) =
+\begin{cases}
+0, & \text{if }X=0\\
+1, & \text{if }X\in (0,3)\\
+1+0.4 (X-3), & \text{if }X \geq 3
+\end{cases}
+\] 이라고 하자. 이때 \[
+g(x) = 0I_{0}(x) + 1I_{(0,3)}(x) + \{ 1+0.4 (x-3) \} I_{(0,3)^c}(x)
+\] 이다. \[
+E[g(X)] = E[0I_{0}(X)] + E[1I_{(0,3)}(X)] + E[\{1+0.4(X-3)\}I_{(0,3)^c}(X)]
+\] 인데, 첫 번째 항은 0이고 \[
+E[1I_{(0,3)}(X)]  = \int 1 1I_{(0,3)}(x)\exp\{-x\}dx = \int_0^3 \exp \{-x\} dx = 1-\exp \{-3\},
+\] \[
+\begin{aligned}
+E[\{1+0.4(X-3)\}I_{(0,3)^c}(X)] &= \int \{1+0.4(x-3) \} I_{(0,3)^c}(x)\exp\{-x\}dx\\
+&= \int_3^{\infty}\{1+0.4(x-3) \}\exp \{-x\}dx\\
+&= \exp \{-3\}+0.4 \int_0^{\infty} x\exp \{-(x+3)\}dx\\
+&= \exp \{-3\}+0.4\exp \{-3\} \int_0^{\infty} x \exp \{-x\}dx\\
+&= \exp \{-3\} + 0.4 \exp \{-3\}
+\end{aligned}
+\] 즉 \(E[g(X)] = 1+0.4\exp\{-3\}\)이다.
 
 \end{example}
 
@@ -1501,18 +1476,18 @@ Let \(\{A_n, n \geq 1\}\) be arbitrary events. Then \[
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \[
-\begin{align*}
+\begin{aligned}
 P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)\\
 &\leq P\Big( \bigcup_{m=n}^{\infty}A_m \Big) \leq \sum_{m=n}^{\infty}P(A_m) \stackrel{n\rightarrow\infty}{\longrightarrow}0.
-\end{align*}
+\end{aligned}
 \]
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -1532,14 +1507,14 @@ Let \(\{A_n, n \geq 1\}\) be \textbf{independent} events. Then \[
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 By independence \[
-\begin{align*}
+\begin{aligned}
 P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=1}^{\infty}\bigcup_{m=n}^{\infty}A_m\Big)=1-P \Big (\bigcup_{n=1}^{\infty}\bigcap_{m=n}^{\infty}A_m^c\Big)\\
 &=1 - \lim_{n\rightarrow\infty}P\Big( \bigcap_{m=n}^{\infty}A_m^c\Big) = 1-\lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}P(A_m^c)\\
 &=1 - \lim_{n\rightarrow\infty}\prod_{m=n}^{\infty}(1-P(A_m)) = 1-0 = 1.
-\end{align*}
+\end{aligned}
 \]
 
 \end{tcolorbox}
@@ -1574,9 +1549,9 @@ P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=
   \]
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{ineq_files/figure-pdf/unnamed-chunk-2-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{ineq_files/figure-pdf/unnamed-chunk-2-1.pdf}
 
 }
 
@@ -1598,9 +1573,9 @@ P(A_n \text{ i.o.}) &= P(\lim\sup_{n\rightarrow\infty}A_n) = P \Big (\bigcap_{n=
   \(\frac{1}{\sqrt{N}}\)임을 (아래 그림에 녹색으로 표시) 확인 가능
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{ineq_files/figure-pdf/unnamed-chunk-3-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{ineq_files/figure-pdf/unnamed-chunk-3-1.pdf}
 
 }
 
@@ -1619,7 +1594,7 @@ P\{ X\geq t\} \leq \frac{E[X]}{t}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 확률공간 \((\Omega, \Sigma, P)\)을 생각하자. \[
 EX = \int X dP \geq \int_{\{X\geq t\}} X dP \geq t \int_{\{X\geq t \}}dP \geq t\cdot P\{ X\geq t\}
@@ -1627,7 +1602,7 @@ EX = \int X dP \geq \int_{\{X\geq t\}} X dP \geq t \int_{\{X\geq t \}}dP \geq t\
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -1650,7 +1625,7 @@ P\{|X-E(X)|\geq t \}\leq \frac{\text{Var}(X)}{t^2}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \(|X-E(X)|\geq t\)를 제곱한 후 마르코프 부등식을 적용 \[
 P\{ |X-E(X)|^2 \geq t^2\} \leq \frac{E[(X-E(X))]^2}{t^2} = \frac{\text{Var}(X)}{t^2}
@@ -1658,7 +1633,7 @@ P\{ |X-E(X)|^2 \geq t^2\} \leq \frac{E[(X-E(X))]^2}{t^2} = \frac{\text{Var}(X)}{
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -1690,7 +1665,7 @@ P\{ \sum_{i=1}^N a_i X_i \geq t \} \leq \exp \Big( - \frac{t^2}{2\|a\|^2} \Big)
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 마르코프 부등식을 적용하면 다음과 같다. \[
 P\{ \sum_{i=1}^N a_i X_i \geq t \} = P \{ \exp (\lambda \sum_{i=1}^N a_i X_i) \geq e^{\lambda t} \} \leq e^{-\lambda t}E\{ \exp (\lambda \sum_{i=1}^N a_i X_i) \}
@@ -1721,9 +1696,9 @@ P\{ \sum_i X_i > t\} = P \{ \sum_i (\frac{Y_i}{2}+ \frac{1}{2}) > t \} = P\{\sum
 P\{\sum_i X_i > \frac{3N}{4} \}\leq \exp (- \frac{(\frac{3N}{2}-N)^2}{2N}) = \exp (-\frac{N}{8})
 \]
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{ineq_files/figure-pdf/unnamed-chunk-4-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{ineq_files/figure-pdf/unnamed-chunk-4-1.pdf}
 
 }
 
@@ -1741,7 +1716,7 @@ P \{\sum_{i=1}^N (X_i - E(X_i))\geq t \} \leq \exp (- \frac{2t^2}{\sum_{i=1}^N (
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 앞에서처럼 \(\lambda\)를 곱하고 제곱근을 취한 다음 마르코프 부등식을
 이용한다 \[
@@ -1805,7 +1780,7 @@ P \{ S_N \geq t \} \leq \exp (-\mu) \Big( \frac{e\mu}{t} \Big)^t.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 다시 \(\lambda\)를 곱하고 마르코프 부등식을 적용하자. \[
 P\{ S_N \geq t \} \leq E\{ \exp (\lambda \sum_{i} X_i) \}e^{-\lambda t} = \prod_i E\{ \exp (\lambda X_i) \}e^{-\lambda t}.
@@ -1836,9 +1811,9 @@ P\{ S_N \geq t \} &\leq \exp \Big( (\frac{t}{\mu}-1)\mu \Big) \Big( \frac{\mu}{t
   \]
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{ineq_files/figure-pdf/unnamed-chunk-5-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{ineq_files/figure-pdf/unnamed-chunk-5-1.pdf}
 
 }
 
@@ -1889,7 +1864,7 @@ Gaussian density tail의 decay 속도를 알려줌
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \item
@@ -1931,7 +1906,7 @@ P(\max_{1\leq i \leq n} |X_i | >t) \leq 2n \frac{\sigma}{t}\phi \Big( \frac{t}{\
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 Mills 부등식에 union bound를 쓰면 된다고 함
 
@@ -1957,7 +1932,7 @@ E[\max_{1\leq i \leq n} |X_i|] \leq \sigma \sqrt{2\log 2n}
 
 \end{proposition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -2019,7 +1994,7 @@ E[\exp (sX)] \leq \exp \Big( \frac{\sigma^2 s^2}{2} \Big), \forall s \in \mathbb
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -2212,7 +2187,7 @@ function]\protect\hypertarget{def-chardistn}{}\label{def-chardistn}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 앞선 푸리에 변환의 정의와 부호 등이 다르지만,
 \href{https://stats.stackexchange.com/questions/44944/characteristic-function-and-fourier-transform}{Characteristic
@@ -2375,7 +2350,7 @@ random variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -2409,11 +2384,11 @@ random variable \(X\) as \(n\rightarrow \infty\)라 하고,
 \end{itemize}
 
 \begin{longtable}[]{@{}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\centering\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\centering
 \(A_n(\omega)\)
@@ -2502,7 +2477,7 @@ random variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -2531,7 +2506,7 @@ variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -2589,7 +2564,7 @@ condition]\protect\hypertarget{thm-cauchycond}{}\label{thm-cauchycond}
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -2600,10 +2575,6 @@ condition]\protect\hypertarget{thm-cauchycond}{}\label{thm-cauchycond}
 \end{itemize}
 
 \end{tcolorbox}
-
-\begin{example}[]\protect\hypertarget{exm-rmeanconv01}{}\label{exm-rmeanconv01}
-
-~
 
 \begin{itemize}
 \tightlist
@@ -2616,8 +2587,6 @@ condition]\protect\hypertarget{thm-cauchycond}{}\label{thm-cauchycond}
   \end{align*}
   \] 이므로 \(\{H_n(\omega)\}\)은 0으로 제곱 평균 수렴하지는 않음
 \end{itemize}
-
-\end{example}
 
 \section{Convergence in Probability}\label{convergence-in-probability}
 
@@ -2633,7 +2602,7 @@ variable \(X\) as \(n\rightarrow \infty\)라 하고,
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -2647,6 +2616,65 @@ variable \(X\) as \(n\rightarrow \infty\)라 하고,
   이 사실은 \(\{|X_n - X|> \varepsilon\}\)과
   \(\{\sup_{m\geq n} |X_m-X|>\varepsilon \}\)의 뜻의 차이로부터 옴
 \end{itemize}
+
+\end{tcolorbox}
+
+다음 내용은 두 확률변수열 \(\{X_n\}\), \(\{Y_n\}\)이
+\(X_n \stackrel{p}{\rightarrow} X\),
+\(Y_n \stackrel{p}{\rightarrow} Y\)라고 할 때
+\(X_n + Y_n \stackrel{p}{\rightarrow} X+Y\)일지에 대한 내용이다.
+
+\begin{theorem}[합과 곱의
+확률수렴]\protect\hypertarget{thm-probconvsumprod}{}\label{thm-probconvsumprod}
+
+~
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\{X_n\}\), \(\{Y_n\}\)이 \(X_n \stackrel{p}{\rightarrow} X\),
+  \(Y_n \stackrel{p}{\rightarrow} Y\)일 때
+  \(X_n + Y_n \stackrel{p}{\rightarrow} X+Y\)이다.
+\item
+  \(\{X_n\}\), \(\{Y_n\}\)이 \(X_n \stackrel{p}{\rightarrow} X\),
+  \(Y_n \stackrel{p}{\rightarrow} Y\)일 때
+  \(X_n  Y_n \stackrel{p}{\rightarrow} XY\)이다.
+\end{enumerate}
+
+\end{theorem}
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\{ |X_n + Y_n - (X+Y) | > \varepsilon\} \subset \{ |X_n - X| > \frac{\varepsilon}{2} \} \cup  \{ |Y_n - Y| > \frac{\varepsilon}{2} \}\)
+  라는 사실을 이용하면 된다.
+\item
+  \(|X_n Y_n - XY | \leq |Y| \cdot |X_n - X| + |X_n | \cdot |Y_n - Y|\)가
+  성립한다. Triangle inequality에 의해 \[
+  P(|X_n Y_n - XY | \geq \varepsilon) \leq P(|Y| \cdot |X_n - X| \geq \frac{\varepsilon}{2}) + \leq P(|X_n| \cdot |Y_n - Y| \geq \frac{\varepsilon}{2})
+  \] 이다. 첫 펀째 파트는 어떤 \(M>0\)에 대해 \[
+  P(|Y| \cdot |X_n - X| \geq \frac{\varepsilon}{2})  \leq P(|X_n - X| \geq \frac{\varepsilon}{2M}) + P(|Y| \geq M)
+  \] 이다. \(n\rightarrow \infty\)로 두면 \[
+  \text{limsup}_{n\rightarrow \infty} P(|Y| \cdot |X_n - X| \geq \frac{\varepsilon}{2}) \leq P(|Y| \geq M).
+  \] 이것은 임의의 \(M>0\)에 대해 성립하므로 \(M\rightarrow\infty\)로
+  놓고 DCT에 의해
+  \(\lim_{n\rightarrow\infty} P(|Y| \cdot |X_n - X| \geq \frac{\varepsilon}{2})\)기
+  존재하고 0이다. 두 번째 파트는 다음으로부터 시작한다. 어떤 \(M>0\)에
+  대해 \[
+  P(|X_n| \cdot |Y_n - Y| \geq \frac{\varepsilon}{2})  \leq P(|Y_n - Y| \geq \frac{\varepsilon}{2M}) + P(|X_n| \geq M).
+  \] Triangle inequality에 의해 \[
+  P(|X_n| \geq M) \leq P(|X_n - X| \geq \frac{M}{2}) + P(|X| \geq \frac{M}{2})
+  \] 이다. 이제 두 번쨰 식에서 첫 번째 씩을 빼면 \[
+  P(|X_n | \cdot |Y_n - Y| \geq \frac{\varepsilon}{2}) \leq P(|Y_n - Y|\geq \frac{\varepsilon}{2M}) + P(|X_n - X| \geq \frac{M}{2}) + P(|X| \geq \frac{M}{2}).
+  \] 우변의 처음 두 개의 항은 \(X_n \stackrel{p}{\rightarrow} X\),
+  \(Y_n \stackrel{p}{\rightarrow} Y\)이므로 \(n\rightarrow\infty\)일 때
+  0으로 수렴한다. \(n\rightarrow\infty\)로 놓은 후에는
+  \(M\rightarrow\infty\)로 놓아 \[
+  \lim_{n\rightarrow \infty} P(|X_n | \cdot |Y_n - Y| \geq \frac{\varepsilon}{2})=0
+  \] 이다.
+\end{enumerate}
 
 \end{tcolorbox}
 
@@ -2726,7 +2754,7 @@ weakly.
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Polansky (2011) 의 4장에서는 converges weakly를 converge in
 distribution을 정의할 때 쓴 random variable의 sequence를 생략한 채
@@ -2741,7 +2769,7 @@ converges weakly를 \(F_n \rightsquigarrow F\)로 표기하기도 하였다.
 convergence의 limiting random variable이 \textbf{proper}하지 않아도
 된다는 점이 distributional convergence와의 차이점이다.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Proper하지 않은 random variable이라는 것은 probability mass가 escape to
 infinity할 수도 있음을 의미
@@ -2829,7 +2857,7 @@ X_n &\stackrel{r}{\rightarrow} X.
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 이는 즉 \(m\leq n\)인 모든 \(n\)에 대해 \(X_n\)이 전부 0이 나올 확률이
 0이기 때문에 거의 어디서나 수렴하지 않는 것으로 생각할 수 있다. 그러나
@@ -2942,7 +2970,7 @@ distribution}\label{bounded-in-probabilityuxc640-converge-in-distribution}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \(\varepsilon>0\)일 때 \(X\)에 대해
 \(P(|X|\leq x_{\varepsilon})\geq 1-\varepsilon\)이 성립하는
@@ -2991,7 +3019,7 @@ X_n Y_n \stackrel{P}{\rightarrow}0.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \(\varepsilon>0\)이라고 하자. 다음이 성립하도록 \(B_{\varepsilon}>0\)과
 정수 \(N_{\varepsilon}\)을 선택한다. \[
@@ -3008,7 +3036,7 @@ n \geq N_{\varepsilon} \Longrightarrow P(|X_n|\leq B_{\varepsilon}) \geq 1-\vare
 
 \section{Converses}\label{converses}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 처음 두 개의 정리는 \(X\)가 어떤 상수 \(c\)에 대해 \(P(X=c)=1\)을
 만족하는 degenerate random variable일 경우 역이 성립함을 보여줌
@@ -3023,7 +3051,7 @@ X_n \stackrel{\text{c.c.}}{\rightarrow} c \Longleftrightarrow X_n \stackrel{\tex
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 Since both statements are equiv to \[
 \sum_{n=1}^{\infty} P(\vert X_n - c\vert > \varepsilon) <\infty, \quad{} \forall \varepsilon>0
@@ -3041,7 +3069,7 @@ X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty \
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 확률수렴이면 분포수렴이므로 분포수렴일때 확률수렴인지만 보면 됨.
 \(X_n \stackrel{d}{\rightarrow} \delta (c) \quad{} \text{as } n\rightarrow\infty\)이
@@ -3071,7 +3099,7 @@ X_{n_k} \stackrel{\text{a.s.}}{\rightarrow} X \quad{} \text{as } n\rightarrow \i
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 By assumption, there exists a non-decreasing subsequence,
 \(\{n_k, k\geq 1\}\), such that \[
@@ -3085,7 +3113,7 @@ whenever \(k> \log (1/\varepsilon)/\log 2\), it follows that \[
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -3130,7 +3158,7 @@ is unifomly integrable iff \[
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \(X_1, X_2 , \ldots\)이 유한한 평균을 갖고 있다는 뜻은
 \(E|X_n|I\{|X_n|>a\}\rightarrow 0\) as \(a \rightarrow \infty\) for
@@ -3283,7 +3311,7 @@ h(X_n) \stackrel{\text{a.s.}}{\rightarrow} h(X) \quad{} \text{as } n \rightarrow
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 The definition of continuity implies that, \[
 \{ \omega: X_n(\omega) \rightarrow X(\omega)\} \subset \{ \omega: h(X_n(\omega)) \rightarrow h(X(\omega))\}
@@ -3313,7 +3341,7 @@ g(X_n) \stackrel{d}{\rightarrow} g(X) \quad{} \text{as } n \rightarrow \infty.
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Continuous functions are limit-preserving. (Hansen 2022)
 
@@ -3362,7 +3390,7 @@ X & \text{if } \vert X \vert \leq M\\
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 예를 들어 finite second moment 없이 weak law를 하려면 truncation으로
 자르고 Chebyshev's inequality를 적용하면 된다고 한다.
@@ -3407,7 +3435,7 @@ equivalent, then:
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 다음 예제는 truncation을 이용해 어떤 확률변수열 \(\{X_n\}\)의
 convergence equivalent한 새로운 함수열을 만들 수 있음을 보인다.
@@ -3473,7 +3501,7 @@ Numbers}\label{the-weak-law-of-large-numbers}
   \]
 \end{itemize}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -3512,7 +3540,7 @@ theorem]\protect\hypertarget{thm-markovthm}{}\label{thm-markovthm}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -3553,7 +3581,7 @@ Numbers}\label{the-strong-law-of-large-numbers}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -3641,7 +3669,7 @@ Let \(X_1, X_2, \ldots, X_n\) be a sample from the distribution \(F\).
 F_n(x) \stackrel{\text{a.s.}}{\rightarrow} F(x),\quad{} \text{as }n\rightarrow\infty.
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Glivenko-Cantelli Theorem은 \(n\rightarrow\infty\)일 때 \(F_n\)이
 \(F\)에 대해 converges uniformly한다는 것을 보여준다. (Durrett 2019)
@@ -3657,7 +3685,7 @@ theorem]\protect\hypertarget{thm-glivenkocantelli}{}\label{thm-glivenkocantelli}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \item
@@ -3742,9 +3770,9 @@ theorem]\protect\hypertarget{thm-glivenkocantelli}{}\label{thm-glivenkocantelli}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{lln_files/figure-pdf/unnamed-chunk-1-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{lln_files/figure-pdf/unnamed-chunk-1-1.pdf}
 
 }
 
@@ -3787,7 +3815,7 @@ expectation \(\mu\), and positive, finite variance \(\sigma^2\), and set
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 특성함수에 대한 continuity theorem Theorem~\ref{thm-cfdistn} 의 관점에서
 \[
@@ -3900,7 +3928,7 @@ LIL]\protect\hypertarget{thm-lil}{}\label{thm-lil}
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 왜 하필 \(\log \log n\)이라는 생각이 들 수도 있는데, 어떤 사람들은
 normal distribution의 density에 \(\exp (-x^2/2)\)가 있어서 이 효과를
@@ -3941,9 +3969,9 @@ size는?
   \(S_n = X_1 + \cdots X_n\)
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{lil_files/figure-pdf/unnamed-chunk-2-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{lil_files/figure-pdf/unnamed-chunk-2-1.pdf}
 
 }
 
@@ -4076,7 +4104,7 @@ distributions]\protect\hypertarget{def-stabledistn}{}\label{def-stabledistn}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 (Nolan (2020) 의 내용)
 
@@ -4155,7 +4183,7 @@ distributions]\protect\hypertarget{def-longtaileddist}{}\label{def-longtaileddis
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -4212,9 +4240,9 @@ A scatter plot of \(\hat{W}_i\) (horizontal) versus \(\hat{S}_i\)
 A density plot of the \(\hat{W}_i\) is a representation of extremal
 dependence.
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{mev_files/figure-pdf/unnamed-chunk-1-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{mev_files/figure-pdf/unnamed-chunk-1-1.pdf}
 
 }
 
@@ -4413,9 +4441,9 @@ matrix}\label{uxc2e4uxd5d8-2-uniform-random-symmetric-matrix}
   Eigenvalue 계산 후 histogram 그림
 \end{itemize}
 
-\begin{figure}[th]
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.7\textwidth,height=\textheight]{rmatrices_files/figure-pdf/unnamed-chunk-2-1.pdf}
+{\centering \includegraphics[width=0.7\linewidth,height=\textheight,keepaspectratio]{rmatrices_files/figure-pdf/unnamed-chunk-2-1.pdf}
 
 }
 
@@ -4492,7 +4520,7 @@ equivalent]\protect\hypertarget{def-asymptequiv}{}\label{def-asymptequiv}
 
 \end{definition}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다.
 (Polansky 2011) 예를 들어 \(a_n = O(n^{-1})\)이라고 하자. 그렇다는 것은
@@ -4541,7 +4569,7 @@ Order notation로 asymptotic behavior를 표현하는 것은 unique하지 않다
 
 \end{exercise}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 Big-O, small-o의 정의로부터 다음을 알 수 있다.
 
@@ -4597,8 +4625,8 @@ following properties hold (García-Portugués 2024):
 \end{proposition}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5833}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4167}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5833}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4167}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Sequence
@@ -4630,10 +4658,10 @@ neither \(o(b_n)\)) \\
 \end{longtable}
 
 \begin{center}
-\includegraphics{bigoh_files/figure-pdf/unnamed-chunk-1-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{bigoh_files/figure-pdf/unnamed-chunk-1-1.pdf}}
 \end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \tightlist
@@ -4787,7 +4815,7 @@ tightly concentrated about \(0\).
 
 \end{example}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Remark}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, bottomtitle=1mm, colframe=quarto-callout-tip-color-frame]
 
 \begin{itemize}
 \item
@@ -4839,7 +4867,7 @@ visualized, which shows a particular realization \(X_n(\omega)\) of the
 sequence of random variables.
 
 \begin{center}
-\includegraphics{bigoh_files/figure-pdf/unnamed-chunk-2-1.pdf}
+\pandocbounded{\includegraphics[keepaspectratio]{bigoh_files/figure-pdf/unnamed-chunk-2-1.pdf}}
 \end{center}
 
 \begin{exercise}[]\protect\hypertarget{exr-probconvexr}{}\label{exr-probconvexr}
@@ -4879,7 +4907,7 @@ It is actually true that:
 
 \end{theorem}
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, bottomrule=.15mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, leftrule=.75mm, rightrule=.15mm, arc=.35mm, left=2mm, titlerule=0mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, coltitle=black, breakable, colback=white, toprule=.15mm, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, arc=.35mm, leftrule=.75mm, colback=white, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Proof}, rightrule=.15mm, breakable, bottomrule=.15mm, coltitle=black, opacitybacktitle=0.6, opacityback=0, toptitle=1mm, titlerule=0mm, toprule=.15mm, colbacktitle=quarto-callout-note-color!10!white, bottomtitle=1mm, colframe=quarto-callout-note-color-frame]
 
 \begin{itemize}
 \item
